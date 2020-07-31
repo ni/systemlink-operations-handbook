@@ -1,0 +1,35 @@
+site_name: NI SystemLink Operations Handbook
+repo_url: https://github.com/ni/systemlink-operations-handbook
+copyright: Copyright © 2020 National Instruments Corporation
+
+docs_dir: handbook
+edit_uri: edit/master/handbook/
+strict: true
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - meta
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed
+
+plugins:
+  - awesome-pages:
+      collapse_single_pages: true
+      strict: true
+  - enumerate-headings:
+      toc_depth: 2
+  - git-revision-date-localized
+  - search
+
+theme:
+  name: material
+  palette:
+    scheme: ni
+  favicon: img/favicon.ico
+  logo: img/SystemLink.png
+
+extra_css:
+  - stylesheets/extra.css

@@ -1,0 +1,32 @@
+[data-md-color-scheme="ni"] {
+  --md-primary-fg-color:               #044123;
+  --md-primary-fg-color--light:        #035332;
+  --md-primary-fg-color--dark:         #05381f;
+  --md-primary-bg-color:               #F1F1F2;
+  --md-primary-bg-color--light:        #FFFFFF;
+
+  --md-accent-fg-color:                #03B585;
+  --md-accent-fg-color--transparent:   hsla(#03B585, 0.1);
+  --md-accent-bg-color:                #F1F1F2;
+  --md-accent-bg-color--light:         #FFFFFF;
+
+  --md-footer-bg-color:              #CDDCC8;
+  --md-footer-bg-color--dark:        #034123;
+  --md-footer-fg-color:              #034123;
+  --md-footer-fg-color--light:       #03B585;
+  --md-footer-fg-color--lighter:     #03b5869f;
+}
+
+.md-typeset a {
+  text-decoration: underline;
+}
+
+html .md-footer-meta.md-typeset a
+{
+  text-decoration: none;
+  color: var(--md-footer-fg-color--lighter);
+}
+
+html .md-footer-meta.md-typeset a:focus, html .md-footer-meta.md-typeset a:hover {
+  color: var(--md-footer-fg-color--light);
+}
