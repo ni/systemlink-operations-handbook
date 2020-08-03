@@ -16,24 +16,27 @@ for more details.
 
 ## Developer Setup
 
-Before making changes to markdown files in the handbook, developers should set
-up a [MkDocs development environment](https://www.mkdocs.org/#installation).
-The most consistent way is manually, through Python:
+Before making changes to markdown files in the handbook, set up a
+[Python virtual environment](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment)
+for using [MkDocs](https://www.mkdocs.org):
 
 1. Download and [install Python](https://www.python.org/)
-   (3.8 or later is recommended)
+   (NI recommends 3.8 or later)
 2. (Optional) Create a virtual environment named `mkdocs` in the current
-   directory: `python -m venv mkdocs`
-3. (Optional) Activate the virtual environment by running `activate` in the
-   `Scripts` sub-directory of the `mkdocs` virtual environment
-4. Upgrade pip: `python -m pip install --upgrade pip`
-5. Install dependencies: `pip install -r requirements.txt`
+   directory by running `python -m venv mkdocs`
+3. (Optional) To activate the created `mkdocs` virtual environment, change to
+   the `Scripts` sub-directory and run `activate`
+4. Upgrade pip by running `python -m pip install --upgrade pip`
+5. Install dependencies by running `pip install -r requirements.txt`
+
+For more information and installation options, see
+[MkDocs - Installation](https://www.mkdocs.org/#installation).
 
 ## Previewing Changes to Markdown Files
 
-When making a change to handbook content, use the
-[MkDocs environment](https://www.mkdocs.org/#getting-started) set up in the
-Developer Setup section to start a local testing server:
+Preview changes you make to handbook content before you submit them. In the
+MkDocs environment you set up, run the following command to start a local
+testing server:
 
 ```bash
 $ mkdocs serve
@@ -48,16 +51,16 @@ INFO    -  Start watching changes
 INFO    -  Start detecting changes
 ```
 
-Then open a browser to <http://127.0.0.1:8000/> to access a preview of the your
-local copy of the handbook.
+To access the preview, open a browser and navigate to <http://127.0.0.1:8000/>.
+For more information and configuration options, see
+[MkDocs - Getting Started](https://www.mkdocs.org/#getting-started).
 
 ## Building a Local Copy of the Handbook
 
-The handbook uses MkDocs to produce a static HTML website that can be served by
-any web server. To make the handbook available offline, you can build your own
-copy of the handbook using the
-[MkDocs environment](https://www.mkdocs.org/#building-the-site) set up in the
-Developer Setup section:
+The handbook uses MkDocs to produce a static HTML website that any web server
+can host. Build your own local copy of this handbook to access it without
+internet connectivity. In the MkDocs environment you set up, run the following
+command to build a local copy:
 
 ```bash
 $ mkdocs build
@@ -66,8 +69,9 @@ INFO    -  Building documentation to directory: site
 INFO    -  Documentation built in 0.52 seconds
 ```
 
-The content is built into a `site` subdirectory, which can be copied into any
-web server.
+MkDocs builds the content into a `site` subdirectory, which you can copy into
+any web server. For more information about building, see
+[MkDocs - Building the site](https://www.mkdocs.org/#building-the-site).
 
 ## Developer Certificate of Origin (DCO)
 
