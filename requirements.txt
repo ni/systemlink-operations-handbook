@@ -1,0 +1,5 @@
+mkdocs
+mkdocs-awesome-pages-plugin
+mkdocs-enumerate-headings-plugin
+mkdocs-git-revision-date-localized-plugin
+mkdocs-material
