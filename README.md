@@ -6,7 +6,7 @@ IT professionals to use when managing an NI SystemLink Server installation.
 ## Accessing Documentation
 
 The handbook is divided into chapters and published as HTML accessible at
-<https://ni.github.io/systemlink-operations-handbook/>.
+<https://operations.systemlink.io/>.
 
 The markdown and other supporting files used to generate the handbook are
 accessible within the [handbook directory](handbook).
