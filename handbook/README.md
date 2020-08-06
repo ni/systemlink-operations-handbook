@@ -8,4 +8,4 @@ Placeholder
 
 ## Chapters
 
-Placeholder
+- [Placeholder chapter](placeholder)
