@@ -1,7 +1,10 @@
 # SystemLink Operations Handbook
 
 This repository contains documentation, examples, and example config files for
-IT professionals to use when managing an NI SystemLink Server installation.
+IT professionals to use when managing more advanced configurations of
+[NI SystemLink Server](https://www.ni.com/systemlink). For information about
+how to install and use a SystemLink server, see the
+[latest product manual on ni.com](https://www.ni.com/r/systemlinkmanual).
 
 ## Accessing Documentation
 
