@@ -14,6 +14,10 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.tabbed
+  - toc:
+      # Use anchorlink instead of permalink to work around https://github.com/timvink/mkdocs-enumerate-headings-plugin/issues/23
+      anchorlink: true
+      marker: ''
 
 plugins:
   - awesome-pages:

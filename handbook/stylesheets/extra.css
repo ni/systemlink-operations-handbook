@@ -17,6 +17,8 @@
   --md-footer-fg-color--lighter:     #03b5869f;
 }
 
+/* Navigation bars (left and right) */
+
 .md-nav {
   color: #333;
   font-size: 16px;
@@ -30,7 +32,7 @@
   color: var(--md-typeset-a-color);
 }
 
-.md-nav a:hover {
+.md-nav a:hover, .md-nav a:focus {
   text-decoration: underline;
   color: var(--md-typeset-a-color);
 }
@@ -38,6 +40,8 @@
 .md-nav__item .md-nav__link--active {
   font-weight: 700;
 }
+
+/* Textual content (main body and bottom footer) */
 
 .md-typeset {
   color: #333;
@@ -81,6 +85,39 @@
   text-decoration: underline;
 }
 
+/* Permalinks to work around https://github.com/timvink/mkdocs-enumerate-headings-plugin/issues/23 */
+
+h1 .enumerate-heading-plugin,
+h2 .enumerate-heading-plugin,
+h3 .enumerate-heading-plugin,
+h4 .enumerate-heading-plugin {
+  display: none;
+}
+
+.md-typeset h1:hover .toclink:after,
+.md-typeset h2:hover .toclink:after,
+.md-typeset h3:hover .toclink:after,
+.md-typeset h4:hover .toclink:after {
+  content: " ¶";
+  opacity: 0.6;
+}
+
+a.toclink {
+  text-decoration: none;
+  color: #333;
+}
+
+a.toclink:hover, a.toclink:focus {
+  color: #333;
+}
+
+a.toclink:focus:after {
+  content: " ¶";
+  opacity: 0.6;
+}
+
+/* Footer navigation */
+
 .md-ellipsis {
   font-size: 21px;
 }
@@ -88,6 +125,8 @@
 .md-footer-nav__direction {
   font-size: 16px;
 }
+
+/* Footers */
 
 html .md-footer-meta.md-typeset a
 {
@@ -99,6 +138,8 @@ html .md-footer-meta.md-typeset a:focus, html .md-footer-meta.md-typeset a:hover
   text-decoration: underline;
   color: var(--md-footer-fg-color--lighter);
 }
+
+/* Fonts */
 
 body, input {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
