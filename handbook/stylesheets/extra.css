@@ -25,10 +25,10 @@
 }
 
 .md-nav label {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 18px;
   font-weight: 700;
   text-transform: uppercase;
-  font-size: 18px;
-  font-family: "Roboto Condensed", sans-serif;
 }
 
 .md-nav a {
@@ -36,8 +36,8 @@
 }
 
 .md-nav a:hover, .md-nav a:focus {
-  text-decoration: underline;
   color: var(--md-typeset-a-color);
+  text-decoration: underline;
 }
 
 .md-nav__item .md-nav__link--active {
@@ -58,8 +58,8 @@
 .md-typeset h1, .md-typeset h2, .md-typeset h3, .md-typeset h4 {
   color: #333;
   font-family: "Roboto Condensed", sans-serif;
-  line-height: 120%;
   letter-spacing: 0;
+  line-height: 120%;
   margin: 24px 0 0;
 }
 
@@ -100,23 +100,19 @@ h4 .enumerate-heading-plugin {
 .md-typeset h1:hover .toclink:after,
 .md-typeset h2:hover .toclink:after,
 .md-typeset h3:hover .toclink:after,
-.md-typeset h4:hover .toclink:after {
+.md-typeset h4:hover .toclink:after,
+a.toclink:focus:after {
   content: " ¶";
   opacity: 0.6;
 }
 
 a.toclink {
-  text-decoration: none;
   color: #333;
+  text-decoration: none;
 }
 
 a.toclink:hover, a.toclink:focus {
   color: #333;
-}
-
-a.toclink:focus:after {
-  content: " ¶";
-  opacity: 0.6;
 }
 
 /* Footer navigation */
@@ -133,13 +129,13 @@ a.toclink:focus:after {
 
 html .md-footer-meta.md-typeset a
 {
-  text-decoration: none;
   color: var(--md-footer-fg-color--lighter);
+  text-decoration: none;
 }
 
 html .md-footer-meta.md-typeset a:focus, html .md-footer-meta.md-typeset a:hover {
-  text-decoration: underline;
   color: var(--md-footer-fg-color--lighter);
+  text-decoration: underline;
 }
 
 /* Fonts */

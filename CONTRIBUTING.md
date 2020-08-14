@@ -78,7 +78,7 @@ any web server. For more information about building, see
 
 The included [requirements.txt](requirements.txt) file lists specific versions
 of each dependency and transitive dependency needed to build the handbook. To
-install the latest versions instead, reference the
+install the latest versions, reference the
 [requirements-latest.txt](requirements-latest.txt) file instead, by running
 `pip install -r requirements-latest.txt`.
 

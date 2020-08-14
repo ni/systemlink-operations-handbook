@@ -29,13 +29,13 @@ plugins:
   - search
 
 theme:
-  name: material
   custom_dir: overrides
+  favicon: img/favicon.ico
+  font: false
+  logo: img/SystemLink.png
+  name: material
   palette:
     scheme: ni
-  favicon: img/favicon.ico
-  logo: img/SystemLink.png
-  font: false
 
 extra_css:
   - stylesheets/extra.css
