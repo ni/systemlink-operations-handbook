@@ -30,6 +30,7 @@ plugins:
 
 theme:
   name: material
+  custom_dir: overrides
   palette:
     scheme: ni
   favicon: img/favicon.ico

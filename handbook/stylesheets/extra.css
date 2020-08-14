@@ -26,6 +26,9 @@
 
 .md-nav label {
   font-weight: 700;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 .md-nav a {
