@@ -1,6 +1,4 @@
----
-title: Introduction
----
+# Introduction
 
 The SystemLink Operations Handbook contains documentation, examples, and
 example config files for IT professionals to use when managing more advanced

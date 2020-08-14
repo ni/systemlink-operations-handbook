@@ -1,0 +1,53 @@
+--- .venv/Lib/site-packages/material/partials/nav-item.html	2020-08-14 13:12:49.726377200 -0500
++++ overrides/partials/nav-item.html	2020-08-14 12:57:48.639544200 -0500
+@@ -1,5 +1,5 @@
+ {#-
+-  This file was automatically generated - do not edit
++  Customized from v5.5.6 mkdocs-material.
+ -#}
+ {% set class = "md-nav__item" %}
+ {% if nav_item.active %}
+@@ -13,7 +13,7 @@
+       <input class="md-nav__toggle md-toggle" data-md-toggle="{{ path }}" type="checkbox" id="{{ path }}">
+     {% endif %}
+     <label class="md-nav__link" for="{{ path }}">
+-      {{ nav_item.title }}
++      {{ chapter }}. {{ nav_item.title }}
+       <span class="md-nav__icon md-icon">
+         {% include ".icons/material/chevron-right.svg" %}
+       </span>
+@@ -23,7 +23,7 @@
+         <span class="md-nav__icon md-icon">
+           {% include ".icons/material/arrow-left.svg" %}
+         </span>
+-        {{ nav_item.title }}
++        {{ chapter }}. {{ nav_item.title }}
+       </label>
+       <ul class="md-nav__list" data-md-scrollfix>
+         {% set base = path %}
+@@ -44,14 +44,14 @@
+     {% endif %}
+     {% if toc | first is defined %}
+       <label class="md-nav__link md-nav__link--active" for="__toc">
+-        {{ nav_item.title }}
++        {{ chapter }}. {{ nav_item.title }}
+         <span class="md-nav__icon md-icon">
+           {% include ".icons/material/table-of-contents.svg" %}
+         </span>
+       </label>
+     {% endif %}
+     <a href="{{ nav_item.url | url }}" title="{{ nav_item.title | striptags }}" class="md-nav__link md-nav__link--active">
+-      {{ nav_item.title }}
++      {{ chapter }}. {{ nav_item.title }}
+     </a>
+     {% if toc | first is defined %}
+       {% include "partials/toc.html" %}
+@@ -60,7 +60,7 @@
+ {% else %}
+   <li class="{{ class }}">
+     <a href="{{ nav_item.url | url }}" title="{{ nav_item.title | striptags }}" class="md-nav__link">
+-      {{ nav_item.title }}
++      {{ chapter }}. {{ nav_item.title }}
+     </a>
+   </li>
+ {% endif %}

@@ -1,0 +1,24 @@
+{#-
+  Customized from v5.5.6 mkdocs-material.
+-#}
+<nav class="md-nav md-nav--primary" aria-label="{{ lang.t('nav.title') }}" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    Table of Contents
+  </label>
+  {% if config.repo_url %}
+    <div class="md-nav__source">
+      {% include "partials/source.html" %}
+    </div>
+  {% endif %}
+  <ul class="md-nav__list" data-md-scrollfix>
+    {% for nav_item in nav %}
+      {% set path = "nav-" + loop.index | string %}
+      {% set level = 1 %}
+      {#
+        Pass through the chapter attribute added by the enumerate-headings extension.
+      #}
+      {% set chapter = nav.pages[loop.index - 1].chapter %}
+      {% include "partials/nav-item.html" %}
+    {% endfor %}
+  </ul>
+</nav>

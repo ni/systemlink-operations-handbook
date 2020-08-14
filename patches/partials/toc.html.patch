@@ -1,0 +1,18 @@
+--- .venv/Lib/site-packages/material/partials/toc.html	2020-08-14 13:13:40.932600300 -0500
++++ overrides/partials/toc.html	2020-08-14 13:00:39.101758500 -0500
+@@ -1,5 +1,5 @@
+ {#-
+-  This file was automatically generated - do not edit
++  Customized from v5.5.6 mkdocs-material.
+ -#}
+ {% import "partials/language.html" as lang with context %}
+ <nav class="md-nav md-nav--secondary" aria-label="{{ lang.t('toc.title') }}">
+@@ -12,7 +12,7 @@
+       <span class="md-nav__icon md-icon">
+         {% include ".icons/material/arrow-left.svg" %}
+       </span>
+-      {{ lang.t("toc.title") }}
++      {{ page.title }}
+     </label>
+     <ul class="md-nav__list" data-md-scrollfix>
+       {% for toc_item in toc %}

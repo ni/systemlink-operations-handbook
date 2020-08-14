@@ -74,6 +74,21 @@ MkDocs builds the content into a `site` subdirectory, which you can copy into
 any web server. For more information about building, see
 [MkDocs - Building the site](https://www.mkdocs.org/#building-the-site).
 
+## Upgrading Python Dependencies
+
+The included [requirements.txt](requirements.txt) file lists specific versions
+of each dependency and transitive dependency needed to build the handbook. To
+install the latest versions, reference the
+[requirements-latest.txt](requirements-latest.txt) file instead, by running
+`pip install -r requirements-latest.txt`.
+
+Upgrading versions may require changes to [stylesheets](handbook/stylesheets)
+or [overrides](overrides) files. Specifically, see the [patches README](patches)
+for information about upgrading the mkdocs-material dependency.
+
+After installing new versions, generate an updated requirements.txt file by
+running `pip freeze > requirements.txt`.
+
 ## Developer Certificate of Origin (DCO)
 
    Developer's Certificate of Origin 1.1

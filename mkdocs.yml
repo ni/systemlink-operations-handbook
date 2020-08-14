@@ -14,22 +14,28 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.tabbed
+  - toc:
+      # Use anchorlink instead of permalink to work around https://github.com/timvink/mkdocs-enumerate-headings-plugin/issues/23
+      anchorlink: true
+      marker: ''
 
 plugins:
   - awesome-pages:
       collapse_single_pages: true
       strict: true
   - enumerate-headings:
-      toc_depth: 2
+      toc_depth: 4
   - git-revision-date-localized
   - search
 
 theme:
+  custom_dir: overrides
+  favicon: img/favicon.ico
+  font: false
+  logo: img/SystemLink.png
   name: material
   palette:
     scheme: ni
-  favicon: img/favicon.ico
-  logo: img/SystemLink.png
 
 extra_css:
   - stylesheets/extra.css
