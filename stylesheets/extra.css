@@ -17,16 +17,133 @@
   --md-footer-fg-color--lighter:     #03b5869f;
 }
 
+/* Navigation bars (left and right) */
+
+.md-nav {
+  color: #333;
+  font-size: 16px;
+}
+
+.md-nav label {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.md-nav a {
+  color: var(--md-typeset-a-color);
+}
+
+.md-nav a:hover, .md-nav a:focus {
+  color: var(--md-typeset-a-color);
+  text-decoration: underline;
+}
+
+.md-nav__item .md-nav__link--active {
+  font-weight: 700;
+}
+
+/* Textual content (main body and bottom footer) */
+
+.md-typeset {
+  color: #333;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+}
+
+.md-typeset h1, .md-typeset h2, .md-typeset h3, .md-typeset h4 {
+  color: #333;
+  font-family: "Roboto Condensed", sans-serif;
+  letter-spacing: 0;
+  line-height: 120%;
+  margin: 24px 0 0;
+}
+
+.md-typeset h1 {
+  font-size: 36px;
+  font-weight: 300;
+  margin: 0 0 15px;
+}
+
+.md-typeset h2 {
+  font-size: 32px;
+  font-weight: 300;
+}
+
+.md-typeset h3 {
+  font-size: 21px;
+  font-weight: 400;
+}
+
+.md-typeset h4 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
 .md-typeset a {
   text-decoration: underline;
 }
 
+/* Permalinks to work around https://github.com/timvink/mkdocs-enumerate-headings-plugin/issues/23 */
+
+h1 .enumerate-heading-plugin,
+h2 .enumerate-heading-plugin,
+h3 .enumerate-heading-plugin,
+h4 .enumerate-heading-plugin {
+  display: none;
+}
+
+.md-typeset h1:hover .toclink:after,
+.md-typeset h2:hover .toclink:after,
+.md-typeset h3:hover .toclink:after,
+.md-typeset h4:hover .toclink:after,
+a.toclink:focus:after {
+  content: " ¶";
+  opacity: 0.6;
+}
+
+a.toclink {
+  color: #333;
+  text-decoration: none;
+}
+
+a.toclink:hover, a.toclink:focus {
+  color: #333;
+}
+
+/* Footer navigation */
+
+.md-ellipsis {
+  font-size: 21px;
+}
+
+.md-footer-nav__direction {
+  font-size: 16px;
+}
+
+/* Footers */
+
 html .md-footer-meta.md-typeset a
 {
-  text-decoration: none;
   color: var(--md-footer-fg-color--lighter);
+  text-decoration: none;
 }
 
 html .md-footer-meta.md-typeset a:focus, html .md-footer-meta.md-typeset a:hover {
-  color: var(--md-footer-fg-color--light);
+  color: var(--md-footer-fg-color--lighter);
+  text-decoration: underline;
+}
+
+/* Fonts */
+
+body, input {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+pre, code, kbd {
+  font-family: SpaceMono, "Courier New", Courier, monospace"
 }
