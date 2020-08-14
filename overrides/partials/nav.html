@@ -7,7 +7,7 @@
   data-md-level="0"
 >
 
-  <!-- Customization: replace site title with TOC label -->
+  <!-- Customization: replace the site title with "Table of Contents". -->
   <label class="md-nav__title" for="__drawer">
     Table of Contents
   </label>
@@ -17,6 +17,8 @@
     {% for nav_item in nav %}
       {% set path = "nav-" + loop.index | string %}
       {% set level = 1 %}
+      <!-- Customization: Forward the auto-generated chapter number to the nav-item template. -->
+      {% set chapter = nav.pages[loop.index - 1].chapter %}
       {% include "partials/nav-item.html" %}
     {% endfor %}
   </ul>
