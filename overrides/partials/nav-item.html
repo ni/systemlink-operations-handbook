@@ -1,45 +1,24 @@
-<!-- Custom version of https://github.com/squidfunk/mkdocs-material/blob/5.5.6/src/partials/nav-item.html -->
-
-<!-- Determine class according to level -->
+{#-
+  Customized from v5.5.6 mkdocs-material.
+-#}
 {% set class = "md-nav__item" %}
 {% if nav_item.active %}
   {% set class = "md-nav__item md-nav__item--active" %}
 {% endif %}
-
-<!-- Main navigation item with nested items -->
 {% if nav_item.children %}
   <li class="{{ class }} md-nav__item--nested">
-
-    <!-- Active checkbox expands items contained within nested section -->
     {% if nav_item.active %}
-      <input
-        class="md-nav__toggle md-toggle"
-        data-md-toggle="{{ path }}"
-        type="checkbox"
-        id="{{ path }}"
-        checked
-      />
+      <input class="md-nav__toggle md-toggle" data-md-toggle="{{ path }}" type="checkbox" id="{{ path }}" checked>
     {% else %}
-      <input
-        class="md-nav__toggle md-toggle"
-        data-md-toggle="{{ path }}"
-        type="checkbox"
-        id="{{ path }}"
-      />
+      <input class="md-nav__toggle md-toggle" data-md-toggle="{{ path }}" type="checkbox" id="{{ path }}">
     {% endif %}
-
-    <!-- Expand active pages -->
     <label class="md-nav__link" for="{{ path }}">
       {{ chapter }}. {{ nav_item.title }}
       <span class="md-nav__icon md-icon">
         {% include ".icons/material/chevron-right.svg" %}
       </span>
     </label>
-    <nav
-      class="md-nav"
-      aria-label="{{ nav_item.title }}"
-      data-md-level="{{ level }}"
-    >
+    <nav class="md-nav" aria-label="{{ nav_item.title }}" data-md-level="{{ level }}">
       <label class="md-nav__title" for="{{ path }}">
         <span class="md-nav__icon md-icon">
           {% include ".icons/material/arrow-left.svg" %}
@@ -47,8 +26,6 @@
         {{ chapter }}. {{ nav_item.title }}
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
-
-        <!-- Render nested item list -->
         {% set base = path %}
         {% for nav_item in nav_item.children %}
           {% set path = base + "-" + loop.index | string %}
@@ -58,26 +35,13 @@
       </ul>
     </nav>
   </li>
-
-<!-- Currently active page -->
 {% elif nav_item == page %}
   <li class="{{ class }}">
     {% set toc = page.toc %}
-
-    <!-- Active checkbox expands items contained within nested section -->
-    <input
-      class="md-nav__toggle md-toggle"
-      data-md-toggle="toc"
-      type="checkbox"
-      id="__toc"
-    />
-
-    <!-- Hack: see partials/toc.html for more information -->
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     {% if toc | first is defined and "\x3ch1 id=" in page.content %}
       {% set toc = (toc | first).children %}
     {% endif %}
-
-    <!-- Render table of contents, if not empty -->
     {% if toc | first is defined %}
       <label class="md-nav__link md-nav__link--active" for="__toc">
         {{ chapter }}. {{ nav_item.title }}
@@ -86,28 +50,16 @@
         </span>
       </label>
     {% endif %}
-    <a
-      href="{{ nav_item.url | url }}"
-      title="{{ nav_item.title | striptags }}"
-      class="md-nav__link md-nav__link--active"
-    >
+    <a href="{{ nav_item.url | url }}" title="{{ nav_item.title | striptags }}" class="md-nav__link md-nav__link--active">
       {{ chapter }}. {{ nav_item.title }}
     </a>
-
-    <!-- Show table of contents -->
     {% if toc | first is defined %}
       {% include "partials/toc.html" %}
     {% endif %}
   </li>
-
-<!-- Main navigation item -->
 {% else %}
   <li class="{{ class }}">
-    <a
-      href="{{ nav_item.url | url }}"
-      title="{{ nav_item.title | striptags }}"
-      class="md-nav__link"
-    >
+    <a href="{{ nav_item.url | url }}" title="{{ nav_item.title | striptags }}" class="md-nav__link">
       {{ chapter }}. {{ nav_item.title }}
     </a>
   </li>
