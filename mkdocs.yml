@@ -32,7 +32,8 @@ theme:
   custom_dir: overrides
   favicon: img/favicon.ico
   font: false
-  logo: img/SystemLink.png
+  icon:
+    logo: NI/SystemLink
   name: material
   palette:
     scheme: ni
