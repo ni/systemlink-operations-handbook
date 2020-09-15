@@ -1,5 +1,5 @@
 {#-
-  Customized from v5.5.6 mkdocs-material.
+  Customized from v5.5.12 mkdocs-material.
 -#}
 {% set class = "md-nav__item" %}
 {% if nav_item.active %}
@@ -14,15 +14,11 @@
     {% endif %}
     <label class="md-nav__link" for="{{ path }}">
       {{ chapter }}. {{ nav_item.title }}
-      <span class="md-nav__icon md-icon">
-        {% include ".icons/material/chevron-right.svg" %}
-      </span>
+      <span class="md-nav__icon md-icon"></span>
     </label>
     <nav class="md-nav" aria-label="{{ nav_item.title }}" data-md-level="{{ level }}">
       <label class="md-nav__title" for="{{ path }}">
-        <span class="md-nav__icon md-icon">
-          {% include ".icons/material/arrow-left.svg" %}
-        </span>
+        <span class="md-nav__icon md-icon"></span>
         {{ chapter }}. {{ nav_item.title }}
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -45,9 +41,7 @@
     {% if toc | first is defined %}
       <label class="md-nav__link md-nav__link--active" for="__toc">
         {{ chapter }}. {{ nav_item.title }}
-        <span class="md-nav__icon md-icon">
-          {% include ".icons/material/table-of-contents.svg" %}
-        </span>
+        <span class="md-nav__icon md-icon"></span>
       </label>
     {% endif %}
     <a href="{{ nav_item.url | url }}" title="{{ nav_item.title | striptags }}" class="md-nav__link md-nav__link--active">

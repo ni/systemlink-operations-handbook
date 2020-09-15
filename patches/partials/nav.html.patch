@@ -1,9 +1,9 @@
---- .venv/Lib/site-packages/material/partials/nav.html	2020-08-14 13:11:10.235279300 -0500
-+++ overrides/partials/nav.html	2020-08-14 12:54:13.788035700 -0500
+--- .venv/Lib/site-packages/material/partials/nav.html	2020-09-15 09:26:50.699516200 -0500
++++ overrides/partials/nav.html	2020-09-15 10:21:28.426720700 -0500
 @@ -1,12 +1,9 @@
  {#-
 -  This file was automatically generated - do not edit
-+  Customized from v5.5.6 mkdocs-material.
++  Customized from v5.5.12 mkdocs-material.
  -#}
  <nav class="md-nav md-nav--primary" aria-label="{{ lang.t('nav.title') }}" data-md-level="0">
    <label class="md-nav__title" for="__drawer">
