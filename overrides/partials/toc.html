@@ -1,5 +1,5 @@
 {#-
-  Customized from v5.5.6 mkdocs-material.
+  Customized from v5.5.12 mkdocs-material.
 -#}
 {% import "partials/language.html" as lang with context %}
 <nav class="md-nav md-nav--secondary" aria-label="{{ lang.t('toc.title') }}">
@@ -9,9 +9,7 @@
   {% endif %}
   {% if toc | first is defined %}
     <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        {% include ".icons/material/arrow-left.svg" %}
-      </span>
+      <span class="md-nav__icon md-icon"></span>
       {{ page.title }}
     </label>
     <ul class="md-nav__list" data-md-scrollfix>

@@ -1,39 +1,35 @@
---- .venv/Lib/site-packages/material/partials/nav-item.html	2020-08-14 13:12:49.726377200 -0500
-+++ overrides/partials/nav-item.html	2020-08-14 12:57:48.639544200 -0500
+--- .venv/Lib/site-packages/material/partials/nav-item.html	2020-09-15 09:26:54.102101300 -0500
++++ overrides/partials/nav-item.html	2020-09-15 10:21:31.937657300 -0500
 @@ -1,5 +1,5 @@
  {#-
 -  This file was automatically generated - do not edit
-+  Customized from v5.5.6 mkdocs-material.
++  Customized from v5.5.12 mkdocs-material.
  -#}
  {% set class = "md-nav__item" %}
  {% if nav_item.active %}
-@@ -13,7 +13,7 @@
+@@ -13,13 +13,13 @@
        <input class="md-nav__toggle md-toggle" data-md-toggle="{{ path }}" type="checkbox" id="{{ path }}">
      {% endif %}
      <label class="md-nav__link" for="{{ path }}">
 -      {{ nav_item.title }}
 +      {{ chapter }}. {{ nav_item.title }}
-       <span class="md-nav__icon md-icon">
-         {% include ".icons/material/chevron-right.svg" %}
-       </span>
-@@ -23,7 +23,7 @@
-         <span class="md-nav__icon md-icon">
-           {% include ".icons/material/arrow-left.svg" %}
-         </span>
+       <span class="md-nav__icon md-icon"></span>
+     </label>
+     <nav class="md-nav" aria-label="{{ nav_item.title }}" data-md-level="{{ level }}">
+       <label class="md-nav__title" for="{{ path }}">
+         <span class="md-nav__icon md-icon"></span>
 -        {{ nav_item.title }}
 +        {{ chapter }}. {{ nav_item.title }}
        </label>
        <ul class="md-nav__list" data-md-scrollfix>
          {% set base = path %}
-@@ -44,14 +44,14 @@
+@@ -40,12 +40,12 @@
      {% endif %}
      {% if toc | first is defined %}
        <label class="md-nav__link md-nav__link--active" for="__toc">
 -        {{ nav_item.title }}
 +        {{ chapter }}. {{ nav_item.title }}
-         <span class="md-nav__icon md-icon">
-           {% include ".icons/material/table-of-contents.svg" %}
-         </span>
+         <span class="md-nav__icon md-icon"></span>
        </label>
      {% endif %}
      <a href="{{ nav_item.url | url }}" title="{{ nav_item.title | striptags }}" class="md-nav__link md-nav__link--active">
@@ -42,7 +38,7 @@
      </a>
      {% if toc | first is defined %}
        {% include "partials/toc.html" %}
-@@ -60,7 +60,7 @@
+@@ -54,7 +54,7 @@
  {% else %}
    <li class="{{ class }}">
      <a href="{{ nav_item.url | url }}" title="{{ nav_item.title | striptags }}" class="md-nav__link">

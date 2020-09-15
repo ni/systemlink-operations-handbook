@@ -5,7 +5,7 @@ This directory contains patches for the files contained in the MkDocs theme
 the theme in the future without manually trying to resolve the differences
 between the originals and our custom files.
 
-The patches are currently based on v5.5.6 of mkdocs-material. Originals can be
+The patches are currently based on v5.5.12 of mkdocs-material. Originals can be
 found in your Python environment's `Lib/site-packages/material` directory.
 
 ## Modifications

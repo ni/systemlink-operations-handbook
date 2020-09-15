@@ -88,31 +88,8 @@
   text-decoration: underline;
 }
 
-/* Permalinks to work around https://github.com/timvink/mkdocs-enumerate-headings-plugin/issues/23 */
-
-h1 .enumerate-heading-plugin,
-h2 .enumerate-heading-plugin,
-h3 .enumerate-heading-plugin,
-h4 .enumerate-heading-plugin {
-  display: none;
-}
-
-.md-typeset h1:hover .toclink:after,
-.md-typeset h2:hover .toclink:after,
-.md-typeset h3:hover .toclink:after,
-.md-typeset h4:hover .toclink:after,
-a.toclink:focus:after {
-  content: " ¶";
-  opacity: 0.6;
-}
-
-a.toclink {
-  color: #333;
+a.headerlink {
   text-decoration: none;
-}
-
-a.toclink:hover, a.toclink:focus {
-  color: #333;
 }
 
 /* Footer navigation */
