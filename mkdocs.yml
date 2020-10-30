@@ -44,3 +44,4 @@ extra_css:
 nav:
   - 'README.md'
   - 'placeholder/README.md'
+  - 'openid-connect/openid-connect.md'

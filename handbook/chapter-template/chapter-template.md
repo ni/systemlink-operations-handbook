@@ -1,8 +1,6 @@
 # Chapter Template title
 
-## Overview
-
-This should be a brief description of the goal to be achieved with the workflows and documentation described in the chapter. Please note, this template is to provide guidance on the format for chapters, but this format can and should be changed depending on the topic. 
+Within the title section should be a brief description and overview of the goal to be achieved with the workflows and documentation described in the chapter. Please note, this template is to provide guidance on the format for chapters, but this format can and should be changed depending on the topic. 
 
 - *What goals will be achieved?*
 - *What questions will be answered?*
