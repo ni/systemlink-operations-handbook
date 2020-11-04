@@ -11,8 +11,3 @@ Source and contributions for the handbook and example files can be found in the
 While the handbook is not specific to any version of SystemLink Server, the
 product continues to evolve over time. Some chapters or examples may
 specify a version or range of versions of SystemLink that they apply to.
-
-## Table of Contents
-
-- [Placeholder](placeholder) - a placeholder chapter that will be filled in
-  later.

@@ -56,6 +56,10 @@ To access the preview, open a browser and navigate to <http://127.0.0.1:8000/>.
 For more information and configuration options, see
 [MkDocs - Getting Started](https://www.mkdocs.org/#getting-started).
 
+## Authoring Handbook Chapters
+- Review the [chapter-template](/chapter-template.md) and use as a starting point and reference to the structure and style of the handbook. 
+- To add a chapter you must update the `nav` section of the `mkdocs.yaml` in this respository to reference the new markdown document.. 
+
 ## Building a Local Copy of the Handbook
 
 The handbook uses MkDocs to produce a static HTML website that any web server
