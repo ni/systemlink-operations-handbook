@@ -33,3 +33,10 @@ systemlinkcli --apply
 ```
 
 Below the snippet should be additional details regarding the result of the operations and the arguments, key/pairs, functions, etc that can/must be included to complete the operation. This should be several sentences long and leave the user with a complete understanding. Fenced code blocks should always be used when introducing the command/configuration/code, and the code block should be marked up with the language such that appropriate formatting may be applied. In-line code block markup should be used when referencing any particular command/parameter/argument/tuple unless that reference is multiple lines. In that case fenced code blocks should again be used. 
+
+
+### In-line images
+
+Screen shots are encouraged, but be aware they may go stale as the product changes. Regardless they are both useful to make stress a point within our documentation, as well as make the overall content easier to read as it breaks up large walls of text. 
+
+Directly under an image should be a single sentence description of the image in *italicized text* 
