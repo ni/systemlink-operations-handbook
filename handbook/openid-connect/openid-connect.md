@@ -98,14 +98,43 @@ The client configuration for your provider requires a redirect URL that is durin
 [Okta - Understand the callback route](https://developer.okta.com/docs/guides/sign-into-web-app/springboot/define-callback/)
 
 
-## Supported Signing and Encryption Protcols
-TODO list supported encryption methods. 
+## Supported Signing and Encryption Algorithms
 
- The following
+ The following algorithms are supported by SystemLink for ID token signing, ID token key management encryption, and ID token content encryption. 
+ 
+### ID Token Signing Algorithm
+
+- None
+- ECDSA Using P256 Curve and SHA-256
+- ECDSA Using P384 Curve and SHA-384
+- ECDSA Using P521 Curve and SHA-512
+- HMAC using SHA-256
+- HMAC using SHA-384
+- HMAC using SHA-512
+- RSA using SHA-256
+- RSA using SHA-384
+- RSA using SHA-512
+- RSASSA-PSS using SHA-256
+- RSASSA-PSS using SHA-384
+- RSASSA-PSS using SHA-512
+
+### ID Token Key Management Encryption Algorithm
+
+- No encryption
+- Direct Encryption with symmetric key
+- AES-128 Key Wrap
+- AES-192 Key Wrap
+- AES-256 Key Wrap
+
+### ID Token Content Encryption Algorithm 
+
+- Composite AES-CBC-128 HMAC-SHA-256
+- Composite AES-CBC-192 HMAC-SHA-384
+- Composite AES-CBC-256 HMAC-SHA-512
 
 ## Mapping OpenID Connect Claims to SystemLink Workspaces and Roles
 
-Once SystemLink and the provider have been configured such that users can authenticate and login, mappings between OpenID claims and workspaces must be made in order to authorize the user access to systems and data managed by SystemLink. This process is the same as the mapping workflow for LDAP and Active Directory attributes, groups, and users. Please see [Assigning Users to Roles in a Workspace](https://www.ni.com/documentation/en/systemlink/latest/setup/mapping-roles/) in the SystemLink manual. Claims may also be used to create a mapping to the **Server Adminstrator** role. 
+Once SystemLink and the provider have been configured such that users can authenticate and login, mappings between OpenID claims and workspaces must be made in order to authorize the user access to systems and data managed by SystemLink. This process is the same as the mapping workflow for LDAP and Active Directory attributes, groups, and users. Please see [Assigning Users to Roles in a Workspace](https://www.ni.com/documentation/en/systemlink/latest/setup/mapping-roles/) in the SystemLink manual. Claims may also be used to create a mapping to the **Server Administrator** role. 
 
 ### Viewing Claims Returned by a Provider
 
