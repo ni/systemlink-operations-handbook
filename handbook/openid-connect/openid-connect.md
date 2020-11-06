@@ -1,6 +1,6 @@
 # Authenticating with OpenID Connect
 
-You may configure SystemLink to use [OpenID Connect](https://openid.net) for user authorization. This enables SystemLink to leverage corporate single sign-on (SSO) and the additional security benefits it provides such streamlined login and limiting the proliferation of user credentials. This also enables SystemLink to utilize a common identity for users across multiple applications. OpenID connect can be used in conjunction with or as a replacement for LDAP, Active Directory, and local Windows accounts for authentication. 
+You may configure SystemLink to use [OpenID Connect](https://openid.net) for user authorization. This enables SystemLink to leverage corporate single sign-on (SSO) and the additional security benefits it provides such streamlined login and limiting the proliferation of user credentials. This also enables SystemLink to utilize a common identity for users across multiple applications. OpenID Connect can be used in conjunction with or as a replacement for LDAP, Active Directory, and local Windows accounts for authentication. 
 
 
 
@@ -17,14 +17,15 @@ You may configure SystemLink to use [OpenID Connect](https://openid.net) for use
 1. Log into the server running SystemLink and open **NI Web Server Configuration**
 2. Go to the **Authentication** tab and enable **Use OpenID Connect (advanced)**
 
-![Enable OpenID Connect in NI Web Server](odic-webserver.png)
+![Enable OpenID Connect in NI Web Server](odic-webserver.png){: style="height:500px;width:500px"}
+
 *Enable OpenID Connect in NI Web Server*
 
 ## OpenID Configuration Files in SystemLink server
 
 There are three files that must be created to connect your SystemLink server to an OpenID Connect provider: `[provider-dns].conf`, `[provider-dns].client`, and `[provider-dns].provider`. The `[provider-dns]` portion of each filename must be the URL encoded fully qualified domain name. 
 
-> For example, a OpenID provider with the DNS `openid-provider.com` would yield files named `openid-provider.com/conf` , `openid-provider.com.client`, and `openid-provider.com.provider`. 
+> For example, a OpenID provider with the DNS `openid-provider.com` would yield files named `openid-provider.com.conf` , `openid-provider.com.client`, and `openid-provider.com.provider`. 
 
 These files do no exist for new SystemLink installations. Each file must be added to the `C:\Program Files\National Instruments\Shared\Web Server\conf\openidc` directory. The NI Web Server must be restarted for these changes to take effect.
 
@@ -44,7 +45,7 @@ SystemLink can be configured to support multiple OpenID Providers simultaneously
 ```
 In this example the `openid`, `email`, and `profile` scopes are requested. Additional scopes may be requested. Consult your provider's documentation regarding exposing scopes to clients. Each scope will contain claims that can be used to map to roles within workspaces in SystemLink. See [**Mapping OpenID Connect Claims to SystemLink Workspaces and Roles**](#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles) for details. 
 
-The `ni-attributes` section determines the text and (optionally) an icon to be shown in the SystemLink login page. The `iconUri` is relative to `htdocs` directory (`C:\Program Files\National Instruments\Shared\Web Server\htdocs`)
+The `ni-attributes` section determines the text and (optionally) an icon to be shown in the SystemLink login page. The `iconUri` is relative to `htdocs` directory (`C:\Program Files\National Instruments\Shared\Web Server\htdocs`). This icon should be 16x16 px. 
 
 ![SystemLink login windows with SSO login option](login-window.png)
 *SystemLink login windows with SSO login option. An icon has not been set in this example.*
@@ -59,7 +60,7 @@ The `[provider-dns].client` file is used by the NI Web Server to authenticate wi
 }
 
 ```
-The `client_id` and `client_secret` can be obtained directly from the provider. Depending on the provider the `client_id` may be user defined. After setting these properties the NI Web Server must be restarted for changes to take effect. 
+The `client_id` and `client_secret` can be obtained from the provider. Depending on the provider the `client_id` may be user defined.
 
 #### ClientID and Secret Provider Documentation
 
@@ -72,7 +73,7 @@ The `client_id` and `client_secret` can be obtained directly from the provider. 
 [ADFS - Build a server side application using OAuth confidential clients with AD FS 2016 or later](https://docs.microsoft.com/en-us/windows-server/identity/ad-fs/development/enabling-oauth-confidential-clients-with-ad-fs)
 
 ### OpenID Configuration and Discovery
-The `[provider-dns].provider` file includes the contents of the provider OpenID Connect configuration. This file informs SystemLink of of the various endpoints exposed by the provider that are used during the login process. 
+The `[provider-dns].provider` file includes the contents of the provider's OpenID Connect configuration. This file informs SystemLink of of the various endpoints exposed by the provider that are used during the login process. 
 
 You may use curl to create this file. Replace `[provider-dns]` with the DNS of your OpenID Connect Provider. 
 ```bash
@@ -96,17 +97,58 @@ The client configuration for your provider requires a redirect URL that is durin
 
 [Okta - Understand the callback route](https://developer.okta.com/docs/guides/sign-into-web-app/springboot/define-callback/)
 
+
+## Supported Signing and Encryption Protcols
+TODO list supported encryption methods. 
+
+ The following
+
 ## Mapping OpenID Connect Claims to SystemLink Workspaces and Roles
 
-Once SystemLink and the provider have been configured such that users can authenticate and login, mappings between OpenID claims and workspaces must be made in order to provide the user access to systems and data managed by SystemLink. This process is the same as the mapping workflow for LDAP and Active Directory attributes, groups, and users. Please see [Assigning Users to Roles in a Workspace](https://www.ni.com/documentation/en/systemlink/latest/setup/mapping-roles/) in the SystemLink manual. Claims may also be used to create a mapping to the **Server Adminstrator** role. 
+Once SystemLink and the provider have been configured such that users can authenticate and login, mappings between OpenID claims and workspaces must be made in order to authorize the user access to systems and data managed by SystemLink. This process is the same as the mapping workflow for LDAP and Active Directory attributes, groups, and users. Please see [Assigning Users to Roles in a Workspace](https://www.ni.com/documentation/en/systemlink/latest/setup/mapping-roles/) in the SystemLink manual. Claims may also be used to create a mapping to the **Server Adminstrator** role. 
+
+### Viewing Claims Returned by a Provider
 
 The OpenID Connect provider determines which scopes and claims are made available to clients. The available claims can be viewed at the `userinfo_endpoint` hosted by the provider. Use `https://[provider-dns]/.well-known/openid-configuration` to determine the URL of the `userinfo_endpoint`. You will need to obtain a valid bearer token to authenticate and access this endpoint.  
 
 ```bash
 curl -s https://slsso-runtime.grl-us1.uat.k8s.com/idp/userinfo.openid -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiI...zJVy2oLnrBmXTmpDRm499U4~'|python -m json.tool
 ```
-Example curl request to return user info. The bearer token has been shortened for readability. 
+*Example curl request to return user info. The bearer token has been truncated for readability.*
 
+Alternatively you can view claims returned by a particular user by modifying the httpd configuration on your SystemLink server. This is accomplished by adding `AUTH_OIDC_ENABLE_CLAIM_INFO` to `C:\Program Files\National Instruments\Shared\Web Server\conf\defines.d\50_mod_auth_openidc-defines.conf`. 
+
+```conf
+#
+# Defined OpenID-Connect configuration for the Windows Apache installation.
+#
+
+AUTH_OIDC_ENABLE_CLAIM_INFO
+
+# The name of the JSON map containing metadata about each identity provider.
+Define AUTH_OIDC_ATTRIBUTES_KEY ni-attributes
+
+# CA bundle to use when making requests to an identity provider.
+Define AUTH_OIDC_BUNDLE ../nicurl/ca-bundle.crt
+
+# Path to OIDC provider configuration.
+Define AUTH_OIDC_PROVIDER_DIR ${HTCONF_PATH}/openidc
+
+# The location to redirect when performing an OpenID-Connect login.
+Define AUTH_OIDC_REDIRECT_URI /login/openidc-redirect
+
+#
+# User-editable variables.
+#
+
+# Whether OIDC is enabled.
+Define AUTH_OIDC_ENABLED
+```
+*An example `50_mod_auth_openidc-defines.conf` modified to expose user claim at the endpoint [systemlink-dns]/login/openidc-redirect?info=html. You must be logged via OpenID Connect to receive data this endpoint.*
+
+### Mapping Claims to SystemLink Roles. 
+
+Claims are returned as a JSON object.  
 ```json
 {
     "email": "mark.black@ni.com",
@@ -117,13 +159,17 @@ Example curl request to return user info. The bearer token has been shortened fo
     "sub": "mblack"
 }
 ```
+*Example response from `userinfo_endpoint`. Any of these claims may be used to map a user to a role in a workspace.*
 
-Example response from `userinfo_endpoint`. Any of these claims may be used to map a user to a role in a workspace. 
+Within the security UI the claim and its returned value can be mapped to a role within a Workspace. 
 
 ![Mapping the ni_employee claim to a workspace](claim-mapping.png)
 *Mapping the `ni_employee` claim to a workspace*
 
-If a claim returns an array of values any one of these values can be supplied in the **Value** field to create a mapping. 
+If a claim returns an array of values any one of these array members can be supplied in the **Value** field to create a mapping. 
+
+### Refreshing user claims
+If a claim for a user changes and that claim is used to drive a role mapping for a workspace, the user must logout and log back in before the new claim is received and the role assigned to the user changed. 
 
 ## Troubleshooting Failed Authentication
 Due to the amount of configuration required by both the provider and SystemLink its can be challenging to enable the entire OpenID Connect flow. The following sources can be used to troubleshoot a failed connection. 
@@ -131,3 +177,5 @@ Due to the amount of configuration required by both the provider and SystemLink 
 **OpenID Connect Provider logs:** Consult your OpenID Connect Provider's documentation on the location of their application log files. 
 
 **NI Web Server Logs:** These are found at `C:\ProgramData\National Instruments\Web Server\logs\error.log`
+
+**Returned Claims:** See [**Viewing Claims Returned by a Provider**](#viewing-claims-returned-by-a-provider)
