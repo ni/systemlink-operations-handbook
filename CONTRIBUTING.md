@@ -58,7 +58,7 @@ For more information and configuration options, see
 
 ## Authoring Handbook Chapters
 - Review **chapter-template.md** and use as a starting point and reference to the structure and style of the handbook. 
-- To add a chapter you must update the `nav` section of the `mkdocs.yaml` in this respository to reference the new markdown document.. 
+- To add a chapter you must update the `nav` section of the `mkdocs.yaml` in this respository to reference the new markdown document.
 
 ## Building a Local Copy of the Handbook
 
