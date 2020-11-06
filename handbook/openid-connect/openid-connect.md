@@ -156,7 +156,7 @@ curl -s https://slsso-runtime.grl-us1.uat.k8s.com/idp/userinfo.openid -H 'Author
 ```
 *Example curl request to return user info. The bearer token has been truncated for readability.*
 
-Alternatively you can view claims returned by a particular user by modifying the httpd configuration on your SystemLink server. This is accomplished by adding `AUTH_OIDC_ENABLE_CLAIM_INFO` to `C:\Program Files\National Instruments\Shared\Web Server\conf\defines.d\50_mod_auth_openidc-defines.conf` and restarting NI Web Server. User claims can then be viewed at `protocol]://[systemlink-dns]/login/openidc-redirect?info=html` or [p`rotocol]://[systemlink-dns]/login/openidc-redirect?info=json`. 
+Alternatively you can view claims returned by a particular user by modifying the httpd configuration on your SystemLink server. This is accomplished by adding `AUTH_OIDC_ENABLE_CLAIM_INFO` to `C:\Program Files\National Instruments\Shared\Web Server\conf\defines.d\50_mod_auth_openidc-defines.conf` and restarting NI Web Server. User claims can then be viewed at `protocol]://[systemlink-dns]/login/openidc-redirect?info=html` or `[protocol]://[systemlink-dns]/login/openidc-redirect?info=json`. 
 
 ```conf
 #
@@ -185,6 +185,8 @@ Define AUTH_OIDC_REDIRECT_URI /login/openidc-redirect
 Define AUTH_OIDC_ENABLED
 ```
 *An example `50_mod_auth_openidc-defines.conf` modified to expose user claim. You must be logged via OpenID Connect to receive data this endpoint.*
+
+If the provider is https with a certificate signed by a CA not included in the NI-CURL CA bundle (`C:\Program Files\National Instruments\Shared\nicurl\ca-bundle.crt`), then the `AUTH_OIDC_PROVIDER_DIR` define in `50_mod_auth_openidc-defines.conf` must to be updated to point to a CA bundle containing the provider's CA. The path can be absolute, or relative to `C:\Program Files\National Instruments\Shared\Web Server`. 
 
 ### Mapping Claims to SystemLink Roles. 
 
