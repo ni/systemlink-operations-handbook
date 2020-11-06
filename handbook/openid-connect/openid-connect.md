@@ -15,7 +15,16 @@ You may configure SystemLink to use [OpenID Connect](https://openid.net) for use
 
 ## Enabling OpenID Connect in SystemLink
 1. Log into the server running SystemLink and open **NI Web Server Configuration**
-2. Go to the **Authentication** tab and enable **Use OpenID Connect (advanced)**
+2. Go to the **Authentication** tab and enable both **Log in as users controlled by the web server** and **Use OpenID Connect (advanced)**
+3. Add the configuration files to SystemLink to connect to your OpenID Connect provider and confirm that you can log in as an openid connect user
+> **Note:** details on this process is found in [**OpenID Configuration Files in SystemLink Server**](#openid-configuration-files-in-systemlink-server)
+4. Log in as the NI Web Server admin user. This is the user created during NI Web Server guided setup. 
+5. Go to **Security** > **Roles** and click the gear icon in the top right. 
+6. Add an OpenID Claim mapping for the **Server Adminstrator** role. 
+> **Note:** details on mapping claims to roles is found in [**Mapping OpenID Connect Claims to SystemLink Workspaces and Roles**](#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles)
+7. Log in as an OpenID connect user with a mapping for the **Server Adminstrator** role and confirm they have the correct privileges.
+8. To enable OpenID Connect as the only login option, go back to **NI Web Server Configuration**> **Authentication** and disable **Log in as users controlled by the web server**. 
+
 
 ![Enable OpenID Connect in NI Web Server](odic-webserver.png){: style="height:500px;width:500px"}
 
