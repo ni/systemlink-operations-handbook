@@ -163,8 +163,6 @@ Alternatively you can view claims returned by a particular user by modifying the
 # Defined OpenID-Connect configuration for the Windows Apache installation.
 #
 
-AUTH_OIDC_ENABLE_CLAIM_INFO
-
 # The name of the JSON map containing metadata about each identity provider.
 Define AUTH_OIDC_ATTRIBUTES_KEY ni-attributes
 
@@ -183,6 +181,12 @@ Define AUTH_OIDC_REDIRECT_URI /login/openidc-redirect
 
 # Whether OIDC is enabled.
 Define AUTH_OIDC_ENABLED
+AUTH_OIDC_ENABLE_CLAIM_INFO
+
+# When enabled, /login/openidc-redirect?info=json and
+# /login/openidc-redirect?info=html will return the claims for the currently
+# logged in user.
+Define AUTH_OIDC_ENABLE_CLAIM_INFO
 ```
 *An example `50_mod_auth_openidc-defines.conf` modified to expose user claim. You must be logged via OpenID Connect to receive data this endpoint.*
 
