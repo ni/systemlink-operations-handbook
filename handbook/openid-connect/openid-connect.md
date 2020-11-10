@@ -57,24 +57,25 @@ There are three files that must be created to connect your SystemLink server to 
 
 !!! note ""
     For example, a OpenID provider with the DNS `example.com:9999` would yield files named `example.com%3a9999.conf` , `example.com%3a9999.client`, and `example.com%3a9999.provider`.
-]
+
 These files do not exist for new SystemLink installations. Each file must be added to the `C:\Program Files\National Instruments\Shared\Web Server\conf\openidc` directory. The NI Web Server must be restarted for any changes to these file to take effect.
 
 SystemLink can be configured to support multiple OpenID Providers simultaneously by creating a `[provider-dns].conf`, `[provider-dns].client`, and `[provider-dns].provider` file for each provider.  It is required that the user ID used within SystemLink be unique across providers. This id takes the form `[sub_claim]@issuer` where this issuer is the DNS name of the OpenID Connect provider. You can see the id SystemLink uses for a user by viewing the details of that user in the SystemLink security application.
 
 ### SystemLink Login Window Configuration
 
-`[provider-dns].conf` describes the scopes SystemLink will request, and the text and icon for the provider login button.
+!!! note ""
+    `[provider-dns].conf` describes the scopes SystemLink will request, and the text and icon for the provider login button.
 
-```json
-{
- "scope": "openid email profile",
- "ni-attributes": {
-   "displayName": "Log in with PingFederate",
-   "iconUri": "/login/assets/pf.png"
- }
-}
-```
+    ```json
+    {
+    "scope": "openid email profile",
+    "ni-attributes": {
+      "displayName": "Log in with PingFederate",
+      "iconUri": "/login/assets/pf.png"
+    }
+    }
+    ```
 
 In this example the `openid`, `email`, and `profile` scopes are requested. Additional scopes may be requested. Consult your provider's documentation regarding exposing scopes to clients. The `profile` and `email` scopes are required to populate first name, last name, and email fields in the SystemLink user preferences.
 
@@ -89,15 +90,15 @@ The `ni-attributes` section determines the text and (optionally) an icon to be s
 
 ### ClientID and Secret
 
-The `[provider-dns].client` file is used by the NI Web Server to authenticate with the provider.
+!!! note ""
+    The `[provider-dns].client` file is used by the NI Web Server to authenticate with the provider.
 
-```json
-{
- "client_id": "slserver",
- "client_secret": "4vFm89u07xaredactedredactedredactede2tjtsEGQhlLreLVjcyLA0"
-}
-
-```
+    ```json
+    {
+    "client_id": "slserver",
+    "client_secret": "4vFm89u07xaredactedredactedredactede2tjtsEGQhlLreLVjcyLA0"
+    }
+    ```
 
 The `client_id` and `client_secret` can be obtained from the provider. Depending on the provider the `client_id` may be user defined.
 
@@ -118,9 +119,9 @@ The `[provider-dns].provider` file includes the contents of the provider's OpenI
 !!! note ""
     You may use curl to create this file. Replace `[provider-dns]` with the DNS of your OpenID Connect Provider.
 
-```bash
-curl https://[provider-dns]/.well-known/openid-configuration -o [provider-dns].provider
-```
+    ```bash
+    curl https://[provider-dns]/.well-known/openid-configuration -o [provider-dns].provider
+    ```
 
 ### Setting Login Redirect URI
 
@@ -130,10 +131,13 @@ It also must include the port if using a non-default (80/443). We should probabl
 
 #### The SystemLink login redirect URL
 
-```url
-[protocol]://[systemlink-dns]/login/openidc-redirect
+!!! note ""
+    Use the following URL to configure your provider
 
-```
+    ```url
+    [protocol]://[systemlink-dns]/login/openidc-redirect
+
+    ```
 
 #### Provider Client Configuration Documentation
 
@@ -205,10 +209,9 @@ The OpenID Connect provider determines which scopes and claims are made availabl
 
 !!! note ""
     Example curl request to return user info. The bearer token has been truncated for readability.
-
-```bash
-curl -s https://slsso-runtime.grl-us1.uat.k8s.com/idp/userinfo.openid -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiI...zJVy2oLnrBmXTmpDRm499U4~'|python -m json.tool
-```
+    ```bash
+    curl -s https://slsso-runtime.grl-us1.uat.k8s.com/idp/userinfo.openid -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiI...zJVy2oLnrBmXTmpDRm499U4~'|python -m json.tool
+    ```
 
 Alternatively you can view claims returned by a particular user by modifying the httpd configuration on your SystemLink server.
 
@@ -219,37 +222,36 @@ Alternatively you can view claims returned by a particular user by modifying the
 
 !!! note ""
     An example `50_mod_auth_openidc-defines.conf` modified to expose user claim. You must be logged via OpenID Connect to receive data this endpoint.
+    ```conf
+    #
+    # Defined OpenID-Connect configuration for the Windows Apache installation.
+    #
 
-```conf
-#
-# Defined OpenID-Connect configuration for the Windows Apache installation.
-#
+    # The name of the JSON map containing metadata about each identity provider.
+    Define AUTH_OIDC_ATTRIBUTES_KEY ni-attributes
 
-# The name of the JSON map containing metadata about each identity provider.
-Define AUTH_OIDC_ATTRIBUTES_KEY ni-attributes
+    # CA bundle to use when making requests to an identity provider.
+    Define AUTH_OIDC_BUNDLE ../nicurl/ca-bundle.crt
 
-# CA bundle to use when making requests to an identity provider.
-Define AUTH_OIDC_BUNDLE ../nicurl/ca-bundle.crt
+    # Path to OIDC provider configuration.
+    Define AUTH_OIDC_PROVIDER_DIR ${HTCONF_PATH}/openidc
 
-# Path to OIDC provider configuration.
-Define AUTH_OIDC_PROVIDER_DIR ${HTCONF_PATH}/openidc
+    # The location to redirect when performing an OpenID-Connect login.
+    Define AUTH_OIDC_REDIRECT_URI /login/openidc-redirect
 
-# The location to redirect when performing an OpenID-Connect login.
-Define AUTH_OIDC_REDIRECT_URI /login/openidc-redirect
+    #
+    # User-editable variables.
+    #
 
-#
-# User-editable variables.
-#
+    # Whether OIDC is enabled.
+    Define AUTH_OIDC_ENABLED
+    AUTH_OIDC_ENABLE_CLAIM_INFO
 
-# Whether OIDC is enabled.
-Define AUTH_OIDC_ENABLED
-AUTH_OIDC_ENABLE_CLAIM_INFO
-
-# When enabled, /login/openidc-redirect?info=json and
-# /login/openidc-redirect?info=html will return the claims for the currently
-# logged in user.
-Define AUTH_OIDC_ENABLE_CLAIM_INFO
-```
+    # When enabled, /login/openidc-redirect?info=json and
+    # /login/openidc-redirect?info=html will return the claims for the currently
+    # logged in user.
+    Define AUTH_OIDC_ENABLE_CLAIM_INFO
+    ```
 
 If the provider is https with a certificate signed by a CA not included in the NI-CURL CA bundle (`C:\Program Files\National Instruments\Shared\nicurl\ca-bundle.crt`), then the `AUTH_OIDC_PROVIDER_DIR` define in `50_mod_auth_openidc-defines.conf` must to be updated to point to a CA bundle containing the provider's CA. The path can be absolute, or relative to `C:\Program Files\National Instruments\Shared\Web Server`.
 
@@ -259,17 +261,16 @@ Claims are returned as a JSON object.
 
 !!! note ""
     Example response from `userinfo_endpoint`. Any of these claims may be used to map a user to a role in a workspace.
-
-```json
-{
-    "email": "mark.black@ni.com",
-    "family_name": "Black",
-    "given_name": "Mark",
-    "name": "Black",
-    "ni_employee": "2670",
-    "sub": "mblack"
-}
-```
+    ```json
+    {
+        "email": "mark.black@ni.com",
+        "family_name": "Black",
+        "given_name": "Mark",
+        "name": "Black",
+        "ni_employee": "2670",
+        "sub": "mblack"
+    }
+    ```
 
 Within the security UI the claim and its returned value can be mapped to a role within a Workspace.
 
