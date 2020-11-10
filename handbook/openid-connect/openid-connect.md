@@ -47,7 +47,7 @@ You may configure SystemLink to use [OpenID Connect](https://openid.net) for use
 11. To enable OpenID Connect as the only login option, go back to **NI Web Server Configuration** > **Authentication** and disable **Log in as users controlled by the web server**. 
 
 <figure>
-  <img src="../odic-webserver.png" width="500" />
+  <img src="../oidc-webserver.png" width="500" />
   <figcaption>Enable OpenID Connect in NI Web Server</figcaption>
 </figure>
 
@@ -58,7 +58,7 @@ There are three files that must be created to connect your SystemLink server to 
 !!! note ""
     For example, a OpenID provider with the DNS `example.com:9999` would yield files named `oexample.com%3a9999.conf` , `example.com%3a9999.client`, and `example.com%3a9999.provider`. 
 
-These files do not exist for new SystemLink installations. Each file must be added to the `C:\Program Files\National Instruments\Shared\Web Server\conf\openidc` directory. The NI Web Server must be restarted for these changes changes to any of these files to take effect. 
+These files do not exist for new SystemLink installations. Each file must be added to the `C:\Program Files\National Instruments\Shared\Web Server\conf\openidc` directory. The NI Web Server must be restarted for any changes to these file to take effect. 
 
 SystemLink can be configured to support multiple OpenID Providers simultaneously by creating a `[provider-dns].conf`, `[provider-dns].client`, and `[provider-dns].provider` file for each provider.  It is required that the user ID used within SystemLink be unique across providers. This id takes the form `[sub_claim]@issuer` where this issuer is the DNS name of the OpenID Connect provider. You can see the id SystemLink uses for a user by viewing the details of that user in the SystemLink security application. 
 
@@ -120,7 +120,11 @@ curl https://[provider-dns]/.well-known/openid-configuration -o [provider-dns].p
 ```
 
 ### Setting Login Redirect URI
-The client configuration for your provider requires a redirect URL that is used during the login flow. This must include the protocol (`https://` or `http:// `) and the DNS name of the SystemLink server. If the SystemLink server's DNS changes, this setting must be updated with the provider. 
+The client configuration for your provider requires a redirect URL that is used during the login flow. This must by the fully qualified domain name, the protocol (`https://` or `http:// `), and the port (if 80 or 443 are not used) of the SystemLink server. If the SystemLink server's DNS changes, this setting must be updated with the provider. 
+
+
+It also must include the port if using a non-default (80/443). We should probably note that it's highly recommended to use the same name for the redirect URI as is set for the preferred host name on the remote tab of the web server config utility.
+
 
 #### The SystemLink login redirect URL
 ```
