@@ -46,9 +46,10 @@ You may configure SystemLink to use [OpenID Connect](https://openid.net) for use
 
 11. To enable OpenID Connect as the only login option, go back to **NI Web Server Configuration** > **Authentication** and disable **Log in as users controlled by the web server**. 
 
-![Enable OpenID Connect in NI Web Server](odic-webserver.png){: style="height:500px;width:500px"}
-
-*Enable OpenID Connect in NI Web Server.*
+<figure>
+  <img src="../odic-webserver.png" width="500" />
+  <figcaption>Enable OpenID Connect in NI Web Server</figcaption>
+</figure>
 
 ## OpenID Configuration Files in SystemLink Server
 
@@ -79,9 +80,12 @@ Each scope will contain claims that can be used to map to roles within workspace
 
 The `ni-attributes` section determines the text and (optionally) an icon to be shown in the SystemLink login page. The `iconUri` is relative to `htdocs` directory (`C:\Program Files\National Instruments\Shared\Web Server\htdocs`). This icon should be 16x16 px. 
 
-![SystemLink login windows with SSO login option](login-window.png)
 
- *SystemLink login windows with SSO login option. An icon has not been set in this example.*
+<figure>
+  <img src="../login-window.png" width="500" />
+  <figcaption>SystemLink login windows with SSO login option. An icon has not been set in this example</figcaption>
+</figure>
+
 
 ### ClientID and Secret 
 The `[provider-dns].client` file is used by the NI Web Server to authenticate with the provider. 
@@ -266,9 +270,13 @@ Claims are returned as a JSON object.
 
 Within the security UI the claim and its returned value can be mapped to a role within a Workspace. 
 
-![Mapping the ni_employee claim to a workspace](claim-mapping.png)
+<figure>
+  <img src="../claim-mapping.png" width="500" />
+  <figcaption>Mapping the ni_employee claim to a workspace.</figcaption>
+</figure>
 
-*Mapping the `ni_employee` claim to a workspace.*
+
+
 
 If the claim value is a scalar, then it must exactly match the value specified in the role mapping for the mapping to apply to the user. If the claim value is an array, then one of the array elements must exactly match the value specified in the role mappings.
 
