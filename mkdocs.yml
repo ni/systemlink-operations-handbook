@@ -39,8 +39,3 @@ theme:
 
 extra_css:
   - stylesheets/extra.css
-
-
-nav:
-  - 'README.md'
-  - 'openid-connect/openid-connect.md'
