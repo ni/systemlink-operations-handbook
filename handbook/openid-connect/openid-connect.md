@@ -18,30 +18,37 @@ You may configure SystemLink to use [OpenID Connect](https://openid.net) for use
 
 ## Enabling OpenID Connect in SystemLink
 
-1. Log into the server running SystemLink and open **NI Web Server Configuration**
+1. Log into the server running SystemLink and go to `C:\Program Files\National Instruments\Shared\Web Server\conf\openidc`. 
 
-2. Go to the **Authentication** tab and enable both **Log in as users controlled by the web server** and **Use OpenID Connect (advanced)**
-
-3. Add the configuration files to SystemLink to connect to your OpenID Connect provider and confirm that you can log in as an openid connect user
+2. Add the configuration files to SystemLink to connect to your OpenID Connect provider.
 
     !!! note ""
-        Details on this process is found in [**OpenID Configuration Files in SystemLink Server**](#openid-configuration-files-in-systemlink-server)
+        Details on this process is found in [**OpenID Configuration Files in SystemLink Server**](#openid-configuration-files-in-systemlink-server).
 
-4. Log in as the NI Web Server admin user. This is the user created during NI Web Server guided setup. 
+3. Open **NI Web Server Configuration**.
 
-5. Go to **Security** > **Roles** and click the gear icon in the top right. 
+4. Go to the **Authentication** tab and enable both **Log in as users controlled by the web server** and **Use OpenID Connect (advanced)**.
 
-6. Add an OpenID Claim mapping for the **Server Adminstrator** role. 
+5. Click **Apply and restart**. 
+
+6. Log into the SystemLink web application using OpenID connect. After logging in you should see the message **There are no available applications.** because there are no role mappings yet created for this user. 
+
+7. Logout and log back into the SystemLink web application as the NI Web Server admin user. This is the user created during NI Web Server guided setup. 
+
+8. Go to **Security** > **Roles** and click the gear icon in the top right. 
+
+9. Add an OpenID Claim mapping for the **Server Administrator** role. 
 
     !!! note ""
-        Details on mapping claims to roles is found in [**Mapping OpenID Connect Claims to SystemLink Workspaces and Roles**](#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles)
+        Details on mapping claims to roles is found in [**Mapping OpenID Connect Claims to SystemLink Workspaces and Roles**](#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles).
 
-7. Log in as an OpenID connect user with a mapping for the **Server Adminstrator** role and confirm they have the correct privileges.
-8. To enable OpenID Connect as the only login option, go back to **NI Web Server Configuration**> **Authentication** and disable **Log in as users controlled by the web server**. 
+10. Log in as an OpenID connect user with a mapping for the **Server Administrator** role and confirm they have the correct privileges.
+
+11. To enable OpenID Connect as the only login option, go back to **NI Web Server Configuration** > **Authentication** and disable **Log in as users controlled by the web server**. 
 
 ![Enable OpenID Connect in NI Web Server](odic-webserver.png){: style="height:500px;width:500px"}
 
-*Enable OpenID Connect in NI Web Server*
+*Enable OpenID Connect in NI Web Server.*
 
 ## OpenID Configuration Files in SystemLink Server
 
@@ -196,10 +203,10 @@ curl -s https://slsso-runtime.grl-us1.uat.k8s.com/idp/userinfo.openid -H 'Author
 
 Alternatively you can view claims returned by a particular user by modifying the httpd configuration on your SystemLink server. 
 
-1. Go to `C:\Program Files\National Instruments\Shared\Web Server\conf\defines.d\` and open `50_mod_auth_openidc-defines.conf` in a text editor
-2. Change the configuration `UnDefine AUTH_OIDC_ENABLE_CLAIM_INFO` to `Define AUTH_OIDC_ENABLE_CLAIM_INFO``
+1. Go to `C:\Program Files\National Instruments\Shared\Web Server\conf\defines.d\` and open `50_mod_auth_openidc-defines.conf` in a text editor.
+2. Change the configuration `UnDefine AUTH_OIDC_ENABLE_CLAIM_INFO` to `Define AUTH_OIDC_ENABLE_CLAIM_INFO`.
 4. Restart NI Web Server. 
-5. Go to `protocol]://[systemlink-dns]/login/openidc-redirect?info=html` or `[protocol]://[systemlink-dns]/login/openidc-redirect?info=json` to view user claims
+5. Go to `protocol]://[systemlink-dns]/login/openidc-redirect?info=html` or `[protocol]://[systemlink-dns]/login/openidc-redirect?info=json` to view user claims.
 
 !!! note ""
     An example `50_mod_auth_openidc-defines.conf` modified to expose user claim. You must be logged via OpenID Connect to receive data this endpoint.
@@ -260,7 +267,8 @@ Claims are returned as a JSON object.
 Within the security UI the claim and its returned value can be mapped to a role within a Workspace. 
 
 ![Mapping the ni_employee claim to a workspace](claim-mapping.png)
-*Mapping the `ni_employee` claim to a workspace*
+
+*Mapping the `ni_employee` claim to a workspace.*
 
 If the claim value is a scalar, then it must exactly match the value specified in the role mapping for the mapping to apply to the user. If the claim value is an array, then one of the array elements must exactly match the value specified in the role mappings.
 
@@ -274,4 +282,4 @@ Due to the amount of configuration required by both the provider and SystemLink 
 
 **NI Web Server Logs:** These are found at `C:\ProgramData\National Instruments\Web Server\logs\error.log`.
 
-**Returned Claims:** See [**Viewing Claims Returned by a Provider**](#viewing-claims-returned-by-a-provider)
+**Returned Claims:** See [**Viewing Claims Returned by a Provider**](#viewing-claims-returned-by-a-provider).
