@@ -57,8 +57,9 @@ For more information and configuration options, see
 [MkDocs - Getting Started](https://www.mkdocs.org/#getting-started).
 
 ## Authoring Handbook Chapters
-- Review **chapter-template.md** and use as a starting point and reference to the structure and style of the handbook. 
-- To add a chapter you must update the `arrange` section in `handbook/.pages` in this repository to reference the new chapter directory. 
+
+- Review **chapter-template.md** and use as a starting point and reference to the structure and style of the handbook.
+- To add a chapter you must update the `arrange` section in `handbook/.pages` in this repository to reference the new chapter directory.
 
 ## Building a Local Copy of the Handbook
 

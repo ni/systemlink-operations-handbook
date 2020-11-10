@@ -1,10 +1,10 @@
 # Single Sign-on with OpenID Connect
 
-You may configure SystemLink to use [OpenID Connect](https://openid.net) for user authorization. This enables SystemLink to leverage corporate single sign-on (SSO) and the additional security benefits it provides such as streamlined login and limiting the proliferation of user credentials. This also enables SystemLink to utilize a common identity for users across multiple applications. OpenID Connect can be used in conjunction with or as a replacement for LDAP, Active Directory, and local Windows accounts for authentication. 
+You may configure SystemLink to use [OpenID Connect](https://openid.net) for user authorization. This enables SystemLink to leverage corporate single sign-on (SSO) and the additional security benefits it provides such as streamlined login and limiting the proliferation of user credentials. This also enables SystemLink to utilize a common identity for users across multiple applications. OpenID Connect can be used in conjunction with or as a replacement for LDAP, Active Directory, and local Windows accounts for authentication.
 
 ## Assumptions and Prerequisites
 
-- A server running SystemLink 2020R4 or greater. Please see [Installing and Configuring SystemLink Server and Clients](https://www.ni.com/documentation/en/systemlink/latest/setup/configuring-systemlink-server-clients/) for the basics of setting up a SystemLink server. 
+- A server running SystemLink 2020R4 or greater. Please see [Installing and Configuring SystemLink Server and Clients](https://www.ni.com/documentation/en/systemlink/latest/setup/configuring-systemlink-server-clients/) for the basics of setting up a SystemLink server.
 
 - A DNS name for the SystemLink server.
 
@@ -12,13 +12,13 @@ You may configure SystemLink to use [OpenID Connect](https://openid.net) for use
 
 - Administrator desktop access to the SystemLink server.
 
-- An OpenID Connect Provider server such as [PingFederate](https://www.pingidentity.com/en/software/pingfederate.html), [Azure ADFS](https://docs.microsoft.com/en-us/windows-server/identity/ad-fs/deployment/how-to-connect-fed-azure-adfs), [Okta](https://www.okta.com/openid-connect/), or another [certified provider](https://openid.net/certification/) that has been fully setup and configured for OpenID Connect authentication. 
+- An OpenID Connect Provider server such as [PingFederate](https://www.pingidentity.com/en/software/pingfederate.html), [Azure ADFS](https://docs.microsoft.com/en-us/windows-server/identity/ad-fs/deployment/how-to-connect-fed-azure-adfs), [Okta](https://www.okta.com/openid-connect/), or another [certified provider](https://openid.net/certification/) that has been fully setup and configured for OpenID Connect authentication.
 
-    - If you have not yet setup your provider please consult the vendor documentation for setup and configuration. 
+  - If you have not yet setup your provider please consult the vendor documentation for setup and configuration.
 
 ## Enabling OpenID Connect in SystemLink
 
-1. Log into the server running SystemLink and go to `C:\Program Files\National Instruments\Shared\Web Server\conf\openidc`. 
+1. Log into the server running SystemLink and go to `C:\Program Files\National Instruments\Shared\Web Server\conf\openidc`.
 
 2. Add the configuration files to SystemLink to connect to your OpenID Connect provider.
 
@@ -29,22 +29,22 @@ You may configure SystemLink to use [OpenID Connect](https://openid.net) for use
 
 4. Go to the **Authentication** tab and enable both **Log in as users controlled by the web server** and **Use OpenID Connect (advanced)**.
 
-5. Click **Apply and restart**. 
+5. Click **Apply and restart**.
 
-6. Log into the SystemLink web application using OpenID connect. After logging in you should see the message **There are no available applications.** because there are no role mappings yet created for this user. 
+6. Log into the SystemLink web application using OpenID connect. After logging in you should see the message **There are no available applications.** because there are no role mappings yet created for this user.
 
-7. Logout and log back into the SystemLink web application as the NI Web Server admin user. This is the user created during NI Web Server guided setup. 
+7. Logout and log back into the SystemLink web application as the NI Web Server admin user. This is the user created during NI Web Server guided setup.
 
-8. Go to **Security** > **Roles** and click the gear icon in the top right. 
+8. Go to **Security** > **Roles** and click the gear icon in the top right.
 
-9. Add an OpenID Claim mapping for the **Server Administrator** role. 
+9. Add an OpenID Claim mapping for the **Server Administrator** role.
 
     !!! note ""
         Details on mapping claims to roles is found in [**Mapping OpenID Connect Claims to SystemLink Workspaces and Roles**](#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles).
 
 10. Log in as an OpenID connect user with a mapping for the **Server Administrator** role and confirm they have the correct privileges.
 
-11. To enable OpenID Connect as the only login option, go back to **NI Web Server Configuration** > **Authentication** and disable **Log in as users controlled by the web server**. 
+11. To enable OpenID Connect as the only login option, go back to **NI Web Server Configuration** > **Authentication** and disable **Log in as users controlled by the web server**.
 
 <figure>
   <img src="../oidc-webserver.png" width="500" />
@@ -53,18 +53,19 @@ You may configure SystemLink to use [OpenID Connect](https://openid.net) for use
 
 ## OpenID Configuration Files in SystemLink Server
 
-There are three files that must be created to connect your SystemLink server to an OpenID Connect provider: `[provider-dns].conf`, `[provider-dns].client`, and `[provider-dns].provider`. The `[provider-dns]` portion of each filename must be the URL encoded fully qualified domain name. 
+There are three files that must be created to connect your SystemLink server to an OpenID Connect provider: `[provider-dns].conf`, `[provider-dns].client`, and `[provider-dns].provider`. The `[provider-dns]` portion of each filename must be the URL encoded fully qualified domain name.
 
 !!! note ""
-    For example, a OpenID provider with the DNS `example.com:9999` would yield files named `oexample.com%3a9999.conf` , `example.com%3a9999.client`, and `example.com%3a9999.provider`. 
+    For example, a OpenID provider with the DNS `example.com:9999` would yield files named `example.com%3a9999.conf` , `example.com%3a9999.client`, and `example.com%3a9999.provider`.
+]
+These files do not exist for new SystemLink installations. Each file must be added to the `C:\Program Files\National Instruments\Shared\Web Server\conf\openidc` directory. The NI Web Server must be restarted for any changes to these file to take effect.
 
-These files do not exist for new SystemLink installations. Each file must be added to the `C:\Program Files\National Instruments\Shared\Web Server\conf\openidc` directory. The NI Web Server must be restarted for any changes to these file to take effect. 
-
-SystemLink can be configured to support multiple OpenID Providers simultaneously by creating a `[provider-dns].conf`, `[provider-dns].client`, and `[provider-dns].provider` file for each provider.  It is required that the user ID used within SystemLink be unique across providers. This id takes the form `[sub_claim]@issuer` where this issuer is the DNS name of the OpenID Connect provider. You can see the id SystemLink uses for a user by viewing the details of that user in the SystemLink security application. 
+SystemLink can be configured to support multiple OpenID Providers simultaneously by creating a `[provider-dns].conf`, `[provider-dns].client`, and `[provider-dns].provider` file for each provider.  It is required that the user ID used within SystemLink be unique across providers. This id takes the form `[sub_claim]@issuer` where this issuer is the DNS name of the OpenID Connect provider. You can see the id SystemLink uses for a user by viewing the details of that user in the SystemLink security application.
 
 ### SystemLink Login Window Configuration
 
-`[provider-dns].conf` describes the scopes SystemLink will request, and the text and icon for the provider login button. 
+`[provider-dns].conf` describes the scopes SystemLink will request, and the text and icon for the provider login button.
+
 ```json
 {
  "scope": "openid email profile",
@@ -74,21 +75,21 @@ SystemLink can be configured to support multiple OpenID Providers simultaneously
  }
 }
 ```
-In this example the `openid`, `email`, and `profile` scopes are requested. Additional scopes may be requested. Consult your provider's documentation regarding exposing scopes to clients. The `profile` and `email` scopes are required to populate first name, last name, and email fields in the SystemLink user preferences. 
 
-Each scope will contain claims that can be used to map to roles within workspaces in SystemLink. See [**Mapping OpenID Connect Claims to SystemLink Workspaces and Roles**](#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles) for details. 
+In this example the `openid`, `email`, and `profile` scopes are requested. Additional scopes may be requested. Consult your provider's documentation regarding exposing scopes to clients. The `profile` and `email` scopes are required to populate first name, last name, and email fields in the SystemLink user preferences.
 
-The `ni-attributes` section determines the text and (optionally) an icon to be shown in the SystemLink login page. The `iconUri` is relative to `htdocs` directory (`C:\Program Files\National Instruments\Shared\Web Server\htdocs`). This icon should be 16x16 px. 
+Each scope will contain claims that can be used to map to roles within workspaces in SystemLink. See [**Mapping OpenID Connect Claims to SystemLink Workspaces and Roles**](#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles) for details.
 
+The `ni-attributes` section determines the text and (optionally) an icon to be shown in the SystemLink login page. The `iconUri` is relative to `htdocs` directory (`C:\Program Files\National Instruments\Shared\Web Server\htdocs`). This icon should be 16x16 px.
 
 <figure>
   <img src="../login-window.png" width="500" />
   <figcaption>SystemLink login windows with SSO login option. An icon has not been set in this example</figcaption>
 </figure>
 
+### ClientID and Secret
 
-### ClientID and Secret 
-The `[provider-dns].client` file is used by the NI Web Server to authenticate with the provider. 
+The `[provider-dns].client` file is used by the NI Web Server to authenticate with the provider.
 
 ```json
 {
@@ -97,6 +98,7 @@ The `[provider-dns].client` file is used by the NI Web Server to authenticate wi
 }
 
 ```
+
 The `client_id` and `client_secret` can be obtained from the provider. Depending on the provider the `client_id` may be user defined.
 
 #### ClientID and Secret Provider Documentation
@@ -110,24 +112,25 @@ The `client_id` and `client_secret` can be obtained from the provider. Depending
 [ADFS - Build a server side application using OAuth confidential clients with AD FS 2016 or later](https://docs.microsoft.com/en-us/windows-server/identity/ad-fs/development/enabling-oauth-confidential-clients-with-ad-fs)
 
 ### OpenID Configuration and Discovery
-The `[provider-dns].provider` file includes the contents of the provider's OpenID Connect configuration. This file informs SystemLink of of the various endpoints exposed by the provider that are used during the login process. 
+
+The `[provider-dns].provider` file includes the contents of the provider's OpenID Connect configuration. This file informs SystemLink of of the various endpoints exposed by the provider that are used during the login process.
 
 !!! note ""
-    You may use curl to create this file. Replace `[provider-dns]` with the DNS of your OpenID Connect Provider. 
+    You may use curl to create this file. Replace `[provider-dns]` with the DNS of your OpenID Connect Provider.
 
 ```bash
 curl https://[provider-dns]/.well-known/openid-configuration -o [provider-dns].provider
 ```
 
 ### Setting Login Redirect URI
-The client configuration for your provider requires a redirect URL that is used during the login flow. This must by the fully qualified domain name, the protocol (`https://` or `http:// `), and the port (if 80 or 443 are not used) of the SystemLink server. If the SystemLink server's DNS changes, this setting must be updated with the provider. 
 
+The client configuration for your provider requires a redirect URL that is used during the login flow. This must by the fully qualified domain name, the protocol (`https://` or `http://`), and the port (if 80 or 443 are not used) of the SystemLink server. If the SystemLink server's DNS changes, this setting must be updated with the provider.
 
 It also must include the port if using a non-default (80/443). We should probably note that it's highly recommended to use the same name for the redirect URI as is set for the preferred host name on the remote tab of the web server config utility.
 
-
 #### The SystemLink login redirect URL
-```
+
+```url
 [protocol]://[systemlink-dns]/login/openidc-redirect
 
 ```
@@ -140,11 +143,10 @@ It also must include the port if using a non-default (80/443). We should probabl
 
 [Okta - Understand the callback route](https://developer.okta.com/docs/guides/sign-into-web-app/springboot/define-callback/)
 
-
 ## Supported Signing and Encryption Algorithms
 
- The following algorithms are supported by SystemLink for ID token signing, ID token key management encryption, and ID token content encryption. 
- 
+ The following algorithms are supported by SystemLink for ID token signing, ID token key management encryption, and ID token content encryption.
+
 ### ID Token Signing Algorithm
 
 - None
@@ -185,7 +187,7 @@ It also must include the port if using a non-default (80/443). We should probabl
 
 - AES-256 Key Wrap
 
-### ID Token Content Encryption Algorithm 
+### ID Token Content Encryption Algorithm
 
 - Composite AES-CBC-128 HMAC-SHA-256
 
@@ -195,7 +197,7 @@ It also must include the port if using a non-default (80/443). We should probabl
 
 ## Mapping OpenID Connect Claims to SystemLink Workspaces and Roles
 
-Once SystemLink and the provider have been configured such that users can authenticate and login, mappings between OpenID claims and workspaces must be made in order to authorize the user access to systems and data managed by SystemLink. This process is the same as the mapping workflow for LDAP and Active Directory attributes, groups, and users. Please see [Assigning Users to Roles in a Workspace](https://www.ni.com/documentation/en/systemlink/latest/setup/mapping-roles/) in the SystemLink manual. Claims may also be used to create a mapping to the **Server Administrator** role. 
+Once SystemLink and the provider have been configured such that users can authenticate and login, mappings between OpenID claims and workspaces must be made in order to authorize the user access to systems and data managed by SystemLink. This process is the same as the mapping workflow for LDAP and Active Directory attributes, groups, and users. Please see [Assigning Users to Roles in a Workspace](https://www.ni.com/documentation/en/systemlink/latest/setup/mapping-roles/) in the SystemLink manual. Claims may also be used to create a mapping to the **Server Administrator** role.
 
 ### Viewing Claims Returned by a Provider
 
@@ -208,13 +210,12 @@ The OpenID Connect provider determines which scopes and claims are made availabl
 curl -s https://slsso-runtime.grl-us1.uat.k8s.com/idp/userinfo.openid -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiI...zJVy2oLnrBmXTmpDRm499U4~'|python -m json.tool
 ```
 
-
-Alternatively you can view claims returned by a particular user by modifying the httpd configuration on your SystemLink server. 
+Alternatively you can view claims returned by a particular user by modifying the httpd configuration on your SystemLink server.
 
 1. Go to `C:\Program Files\National Instruments\Shared\Web Server\conf\defines.d\` and open `50_mod_auth_openidc-defines.conf` in a text editor.
 2. Change the configuration `UnDefine AUTH_OIDC_ENABLE_CLAIM_INFO` to `Define AUTH_OIDC_ENABLE_CLAIM_INFO`.
-4. Restart NI Web Server. 
-5. Go to `protocol]://[systemlink-dns]/login/openidc-redirect?info=html` or `[protocol]://[systemlink-dns]/login/openidc-redirect?info=json` to view user claims.
+3. Restart NI Web Server.
+4. Go to `protocol]://[systemlink-dns]/login/openidc-redirect?info=html` or `[protocol]://[systemlink-dns]/login/openidc-redirect?info=json` to view user claims.
 
 !!! note ""
     An example `50_mod_auth_openidc-defines.conf` modified to expose user claim. You must be logged via OpenID Connect to receive data this endpoint.
@@ -250,8 +251,7 @@ AUTH_OIDC_ENABLE_CLAIM_INFO
 Define AUTH_OIDC_ENABLE_CLAIM_INFO
 ```
 
-
-If the provider is https with a certificate signed by a CA not included in the NI-CURL CA bundle (`C:\Program Files\National Instruments\Shared\nicurl\ca-bundle.crt`), then the `AUTH_OIDC_PROVIDER_DIR` define in `50_mod_auth_openidc-defines.conf` must to be updated to point to a CA bundle containing the provider's CA. The path can be absolute, or relative to `C:\Program Files\National Instruments\Shared\Web Server`. 
+If the provider is https with a certificate signed by a CA not included in the NI-CURL CA bundle (`C:\Program Files\National Instruments\Shared\nicurl\ca-bundle.crt`), then the `AUTH_OIDC_PROVIDER_DIR` define in `50_mod_auth_openidc-defines.conf` must to be updated to point to a CA bundle containing the provider's CA. The path can be absolute, or relative to `C:\Program Files\National Instruments\Shared\Web Server`.
 
 ### Mapping Claims to SystemLink Roles
 
@@ -271,26 +271,24 @@ Claims are returned as a JSON object.
 }
 ```
 
-
-Within the security UI the claim and its returned value can be mapped to a role within a Workspace. 
+Within the security UI the claim and its returned value can be mapped to a role within a Workspace.
 
 <figure>
   <img src="../claim-mapping.png" width="500" />
   <figcaption>Mapping the ni_employee claim to a workspace.</figcaption>
 </figure>
 
-
-
-
 If the claim value is a scalar, then it must exactly match the value specified in the role mapping for the mapping to apply to the user. If the claim value is an array, then one of the array elements must exactly match the value specified in the role mappings.
 
 ### Refreshing user claims
-If a claim for a user changes and that claim is used to drive a role mapping for a workspace, the user must logout and log back in before the new claim is received and the role assigned to the user changed. 
+
+If a claim for a user changes and that claim is used to drive a role mapping for a workspace, the user must logout and log back in before the new claim is received and the role assigned to the user changed.
 
 ## Troubleshooting Failed Authentication
-Due to the amount of configuration required by both the provider and SystemLink it can be challenging to enable the entire OpenID Connect flow. The following sources can be used to troubleshoot a failed connection. 
 
-**OpenID Connect Provider logs:** Consult your OpenID Connect Provider's documentation on the location of their application log files. 
+Due to the amount of configuration required by both the provider and SystemLink it can be challenging to enable the entire OpenID Connect flow. The following sources can be used to troubleshoot a failed connection.
+
+**OpenID Connect Provider logs:** Consult your OpenID Connect Provider's documentation on the location of their application log files.
 
 **NI Web Server Logs:** These are found at `C:\ProgramData\National Instruments\Web Server\logs\error.log`.
 
