@@ -245,7 +245,6 @@ Alternatively you can view claims returned by a particular user by modifying the
 
     # Whether OIDC is enabled.
     Define AUTH_OIDC_ENABLED
-    AUTH_OIDC_ENABLE_CLAIM_INFO
 
     # When enabled, /login/openidc-redirect?info=json and
     # /login/openidc-redirect?info=html will return the claims for the currently
