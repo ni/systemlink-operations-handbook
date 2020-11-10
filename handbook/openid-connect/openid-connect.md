@@ -14,7 +14,7 @@ You may configure SystemLink to use [OpenID Connect](https://openid.net) for use
 
 - An OpenID Connect Provider server such as [PingFederate](https://www.pingidentity.com/en/software/pingfederate.html), [Azure ADFS](https://docs.microsoft.com/en-us/windows-server/identity/ad-fs/deployment/how-to-connect-fed-azure-adfs), [Okta](https://www.okta.com/openid-connect/), or another [certified provider](https://openid.net/certification/) that has been fully setup and configured for OpenID Connect authentication.
 
-  - If you have not yet setup your provider please consult the vendor documentation for setup and configuration.
+    - If you have not yet setup your provider please consult the vendor documentation for setup and configuration.
 
 ## Enabling OpenID Connect in SystemLink
 
@@ -211,7 +211,9 @@ The OpenID Connect provider determines which scopes and claims are made availabl
     Example curl request to return user info. The bearer token has been truncated for readability.
     ```bash
     curl -s https://slsso-runtime.grl-us1.uat.k8s.com/idp/userinfo.openid -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiI...zJVy2oLnrBmXTmpDRm499U4~'|python -m json.tool
+    <!-- markdownlint-disable MD038 -->
     ```
+    <!-- markdownlint-enable MD038 -->
 
 Alternatively you can view claims returned by a particular user by modifying the httpd configuration on your SystemLink server.
 
@@ -269,7 +271,9 @@ Claims are returned as a JSON object.
         "ni_employee": "2670",
         "sub": "mblack"
     }
+    <!-- markdownlint-disable MD038 -->
     ```
+    <!-- markdownlint-enable MD038 -->
 
 Within the security UI the claim and its returned value can be mapped to a role within a Workspace.
 
