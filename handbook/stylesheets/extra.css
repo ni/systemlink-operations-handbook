@@ -124,3 +124,9 @@ body, input {
 pre, code, kbd {
   font-family: SpaceMono, "Courier New", Courier, monospace"
 }
+
+/* Admonitions */
+
+.md-typeset .admonition.note {
+  border-color: var(--md-accent-fg-color);
+}
