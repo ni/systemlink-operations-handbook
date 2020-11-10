@@ -1,20 +1,18 @@
 # Single Sign-on with OpenID Connect
 
-You may configure SystemLink to use [OpenID Connect](https://openid.net) for user authorization. This enables SystemLink to leverage corporate single sign-on (SSO) and the additional security benefits it provides such as streamlined login and limiting the proliferation of user credentials. This also enables SystemLink to utilize a common identity for users across multiple applications. OpenID Connect can be used in conjunction with or as a replacement for LDAP, Active Directory, and local Windows accounts for authentication.
+You can configure SystemLink to use OpenID Connect to authorize users. This enables SystemLink to use a common identity for users across multiple applications. This also means SystemLink leverages corporate single sign-on (SSO) and all its security benefits, such as streamlined login and limiting user credential proliferation. You can use OpenID Connect alongside or as a replacement for LDAP, Active Directory, and local Windows accounts for authentication.
 
 ## Assumptions and Prerequisites
 
-- A server running SystemLink 2020R4 or greater. Please see [Installing and Configuring SystemLink Server and Clients](https://www.ni.com/documentation/en/systemlink/latest/setup/configuring-systemlink-server-clients/) for the basics of setting up a SystemLink server.
+- A server running SystemLink 2020R4 or greater. Please see [Installing and Configuring SystemLink Server and Clients](https://www.ni.com/documentation/en/systemlink/latest/setup/configuring-systemlink-server-clients/) for the basics of setting up a SystemLink server
 
-- A DNS name for the SystemLink server.
+- A DNS name for the SystemLink server
 
-- SystemLink login with the **Server Administrator** role.
+- SystemLink login with the **Server Administrator** role
 
-- Administrator desktop access to the SystemLink server.
+- Administrator desktop access to the SystemLink server
 
-- An OpenID Connect Provider server such as [PingFederate](https://www.pingidentity.com/en/software/pingfederate.html), [Azure ADFS](https://docs.microsoft.com/en-us/windows-server/identity/ad-fs/deployment/how-to-connect-fed-azure-adfs), [Okta](https://www.okta.com/openid-connect/), or another [certified provider](https://openid.net/certification/) that has been fully setup and configured for OpenID Connect authentication.
-
-    - If you have not yet setup your provider please consult the vendor documentation for setup and configuration.
+- An OpenID Connect Provider server such as [PingFederate](https://www.pingidentity.com/en/software/pingfederate.html), [Azure ADFS](https://docs.microsoft.com/en-us/windows-server/identity/ad-fs/deployment/how-to-connect-fed-azure-adfs), [Okta](https://www.okta.com/openid-connect/), or another [certified provider](https://openid.net/certification/) that has been fully setup and configured for OpenID Connect authentication
 
 ## Enabling OpenID Connect in SystemLink
 
@@ -23,7 +21,7 @@ You may configure SystemLink to use [OpenID Connect](https://openid.net) for use
 2. Add the configuration files to SystemLink to connect to your OpenID Connect provider.
 
     !!! note ""
-        Details on this process is found in [**OpenID Configuration Files in SystemLink Server**](#openid-configuration-files-in-systemlink-server).
+        For details, refer to [**OpenID Configuration Files in SystemLink Server**](#openid-configuration-files-in-systemlink-server).
 
 3. Open **NI Web Server Configuration**.
 
@@ -31,20 +29,18 @@ You may configure SystemLink to use [OpenID Connect](https://openid.net) for use
 
 5. Click **Apply and restart**.
 
-6. Log into the SystemLink web application using OpenID connect. After logging in you should see the message **There are no available applications.** because there are no role mappings yet created for this user.
+6. Login into the SystemLink web application with a user assigned the [**Server Administrator**](https://www.ni.com/documentation/en/systemlink/latest/setup/predefined-roles/) role.
 
-7. Logout and log back into the SystemLink web application as the NI Web Server admin user. This is the user created during NI Web Server guided setup.
+7. Go to **Security** > **Roles** and click the gear icon in the top right.
 
-8. Go to **Security** > **Roles** and click the gear icon in the top right.
-
-9. Add an OpenID Claim mapping for the **Server Administrator** role.
+8. Add an OpenID Claim mapping for the **Server Administrator** role.
 
     !!! note ""
-        Details on mapping claims to roles is found in [**Mapping OpenID Connect Claims to SystemLink Workspaces and Roles**](#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles).
+        For details, refer to [**Mapping OpenID Connect Claims to SystemLink Workspaces and Roles**](#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles).
 
-10. Log in as an OpenID connect user with a mapping for the **Server Administrator** role and confirm they have the correct privileges.
+9. Log out and log in as an OpenID connect user with a mapping for the **Server Administrator** role and confirm they have the correct privileges.
 
-11. To enable OpenID Connect as the only login option, go back to **NI Web Server Configuration** > **Authentication** and disable **Log in as users controlled by the web server**.
+10. To enable OpenID Connect as the only login option, go back to **NI Web Server Configuration** > **Authentication** and disable **Log in as users controlled by the web server**.
 
 <figure>
   <img src="../oidc-webserver.png" width="500" />
@@ -53,7 +49,7 @@ You may configure SystemLink to use [OpenID Connect](https://openid.net) for use
 
 ## OpenID Configuration Files in SystemLink Server
 
-There are three files that must be created to connect your SystemLink server to an OpenID Connect provider: `[provider-dns].conf`, `[provider-dns].client`, and `[provider-dns].provider`. The `[provider-dns]` portion of each filename must be the URL encoded fully qualified domain name.
+There are three files that you must create to connect your SystemLink server to an OpenID Connect provider: `[provider-dns].conf`, `[provider-dns].client`, and `[provider-dns].provider`. The `[provider-dns]` portion of each filename must be the URL-encoded fully qualified domain name.
 
 !!! note "Example"
     An OpenID provider with the DNS `example.com:9999` would yield files named `example.com%3a9999.conf` , `example.com%3a9999.client`, and `example.com%3a9999.provider`.
