@@ -55,8 +55,8 @@ You may configure SystemLink to use [OpenID Connect](https://openid.net) for use
 
 There are three files that must be created to connect your SystemLink server to an OpenID Connect provider: `[provider-dns].conf`, `[provider-dns].client`, and `[provider-dns].provider`. The `[provider-dns]` portion of each filename must be the URL encoded fully qualified domain name.
 
-!!! note ""
-    For example, a OpenID provider with the DNS `example.com:9999` would yield files named `example.com%3a9999.conf` , `example.com%3a9999.client`, and `example.com%3a9999.provider`.
+!!! note "Example"
+    An OpenID provider with the DNS `example.com:9999` would yield files named `example.com%3a9999.conf` , `example.com%3a9999.client`, and `example.com%3a9999.provider`.
 
 These files do not exist for new SystemLink installations. Each file must be added to the `C:\Program Files\National Instruments\Shared\Web Server\conf\openidc` directory. The NI Web Server must be restarted for any changes to these file to take effect.
 
