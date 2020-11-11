@@ -65,11 +65,11 @@ You can configure SystemLink to support multiple OpenID Connect providers simult
 
     ```json
     {
-    "scope": "openid email profile",
-    "ni-attributes": {
-      "displayName": "Log in with PingFederate",
-      "iconUri": "/login/assets/pf.png"
-    }
+      "scope": "openid email profile",
+      "ni-attributes": {
+        "displayName": "Log in with PingFederate",
+        "iconUri": "/login/assets/pf.png"
+      }
     }
     ```
 
@@ -91,8 +91,8 @@ The `ni-attributes` section determines the text and (optionally) an icon to be s
 
     ```json
     {
-    "client_id": "slserver",
-    "client_secret": "4vFm89u07xaredactedredactedredactede2tjtsEGQhlLreLVjcyLA0"
+      "client_id": "slserver",
+      "client_secret": "4vFm89u07xaredactedredactedredactede2tjtsEGQhlLreLVjcyLA0"
     }
     ```
 
@@ -129,7 +129,7 @@ The client configuration for your provider requires a redirect URL that is used 
 #### The SystemLink login redirect URL
 
 !!! note ""
-    Use the following URL to configure your provider
+    Use the following URL to configure your provider:
 
     ```url
     [protocol]://[systemlink-dns]/login/openidc-redirect
@@ -198,7 +198,7 @@ SystemLink supports the following algorithms for ID token signing, ID token key 
 
 ## Mapping OpenID Connect Claims to SystemLink Workspaces and Roles
 
-Map OpenID claims to roles and workspaces so users can access systems and data managed by SystemLink. This process is the same as the mapping workflow for LDAP and Active Directory attributes. Refer to[Assigning Users to Roles in a Workspace](https://www.ni.com/documentation/en/systemlink/latest/setup/mapping-roles/) in the SystemLink manual. You can also use claims to create a mapping for the **Server Administrator** role.
+Map OpenID claims to roles and workspaces so users can access systems and data managed by SystemLink. This process is the same as the mapping workflow for LDAP and Active Directory attributes. Refer to [Assigning Users to Roles in a Workspace](https://www.ni.com/documentation/en/systemlink/latest/setup/mapping-roles/) in the SystemLink manual. You can also use claims to create a mapping for the **Server Administrator** role.
 
 ### Viewing Claims Returned by a Provider
 
@@ -282,6 +282,7 @@ If the claim value contains quotes the quotes must be escaped.
 !!! note "Example claim containing quotes"
 
     ```json
+    {
       "userinfo": {
         "sub": "88442211",
         "country": "US",
@@ -290,12 +291,13 @@ If the claim value contains quotes the quotes must be escaped.
           "user,
           "a\"b"
         ]
+      }
     }
     ```
 
     <figure>
       <img src="../escaped-claim.png" width="500" />
-      <figcaption>Claims must be escaped with the / character.</figcaption>
+      <figcaption>Claims must be escaped with the \ character.</figcaption>
     </figure>
 
 ### Refreshing user claims
