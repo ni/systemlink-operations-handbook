@@ -208,9 +208,7 @@ The OpenID Connect provider determines which scopes and claims clients can acces
     Example curl request to return user info. The bearer token has been truncated for readability.
     ```bash
     curl -s https://slsso-runtime.grl-us1.uat.k8s.com/idp/userinfo.openid -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiI...zJVy2oLnrBmXTmpDRm499U4~'|python -m json.tool
-    <!-- markdownlint-disable MD038 -->
     ```
-    <!-- markdownlint-enable MD038 -->
 
 You can also view claims returned by a particular user by modifying the httpd configuration on your SystemLink server.
 
@@ -268,18 +266,37 @@ Claims are returned as a JSON object.
         "ni_employee": "2670",
         "sub": "mblack"
     }
-    <!-- markdownlint-disable MD038 -->
     ```
-    <!-- markdownlint-enable MD038 -->
 
-Within the security UI the claim and its returned value can be mapped to a role within a Workspace.
+    Within the security UI the claim and its returned value can be mapped to a role within a Workspace.
 
-<figure>
-  <img src="../claim-mapping.png" width="500" />
-  <figcaption>Mapping the ni_employee claim to a workspace.</figcaption>
-</figure>
+    <figure>
+      <img src="../claim-mapping.png" width="500" />
+      <figcaption>Mapping the ni_employee claim to a workspace.</figcaption>
+    </figure>
 
 If the claim value is a scalar, then it must exactly match the value specified in the role mapping for the mapping to apply to the user. If the claim value is an array, then one of the array elements must exactly match the value specified in the role mappings.
+
+If the claim value contains quotes the quotes must be escaped.
+
+!!! note "Example claim containing quotes"
+
+    ```json
+      "userinfo": {
+        "sub": "88442211",
+        "country": "US",
+        "name": "Bob Smith",
+        "http://www.example.come/roles": [
+          "user,
+          "a\"b"
+        ]
+    }
+    ```
+
+    <figure>
+      <img src="../escaped-claim.png" width="500" />
+      <figcaption>Claims must be escaped with the / character.</figcaption>
+    </figure>
 
 ### Refreshing user claims
 
