@@ -4,7 +4,7 @@ You can configure SystemLink to use OpenID Connect to authorize users. This enab
 
 ## Assumptions and Prerequisites
 
-- A server running SystemLink 2020R4 or greater. Please see [Installing and Configuring SystemLink Server and Clients](https://www.ni.com/documentation/en/systemlink/latest/setup/configuring-systemlink-server-clients/) for the basics of setting up a SystemLink server
+- A server running SystemLink 2020R4 or greater. Refer to [Installing and Configuring SystemLink Server and Clients](https://www.ni.com/documentation/en/systemlink/latest/setup/configuring-systemlink-server-clients/) for the basics of setting up a SystemLink server
 
 - A DNS name for the SystemLink server
 
@@ -25,7 +25,7 @@ You can configure SystemLink to use OpenID Connect to authorize users. This enab
 
 3. Open **NI Web Server Configuration**.
 
-4. Go to the **Authentication** tab and enable both **Log in as users controlled by the web server** and **Use OpenID Connect (advanced)**.
+4. Go to the **Authentication** tab and enable **Use OpenID Connect (advanced)**.
 
 5. Click **Apply and restart**.
 
@@ -39,8 +39,6 @@ You can configure SystemLink to use OpenID Connect to authorize users. This enab
         For details, refer to [**Mapping OpenID Connect Claims to SystemLink Workspaces and Roles**](#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles).
 
 9. Log out and log in as an OpenID connect user with a mapping for the **Server Administrator** role and confirm they have the correct privileges.
-
-10. To enable OpenID Connect as the only login option, go back to **NI Web Server Configuration** > **Authentication** and disable **Log in as users controlled by the web server**.
 
 <figure>
   <img src="../../img/oidc-webserver.png" width="500" />
@@ -58,7 +56,7 @@ Refer to [openid-connect-config](https://github.com/ni/systemlink-operations-han
 
 These files do not exist for new SystemLink installations. Add each file to `C:\Program Files\National Instruments\Shared\Web Server\conf\openidc`. Restart the NI Web Server to apply changes.
 
-You can configure SystemLink to support multiple OpenID Connect providers simultaneously by creating a `[provider-dns].conf`, `[provider-dns].client`, and `[provider-dns].provider` file for each provider. The user ID in SystemLink must be unique across providers. This ID takes the form `[sub_claim]@issuer`. You can see the ID SystemLink associates with a user in the user details in SystemLink Security.'
+You can configure SystemLink to support multiple OpenID Connect providers simultaneously by creating a `[provider-dns].conf`, `[provider-dns].client`, and `[provider-dns].provider` file for each provider. The user ID in SystemLink must be unique across providers. This ID takes the form `[sub_claim]@issuer`. You can see the ID SystemLink associates with a user in the user details in SystemLink Security.
 
 ### SystemLink Login Window Configuration
 
@@ -75,7 +73,7 @@ You can configure SystemLink to support multiple OpenID Connect providers simult
     }
     ```
 
-In this example the `openid`, `email`, and `profile` scopes are requested. Additional scopes may be requested. Consult your provider's documentation regarding exposing scopes to clients. The `profile` and `email` scopes are required to populate first name, last name, and email fields in the SystemLink user preferences.
+In this example the `openid`, `email`, and `profile` scopes are requested. Additional scopes may be requested. Consult your provider's documentation regarding exposing scopes to clients. The `profile` and `email` scopes are required to populate first name, last name, and email fields in the SystemLink user preferences. These are derived from the `given_name`, `family_name`, and `email` claims respectively.
 
 Each scope contains claims you can map to roles within SystemLink workspaces. See [**Mapping OpenID Connect Claims to SystemLink Workspaces and Roles**](#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles) for details.
 
@@ -123,7 +121,7 @@ The `[provider-dns].provider` file includes the contents of the provider's OpenI
 
 ### Setting Login Redirect URI
 
-The client configuration for your provider requires a redirect URL that is used during the login flow. This must by the fully qualified domain name, the protocol (`https://` or `http://`), and the port (if 80 or 443 are not used) of the SystemLink server. If the SystemLink server's DNS changes, update this setting with your provider.
+The client configuration for your provider requires a redirect URL that is used during the login flow. This must be the fully qualified domain name, the protocol (`https://` or `http://`), and the port (if 80 or 443 are not used) of the SystemLink server. If the SystemLink server's DNS changes, update this setting with your provider.
 
 !!! note
     NI recommends the DNS name in the redirect URI match the the preferred hostname set in NI Web Server Configuration on the SystemLink server.
@@ -217,10 +215,10 @@ You can also view claims returned by a particular user by modifying the httpd co
 1. Go to `C:\Program Files\National Instruments\Shared\Web Server\conf\defines.d\` and open `50_mod_auth_openidc-defines.conf` in a text editor.
 2. Change the configuration `UnDefine AUTH_OIDC_ENABLE_CLAIM_INFO` to `Define AUTH_OIDC_ENABLE_CLAIM_INFO`.
 3. Restart NI Web Server.
-4. Go to `protocol]://[systemlink-dns]/login/openidc-redirect?info=html` or `[protocol]://[systemlink-dns]/login/openidc-redirect?info=json` to view user claims.
+4. Go to `[protocol]://[systemlink-dns]/login/openidc-redirect?info=html` or `[protocol]://[systemlink-dns]/login/openidc-redirect?info=json` to view user claims.
 
 !!! note ""
-    An example `50_mod_auth_openidc-defines.conf` modified to expose user claim. You must be logged via OpenID Connect to receive data this endpoint.
+    An example `50_mod_auth_openidc-defines.conf` modified to expose user claims. You must be logged via OpenID Connect to receive data this endpoint.
     ```conf
     #
     # Defined OpenID-Connect configuration for the Windows Apache installation.
@@ -277,9 +275,9 @@ Claims are returned as a JSON object.
       <figcaption>Mapping the ni_employee claim to a workspace.</figcaption>
     </figure>
 
-If the claim value is a scalar, then it must exactly match the value specified in the role mapping for the mapping to apply to the user. If the claim value is an array, then one of the array elements must exactly match the value specified in the role mappings.
+If the claim value is a scalar, then it must exactly match the value specified in the role mapping. If the claim value is an array, then one of the array elements must exactly match the value specified in the role mappings.
 
-If the claim value contains quotes the quotes must be escaped.
+If the claim value contains quotes the quotes must be escaped with \\.
 
 !!! note "Example claim containing quotes"
 
@@ -290,7 +288,7 @@ If the claim value contains quotes the quotes must be escaped.
         "country": "US",
         "name": "Bob Smith",
         "http://www.example.come/roles": [
-          "user,
+          "user",
           "a\"b"
         ]
       }
@@ -304,7 +302,7 @@ If the claim value contains quotes the quotes must be escaped.
 
 ### Refreshing user claims
 
-Claims are fetched at login. If a claim affecting role mappings changes users will not be affected by the change until they log out and log back in.
+Claims are fetched at login. Log out and log back in for updated claims to affect role mappings.
 
 ## Troubleshooting Failed Authentication
 
@@ -313,5 +311,8 @@ The following sources can be used to troubleshoot a failed connection.
 **OpenID Connect Provider logs:** Consult your OpenID Connect Provider's documentation on the location of their application log files.
 
 **NI Web Server Logs:** These are found at `C:\ProgramData\National Instruments\Web Server\logs\error.log`.
+
+!!! note
+    SystemLink uses log rotation therefore the latest logs may be in one of the numbered `error.log` files.
 
 **Returned Claims:** See [**Viewing Claims Returned by a Provider**](#viewing-claims-returned-by-a-provider).
