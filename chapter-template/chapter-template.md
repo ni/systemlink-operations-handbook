@@ -27,7 +27,6 @@ Break down the rest of the chapter into sections and subsections as needed. Thes
 
 Introduce a code snippet with one-line admonition as necessary. Keep in mind these do not render in Github style markdown, but will be rendered correctly in the built MkDocs site.
 
-
 !!! note ""
     The following shows how to apply using the `systemlinkcli`.
 
