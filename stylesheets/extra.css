@@ -6,7 +6,7 @@
   --md-primary-bg-color--light:        #FFFFFF;
 
   --md-accent-fg-color:                #03B585;
-  --md-accent-fg-color--transparent:   hsla(#03B585, 0.1);
+  --md-accent-fg-color--transparent:   rgba(3,181,133, 0.1);
   --md-accent-bg-color:                #F1F1F2;
   --md-accent-bg-color--light:         #FFFFFF;
 
@@ -48,7 +48,7 @@
 
 .md-typeset {
   color: #333;
-  font-size: 18px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -123,4 +123,18 @@ body, input {
 
 pre, code, kbd {
   font-family: SpaceMono, "Courier New", Courier, monospace"
+}
+
+/* Admonitions */
+
+.md-typeset .admonition.note {
+  border-color: var(--md-accent-fg-color);
+}
+
+.md-typeset .note>.admonition-title {
+  background-color: var(--md-accent-fg-color--transparent);
+  }
+
+.md-typeset .note>.admonition-title::before {
+    background-color: var(--md-primary-fg-color--light);
 }
