@@ -1,2 +1,4 @@
 .venv/
 site/
+.DS_Store
+*.code-workspace
