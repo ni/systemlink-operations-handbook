@@ -51,7 +51,7 @@ You can configure SystemLink to use OpenID Connect to authorize users. This enab
 
 There are three files that you must create to connect your SystemLink server to an OpenID Connect provider: `[provider-dns].conf`, `[provider-dns].client`, and `[provider-dns].provider`. The `[provider-dns]` portion of each filename must be the URL-encoded fully qualified domain name.
 
-Refer to [example-slclient-config](https://github.com/ni/systemlink-operations-handbook/tree/master/handbook/openid-connect/example-slclient-config) for examples of each of these files.
+Refer to [openid-connect-systemlink-config](https://github.com/ni/systemlink-operations-handbook/tree/master/openid-connect-systemlink-config) for examples of each of these files.
 
 !!! note "Example"
     An OpenID provider with the DNS `example.com:9999` would yield files named `example.com%3a9999.conf` , `example.com%3a9999.client`, and `example.com%3a9999.provider`.
