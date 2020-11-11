@@ -43,7 +43,7 @@ You can configure SystemLink to use OpenID Connect to authorize users. This enab
 10. To enable OpenID Connect as the only login option, go back to **NI Web Server Configuration** > **Authentication** and disable **Log in as users controlled by the web server**.
 
 <figure>
-  <img src="../oidc-webserver.png" width="500" />
+  <img src="../../img/oidc-webserver.png" width="500" />
   <figcaption>Enable OpenID Connect in NI Web Server</figcaption>
 </figure>
 
@@ -80,7 +80,7 @@ Each scope contains claims you can map to roles within SystemLink workspaces. Se
 The `ni-attributes` section determines the text and (optionally) an icon to be shown in the SystemLink login page. The `iconUri` is relative to `htdocs` directory (`C:\Program Files\National Instruments\Shared\Web Server\htdocs`). This icon should be 16x16 px.
 
 <figure>
-  <img src="../login-window.png" width="500" />
+  <img src="../../img/login-window.png" width="500" />
   <figcaption>SystemLink login windows with SSO login option. An icon has not been set in this example</figcaption>
 </figure>
 
@@ -271,7 +271,7 @@ Claims are returned as a JSON object.
     Within the security UI the claim and its returned value can be mapped to a role within a Workspace.
 
     <figure>
-      <img src="../claim-mapping.png" width="500" />
+      <img src="../../img/claim-mapping.png" width="500" />
       <figcaption>Mapping the ni_employee claim to a workspace.</figcaption>
     </figure>
 
@@ -296,7 +296,7 @@ If the claim value contains quotes the quotes must be escaped.
     ```
 
     <figure>
-      <img src="../escaped-claim.png" width="500" />
+      <img src="../../img/escaped-claim.png" width="500" />
       <figcaption>Claims must be escaped with the \ character.</figcaption>
     </figure>
 
