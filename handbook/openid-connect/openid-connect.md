@@ -317,17 +317,16 @@ The following sources can be used to troubleshoot a failed connection.
 
 **Returned Claims:** See [**Viewing Claims Returned by a Provider**](#viewing-claims-returned-by-a-provider).
 
-### Cache Shm Entry Size Max
+### Cache Entry Size
 
-If an "Internal Server Error" is encountered when attempting to log in, this may be an issue with the defined `OIDCCacheShmEntrySizeMax`. You can verify this is the issue by searching the NI Web Server logs for the following entries
+The OpenID Connect module stores information in a shared memory cache. If a cache entry is too large, users will see an "Internal Server Error" when attempting to log in, and the NI Web Server logs will contain the following entries
 ```
     oidc_cache_shm_set: could not store value since value size is too large
     oidc_cache_set: could NOT store X bytes in shm cache backend for key Y
 ```
 To resolve this issue
 
-- Open the following file in a text editor run as Administrator `C:\Program Files\National Instruments\Shared\Web Server\conf\defines.d\50_mod_auth_openidc-defines.conf.defaults`
+- Open the following file in a text editor run as Administrator `C:\Program Files\National Instruments\Shared\Web Server\conf\defines.d\50_mod_auth_openidc-defines.conf`
 - Find the line `Define AUTH_OIDC_CACHE_ENTRY_SIZE 66065`
-- Modify `66065` to a number larger than X, where X is the required size of the shm cache entry specified in the error log
-    - It is suggested to follow the [documentation](https://github.com/zmartzone/mod_auth_openidc/blob/master/auth_openidc.conf#L600https://github.com/zmartzone/mod_auth_openidc/blob/master/auth_openidc.conf#L600) when modifying this number
+- Modify `66065` to a number larger than X, where X is the required size of the cache entry specified in the error log
 - Restart the NI Web Server from the `Control` tab of the NI Web Server Configuration application
