@@ -316,3 +316,22 @@ The following sources can be used to troubleshoot a failed connection.
     SystemLink uses log rotation therefore the latest logs may be in one of the numbered `error.log` files.
 
 **Returned Claims:** See [**Viewing Claims Returned by a Provider**](#viewing-claims-returned-by-a-provider).
+
+### Cache Entry Size
+
+The OpenID Connect module stores information in a shared memory cache. If a cache entry is too large, users will see an "Internal Server Error" when attempting to log in. This typically occurs when you are returning a large number of claims or claims with large values.
+
+!!! note "Example error logs"
+    When this happens, the NI Web Server error logs will contain entries like the following:
+
+    ```text
+    oidc_cache_shm_set: could not store value since value size is too large
+    oidc_cache_set: could NOT store X bytes in shm cache backend for key Y
+    ```
+
+To resolve this issue:
+
+- Open the following file in a text editor run as Administrator `C:\Program Files\National Instruments\Shared\Web Server\conf\defines.d\50_mod_auth_openidc-defines.conf`
+- Find the line starting with `Define AUTH_OIDC_CACHE_ENTRY_SIZE`
+- Modify the number at the end to a number larger than X, where X is the required size of the cache entry specified in the error log
+- Restart the NI Web Server from the `Control` tab of the NI Web Server Configuration application
