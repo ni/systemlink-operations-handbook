@@ -43,7 +43,7 @@ jobs:
         VALIDATE_ALL_CODEBASE: true
         DEFAULT_BRANCH: master
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        MARKDOWN_CONFIG_FILE: .markdownlint.yaml
+        MARKDOWN_CONFIG_FILE: ${{ github.workspace }}/.markdownlint.yaml
         FILTER_REGEX_EXCLUDE: (site/.*|overrides/partials/.*)
 
     - name: Publish documentation
