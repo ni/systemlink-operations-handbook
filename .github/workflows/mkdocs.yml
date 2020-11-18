@@ -42,6 +42,8 @@ jobs:
       env:
         VALIDATE_ALL_CODEBASE: true
         DEFAULT_BRANCH: master
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        FILTER_REGEX_EXCLUDE: site/.*
 
     - name: Publish documentation
       if: github.event_name == 'push'
