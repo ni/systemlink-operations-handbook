@@ -122,7 +122,7 @@ body, input {
 }
 
 pre, code, kbd {
-  font-family: SpaceMono, "Courier New", Courier, monospace"
+  font-family: SpaceMono, "Courier New", Courier, monospace;
 }
 
 /* Admonitions */
