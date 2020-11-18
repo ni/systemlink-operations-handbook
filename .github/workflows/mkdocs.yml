@@ -40,8 +40,8 @@ jobs:
     - name: Copy markdownlint configuration
       uses: canastro/copy-action@0.0.2
       with:
-        source: ${{ github.workspace }}/.markdownlint.yaml
-        target: ${{ github.workspace }}/.github/linters/.markdownlint.yml
+        source: .markdownlint.yaml
+        target: .github/linters/.markdownlint.yml
 
     - name: Run linter
       uses: github/super-linter@v3
