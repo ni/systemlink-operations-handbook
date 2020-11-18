@@ -272,6 +272,15 @@
 <a class="md-nav__link" href="#troubleshooting-failed-authentication">2.6 
     Troubleshooting Failed Authentication
   </a>
+<nav aria-label="Troubleshooting Failed Authentication" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#cache-entry-size">2.6.1 
+    Cache Entry Size
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -404,6 +413,15 @@
 <a class="md-nav__link" href="#troubleshooting-failed-authentication">2.6 
     Troubleshooting Failed Authentication
   </a>
+<nav aria-label="Troubleshooting Failed Authentication" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#cache-entry-size">2.6.1 
+    Cache Entry Size
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -714,11 +732,27 @@ Define AUTH_OIDC_ENABLE_CLAIM_INFO
 <p>SystemLink uses log rotation therefore the latest logs may be in one of the numbered <code>error.log</code> files.</p>
 </div>
 <p><strong>Returned Claims:</strong> See <a href="#viewing-claims-returned-by-a-provider">2.5.1 <strong>Viewing Claims Returned by a Provider</strong></a>.</p>
+<h3 id="cache-entry-size"><span class="enumerate-heading-plugin">2.6.1</span> Cache Entry Size<a class="headerlink" href="#cache-entry-size" title="Permanent link">¶</a></h3>
+<p>The OpenID Connect module stores information in a shared memory cache. If a cache entry is too large, users will see an "Internal Server Error" when attempting to log in. This typically occurs when you are returning a large number of claims or claims with large values.</p>
+<div class="admonition note">
+<p class="admonition-title">Example error logs</p>
+<p>When this happens, the NI Web Server error logs will contain entries like the following:</p>
+<div class="highlight"><pre><span></span><code>oidc_cache_shm_set: could not store value since value size is too large
+oidc_cache_set: could NOT store X bytes in shm cache backend for key Y
+</code></pre></div>
+</div>
+<p>To resolve this issue:</p>
+<ul>
+<li>Open the following file in a text editor run as Administrator <code>C:\Program Files\National Instruments\Shared\Web Server\conf\defines.d\50_mod_auth_openidc-defines.conf</code></li>
+<li>Find the line starting with <code>Define AUTH_OIDC_CACHE_ENTRY_SIZE</code></li>
+<li>Modify the number at the end to a number larger than X, where X is the required size of the cache entry specified in the error log</li>
+<li>Restart the NI Web Server from the <code>Control</code> tab of the NI Web Server Configuration application</li>
+</ul>
 <hr/>
 <div class="md-source-date">
 <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 11, 2020</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 18, 2020</span>
 </small>
 </div>
 </article>
