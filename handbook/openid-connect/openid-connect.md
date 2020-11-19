@@ -331,7 +331,10 @@ The OpenID Connect module stores information in a shared memory cache. If a cach
 
 To resolve this issue:
 
-- Open the following file in a text editor run as Administrator `C:\Program Files\National Instruments\Shared\Web Server\conf\defines.d\50_mod_auth_openidc-defines.conf`
-- Find the line starting with `Define AUTH_OIDC_CACHE_ENTRY_SIZE`
-- Modify the number at the end to a number larger than X, where X is the required size of the cache entry specified in the error log
-- Restart the NI Web Server from the `Control` tab of the NI Web Server Configuration application
+1. Open the following file in a text editor run as Administrator: `C:\Program Files\National Instruments\Shared\Web Server\conf\defines.d\50_mod_auth_openidc-defines.conf`
+
+2. Find the line starting with `Define AUTH_OIDC_CACHE_ENTRY_SIZE`
+
+3. Modify the number at the end to a number larger than X, where X is the required size of the cache entry specified in the error log
+
+4. Restart the NI Web Server from the `Control` tab of the NI Web Server Configuration application
