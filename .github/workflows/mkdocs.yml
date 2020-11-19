@@ -37,6 +37,27 @@ jobs:
     - name: Build documentation
       run: mkdocs build --clean
 
+    - name: Copy markdownlint configuration
+      uses: canastro/copy-action@0.0.2
+      with:
+        source: .markdownlint.yaml
+        target: .github/linters/.markdown-lint.yml
+
+    - name: Copy stylelint configuration
+      uses: canastro/copy-action@0.0.2
+      with:
+        source: .stylelintrc.json
+        target: .github/linters/.stylelintrc.json
+
+    - name: Run linter
+      if: github.event_name == 'pull_request'
+      uses: github/super-linter@v3
+      env:
+        VALIDATE_ALL_CODEBASE: false
+        DEFAULT_BRANCH: master
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        FILTER_REGEX_EXCLUDE: (.github/.*|site/.*|overrides/partials/.*)
+
     - name: Publish documentation
       if: github.event_name == 'push'
       run: |

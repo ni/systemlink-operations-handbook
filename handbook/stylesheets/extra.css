@@ -1,19 +1,19 @@
 [data-md-color-scheme="ni"] {
-  --md-primary-fg-color:               #044123;
-  --md-primary-fg-color--light:        #035332;
-  --md-primary-fg-color--dark:         #05381f;
-  --md-primary-bg-color:               #F1F1F2;
-  --md-primary-bg-color--light:        #FFFFFF;
+  --md-primary-fg-color:             #044123;
+  --md-primary-fg-color--light:      #035332;
+  --md-primary-fg-color--dark:       #05381f;
+  --md-primary-bg-color:             #f1f1f2;
+  --md-primary-bg-color--light:      #fff;
 
-  --md-accent-fg-color:                #03B585;
-  --md-accent-fg-color--transparent:   rgba(3,181,133, 0.1);
-  --md-accent-bg-color:                #F1F1F2;
-  --md-accent-bg-color--light:         #FFFFFF;
+  --md-accent-fg-color:              #03b585;
+  --md-accent-fg-color--transparent: rgba(3, 181, 133, 0.1);
+  --md-accent-bg-color:              #f1f1f2;
+  --md-accent-bg-color--light:       #fff;
 
-  --md-footer-bg-color:              #CDDCC8;
+  --md-footer-bg-color:              #cddcc8;
   --md-footer-bg-color--dark:        #034123;
   --md-footer-fg-color:              #034123;
-  --md-footer-fg-color--light:       #03B585;
+  --md-footer-fg-color--light:       #03b585;
   --md-footer-fg-color--lighter:     #03b5869f;
 }
 
@@ -35,7 +35,8 @@
   color: var(--md-typeset-a-color);
 }
 
-.md-nav a:hover, .md-nav a:focus {
+.md-nav a:hover,
+.md-nav a:focus {
   color: var(--md-typeset-a-color);
   text-decoration: underline;
 }
@@ -55,7 +56,10 @@
   text-rendering: optimizeLegibility;
 }
 
-.md-typeset h1, .md-typeset h2, .md-typeset h3, .md-typeset h4 {
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4 {
   color: #333;
   font-family: "Roboto Condensed", sans-serif;
   letter-spacing: 0;
@@ -104,25 +108,28 @@ a.headerlink {
 
 /* Footers */
 
-html .md-footer-meta.md-typeset a
-{
+html .md-footer-meta.md-typeset a {
   color: var(--md-footer-fg-color--lighter);
   text-decoration: none;
 }
 
-html .md-footer-meta.md-typeset a:focus, html .md-footer-meta.md-typeset a:hover {
+html .md-footer-meta.md-typeset a:focus,
+html .md-footer-meta.md-typeset a:hover {
   color: var(--md-footer-fg-color--lighter);
   text-decoration: underline;
 }
 
 /* Fonts */
 
-body, input {
+body,
+input {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-pre, code, kbd {
-  font-family: SpaceMono, "Courier New", Courier, monospace"
+pre,
+code,
+kbd {
+  font-family: SpaceMono, "Courier New", Courier, monospace;
 }
 
 /* Admonitions */
@@ -131,10 +138,10 @@ pre, code, kbd {
   border-color: var(--md-accent-fg-color);
 }
 
-.md-typeset .note>.admonition-title {
+.md-typeset .note > .admonition-title {
   background-color: var(--md-accent-fg-color--transparent);
-  }
+}
 
-.md-typeset .note>.admonition-title::before {
-    background-color: var(--md-primary-fg-color--light);
+.md-typeset .note > .admonition-title::before {
+  background-color: var(--md-primary-fg-color--light);
 }
