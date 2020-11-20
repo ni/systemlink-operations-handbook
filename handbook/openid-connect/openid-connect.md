@@ -209,7 +209,7 @@ Algorithms which do not require a private key:
 
 - AES-256 Key Wrap
 
-Algorithms which require a private key: 
+Algorithms which require a private key:
 
 - RSAES OAEP
 
