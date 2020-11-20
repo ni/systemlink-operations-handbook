@@ -742,17 +742,25 @@ oidc_cache_set: could NOT store X bytes in shm cache backend for key Y
 </code></pre></div>
 </div>
 <p>To resolve this issue:</p>
-<ul>
-<li>Open the following file in a text editor run as Administrator <code>C:\Program Files\National Instruments\Shared\Web Server\conf\defines.d\50_mod_auth_openidc-defines.conf</code></li>
-<li>Find the line starting with <code>Define AUTH_OIDC_CACHE_ENTRY_SIZE</code></li>
-<li>Modify the number at the end to a number larger than X, where X is the required size of the cache entry specified in the error log</li>
-<li>Restart the NI Web Server from the <code>Control</code> tab of the NI Web Server Configuration application</li>
-</ul>
+<ol>
+<li>
+<p>Open the following file in a text editor run as Administrator: <code>C:\Program Files\National Instruments\Shared\Web Server\conf\defines.d\50_mod_auth_openidc-defines.conf</code></p>
+</li>
+<li>
+<p>Find the line starting with <code>Define AUTH_OIDC_CACHE_ENTRY_SIZE</code>.</p>
+</li>
+<li>
+<p>Modify the number at the end to a number larger than X, where X is the required size of the cache entry specified in the error log.</p>
+</li>
+<li>
+<p>Restart the NI Web Server from the <code>Control</code> tab of the NI Web Server Configuration application.</p>
+</li>
+</ol>
 <hr/>
 <div class="md-source-date">
 <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 18, 2020</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 20, 2020</span>
 </small>
 </div>
 </article>
