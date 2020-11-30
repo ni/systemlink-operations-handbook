@@ -69,21 +69,21 @@ You can configure SystemLink to support multiple OpenID Connect providers simult
       "ni-attributes": {
         "displayName": "Log in with PingFederate",
         "iconUri": "/login/assets/pf.png"
-      }
+      },
       "keys": [
-          {
-              "p": "...",
-              "kty": "RSA",
-              "q": "...",
-              "d": "...",
-              "e": "AQAB",
-              "use": "enc",
-              "kid": "2020-11-20",
-              "qi": "...",
-              "dp": "...",
-              "dq": "...",
-              "n": "..."
-          }
+        {
+          "p": "...",
+          "kty": "RSA",
+          "q": "...",
+          "d": "...",
+          "e": "AQAB",
+          "use": "enc",
+          "kid": "2020-11-20",
+          "qi": "...",
+          "dp": "...",
+          "dq": "...",
+          "n": "..."
+        }
       ]
     }
     ```
