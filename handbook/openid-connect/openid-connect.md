@@ -370,7 +370,7 @@ To resolve this issue:
 
 ### ID Token Management Encryption
 
-The following situations can lead to an error and redirect the user back to the SystemLink login page after authenticating with the provider:
+The following situations can lead to an error and redirect the user back to the SystemLink login page after authenticating with the OpenID Connect provider:
 
  - The provider is using an asymmetric ID token management encryption algorithm and private keys are missing or incorrect
 
