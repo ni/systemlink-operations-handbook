@@ -99,9 +99,9 @@ The `ni-attributes` section determines the text and (optionally) an icon to be s
   <figcaption>SystemLink login windows with SSO login option. An icon has not been set in this example</figcaption>
 </figure>
 
- The `keys` section contains the private keys as a [JWK Set](https://tools.ietf.org/html/rfc7517#section-5) if the provider uses asymmetric encryption for ID token key management. The corresponding public keys must be registered with the provider. The `use` property must have a value of `enc` to indicate the key is used for encryption. The `kid` property of the private key must match the `kid` property of the corresponding public key on the identity provider.
+The `keys` section contains the private keys as a [JWK Set](https://tools.ietf.org/html/rfc7517#section-5) if the provider uses asymmetric encryption for ID token key management. The corresponding public keys must be registered with the provider. The `use` property must have a value of `enc` to indicate the key is used for encryption. The `kid` property of the private key must match the `kid` property of the corresponding public key on the identity provider.
 
- The `keys` section can be omitted if the provider uses symmetric encryption no encryption for ID token key management.
+The `keys` section can be omitted if the provider uses symmetric encryption or no encryption for ID token key management.
 
 ### ClientID and Secret
 
@@ -197,7 +197,7 @@ SystemLink supports the following algorithms for ID token signing, ID token key 
 
 ### ID Token Key Management Encryption Algorithm
 
-Algorithms which do not require a private key:
+Algorithms that do not require a private key:
 
 - No encryption
 
@@ -209,7 +209,7 @@ Algorithms which do not require a private key:
 
 - AES-256 Key Wrap
 
-Algorithms which require a private key:
+Algorithms that require a private key:
 
 - RSAES OAEP
 
@@ -231,7 +231,7 @@ Map OpenID claims to roles and workspaces so users can access systems and data m
 
 ### Viewing Claims Returned by a Provider
 
-The OpenID Connect provider determines which scopes and claims clients can access. To see available claims, use the `userinfo_endpoint` hosted by the provider. Use `https://[provider-dns]/.well-known/openid-configuration` to determine the URL of the `userinfo_endpoint`. You will need to obtain a valid bearer token to authenticate and access this endpoint.  
+The OpenID Connect provider determines which scopes and claims clients can access. To see available claims, use the `userinfo_endpoint` hosted by the provider. Use `https://[provider-dns]/.well-known/openid-configuration` to determine the URL of the `userinfo_endpoint`. You will need to obtain a valid bearer token to authenticate and access this endpoint.
 
 !!! note ""
     Example curl request to return user info. The bearer token has been truncated for readability.
