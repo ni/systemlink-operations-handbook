@@ -372,9 +372,9 @@ To resolve this issue:
 
 The following situations can lead to an error and redirect the user back to the SystemLink login page after authenticating with the OpenID Connect provider:
 
- - The provider is using an asymmetric ID token management encryption algorithm and private keys are missing or incorrect
+- The provider is using an asymmetric ID token management encryption algorithm and private keys are missing or incorrect
 
- - The provider is using an unsupported ID token management encryption algorithm
+- The provider is using an unsupported ID token management encryption algorithm
 
 !!! note "Example error logs"
     The error will be reported in the NI Web Server error logs:
