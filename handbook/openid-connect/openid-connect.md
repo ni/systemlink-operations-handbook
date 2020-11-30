@@ -370,10 +370,14 @@ To resolve this issue:
 
 ### ID Token Management Encryption
 
-If the provider is configured to use an asymmmetric ID token management encryption algorithm and private keys are missing or incorrect, or if the provider is configured to use an unsupported ID token management encryption algorithm, the user will be redirected back to the SystemLink login page after logging in to the provider.
+The following situations can lead to an error and redirect the user back to the SystemLink login page after authenticating with the provider:
+
+ - The provider is using an asymmetric ID token management encryption algorithm and private keys are missing or incorrect
+
+ - The provider is using an unsupported ID token management encryption algorithm
 
 !!! note "Example error logs"
-    When this happens, the NI Web Server error logs will contain entries containing the following:
+    The error will be reported in the NI Web Server error logs:
 
     ```text
     oidc_proto_parse_idtoken: oidc_jwt_parse failed
@@ -383,6 +387,6 @@ If the provider is configured to use an asymmmetric ID token management encrypti
 
 To resolve this issue:
 
-1. Confirm that the provider is configured to use supported encryption and signing algorithms. See [**Supported Signing and Encryption Algorithms**](#supported-signing-and-encryption-algorithms).
+1. Confirm that the provider is using supported encryption and signing algorithms. See [**Supported Signing and Encryption Algorithms**](#supported-signing-and-encryption-algorithms). Consult your provider's documentation for information on setting the encryption and signing algorithms.
 
-1. If the provider is configured to use asymmetric ID token management encryption, confirm that the private key is configured in `[provider-dns]`.conf and the corresponding public key is configured in the provider.  Refer to [**SystemLink Login Configuration**](#systemlink-login-configuration) for information on configuring the private key.
+1. If the provider is using asymmetric ID token management encryption, confirm that the private key is configured in `[provider-dns]`.conf and the corresponding public key is configured in the provider.  Refer to [**SystemLink Login Configuration**](#systemlink-login-configuration) for information on configuring the private key. Consult your provider's documentation for information on configuring the ID token management encryption algorithm and public key.
