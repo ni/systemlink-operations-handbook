@@ -26,7 +26,7 @@ for using [MkDocs](https://www.mkdocs.org):
    directory by running `python -m venv .venv`. Each time you open a new
    command window, activate the environment before running `mkdocs` commands:
     - Windows users: run `.venv\Scripts\activate`
-    - Linux or Mac users: run `source .venv/Scripts/activate`
+    - Linux or Mac users: run `source .venv/bin/activate`
 3. Upgrade pip by running `python -m pip install --upgrade pip`
 4. Install dependencies by running `pip install -r requirements.txt`
 
