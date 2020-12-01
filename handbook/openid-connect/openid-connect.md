@@ -21,7 +21,7 @@ You can configure SystemLink to use OpenID Connect to authorize users. This enab
 2. Add the configuration files to SystemLink to connect to your OpenID Connect provider.
 
     !!! note ""
-        For details, refer to [**OpenID Configuration Files in SystemLink Server**](#openid-configuration-files-in-systemlink-server).
+        For details, refer to [**OpenID Connect Configuration Files in SystemLink Server**](#openid-connect-configuration-files-in-systemlink-server).
 
 3. Open **NI Web Server Configuration**.
 
@@ -33,26 +33,26 @@ You can configure SystemLink to use OpenID Connect to authorize users. This enab
 
 7. Go to **Security** > **Roles** and click the gear icon in the top right.
 
-8. Add an OpenID Claim mapping for the **Server Administrator** role.
+8. Add an OpenID Connect Claim mapping for the **Server Administrator** role.
 
     !!! note ""
         For details, refer to [**Mapping OpenID Connect Claims to SystemLink Workspaces and Roles**](#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles).
 
-9. Log out and log in as an OpenID connect user with a mapping for the **Server Administrator** role and confirm they have the correct privileges.
+9. Log out and log in as an OpenID Connect user with a mapping for the **Server Administrator** role and confirm they have the correct privileges.
 
 <figure>
   <img src="../../img/oidc-webserver.png" width="500" />
   <figcaption>Enable OpenID Connect in NI Web Server</figcaption>
 </figure>
 
-## OpenID Configuration Files in SystemLink Server
+## OpenID Connect Configuration Files in SystemLink Server
 
 There are three files that you must create to connect your SystemLink server to an OpenID Connect provider: `[provider-dns].conf`, `[provider-dns].client`, and `[provider-dns].provider`. The `[provider-dns]` portion of each filename must be the URL-encoded fully qualified domain name.
 
 Refer to [openid-connect-config](https://github.com/ni/systemlink-operations-handbook/tree/master/examples/openid-connect-config) for examples of each of these files.
 
 !!! note "Example"
-    An OpenID provider with the DNS `example.com:9999` would yield files named `example.com%3a9999.conf` , `example.com%3a9999.client`, and `example.com%3a9999.provider`.
+    An OpenID Connect provider with the DNS `example.com:9999` would yield files named `example.com%3a9999.conf` , `example.com%3a9999.client`, and `example.com%3a9999.provider`.
 
 These files do not exist for new SystemLink installations. Add each file to `C:\Program Files\National Instruments\Shared\Web Server\conf\openidc`. Restart the NI Web Server to apply changes.
 
@@ -127,7 +127,7 @@ The `client_id` and `client_secret` can be obtained from the provider. Depending
 
 [ADFS - Build a server side application using OAuth confidential clients with AD FS 2016 or later](https://docs.microsoft.com/en-us/windows-server/identity/ad-fs/development/enabling-oauth-confidential-clients-with-ad-fs)
 
-### OpenID Configuration and Discovery
+### OpenID Connect Configuration and Discovery
 
 The `[provider-dns].provider` file includes the contents of the provider's OpenID Connect configuration. This file tells SystemLink which endpoints the provider exposes that are used during login.
 
@@ -227,7 +227,7 @@ Refer to [**SystemLink Login Configuration**](#systemlink-login-configuration) f
 
 ## Mapping OpenID Connect Claims to SystemLink Workspaces and Roles
 
-Map OpenID claims to roles and workspaces so users can access systems and data managed by SystemLink. This process is the same as the mapping workflow for LDAP and Active Directory attributes. Refer to [Assigning Users to Roles in a Workspace](https://www.ni.com/documentation/en/systemlink/latest/setup/mapping-roles/) in the SystemLink manual. You can also use claims to create a mapping for the **Server Administrator** role.
+Map OpenID Connect claims to roles and workspaces so users can access systems and data managed by SystemLink. This process is the same as the mapping workflow for LDAP and Active Directory attributes. Refer to [Assigning Users to Roles in a Workspace](https://www.ni.com/documentation/en/systemlink/latest/setup/mapping-roles/) in the SystemLink manual. You can also use claims to create a mapping for the **Server Administrator** role.
 
 ### Viewing Claims Returned by a Provider
 
