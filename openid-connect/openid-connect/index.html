@@ -169,10 +169,10 @@
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#openid-configuration-files-in-systemlink-server">2.3 
-    OpenID Configuration Files in SystemLink Server
+<a class="md-nav__link" href="#openid-connect-configuration-files-in-systemlink-server">2.3 
+    OpenID Connect Configuration Files in SystemLink Server
   </a>
-<nav aria-label="OpenID Configuration Files in SystemLink Server" class="md-nav">
+<nav aria-label="OpenID Connect Configuration Files in SystemLink Server" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#systemlink-login-window-configuration">2.3.1 
@@ -194,8 +194,8 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#openid-configuration-and-discovery">2.3.3 
-    OpenID Configuration and Discovery
+<a class="md-nav__link" href="#openid-connect-configuration-and-discovery">2.3.3 
+    OpenID Connect Configuration and Discovery
   </a>
 </li>
 <li class="md-nav__item">
@@ -310,10 +310,10 @@
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#openid-configuration-files-in-systemlink-server">2.3 
-    OpenID Configuration Files in SystemLink Server
+<a class="md-nav__link" href="#openid-connect-configuration-files-in-systemlink-server">2.3 
+    OpenID Connect Configuration Files in SystemLink Server
   </a>
-<nav aria-label="OpenID Configuration Files in SystemLink Server" class="md-nav">
+<nav aria-label="OpenID Connect Configuration Files in SystemLink Server" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#systemlink-login-window-configuration">2.3.1 
@@ -335,8 +335,8 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#openid-configuration-and-discovery">2.3.3 
-    OpenID Configuration and Discovery
+<a class="md-nav__link" href="#openid-connect-configuration-and-discovery">2.3.3 
+    OpenID Connect Configuration and Discovery
   </a>
 </li>
 <li class="md-nav__item">
@@ -461,7 +461,7 @@
 <li>
 <p>Add the configuration files to SystemLink to connect to your OpenID Connect provider.</p>
 <div class="admonition note">
-<p>For details, refer to <a href="#openid-configuration-files-in-systemlink-server">2.3 <strong>OpenID Configuration Files in SystemLink Server</strong></a>.</p>
+<p>For details, refer to <a href="#openid-connect-configuration-files-in-systemlink-server">2.3 <strong>OpenID Connect Configuration Files in SystemLink Server</strong></a>.</p>
 </div>
 </li>
 <li>
@@ -480,25 +480,25 @@
 <p>Go to <strong>Security</strong> &gt; <strong>Roles</strong> and click the gear icon in the top right.</p>
 </li>
 <li>
-<p>Add an OpenID Claim mapping for the <strong>Server Administrator</strong> role.</p>
+<p>Add an OpenID Connect Claim mapping for the <strong>Server Administrator</strong> role.</p>
 <div class="admonition note">
 <p>For details, refer to <a href="#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles">2.5 <strong>Mapping OpenID Connect Claims to SystemLink Workspaces and Roles</strong></a>.</p>
 </div>
 </li>
 <li>
-<p>Log out and log in as an OpenID connect user with a mapping for the <strong>Server Administrator</strong> role and confirm they have the correct privileges.</p>
+<p>Log out and log in as an OpenID Connect user with a mapping for the <strong>Server Administrator</strong> role and confirm they have the correct privileges.</p>
 </li>
 </ol>
 <figure>
 <img src="../../img/oidc-webserver.png" width="500"/>
 <figcaption>Enable OpenID Connect in NI Web Server</figcaption>
 </figure>
-<h2 id="openid-configuration-files-in-systemlink-server"><span class="enumerate-heading-plugin">2.3</span> OpenID Configuration Files in SystemLink Server<a class="headerlink" href="#openid-configuration-files-in-systemlink-server" title="Permanent link">¶</a></h2>
+<h2 id="openid-connect-configuration-files-in-systemlink-server"><span class="enumerate-heading-plugin">2.3</span> OpenID Connect Configuration Files in SystemLink Server<a class="headerlink" href="#openid-connect-configuration-files-in-systemlink-server" title="Permanent link">¶</a></h2>
 <p>There are three files that you must create to connect your SystemLink server to an OpenID Connect provider: <code>[provider-dns].conf</code>, <code>[provider-dns].client</code>, and <code>[provider-dns].provider</code>. The <code>[provider-dns]</code> portion of each filename must be the URL-encoded fully qualified domain name.</p>
 <p>Refer to <a href="https://github.com/ni/systemlink-operations-handbook/tree/master/examples/openid-connect-config">openid-connect-config</a> for examples of each of these files.</p>
 <div class="admonition note">
 <p class="admonition-title">Example</p>
-<p>An OpenID provider with the DNS <code>example.com:9999</code> would yield files named <code>example.com%3a9999.conf</code> , <code>example.com%3a9999.client</code>, and <code>example.com%3a9999.provider</code>.</p>
+<p>An OpenID Connect provider with the DNS <code>example.com:9999</code> would yield files named <code>example.com%3a9999.conf</code> , <code>example.com%3a9999.client</code>, and <code>example.com%3a9999.provider</code>.</p>
 </div>
 <p>These files do not exist for new SystemLink installations. Add each file to <code>C:\Program Files\National Instruments\Shared\Web Server\conf\openidc</code>. Restart the NI Web Server to apply changes.</p>
 <p>You can configure SystemLink to support multiple OpenID Connect providers simultaneously by creating a <code>[provider-dns].conf</code>, <code>[provider-dns].client</code>, and <code>[provider-dns].provider</code> file for each provider. The user ID in SystemLink must be unique across providers. This ID takes the form <code>[sub_claim]@issuer</code>. You can see the ID SystemLink associates with a user in the user details in SystemLink Security.</p>
@@ -536,7 +536,7 @@
 <p><a href="https://developers.google.com/identity/protocols/oauth2">Using OAuth 2.0 to Access Google APIs</a></p>
 <p><a href="https://developer.okta.com/docs/guides/find-your-app-credentials/findcreds/">Okta - Find your Application's credentials</a></p>
 <p><a href="https://docs.microsoft.com/en-us/windows-server/identity/ad-fs/development/enabling-oauth-confidential-clients-with-ad-fs">ADFS - Build a server side application using OAuth confidential clients with AD FS 2016 or later</a></p>
-<h3 id="openid-configuration-and-discovery"><span class="enumerate-heading-plugin">2.3.3</span> OpenID Configuration and Discovery<a class="headerlink" href="#openid-configuration-and-discovery" title="Permanent link">¶</a></h3>
+<h3 id="openid-connect-configuration-and-discovery"><span class="enumerate-heading-plugin">2.3.3</span> OpenID Connect Configuration and Discovery<a class="headerlink" href="#openid-connect-configuration-and-discovery" title="Permanent link">¶</a></h3>
 <p>The <code>[provider-dns].provider</code> file includes the contents of the provider's OpenID Connect configuration. This file tells SystemLink which endpoints the provider exposes that are used during login.</p>
 <div class="admonition note">
 <p>You may use curl to create this file. Replace <code>[provider-dns]</code> with the DNS of your OpenID Connect Provider.</p>
@@ -634,7 +634,7 @@
 </li>
 </ul>
 <h2 id="mapping-openid-connect-claims-to-systemlink-workspaces-and-roles"><span class="enumerate-heading-plugin">2.5</span> Mapping OpenID Connect Claims to SystemLink Workspaces and Roles<a class="headerlink" href="#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles" title="Permanent link">¶</a></h2>
-<p>Map OpenID claims to roles and workspaces so users can access systems and data managed by SystemLink. This process is the same as the mapping workflow for LDAP and Active Directory attributes. Refer to <a href="https://www.ni.com/documentation/en/systemlink/latest/setup/mapping-roles/">Assigning Users to Roles in a Workspace</a> in the SystemLink manual. You can also use claims to create a mapping for the <strong>Server Administrator</strong> role.</p>
+<p>Map OpenID Connect claims to roles and workspaces so users can access systems and data managed by SystemLink. This process is the same as the mapping workflow for LDAP and Active Directory attributes. Refer to <a href="https://www.ni.com/documentation/en/systemlink/latest/setup/mapping-roles/">Assigning Users to Roles in a Workspace</a> in the SystemLink manual. You can also use claims to create a mapping for the <strong>Server Administrator</strong> role.</p>
 <h3 id="viewing-claims-returned-by-a-provider"><span class="enumerate-heading-plugin">2.5.1</span> Viewing Claims Returned by a Provider<a class="headerlink" href="#viewing-claims-returned-by-a-provider" title="Permanent link">¶</a></h3>
 <p>The OpenID Connect provider determines which scopes and claims clients can access. To see available claims, use the <code>userinfo_endpoint</code> hosted by the provider. Use <code>https://[provider-dns]/.well-known/openid-configuration</code> to determine the URL of the <code>userinfo_endpoint</code>. You will need to obtain a valid bearer token to authenticate and access this endpoint.  </p>
 <div class="admonition note">
@@ -760,7 +760,7 @@ oidc_cache_set: could NOT store X bytes in shm cache backend for key Y
 <div class="md-source-date">
 <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 20, 2020</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 1, 2020</span>
 </small>
 </div>
 </article>
