@@ -58,10 +58,10 @@ These files do not exist for new SystemLink installations. Add each file to `C:\
 
 You can configure SystemLink to support multiple OpenID Connect providers simultaneously by creating a `[provider-dns].conf`, `[provider-dns].client`, and `[provider-dns].provider` file for each provider. The user ID in SystemLink must be unique across providers. This ID takes the form `[sub_claim]@issuer`. You can see the ID SystemLink associates with a user in the user details in SystemLink Security.
 
-### SystemLink Login Window Configuration
+### SystemLink Login Configuration
 
 !!! note ""
-    `[provider-dns].conf` describes the scopes SystemLink will request, and the text and icon for the provider login button.
+    `[provider-dns].conf` describes the scopes SystemLink will request, the text and icon for the provider login button, and private keys for ID token key management encryption.
 
     ```json
     {
@@ -69,7 +69,22 @@ You can configure SystemLink to support multiple OpenID Connect providers simult
       "ni-attributes": {
         "displayName": "Log in with PingFederate",
         "iconUri": "/login/assets/pf.png"
-      }
+      },
+      "keys": [
+        {
+          "p": "...",
+          "kty": "RSA",
+          "q": "...",
+          "d": "...",
+          "e": "AQAB",
+          "use": "enc",
+          "kid": "2020-11-20",
+          "qi": "...",
+          "dp": "...",
+          "dq": "...",
+          "n": "..."
+        }
+      ]
     }
     ```
 
@@ -83,6 +98,10 @@ The `ni-attributes` section determines the text and (optionally) an icon to be s
   <img src="../../img/login-window.png" width="500" />
   <figcaption>SystemLink login windows with SSO login option. An icon has not been set in this example</figcaption>
 </figure>
+
+The `keys` section contains the private keys as a [JWK Set](https://tools.ietf.org/html/rfc7517#section-5) if the provider uses asymmetric encryption for ID token key management. The corresponding public keys must be registered with the provider. The `use` property must have a value of `enc` to indicate the key is used for encryption. The `kid` property of the private key must match the `kid` property of the corresponding public key on the identity provider.
+
+The `keys` section can be omitted if the provider uses symmetric encryption or no encryption for ID token key management.
 
 ### ClientID and Secret
 
@@ -178,6 +197,8 @@ SystemLink supports the following algorithms for ID token signing, ID token key 
 
 ### ID Token Key Management Encryption Algorithm
 
+Algorithms that do not require a private key:
+
 - No encryption
 
 - Direct Encryption with symmetric key
@@ -187,6 +208,14 @@ SystemLink supports the following algorithms for ID token signing, ID token key 
 - AES-192 Key Wrap
 
 - AES-256 Key Wrap
+
+Algorithms that require a private key:
+
+- RSAES OAEP
+
+- ECDH-ES
+
+Refer to [**SystemLink Login Configuration**](#systemlink-login-configuration) for information on configuring the private key.
 
 ### ID Token Content Encryption Algorithm
 
@@ -202,7 +231,7 @@ Map OpenID Connect claims to roles and workspaces so users can access systems an
 
 ### Viewing Claims Returned by a Provider
 
-The OpenID Connect provider determines which scopes and claims clients can access. To see available claims, use the `userinfo_endpoint` hosted by the provider. Use `https://[provider-dns]/.well-known/openid-configuration` to determine the URL of the `userinfo_endpoint`. You will need to obtain a valid bearer token to authenticate and access this endpoint.  
+The OpenID Connect provider determines which scopes and claims clients can access. To see available claims, use the `userinfo_endpoint` hosted by the provider. Use `https://[provider-dns]/.well-known/openid-configuration` to determine the URL of the `userinfo_endpoint`. You will need to obtain a valid bearer token to authenticate and access this endpoint.
 
 !!! note ""
     Example curl request to return user info. The bearer token has been truncated for readability.
@@ -338,3 +367,26 @@ To resolve this issue:
 3. Modify the number at the end to a number larger than X, where X is the required size of the cache entry specified in the error log.
 
 4. Restart the NI Web Server from the `Control` tab of the NI Web Server Configuration application.
+
+### ID Token Management Encryption
+
+The following situations can lead to an error and redirect the user back to the SystemLink login page after authenticating with the OpenID Connect provider:
+
+- The provider is using an asymmetric ID token management encryption algorithm and private keys are missing or incorrect
+
+- The provider is using an unsupported ID token management encryption algorithm
+
+!!! note "Example error logs"
+    The error will be reported in the NI Web Server error logs:
+
+    ```text
+    oidc_proto_parse_idtoken: oidc_jwt_parse failed
+    ```
+
+    The log entry will also contain more information about the problem.
+
+To resolve this issue:
+
+1. Confirm that the provider is using supported encryption and signing algorithms. See [**Supported Signing and Encryption Algorithms**](#supported-signing-and-encryption-algorithms). Consult your provider's documentation for information on setting the encryption and signing algorithms.
+
+1. If the provider is using asymmetric ID token management encryption, confirm that the private key is configured in `[provider-dns]`.conf and the corresponding public key is configured in the provider.  Refer to [**SystemLink Login Configuration**](#systemlink-login-configuration) for information on configuring the private key. Consult your provider's documentation for information on configuring the ID token management encryption algorithm and public key.
