@@ -1,6 +1,6 @@
 # Sign on with LDAP
 
-You can configure SystemLink to use the Lightweight Directory Access Protocol (LDAP) for user authentication. LDAP attributes and groups can be used to map users to roles and workspaces in SystemLink's role based access control system.
+You can configure SystemLink to use the Lightweight Directory Access Protocol (LDAP) for user authentication. USe LDAP attributes and groups to map users to roles and workspaces in SystemLink's role based access control system.
 
 ## Assumptions and Prerequisites
 
@@ -12,7 +12,8 @@ You can configure SystemLink to use the Lightweight Directory Access Protocol (L
 
 - A bind user and bind password for the LDAP server.
 
-- Familiarity with the LDAP attributes available to your organization. If you do not know what LDAP attributes and groups are available to you please contact the system administrator for your LDAP server.
+- Familiarity with the LDAP attributes available to your organization. If you do not know what LDAP attributes and groups are available to you, talk with your LDAP system administrator.
+    - Tools such [ADExplorer](https://docs.microsoft.com/en-us/sysinternals/downloads/adexplorer) can be helpful to explore the attributes assigned to your users.
 
 ## Enabling LDAP in SystemLink
 
@@ -22,7 +23,7 @@ You can configure SystemLink to use the Lightweight Directory Access Protocol (L
 
 2. Go to the **Authentication** tab and enable **Connect to an LDAP server**.
 
-3. Enter the LDAP url for your sever. Refer to [**LDAP URLs**](#ldap-urls) for details on how to structure this URL.
+3. Enter the LDAP URL for your sever. Refer to [**LDAP URLs**](#ldap-urls) for details on how to structure this URL.
 
 4. Enter the bind user. Refer to [**Bind User**](#bind-user) for details on usernames that can be used here.
 
@@ -44,7 +45,7 @@ You may now login to the SystemLink server using your LDAP credentials. Please n
 
 ## LDAP URLs
 
-LDAP URLs follow a standard scheme. The URL determines the server to connect to, the server's port, a base search DN, and an attribute that determines what users will provide as a username when logging into SystemLink.
+LDAP URLs follow a standard scheme. The URL determines the server to connect to, the server's port, a base search distinguished name (DN), and an attribute that determines what users will provide as a username when logging into SystemLink.
 
 !!! note "Example LDAP URL and login window"
 
@@ -67,8 +68,7 @@ If a username attribute is not specified **NI Web Server Configuration** will au
     - `sAMAccountName`
 
 ## Bind User
-
-The bind user can be specified by providing either a `distinguishedName` or a `userPrincipalName`.
+The bind user and bind password are used to authenticate with the LDAP server. The bind user can be specified by providing either a `distinguishedName` or a `userPrincipalName`.
 
 !!! note "Bind user formats for the user Jane Doe"
     **distinguishedName:** cn=jdoe,dc=example,dc=com
@@ -79,17 +79,17 @@ The bind user can be specified by providing either a `distinguishedName` or a `u
 
 To add a user or collection of users to a workspace and assign a role you must complete the role mapping workflow.
 
-1. Login into the SystemLink web application with a user mapped to the [**Server Administrator**](https://www.ni.com/documentation/en/systemlink/latest/setup/predefined-roles/) role.
+1. Log in to the SystemLink web application with a user mapped to the [**Server Administrator**](https://www.ni.com/documentation/en/systemlink/latest/setup/predefined-roles/) role.
 
 2. Go to **Security** > **Workspaces** and click the gear icon in the top right.
 
 3. Create a new workspace or edit an existing workspace.
 
-4. Go to the **Role Mappings** tab
+4. Go to the **Role Mappings** tab.
 
 5. Click **+MAPPING** and select one of the available LDAP mapping types: *LDAP Group*, *LDAP User*, or *LDAP Attribute*.
 
-6. If you have have selected *LDAP Attribute* enter a valid key/value. For *LDAP User* or *LDAP Group* enter a valid value.
+6. If you have have selected *LDAP Attribute* enter a valid key-value. For *LDAP User* or *LDAP Group* enter a valid value.
 
 ### LDAP Group Mapping
 
@@ -104,12 +104,12 @@ Similar to the LDAP attribute that determines what users use for their username 
     **URL:** `ldap://example.com/dc=example,dc=com?sAMAccountName`
     **LDAP User:** jdoe
 
-     **URL:** `ldap://example.com/dc=example,dc=com?userPrincipalName`
+    **URL:** `ldap://example.com/dc=example,dc=com?userPrincipalName`
     **LDAP User:** jane.doe@example.com
 
 ### LDAP Attribute Mapping
 
-Any available LDAP attribute may be used to create a workspace and role mapping. In this case both the name and value of the attribute must match exactly for the mapping to be successful.
+You can use any available LDAP attribute to create a workspace and role mapping. In this case both the name and value of the attribute must match exactly for the mapping to be successful.
 
 !!! note "example LDAP attribute mapping"
     <figure>
