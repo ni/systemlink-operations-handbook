@@ -24,11 +24,11 @@ User's are backed by an identity provider (LDAP, Active Directory, OpenID Connec
 
 If a user is  a member of multiple workspaces, the resources in those workspaces will be shown simultaneously with the grids or other views within SystemLink. This is useful when users need to view a rollup of resources across multiple workspaces. All grids within SystemLink feature a workspace column and filters that can be used to limit the resources shown in a grid to a particular set of workspaces. While resources in multiple workspaces may be viewed in a single grid the actions a user can take against those resources may be different depending on their role in each workspace.
 
-When a JupterNotebook is run either through the *Reports* feature of by a dashboard
+When a JupterNotebook is run either through the *Reports* feature of by a dashboard run with the same level of privileges as the user initiating the Notebook run. This is useful as it allows the creation of Notebooks that access data generally and do not need to have additional workspace logic. For example the built-in dashboard for Systems Management includes a tile that show the number of alarms for various systems. 
 
 ### Automated Agents
 
-Automated Agents is a catch all term that applies to systems managed by SystemLink and analysis scripts executing by **Analysis Server**. 
+Automated Agents is a catch all term that applies to systems managed by SystemLink and analysis scripts executed by **Analysis Server**. 
 
 ### Automatic Data Encapsulation
 
