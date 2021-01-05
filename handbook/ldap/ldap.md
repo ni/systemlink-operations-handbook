@@ -88,7 +88,7 @@ To add a user or collection of users to a workspace and assign a role you must c
 
 ### LDAP Group Mapping
 
-The LDAP Group mapping looks for the values in the LDAP `memberOf` attribute. This attribute's value is an array of group DNs. The value provided to SystemLink must exactly match the value specified in the role mappings.
+The LDAP Group mapping looks for the values in the LDAP `memberOf` attribute. This attribute's value is an array of group DNs. The value provided to SystemLink must exactly match one value available in the `memberOf` attribute array.
 
 ### LDAP User Mapping
 
