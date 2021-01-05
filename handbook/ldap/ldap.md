@@ -30,11 +30,16 @@ You can configure SystemLink to use the Lightweight Directory Access Protocol (L
 
 6. Click **Apply and Restart**.
 
-You may now login to the SystemLink server using your LDAP credentials. Please note that you will not be able to access systems and data in SystemLink unless you have configured workspace and role mappings. Refer to [**Mapping LDAP Attributes and Groups to SystemLink Workspaces and Roles**](#mapping-ldap-attributes-and-groups-to-systemlink-workspaces-and-roles) for details.
-
 <figure>
   <img src="../../img/ldap-setup.png" width="500" />
   <figcaption>Configuration needed to enable logging into a SystemLink server using LDAP credentials.</figcaption>
+</figure>
+
+You may now login to the SystemLink server using your LDAP credentials. Please note that you will not be able to access systems and data in SystemLink unless you have configured workspace and role mappings. Refer to [**Mapping LDAP Attributes and Groups to SystemLink Workspaces and Roles**](#mapping-ldap-attributes-and-groups-to-systemlink-workspaces-and-roles) for details.
+
+<figure>
+  <img src="../../img/no-mapping.png" width="500" />
+  <figcaption>View from a user who can login but does not have any workspace and role mappings.</figcaption>
 </figure>
 
 ## LDAP URLs
