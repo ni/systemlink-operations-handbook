@@ -4,7 +4,7 @@ You can configure SystemLink to use the Lightweight Directory Access Protocol (L
 
 ## Assumptions and Prerequisites
 
-- A server running SystemLink. 
+- A server running SystemLink.
     - Refer to [Installing and Configuring SystemLink Server and Clients](https://www.ni.com/documentation/en/systemlink/latest/setup/configuring-systemlink-server-clients/) for the basics of setting up a SystemLink server.
 
 - Administrator desktop access to the SystemLink server.
@@ -13,7 +13,7 @@ You can configure SystemLink to use the Lightweight Directory Access Protocol (L
 
 - A bind user and bind password for the LDAP server.
 
-- Familiarity with the LDAP attributes available to your organization. 
+- Familiarity with the LDAP attributes available to your organization.
     - If you do not know what LDAP attributes and groups are available to you, talk with your LDAP system administrator.
     - Tools such [ADExplorer](https://docs.microsoft.com/en-us/sysinternals/downloads/adexplorer) can be helpful to explore the attributes assigned to your users.
 
