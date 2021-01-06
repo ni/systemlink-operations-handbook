@@ -12,6 +12,7 @@ You can configure SystemLink to use the Lightweight Directory Access Protocol (L
 - An LDAP server accessible to the SystemLink server.
 
 - A bind user and bind password for the LDAP server.
+    - SystemLink supports anonymous connections. In this case the bind user and bind password are not needed.
 
 - Familiarity with the LDAP attributes available to your organization.
     - If you do not know what LDAP attributes and groups are available to you, talk with your LDAP system administrator.
@@ -51,15 +52,30 @@ You must provide a URL and bind user and bind password to establish an authentic
 
 ### LDAP URL
 
-The LDAP URL follows a standard scheme. The URL determines the server to connect to, the server's port, a base search distinguished name (DN), and the attribute that determines the SystemLink username for login.
+The LDAP URL follows a standard scheme.
 
-!!! note "Basic LDAP URL Scheme"
+!!! note "URL Scheme"
+    `<ldap>://<server-dns>:<port>/<target-entry-dn>?<username-attribute>?<scope>?<filter>`
 
-    **Structure:** `ldap://<server-dns>:<port>/<target-entry-dn>?<username-attribute>`
+**protocol:** `ldap` or `ldaps` for secure connections. SystemLink does not support STARTTL, which allows connections over non-TLS and then initiate a TLS handshake.
+
+**server-dns:** The LDAP server SystemLink is connecting to.
+
+**port:** The port of the LDAP server. If your LDAP server is backed by Windows Active Directory, you may point to the global catalog on port 3268 to log in cross-domain (forest).
+
+**target-entry-dn:** The base search distinguished name (DN) for the LDAP directory
+
+**user-name-attribute:** The attribute that determines the SystemLink username for login.
+
+**scope:** The **scope** of the directory search. Scope defaults to `sub` but can be set to `one` to restrict to users within the base DN.
+
+**filter:** The LDAP search filter. This defaults to `objectClass=*` to find find all objects in the directory. This allows you to restrict login to users who have a specific attribute.
+
+!!! note "Basic LDAP URL Example"
 
     **Example:** `ldap://example.com:389/dc=example,dc=com?sAMAccountName`
 
-    In this example the server is `example.com`, the port is 389, the base search DN is `dc=example,dc=com` and the LDAP attribute used for user login is `sAMAccountName`. 
+    In this example the server is `example.com`, the port is 389, the base search DN is `dc=example,dc=com` and the LDAP attribute used for user login is `sAMAccountName`.
 
 !!! note "Example LDAP URLs specifying different usernames for the user Jane Doe"
 
@@ -78,7 +94,7 @@ If a username attribute is not specified **NI Web Server Configuration** will au
 
 ### Bind User
 
-The bind user and bind password are used to authenticate with the LDAP server. Provide a `distinguishedName` or a `userPrincipalName` to specify the bind user.
+The bind user and bind password are used to authenticate with the LDAP server. Provide a `distinguishedName` or a `userPrincipalName` to specify the bind user. If the password for this user changes, **NI Web Server Configuration** must be updated for users to continue to log into SystemLink.
 
 !!! note "Bind user formats for the user Jane Doe"
     **distinguishedName:** cn=jdoe,dc=example,dc=com
@@ -103,11 +119,11 @@ To add a user or collection of users to a workspace and assign a role you must c
 
 ### LDAP Group Mapping
 
-The LDAP Group mapping looks for the values in the LDAP `memberOf` attribute. This attribute's value is an array of group DNs. The value provided to SystemLink must exactly match one value available in the `memberOf` attribute array.
+LDAP Group mapping queries the `objectClass` of `group` (Active Directory specific), `groupOfName`, and `groupOfUniqueNames` to matches either `member` or `uniqueMember` attributes of the group.
 
 ### LDAP User Mapping
 
-You may specify a specific LDAP username when creating workspace and role mappings. The username you specify is the same as the usernames for logging into SystemLink.
+You may specify a LDAP username when creating workspace and role mappings. The username you specify is the same as the usernames for logging into SystemLink.
 
 ### LDAP Attribute Mapping
 
