@@ -61,13 +61,13 @@ The LDAP URL follows a standard scheme.
 
 **server-dns:** The LDAP server SystemLink is connecting to.
 
-**port:** The port of the LDAP server. If your LDAP server is backed by Windows Active Directory, you may point to the global catalog on port 3268 to log in cross-domain (forest).
+**port:** The port of the LDAP server. If your LDAP server is backed by Windows Active Directory, you may point to the global catalog on port 3268 to enable login from multiple domains (forest).
 
 **target-entry-dn:** The base search distinguished name (DN) for the LDAP directory
 
 **user-name-attribute:** The attribute that determines the SystemLink username for login.
 
-**scope:** The **scope** of the directory search. Scope defaults to `sub` but can be set to `one` to restrict to users within the base DN.
+**scope:** The **scope** of the directory search. Scope defaults to `sub` but can be set to `one` to restrict users to the base DN.
 
 **filter:** The LDAP search filter. This defaults to `objectClass=*` to find find all objects in the directory. This allows you to restrict login to users who have a specific attribute.
 
@@ -90,7 +90,7 @@ The LDAP URL follows a standard scheme.
       <figcaption>Username `jdoe` is used because the `sAMAccountName` attribute is specified in the LDAP URL.</figcaption>
     </figure>
 
-If a username attribute is not specified **NI Web Server Configuration** will automatically add `uid` as the attribute. Depending on how your LDAP directory is setup this attribute may or may not be available.
+If a username attribute is not specified **NI Web Server Configuration** will automatically add `uid` as the attribute. Depending on your LDAP directory setup this attribute may not be available.
 
 ### Bind User
 
