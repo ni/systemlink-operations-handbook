@@ -57,7 +57,7 @@ The LDAP URL follows a standard scheme.
 !!! note "URL Scheme"
     `<ldap>://<server-dns>:<port>/<target-entry-dn>?<username-attribute>?<scope>?<filter>`
 
-**protocol:** `ldap` or `ldaps` for secure connections. SystemLink does not support STARTTL, which allows connections over non-TLS and then initiate a TLS handshake.
+**protocol:** `ldap` or `ldaps` for secure connections. SystemLink does not support STARTTLS, which allows connections over non-TLS and then initiate a TLS handshake.
 
 **server-dns:** The LDAP server SystemLink is connecting to.
 
