@@ -168,7 +168,7 @@ Schema({
 <p>All further extra keys will show up as custom properties in DIAdem, Labview or SystemLink DataFinder.</p>
 </details>
 
-See full example: [csv-read-with-direct-loading](../../examples/python-dataplugin-examples/csv-read-with-direct-loading/Readme.md)
+See full example: [csv-read-with-direct-loading](../../examples/python-dataplugin-examples/csv-read-with-direct-loading/Readme)
 
 ## Callback Loading
 When handling big data sets, it can make sense to not load all data at once. Instead, the DataPlugin should return only the values that are requested by the applications. We skip the costs that are needed to fill the value-arrays inside the `read_store` function - and just leave the array empty:
@@ -222,7 +222,7 @@ def read_channel_length(self, grp_index, chn_index):
    return 10
 ```
 
-See full example: [csv-read-with-callback-loading](../../examples/python-dataplugin-examples/csv-read-with-callback-loading/Readme.md)
+See full example: [csv-read-with-callback-loading](../../examples/python-dataplugin-examples/csv-read-with-callback-loading/Readme)
 
 ## Error Handling
 Python DataPlugins can raise errors in all callback functions. The raised error will be transported to DIAdem, LabVIEW or SystemLink DataFinder.
