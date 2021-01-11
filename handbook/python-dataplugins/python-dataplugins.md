@@ -2,11 +2,11 @@
 
 Create a DataPlugin to load, to register, or to search your own file formats in LabVIEW or DIAdem, or to index and to browse your own file formats with SystemLink DataFinder.
 
-DataPlugins can be created by using C++, VBS, LabVIEW or Python.
+You can create DataPlugins using C++, VBS, LabVIEW or Python.
 
 ## Get Started
 
-Python DataPlugins consist of only one python file that contains all the logic. Almost all language features of the official Python 3.5.9 and its base libraries can be used.
+Python DataPlugins consist of only one Python file that contains all the logic. Almost all language features of the official Python 3.5.9 and its base libraries can be used.
 
 ### Plugin class
 
@@ -31,7 +31,7 @@ import os
 from pathlib import Path
 def read_store(self, parameter):
    """
-      Read data file and return a python dictionary
+      Read data file and return a Python dictionary
       that contains groups and channels in a TDM-like structure.
    """
 
@@ -42,7 +42,7 @@ def read_store(self, parameter):
 
    tdm_tree = {
       "author": "HelloWorkd test",
-      "description": "File containing a json dict read by python plugin",
+      "description": "File containing a json dict read by Python plugin",
       "groups": [{
             "name": "Group_1",
             "description": "The first group",
@@ -93,7 +93,7 @@ def read_store(self, parameter):
 </p>
 </details>
 
-Use the file parameter to access your file using text, csv or binary readers. The data has to be filled into a python dictionary. It represents the [structure of tdm/tdms files](https://www.ni.com/en-us/support/documentation/supplemental/06/the-ni-tdms-file-format.html) that consist of one root, 0...m groups and 0...n channels:
+Use the file parameter to access your file using text, CSV, or binary readers. The data has to be filled into a Python dictionary. It represents the [structure of tdm/tdms files](https://www.ni.com/en-us/support/documentation/supplemental/06/the-ni-tdms-file-format.html) that consist of one root, 0...m groups and 0...n channels:
 
 <img alt="TDM structure with file, groups and channels" src="../img/pydp-tdm_structure.png?raw=true" width="500"><br>
 
@@ -171,7 +171,9 @@ Schema({
 See full example: [csv-read-with-direct-loading](../../examples/python-dataplugin-examples/csv-read-with-direct-loading/Readme)
 
 ## Callback Loading
-When handling big data sets, it can make sense to not load all data at once. Instead, the DataPlugin should return only the values that are requested by the applications. We skip the costs that are needed to fill the value-arrays inside the `read_store` function - and just leave the array empty:
+When handling a big data set, you might not want to load all data at the same time. To ensure the DataPlugin only returns values that applications request, do ...
+
+1. assign an empty array to the channel values property:
 
 ```python
 ...
@@ -184,7 +186,7 @@ When handling big data sets, it can make sense to not load all data at once. Ins
 }]
 ```
 
-We outsource the functionality to load the bulk data values in a different function within the `Plugin` class. The function has the following definition:
+2. outsource the functionality to load the bulk data values in a separate function. The function has the following definition:
 
 ```python 
 def read_channel_values(self, grp_index, chn_index, numberToSkip, numberToTake):
@@ -253,10 +255,10 @@ Export Python DataPlugins to make them available on other systems. Use DIAdem to
 Unfortunately, Numpy and Pandas are not well supported to run in embedded Python environments and, therefore, cannot be used in DataPlugins.
 
 ### Single file DataPlugins
-Python DataPlugins can only be written in a single python file. Importing sidecar files is not supported. It will fail when exporting the DataPlugin as a URI.
+Python DataPlugins can only be written in a single Python file. Importing sidecar files is not supported. It will fail when exporting the DataPlugin as a URI.
 
 ### datetime.strptime
-There is an <a href="https://bugs.python.org/issue27400">open issue</a> in Python for `datetime.strptime` that prevents the function to work properly in embedded Python environments. Therefore, this function should be avoided in DataPlugin source code. Instead, the following function can be added to the code and work around the issue:
+There is an <a href="https://bugs.python.org/issue27400">open issue</a> in Python for `datetime.strptime` that prevents the function to work properly in embedded Python environments. Avoid using this function in DataPlugin source code. Instead, add the following function to your code:
 
 ```python 
 def strptime(self, value, format):
