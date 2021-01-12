@@ -4,28 +4,35 @@ Create a DataPlugin to load, to register, or to search your own file formats in 
 
 You can create DataPlugins using C++, VBS, LabVIEW or Python.
 
-## Get Started
+## Getting Started
 
 Python DataPlugins consist of only one Python file that contains all the logic. Almost all language features of the official Python 3.5.9 and its base libraries can be used.
 
+You can create Python DataPlugins in your favorite editor. Recommended:
+
+- [DIAdem](https://www.ni.com/en-us/shop/data-acquisition-and-control/application-software-for-data-acquisition-and-control-category/what-is-diadem.html) >= 2020
+- VSCode with the [NI Python DataPlugin Extension](https://github.com/ni/vscode-ni-python-dataplugins)
+
 ### Plugin class
 
-Start writing your DataPlugin by implementing the
-```python 
+Start writing your DataPlugin by implementing
+
+```python
 class Plugin:
 ```
+
 The class name cannot be changed.
 
 ### Store read
 
-Every Python DataPlugins needs to implement a read_store method. This method is called by DIAdem, LabVIEW or SystemLink DataFinder when it attempts to open your data file. The applications pass a set of useful parameters that can be accessed by the parameter array.
+Every Python DataPlugin needs to implement a `read_store` method. This method is called by DIAdem, LabVIEW or SystemLink DataFinder when it attempts to open your data file. The applications pass a set of useful parameters that can be accessed by the parameter array.
 
+<!-- markdownlint-disable -->
 <details>
 <summary>Example Code</summary>
-<p>
+<!-- markdownlint-enable -->
 
-
-```python 
+```python
 import datetime
 import os
 from pathlib import Path
@@ -37,7 +44,8 @@ def read_store(self, parameter):
 
    # String: Contains the absolute path to the data file
    file_path = os.path.realpath(parameter["file"])
-   # Boolean: Denotes if data file was accessed by SystemLink DataFinder and the bulk data was not touched. 
+   # Boolean: Denotes if data file was accessed by SystemLink DataFinder
+   # => the bulk data was not touched. 
    is_datafinder_indexer = parameter["datafinder"]
 
    tdm_tree = {
@@ -89,19 +97,24 @@ def read_store(self, parameter):
    return {Path(file_path).stem: tdm_tree}
 ```
 
-
-</p>
 </details>
 
-Use the file parameter to access your file using text, CSV, or binary readers. The data has to be filled into a Python dictionary. It represents the [structure of tdm/tdms files](https://www.ni.com/en-us/support/documentation/supplemental/06/the-ni-tdms-file-format.html) that consist of one root, 0...m groups and 0...n channels:
+Use the file parameter to access your file using text, CSV, or binary readers.
+The data must be added to a Python dictionary. It represents the
+[structure of tdm/tdms files](https://www.ni.com/en-us/support/documentation/supplemental/06/the-ni-tdms-file-format.html)
+that consist of one root, 0...m groups and 0...n channels:
 
-<img alt="TDM structure with file, groups and channels" src="../img/pydp-tdm_structure.png?raw=true" width="500"><br>
+<figure>
+   <img src="../../img/pydp-tdm_structure.png" width="500" />
+   <figcaption>TDM structure with file, groups and channels</figcaption>
+</figure>
 
+<!-- markdownlint-disable -->
 <details>
 <summary>Example dictionary</summary>
-<p>
+<!-- markdownlint-enable -->
 
-```python 
+```python
 self.tdm_tree = {
    "author": "National Instruments",
    "description": "Example file",
@@ -128,12 +141,13 @@ self.tdm_tree = {
 file_path = os.path.realpath(parameter["file"])
 return {Path(file_path).stem: self.tdm_tree}
 ```
-</p>
+
 </details>
 
+<!-- markdownlint-disable -->
 <details>
 <summary>Dictionary Schema</summary>
-<p>
+<!-- markdownlint-enable -->
 
 ```python
 import datetime
@@ -164,40 +178,45 @@ Schema({
       }]}, ignore_extra_keys=True)
 ```
 
-</p>
-<p>All further extra keys will show up as custom properties in DIAdem, Labview or SystemLink DataFinder.</p>
+All further extra keys will show up as custom properties in DIAdem, Labview or
+ SystemLink DataFinder.
+
 </details>
 
-See full example: [csv-read-with-direct-loading](../../examples/python-dataplugin-examples/csv-read-with-direct-loading/Readme)
+See full example: [csv-read-with-direct-loading](https://github.com/ni/systemlink-operations-handbook/tree/master/examples/python-dataplugin-examples/csv-read-with-direct-loading)
 
 ## Callback Loading
-When handling a big data set, you might not want to load all data at the same time. To ensure the DataPlugin only returns values that applications request, do ...
 
-1. assign an empty array to the channel values property:
+When handling a big data set, you might not want to load all data at the same time.
+To ensure the DataPlugin only returns values that applications request, do ...
 
-```python
-...
-'groups': [{
-   ...
-   'channels': [{
+   1. assign an empty array to the channel values property:
+
+      ```python
       ...
-      'values': [],
-   }]
-}]
-```
+      'groups': [{
+         ...
+         'channels': [{
+            ...
+            'values': [],
+         }]
+      }]
+      ```
 
-2. outsource the functionality to load the bulk data values in a separate function. The function has the following definition:
+   1. outsource the functionality to load the bulk data values in a separate function.
+   The function has the following definition:
 
-```python 
-def read_channel_values(self, grp_index, chn_index, numberToSkip, numberToTake):
-   """
-      Returns a value array of the correct data type specified in the tdm dictionary
-   """
-```
+      ```python
+      def read_channel_values(self, grp_index, chn_index, numberToSkip, numberToTake):
+         """
+            Returns a value array of the correct data type specified in the tdm dictionary
+         """
+      ```
 
+<!-- markdownlint-disable -->
 <details>
 <summary>Example Code</summary>
-<p>
+<!-- markdownlint-enable -->
 
 ```python
 def read_channel_values(self, grp_index, chn_index, numberToSkip, numberToTake):
@@ -209,14 +228,18 @@ def read_channel_values(self, grp_index, chn_index, numberToSkip, numberToTake):
    return values[numberToSkip:numberToTake+numberToSkip]
 ```
 
-</p>
 </details>
 
-The client applications are calling that function to retrieve channel values (or a subset of values). The DataPlugin needs to implement the function to return the values for a given group and channel index. It also needs to ensure only the correct subset of values is returned for a given `numberToSkip` and `numberToTake`.
+The client applications are calling that function to retrieve channel values (or
+a subset of values). The DataPlugin needs to implement the function to return the
+values for a given group and channel index. It also needs to ensure only the
+correct subset of values is returned for a given `numberToSkip` and `numberToTake`.
 
-Additionally, a callback function to retrieve the channel length must be implemented. In the simple case where all channels have the same length, it can simply return a constant.
+Additionally, a callback function to retrieve the channel length must be
+implemented. In the simple case where all channels have the same length, it can
+simply return a constant.
 
-```python 
+```python
 def read_channel_length(self, grp_index, chn_index):
    """
       Returns the channel length as an Integer for a given group and channel index
@@ -224,10 +247,12 @@ def read_channel_length(self, grp_index, chn_index):
    return 10
 ```
 
-See full example: [csv-read-with-callback-loading](../../examples/python-dataplugin-examples/csv-read-with-callback-loading/Readme)
+See full example: [csv-read-with-callback-loading](https://github.com/ni/systemlink-operations-handbook/tree/master/examples/python-dataplugin-examples/csv-read-with-callback-loading)
 
 ## Error Handling
-Python DataPlugins can raise errors in all callback functions. The raised error will be transported to DIAdem, LabVIEW or SystemLink DataFinder.
+
+Python DataPlugins can raise errors in all callback functions. The raised error
+will be transported to DIAdem, LabVIEW or SystemLink DataFinder.
 
 ```python
 def read_store(self, parameter):
@@ -236,7 +261,10 @@ def read_store(self, parameter):
 ```
 
 ### Not My File
-A special case is "Not My File". This error should be raised when the DataPlugin detects that the file to be opened, is not suited for this DataPlugin. This special error can be raised only in the `read_store` function by returning `None`:
+
+A special case is "Not My File". This error should be raised when the DataPlugin
+detects that the file to be opened, is not suited for this DataPlugin. This
+special error can be raised only in the `read_store` function by returning `None`:
 
 ```python
 def read_store(self, parameter):
@@ -246,21 +274,35 @@ def read_store(self, parameter):
 ```
 
 ## Export DataPlugin
-Export Python DataPlugins to make them available on other systems. Use DIAdem to export a DataPlugin as a URI file.
 
-<img alt="Exporting DataPlugins in DIAdem" src="../img/pydp-diadem_export.png?raw=true" width="600"><br>
+Export Python DataPlugins to make them available on other systems. Use DIAdem to
+export a DataPlugin as a URI file.
+
+<figure>
+   <img src="../../img/pydp-diadem_export.png" width="600" />
+   <figcaption>Exporting DataPlugins in DIAdem</figcaption>
+</figure>
 
 ## Known Limitations
+
 ### Numpy and Pandas
-Unfortunately, Numpy and Pandas are not well supported to run in embedded Python environments and, therefore, cannot be used in DataPlugins.
+
+Unfortunately, Numpy and Pandas are not well supported to run in embedded Python
+environments and, therefore, cannot be used in DataPlugins.
 
 ### Single file DataPlugins
-Python DataPlugins can only be written in a single Python file. Importing sidecar files is not supported. It will fail when exporting the DataPlugin as a URI.
+
+Python DataPlugins can only be written in a single Python file. Importing sidecar
+files is not supported. It will fail when exporting the DataPlugin as a URI.
 
 ### datetime.strptime
-There is an <a href="https://bugs.python.org/issue27400">open issue</a> in Python for `datetime.strptime` that prevents the function to work properly in embedded Python environments. Avoid using this function in DataPlugin source code. Instead, add the following function to your code:
 
-```python 
+There is an [open issue](https://bugs.python.org/issue27400) in Python for
+`datetime.strptime` that prevents the function to work properly in embedded
+Python environments. Avoid using this function in DataPlugin source code.
+Instead, add the following function to your code:
+
+```python
 def strptime(self, value, format):
    return datetime.datetime(*(time.strptime(value, "%d.%m.%y %H:%M:%S")[0:6]))
 ```
