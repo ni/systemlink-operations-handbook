@@ -149,14 +149,14 @@ kbd {
 }
 
 .md-typeset details {
-   border-color: var(--md-accent-fg-color);
+  border-color: var(--md-accent-fg-color);
 }
 
 .md-typeset summary {
-   background-color: var(--md-default-bg-color--transparent);
-   padding: .4rem 1.8rem .4rem 0.6rem;
+  background-color: var(--md-default-bg-color--transparent);
+  padding: 0.4rem 1.8rem 0.4rem 0.6rem;
 }
 
 .md-typeset summary::before {
-   display: none;
+  display: none;
 }
