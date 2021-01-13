@@ -3,6 +3,7 @@ import re
 from array import array
 from pathlib import Path
 
+
 # flake8: noqa
 class Plugin:
     def read_store(self, parameter):
