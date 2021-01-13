@@ -65,11 +65,10 @@ class Plugin:
         loc_2 = line.find("descr")
         loc_3 = line.find("shape")
 
-        # fortran order
+        # fmt off
         if loc_1 > -1:
-            fortran_order = (
-                True if line[loc_1 + 16 : loc_1 + 20] == "True" else False  # noqa: E203
-            )
+            fortran_order = True if line[loc_1 + 16 : loc_1 + 20] == "True" else False
+        # fmt on
 
         # descr
         if loc_2 > -1:
