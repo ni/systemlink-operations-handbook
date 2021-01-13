@@ -67,7 +67,9 @@ class Plugin:
 
         # fortran order
         if loc_1 > -1:
-            fortran_order = True if line[loc_1 + 16 : loc_1 + 20] == "True" else False # noqa: E203
+            fortran_order = (
+                True if line[loc_1 + 16 : loc_1 + 20] == "True" else False
+            )  # noqa: E203
 
         # descr
         if loc_2 > -1:
