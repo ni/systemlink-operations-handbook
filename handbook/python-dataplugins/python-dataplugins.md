@@ -119,7 +119,7 @@ that consist of one root, 0...m groups, and 0...n channels:
 
 ```python
 self.tdm_tree = {
-   "author": "National Instruments",
+   "author": "NI",
    "description": "Example file",
    "groups": [{
          "name": "Example",

@@ -8,7 +8,7 @@ class Plugin:
         file_path = os.path.realpath(parameter["file"])
 
         tdm_tree = {
-            "author": "National Instruments",
+            "author": "NI",
             "description": "File containing a json dict read by Python plugin",
             "groups": [{
                 "name": "Group_1",
@@ -57,7 +57,7 @@ class Plugin:
 
 
 if __name__ == "__main__":
-    print("To test your plugin first, run the python file directly from the command line")
+    print("To test your plugin first, run the Python file directly from the command line")
     p = Plugin()
     dir_path = os.path.dirname(os.path.realpath(__file__))
     parameter = {

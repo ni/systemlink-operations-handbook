@@ -11,7 +11,7 @@ class Plugin:
         values = self.load_npy_file(file_path)
 
         tdm_tree = {
-            "author": "National Instruments",
+            "author": "NI",
             "description": "This file contains a NumPy array",
             "groups": [{
                 "name": "Group_1",

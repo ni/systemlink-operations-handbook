@@ -40,7 +40,7 @@ class Plugin:
         ###
 
         self.tdm_tree = {
-            "author": "National Instruments",
+            "author": "NI",
             "description": "Example file",
             "groups": [{
                 "name": "Example",
@@ -85,7 +85,7 @@ class Plugin:
         return {Path(file_path).stem: self.tdm_tree}
 
 if __name__ == "__main__":
-    print("To test your plugin first, run the python file directly from the command line")
+    print("To test your plugin first, run the Python file directly from the command line")
     p = Plugin()
     dir_path = os.path.dirname(os.path.realpath(__file__))
     parameter = {
