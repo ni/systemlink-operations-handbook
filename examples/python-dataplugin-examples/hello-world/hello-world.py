@@ -8,8 +8,8 @@ class Plugin:
         file_path = os.path.realpath(parameter["file"])
 
         tdm_tree = {
-            "author": "HelloWorkd test",
-            "description": "File containing a json dict read by python plugin",
+            "author": "National Instruments",
+            "description": "File containing a json dict read by Python plugin",
             "groups": [{
                 "name": "Group_1",
                 "description": "The first group",
@@ -57,9 +57,10 @@ class Plugin:
 
 
 if __name__ == "__main__":
-    print("For testing your plugin first, you can run that python file directly from command line")
+    print("To test your plugin first, run the python file directly from the command line")
     p = Plugin()
+    dir_path = os.path.dirname(os.path.realpath(__file__))
     parameter = {
-        "file": "C:\\Users\\Public\\Documents\\National Instruments\\DIAdem 2020\\Data\\Example.csv"
+        "file": dir_path + "\\Example.csv"
     }
     print("\n %s" % p.read_store(parameter))

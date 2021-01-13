@@ -12,7 +12,7 @@ class Plugin:
 
         tdm_tree = {
             "author": "National Instruments",
-            "description": "This file contains a numpy array",
+            "description": "This file contains a NumPy array",
             "groups": [{
                 "name": "Group_1",
                 "description": "The first group",

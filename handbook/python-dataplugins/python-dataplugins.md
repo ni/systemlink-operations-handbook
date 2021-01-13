@@ -1,8 +1,11 @@
 # Python DataPlugins
 
-Create a DataPlugin to load, to register, or to search your own file formats in LabVIEW or DIAdem, or to index and to browse your own file formats with SystemLink DataFinder.
+Create a DataPlugin to load, to register, or to search your own custom file formats in LabVIEW or DIAdem, or to index, browse  and find your file formats with SystemLink DataFinder.
 
 You can create DataPlugins using C++, VBS, LabVIEW or Python.
+
+!!! note "Note"
+    Browse through 230+ DataPlugins in the [NI Store](https://search.ni.com/nisearch/app/main/p/ap/global/lang/en/pg/1/sn/ssnav:dpl/) to check whether there is an existing DataPlugin for your data format.
 
 ## Getting Started
 
@@ -13,7 +16,7 @@ You can create Python DataPlugins in your favorite editor. Recommended:
 - [DIAdem](https://www.ni.com/en-us/shop/data-acquisition-and-control/application-software-for-data-acquisition-and-control-category/what-is-diadem.html) >= 2020
 - VSCode with the [NI Python DataPlugin Extension](https://github.com/ni/vscode-ni-python-dataplugins)
 
-### Plugin class
+### Plugin Class
 
 Start writing your DataPlugin by implementing
 
@@ -23,9 +26,9 @@ class Plugin:
 
 The class name cannot be changed.
 
-### Store read
+### Store Read
 
-Every Python DataPlugin needs to implement a `read_store` method. This method is called by DIAdem, LabVIEW or SystemLink DataFinder when it attempts to open your data file. The applications pass a set of useful parameters that can be accessed by the parameter array.
+You need to implement a `read_store` method in every Python DataPlugin. This method is called by DIAdem, LabVIEW or SystemLink DataFinder when it attempts to open your data file. The applications pass a set of useful parameters that can be accessed by the parameter array.
 
 <!-- markdownlint-disable -->
 <details>
@@ -38,13 +41,13 @@ import os
 from pathlib import Path
 def read_store(self, parameter):
    """
-      Read data file and return a Python dictionary
+      Read data file and returns a Python dictionary
       that contains groups and channels in a TDM-like structure.
    """
 
    # String: Contains the absolute path to the data file
    file_path = os.path.realpath(parameter["file"])
-   # Boolean: Denotes if data file was accessed by SystemLink DataFinder
+   # Boolean: Denotes whether data file was accessed by SystemLink DataFinder
    # => the bulk data was not touched. 
    is_datafinder_indexer = parameter["datafinder"]
 
@@ -53,7 +56,7 @@ def read_store(self, parameter):
       "description": "File containing a json dict read by Python plugin",
       "groups": [{
             "name": "Group_1",
-            "description": "The first group",
+            "description": "First group",
             "channels": [{
                "name": "Index",
                "description": "",
@@ -81,7 +84,7 @@ def read_store(self, parameter):
             }]
       }, {
             "name": "Group_2",
-            "description": "The first group",
+            "description": "First group",
             "channels": [{
                "name": "Index",
                "description": "",
@@ -102,11 +105,11 @@ def read_store(self, parameter):
 Use the file parameter to access your file using text, CSV, or binary readers.
 The data must be added to a Python dictionary. It represents the
 [structure of tdm/tdms files](https://www.ni.com/en-us/support/documentation/supplemental/06/the-ni-tdms-file-format.html)
-that consist of one root, 0...m groups and 0...n channels:
+that consist of one root, 0...m groups, and 0...n channels:
 
 <figure>
    <img src="../../img/pydp-tdm_structure.png" width="500" />
-   <figcaption>TDM structure with file, groups and channels</figcaption>
+   <figcaption>TDM structure with root, groups and channels</figcaption>
 </figure>
 
 <!-- markdownlint-disable -->
@@ -120,7 +123,7 @@ self.tdm_tree = {
    "description": "Example file",
    "groups": [{
          "name": "Example",
-         "description": "The first group",
+         "description": "First group",
          "time": datetime.datetime(2020, 2, 11, 15, 31, 59, 342380),
          "channels": [{
             "name": "Channel_0",
@@ -178,8 +181,8 @@ Schema({
       }]}, ignore_extra_keys=True)
 ```
 
-All further extra keys will show up as custom properties in DIAdem, Labview or
- SystemLink DataFinder.
+All additional "extra keys" will show up as custom properties in DIAdem, Labview
+or SystemLink DataFinder.
 
 </details>
 
@@ -188,9 +191,9 @@ See full example: [csv-read-with-direct-loading](https://github.com/ni/systemlin
 ## Callback Loading
 
 When handling a big data set, you might not want to load all data at the same time.
-To ensure the DataPlugin only returns values that applications request, do ...
+To ensure the DataPlugin only returns values that applications request:
 
-   1. assign an empty array to the channel values property:
+   1. Assign an empty array to the channel values property:
 
       ```python
       ...
@@ -203,7 +206,7 @@ To ensure the DataPlugin only returns values that applications request, do ...
       }]
       ```
 
-   1. outsource the functionality to load the bulk data values in a separate function.
+   1. Outsource the functionality to load the bulk data values in a separate function.
    The function has the following definition:
 
       ```python
@@ -230,14 +233,13 @@ def read_channel_values(self, grp_index, chn_index, numberToSkip, numberToTake):
 
 </details>
 
-The client applications are calling that function to retrieve channel values (or
-a subset of values). The DataPlugin needs to implement the function to return the
-values for a given group and channel index. It also needs to ensure only the
+The client applications call this function to retrieve channel values (or
+a subset of values). You need to implement the function to return the
+values for a given group and channel index. You also need to ensure only the
 correct subset of values is returned for a given `numberToSkip` and `numberToTake`.
 
-Additionally, a callback function to retrieve the channel length must be
-implemented. In the simple case where all channels have the same length, it can
-simply return a constant.
+In addition, you need to implement a callback function to retrieve the channel
+length. If all channels have the same length, it simply returns a constant.
 
 ```python
 def read_channel_length(self, grp_index, chn_index):
@@ -252,7 +254,7 @@ See full example: [csv-read-with-callback-loading](https://github.com/ni/systeml
 ## Error Handling
 
 Python DataPlugins can raise errors in all callback functions. The raised error
-will be transported to DIAdem, LabVIEW or SystemLink DataFinder.
+is transported and displayed in DIAdem, LabVIEW, or SystemLink DataFinder.
 
 ```python
 def read_store(self, parameter):
@@ -263,7 +265,7 @@ def read_store(self, parameter):
 ### Not My File
 
 A special case is "Not My File". This error should be raised when the DataPlugin
-detects that the file to be opened, is not suited for this DataPlugin. This
+detects that the file to be opened is not suited for this DataPlugin. This
 special error can be raised only in the `read_store` function by returning `None`:
 
 ```python
@@ -285,12 +287,12 @@ export a DataPlugin as a URI file.
 
 ## Known Limitations
 
-### Numpy and Pandas
+### NumPy and Pandas
 
-Unfortunately, Numpy and Pandas are not well supported to run in embedded Python
+Unfortunately, NumPy and Pandas are not well supported to run in embedded Python
 environments and, therefore, cannot be used in DataPlugins.
 
-### Single file DataPlugins
+### Single File DataPlugins
 
 Python DataPlugins can only be written in a single Python file. Importing sidecar
 files is not supported. It will fail when exporting the DataPlugin as a URI.
@@ -298,7 +300,7 @@ files is not supported. It will fail when exporting the DataPlugin as a URI.
 ### datetime.strptime
 
 There is an [open issue](https://bugs.python.org/issue27400) in Python for
-`datetime.strptime` that prevents the function to work properly in embedded
+`datetime.strptime` that prevents the function from working properly in embedded
 Python environments. Avoid using this function in DataPlugin source code.
 Instead, add the following function to your code:
 
