@@ -1,6 +1,6 @@
 # Python DataPlugins
 
-Create a DataPlugin to load, to register, or to search your own custom file formats in LabVIEW or DIAdem, or to index, browse  and find your file formats with SystemLink DataFinder.
+Create a DataPlugin to load, to register, or to search your own custom file formats in LabVIEW or DIAdem, or to index, browse, and find your file formats with SystemLink DataFinder.
 
 You can create DataPlugins using C++, VBS, LabVIEW or Python.
 
@@ -28,7 +28,7 @@ The class name cannot be changed.
 
 ### Store Read
 
-You need to implement a `read_store` method in every Python DataPlugin. This method is called by DIAdem, LabVIEW or SystemLink DataFinder when it attempts to open your data file. The applications pass a set of useful parameters that can be accessed by the parameter array.
+You need to implement a `read_store` method in every Python DataPlugin. This method is called by DIAdem, LabVIEW, or SystemLink DataFinder when it attempts to open your data file. The applications pass a set of useful parameters that can be accessed by the parameter array.
 
 <!-- markdownlint-disable -->
 <details>
@@ -41,7 +41,7 @@ import os
 from pathlib import Path
 def read_store(self, parameter):
    """
-      Read data file and returns a Python dictionary
+      Reads data file and returns a Python dictionary
       that contains groups and channels in a TDM-like structure.
    """
 
