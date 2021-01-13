@@ -94,7 +94,7 @@ class Plugin:
             else:
                 value = None
             values.append(value)
-        return values[numberToSkip : numberToTake + numberToSkip]
+        return values[numberToSkip : numberToTake + numberToSkip] # noqa: E203
 
 
 if __name__ == "__main__":
