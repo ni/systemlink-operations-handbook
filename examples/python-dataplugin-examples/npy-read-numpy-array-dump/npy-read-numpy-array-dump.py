@@ -3,7 +3,7 @@ import re
 from array import array
 from pathlib import Path
 
-
+# flake8: noqa
 class Plugin:
     def read_store(self, parameter):
         file_path = os.path.realpath(parameter["file"])
@@ -65,10 +65,9 @@ class Plugin:
         loc_2 = line.find("descr")
         loc_3 = line.find("shape")
 
-        # fmt off
+        # fortran order
         if loc_1 > -1:
             fortran_order = True if line[loc_1 + 16 : loc_1 + 20] == "True" else False
-        # fmt on
 
         # descr
         if loc_2 > -1:
