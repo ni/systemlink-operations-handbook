@@ -11,7 +11,7 @@ class Plugin:
             "author": "NI",
             "description": "File containing a json dict read by Python plugin",
             "groups": [{
-                "name": "Group_1",
+                "name": "Hello World",
                 "description": "The first group",
                 "channels": [{
                     "name": "Index",

@@ -35,7 +35,7 @@ class Plugin:
                 values[col_name].append(value)
 
         ###
-        # possible data types:
+        # Possible data types:
         # DataTypeChnFloat32, DataTypeChnFloat64, DataTypeChnString, DataTypeChnDate, DataTypeChnUInt8, DataTypeChnInt16, DataTypeChnInt32, DataTypeChnInt64
         ###
 

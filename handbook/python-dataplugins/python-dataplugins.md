@@ -1,8 +1,8 @@
 # Python DataPlugins
 
-Create a DataPlugin to load, to register, or to search your own custom file formats in LabVIEW or DIAdem, or to index, browse, and find your file formats with SystemLink DataFinder.
+Create a DataPlugin to load, to register, or search your own custom file formats in LabVIEW or DIAdem, or to index, browse, and find your file formats with SystemLink DataFinder.
 
-You can create DataPlugins using C++, VBS, LabVIEW or Python.
+You can also create DataPlugins using C++, VBS, LabVIEW or Python.
 
 !!! note "Note"
     Browse through 230+ DataPlugins in the [NI Store](https://search.ni.com/nisearch/app/main/p/ap/global/lang/en/pg/1/sn/ssnav:dpl/) to check whether there is an existing DataPlugin for your data format.
@@ -26,9 +26,9 @@ class Plugin:
 
 The class name cannot be changed.
 
-### Store Read
+### Read Store
 
-You need to implement a `read_store` method in every Python DataPlugin. This method is called by DIAdem, LabVIEW, or SystemLink DataFinder when it attempts to open your data file. The applications pass a set of useful parameters that can be accessed by the parameter array.
+You need to implement a `read_store` method in every Python DataPlugin. This method is called by DIAdem, LabVIEW, or SystemLink DataFinder when attempting to open your data file. The applications pass a set of useful parameters that can be accessed by the parameter array.
 
 <!-- markdownlint-disable -->
 <details>
@@ -105,11 +105,11 @@ def read_store(self, parameter):
 Use the file parameter to access your file using text, CSV, or binary readers.
 The data must be added to a Python dictionary. It represents the
 [structure of tdm/tdms files](https://www.ni.com/en-us/support/documentation/supplemental/06/the-ni-tdms-file-format.html)
-that consist of one root, 0...m groups, and 0...n channels:
+that consists of one root, 0...m groups, and 0...n channels:
 
 <figure>
    <img src="../../img/pydp-tdm_structure.png" width="500" />
-   <figcaption>TDM structure with root, groups and channels</figcaption>
+   <figcaption>TDM structure with root, groups, and channels</figcaption>
 </figure>
 
 <!-- markdownlint-disable -->
@@ -181,7 +181,7 @@ Schema({
       }]}, ignore_extra_keys=True)
 ```
 
-All additional "extra keys" will show up as custom properties in DIAdem, Labview
+All additional "extra keys" will show up as custom properties in DIAdem, Labview,
 or SystemLink DataFinder.
 
 </details>
@@ -212,7 +212,7 @@ To ensure the DataPlugin only returns values that applications request:
       ```python
       def read_channel_values(self, grp_index, chn_index, numberToSkip, numberToTake):
          """
-            Returns a value array of the correct data type specified in the tdm dictionary
+            Returns a value array of the correct data type specified in the TDM dictionary
          """
       ```
 
