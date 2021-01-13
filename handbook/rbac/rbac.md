@@ -75,19 +75,19 @@ The user *admin* created during the guided setup of **NI Web Server Configuratio
 
 <figure>
   <img src="../../img/guided-admin.png" width="500" />
-  <figcaption>NI encourages disabling the <b>Login as users controlled by the web server</b> checkbox after mapping Server Administrators from your identity provider.</figcaption>
+  <figcaption>NI encourages disabling the "Login as users controlled by the web server" checkbox after mapping Server Administrators from your identity provider.</figcaption>
 </figure>
 
 Users are mapped the **Server Administrator** role by clicking the gear icon in the top right of the **Roles** tab in the **Security Application**.
 
 <figure>
   <img src="../../img/server-admin-gear.png" width="500" />
-  <figcaption>Click the gear icons to configure mappings for the <b>Server Administrator role</b></figcaption>
+  <figcaption>Click the gear icons to configure mappings for the Server Administrator role</figcaption>
 </figure>
 
 <figure>
   <img src="../../img/server-admin-mapping.png" width="500" />
-  <figcaption>Mappings for users assigned the <b>Server Administrator</b> role</figcaption>
+  <figcaption>Mappings for users assigned the Server Administrator role</figcaption>
 </figure>
 
 #### Users
@@ -119,7 +119,7 @@ Any custom role may be configured to be a service role at creation by toggling t
 
 ### Automatic Data Encapsulation
 
-When a system is added to SystemLink the user must choose which workspace the system will reside. The workspaces available to the user is determine by both their workspace membership and **Add systems** privilege. Once added to a workspace, data produced by the system will automatically be stored in the same workspace as the system. This capability allows users to develop workspace agnostic test applications. Changing workspaces does require changes or redeployment of test application. This is especially helpful when in scenarios such as production verification where the test application cannot change between validation and production but the validation data produced must be kept seperate from production data.
+When a system is added to SystemLink the user must choose which workspace the system will reside. The workspaces available to the user is determine by both their workspace membership and **Add systems** privilege. Once added to a workspace, data produced by the system will automatically be stored in the same workspace as the system. This capability allows users to develop workspace agnostic test applications. Changing workspaces does require changes or redeployment of test application. This is especially helpful when in scenarios such as production verification where the test application cannot change between validation and production but the validation data produced must be kept separate from production data.
 
 ## Mapping users to roles in workspaces
 
