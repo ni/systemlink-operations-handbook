@@ -52,7 +52,7 @@ def read_store(self, parameter):
    is_datafinder_indexer = parameter["datafinder"]
 
    tdm_tree = {
-      "author": "HelloWorkd test",
+      "author": "NI",
       "description": "File containing a json dict read by Python plugin",
       "groups": [{
             "name": "Group_1",
@@ -254,7 +254,7 @@ See full example: [csv-read-with-callback-loading](https://github.com/ni/systeml
 ## Error Handling
 
 Python DataPlugins can raise errors in all callback functions. The raised error
-is transported and displayed in DIAdem, LabVIEW, or SystemLink DataFinder.
+is displayed in DIAdem, LabVIEW, or SystemLink DataFinder.
 
 ```python
 def read_store(self, parameter):
