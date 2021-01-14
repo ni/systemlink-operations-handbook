@@ -106,7 +106,7 @@ class Plugin:
 
 if __name__ == "__main__":
     print(
-        "For testing your plugin first, you can run that python file directly from command line"
+        "For testing your plugin first, you can run that Python file directly from command line"
     )
     p = Plugin()
     dir_path = os.path.dirname(os.path.realpath(__file__))
