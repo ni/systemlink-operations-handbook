@@ -1,8 +1,8 @@
 # Python DataPlugins
 
-Create a DataPlugin to load, to register, or search your own custom file formats in LabVIEW or DIAdem, or to index, browse, and find your file formats with SystemLink DataFinder.
+Create a DataPlugin to load, register, or search your custom file formats in LabVIEW or DIAdem, or to index, browse, and find your file formats with SystemLink DataFinder.
 
-You can also create DataPlugins using C++, VBS, LabVIEW or Python.
+You can also create DataPlugins using C++, VBS, LabVIEW, or Python.
 
 !!! note "Note"
     Browse through 230+ DataPlugins in the [NI Store](https://search.ni.com/nisearch/app/main/p/ap/global/lang/en/pg/1/sn/ssnav:dpl/) to check whether there is an existing DataPlugin for your data format.
