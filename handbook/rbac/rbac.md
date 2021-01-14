@@ -71,7 +71,7 @@ Due to the large number of privileges available SystemLink includes several *bui
 
 SystemLink includes a special **Server Administrator Role**. This role has exclusive access to the **Security** application and can modify workspaces and roles. This role has full access to all of SystemLink, its applications, data, systems, etc. **for every workspace**. This is the most permissive role in SystemLink and should be used by users who administer access control for SystemLink.
 
-The user *admin* created during the guided setup of **NI Web Server Configuration** is automatically assigned the **Server Administrator** role. This is done such that administrators can access the **Security** application during initial setup and configure access control via an identity provider. When this has been completed, NI encourages disabling the user created during guided setup and instead assigning the **Server Administrator** role to users backed by your identity provider.
+The user *admin* created during the guided setup of **NI Web Server Configuration** is automatically assigned the **Server Administrator** role. This is done such that administrators can access the **Security** application during initial setup and configure access control via an identity provider. NI encourages disabling the *admin* user in the **NI Web Server Configuration** after you have assigned the **Server Administrator** role to users backed by your identity provider.
 
 <figure>
   <img src="../../img/guided-admin.png" width="500" />
