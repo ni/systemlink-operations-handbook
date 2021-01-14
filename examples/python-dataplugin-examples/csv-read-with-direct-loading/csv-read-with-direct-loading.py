@@ -47,7 +47,7 @@ class Plugin:
             "groups": [
                 {
                     "name": "Example",
-                    "description": "The first group",
+                    "description": "First group",
                     "time": datetime.datetime(2020, 2, 11, 15, 31, 59, 342380),
                     "channels": [
                         {

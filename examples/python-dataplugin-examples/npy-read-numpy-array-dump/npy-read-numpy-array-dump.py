@@ -16,7 +16,7 @@ class Plugin:
             "groups": [
                 {
                     "name": "Group_1",
-                    "description": "The first group",
+                    "description": "First group",
                     "channels": [
                         {
                             "name": "Index",

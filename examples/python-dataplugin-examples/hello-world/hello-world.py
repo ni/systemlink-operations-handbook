@@ -12,7 +12,7 @@ class Plugin:
             "groups": [
                 {
                     "name": "HelloWorld",
-                    "description": "The first group",
+                    "description": "First group",
                     "channels": [
                         {
                             "name": "Index",
@@ -46,7 +46,7 @@ class Plugin:
                 },
                 {
                     "name": "Group_2",
-                    "description": "The first group",
+                    "description": "Second group",
                     "channels": [
                         {
                             "name": "Index",
