@@ -84,7 +84,7 @@ def read_store(self, parameter):
             }]
       }, {
             "name": "Group_2",
-            "description": "First group",
+            "description": "Second group",
             "channels": [{
                "name": "Index",
                "description": "",
