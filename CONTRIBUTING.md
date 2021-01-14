@@ -39,6 +39,9 @@ For more information and installation options, see
 
 All markdown must pass linting rules before a PR may be merged. The [markdownlint plugin for VSCode](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint) is recommended. The `.markdownlint.yaml` file contains overrides to linting rules for the handbook.
 
+
+
+
 ## Previewing Changes to Markdown Files
 
 Preview changes you make to handbook content before you submit them. In the
