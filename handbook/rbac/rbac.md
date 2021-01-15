@@ -13,7 +13,25 @@ SystemLink RBAC leverages common concepts such as *roles* and *users*. It also i
 
 ### Workspace
 
-A workspace is a complete encapsulation of all systems, data, and other resources within SystemLink. A user must be a member of a workspace to access the systems and data within the workspace. This is true for access via the SystemLink web application and the SystemLink REST API. The SystemLink Advanced Server license is required to create multiple workspaces, but there is no limit on the number of workspaces that can be created. If a user is a member of multiple workspaces, resources from each workspace are displayed within the grids, dashboards, and other data views throughout SystemLink.
+A workspace is a complete encapsulation of all systems, data, and other resources within SystemLink. A user must be a member of a workspace to access the systems and data within the workspace. This is true for access via the SystemLink web application and the SystemLink REST API.
+
+SystemLink always has at least one workspace, *Default* created at install time. Like all workspaces,the default workspace may be renamed or [archived](#archived-workspaces), but it has a additional properties to support backwards compatibility with pre-2020R1 SystemLink clients.
+
+!!! note "Properties of the *Default* workspace"
+
+    - All clients using AMQP for network communication exclusively publish data to the *default* workspace.
+
+    - All pre-2020R1 clients using HTTP for network communication exclusively publish data to the *default* workspace.
+
+    - OPC UA and Cloud Connector sessions always exist in the *default* workspace and may only access tags in the *default* workspace.
+
+    - File moving rules always exist in the *default* workspace and may only access files in the *default* workspace.
+
+    - Health tags for the SystemLink server are always published to the *default* workspace.
+
+The SystemLink Advanced Server license is required to create multiple workspaces, but there is no limit on the number of workspaces that can be created. Refer to the [SystemLink Manual](https://www.ni.com/documentation/en/systemlink/latest/setup/creating-a-workspace/) for steps to create a workspace.
+
+ If a user is a member of multiple workspaces, resources from each workspace are displayed within the grids, dashboards, and other data views throughout SystemLink.
 
 <figure>
     <img src="../../img/rbac-block-diagram.png" width="500" />
@@ -22,17 +40,24 @@ A workspace is a complete encapsulation of all systems, data, and other resource
 
 Systems, data, and analysis routines (collectively referred to as resources) are unique to individual workspaces. No resource occupies multiple workspaces. Some resources may be moved between workspaces. If a resource is duplicated the user is prompted to choose a workspace for the new resource.
 
-!!! note "Special Considerations for DataFinder"
+#### Exceptions for Workspaces
 
-    DataFinder instances are global (meaning any user can view the DataFinder instance), but DataFinder Search Areas defined within a DataFinder instance are scoped to a single workspace. Search areas can only index File Ingestion Service data for the DataFinder Search Area's corresponding workspace.
+The following resources in SystemLink have limitations or exceptions from the broader rules described above.
 
-### Archived Workspaces
+- **DataFinder**: DataFinder instances are global (meaning any user can view the DataFinder instance), but DataFinder Search Areas defined within a DataFinder instance are scoped to a single workspace. Search areas can only index File Ingestion Service data for the DataFinder Search Area's corresponding workspace.
+
+- **Notifications**: Notification strategies, groups, and email templates are not scoped to a single workspace. These may be used with any alarm rule regardless of the workspace of the alarm rule.
+
+- **Jupyter Notebook**: Jupyter Notebooks are not managed by SystemLink's RBAC. Refer to [Sharing a Jupyter Notebook](https://www.ni.com/documentation/en/systemlink/latest/data/sharing-a-jupyter-notebook/) for details on how to allow multiple users collaborate with Notebooks.
+
+#### Archived Workspaces
 
 Workspaces may be archived if they are no longer in use. Archival does not delete resources or move resources to a new database or file storage location. Archived workspaces are only accessible to users with the [**Server Administrator**](#server-administrator-role) role. Resources in archived workspaces cannot be created, updated, or deleted. Resources may be duplicated or moved into a non-archived workspace. All active alarms are automatically cleared when a workspace is archived.
 
 ### Users and Roles
 
-Users, systems, and analysis procedures are assigned roles within the context of a workspace. Roles grant privileges that allow access to the various SystemLink applications and the data exposed by those applications. Privileges explicitly grant what you *can* do - there are no *deny* privileges. Due to this a user may be assigned multiple roles within a single workspace that collectively describe what the user has access to. This is useful to prevent the proliferation of multiple different roles that have similar privileges. Instead, simple roles may be defined and composed together by assigning a user each role.
+Users, systems, and analysis procedures are assigned roles within the context of a workspace. Users may have different roles in different workspace. Roles grant privileges that allow access to the various SystemLink applications and the data exposed by those applications. Privileges explicitly grant what you *can* do - there are no *deny* privileges. Due to this a user may be assigned multiple roles within a single workspace that collectively describe what the user has access to. This is useful to prevent the proliferation of multiple different roles that have similar privileges. Instead, simple roles may be defined and composed together by assigning a user each role.
+
 
 !!! note "Allow all privileges"
 
@@ -40,7 +65,7 @@ Users, systems, and analysis procedures are assigned roles within the context of
 
     <figure>
         <img src="../../img/allow-all-privileges.png" width="500" />
-        <figcaption>All privileges for an area are granted with Allow all privileges is checked</figcaption>
+        <figcaption>All privileges for an area are granted when <b>Allow all privileges</b> is checked</figcaption>
     </figure>
 
 #### Built-in and Custom Roles
@@ -51,7 +76,7 @@ When creating and assigning roles, it is best practice to provide users with the
 
 !!! note
     If a user has a role that grants access to an application in any workspace that application will be available to the user at all times. If a user has not been granted access to an application in any workspace that application will be hidden from the navigation menu.
-    
+
     The privilege to access a web application is not sufficient for to view, list, create, modify, or delete resource exposed by the web application. Additional privileges for those resources must be granted.
 
 Custom roles may be created, duplicated, modified, and deleted as needed. If a role is updated all users mapped to that role are affected.
@@ -69,7 +94,7 @@ The user *admin* created during the guided setup of **NI Web Server Configuratio
 
 <figure>
   <img src="../../img/guided-admin.png" width="500" />
-  <figcaption>NI encourages disabling the "Login as users controlled by the web server" checkbox after mapping Server Administrators from your identity provider.</figcaption>
+  <figcaption>NI encourages disabling the <b>Login as users controlled by the web server</b> checkbox after mapping Server Administrators from your identity provider.</figcaption>
 </figure>
 
 Users are mapped the **Server Administrator** role by clicking the gear icon in the top right of the **Roles** tab in the **Security Application**.
@@ -81,7 +106,7 @@ Users are mapped the **Server Administrator** role by clicking the gear icon in 
 
 <figure>
   <img src="../../img/server-admin-mapping.png" width="500" />
-  <figcaption>Mappings for users assigned the Server Administrator role</figcaption>
+  <figcaption>Mappings for users assigned the <b>Server Administrator</b> role</figcaption>
 </figure>
 
 #### Users
@@ -95,10 +120,10 @@ User's are backed by an identity provider (IdP) such as LDAP, Active Directory, 
 
 If a user is  a member of multiple workspaces, the resources in those workspaces will be shown simultaneously within the grids and other views within SystemLink. This is useful when users need to view a rollup of resources across multiple workspaces. All grids within SystemLink feature a workspace column and filters that can be used to limit the resources shown in a grid to a particular set of workspaces. While resources in multiple workspaces may be viewed in a single grid, the actions a user can take against those resources may be different depending on their role in each workspace.
 
-!!! note "Considerations for WebVIs, dashboards, and JupyterNotebooks"
+!!! note "Considerations for WebVIs, dashboards, and Jupyter Notebooks"
     The privileges for WebVIs and dashboards control the create, view, update, and delete privileges for the WebVI and dashboard documents themselves. When a users opens and views a dashboard or WebVI the data they can access is determined by the privileges on the resources exposed by the WebVI or dashboard such as tags, queries, and notebooks. If a user does not have privileges to access the resources exposed by the WebVI or dashboard they will view no data.
 
-    When a user runs a JupyterNotebook from a *Report* or dashboard, the Notebook executes with the same privileges as the user. This allows the creation of Notebooks without workspace logic. For example, the built-in dashboard for Systems Management includes a tile that show the number of alarms for various systems. This tile will only show systems within the logged in user's workspaces. If the user does not have privileges to view alarms, the tile returns no data.
+    When a user runs a Jupyter Notebook from a *Report* or dashboard, the Notebook executes with the same privileges as the user. This allows the creation of Notebooks without workspace logic. For example, the built-in dashboard for Systems Management includes a tile that show the number of alarms for various systems. This tile will only show systems within the logged in user's workspaces. If the user does not have privileges to view alarms, the tile returns no data.
 
 #### Service roles
 
@@ -108,15 +133,17 @@ Any custom role may be configured to be a service role at creation by toggling t
 
 <figure>
   <img src="../../img/service-role.png" width="500" />
-  <figcaption>A role configured to be a Service role</figcaption>
+  <figcaption>A role configured to be a <b>Service </b></figcaption>
 </figure>
 
 ### Automatic Data Encapsulation
 
 When a system is added to SystemLink the user must choose which workspace the system will reside. The workspaces available to the user is determined by both their workspace membership and **Add systems** privilege. Once added to a workspace, data produced by the system will automatically be stored in the same workspace as the system. This capability allows users to develop workspace agnostic test applications. Changing workspaces does require changes or redeployment of test application. This is especially helpful when in scenarios such as production verification where the test application cannot change between validation and production but the validation data produced must be kept separate from production data.
 
-## Mapping users to roles in workspaces
+!!! note "Systems job history, asset and tag data"
 
-Users must have a role within a workspace. To facilitate this, mappings are defined within the context of workspace of the role they are assigned. This allows for users to be assigned different roles in different workspaces if desired.
+    When a system is added to a workspace all its connected assets are also added to the same workspace. When a system is moved to another workspace its assets and job history are also moved. This is not the case with tags and tag history published by the system. These will be left in the original workspace and new tags are created in the new workspace.
+
+## Mapping users to roles in workspaces
 
 Users are added to a workspace and assigned a role through a process called *workspace and role mapping*. The process is driven by metadata provided by the identity provider (IdP) user to authenticate users for SystemLink: [OpenID Connect](/openid-connect/openid-connect/#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles), [LDAP](/ldap/ldap/#mapping-ldap-groups-users-and-attributes-to-workspaces-and-roles), Active Directory, or local Windows accounts. Refer to the documentation for each of the IdP types for details on how to configure workspace and role mapping. By using metadata from an IdP you can create mappings that on-board large numbers of users into SystemLink. It also allows users to leverage existing Active Directory and LDAP groups and OpenID Connect claims.
