@@ -1,12 +1,12 @@
-# MD013: false
+MD013: false
 
-# MD033:
-#   allowed_elements:
-#     - figure
-#     - figcaption
-#     - img
+MD033:
+  allowed_elements:
+    - figure
+    - figcaption
+    - img
 
-# MD007:
-#   indent: 4
+MD007:
+  indent: 4
 
-# MD038: false
+MD038: false
