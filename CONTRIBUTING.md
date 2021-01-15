@@ -16,6 +16,8 @@ for more details.
 
 ## Developer Setup
 
+### Hosting handbook locally
+
 Before making changes to markdown files in the handbook, set up a
 [Python virtual environment](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment)
 for using [MkDocs](https://www.mkdocs.org):
@@ -32,6 +34,10 @@ for using [MkDocs](https://www.mkdocs.org):
 
 For more information and installation options, see
 [MkDocs - Installation](https://www.mkdocs.org/#installation).
+
+### Linting Markdown Files
+
+All markdown must pass linting rules before a PR may be merged. The [markdownlint plugin for VSCode](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint) is recommended. The `.markdownlint.yaml` file contains overrides to linting rules for the handbook.
 
 ## Previewing Changes to Markdown Files
 
