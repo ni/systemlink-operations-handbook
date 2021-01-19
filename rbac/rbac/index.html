@@ -1,0 +1,510 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="https://operations.systemlink.io/rbac/rbac/" rel="canonical"/>
+<link href="../../img/favicon.ico" rel="shortcut icon"/>
+<meta content="mkdocs-1.1.2, mkdocs-material-5.5.12" name="generator"/>
+<title>Workspaces and Role-based Access Control - SystemLink Operations Handbook</title>
+<link href="../../assets/stylesheets/main.4dd2dd8d.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.6a5ad368.min.css" rel="stylesheet"/>
+<link href="../../stylesheets/extra.css" rel="stylesheet"/>
+</head>
+<body data-md-color-accent="" data-md-color-primary="" data-md-color-scheme="ni" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#workspaces-and-role-based-access-control">4. 
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header-nav md-grid">
+<a aria-label="SystemLink Operations Handbook" class="md-header-nav__button md-logo" href="https://operations.systemlink.io" title="SystemLink Operations Handbook">
+<svg style="enable-background:new 0 0 32 32;" version="1.1" viewbox="0 0 32 32" x="0px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" y="0px">
+<style type="text/css">
+	.st0{fill:#044123;}
+	.st1{fill:#FFFFFF;}
+	.st2{display:none;}
+	.st3{display:inline;fill:#D3519D;fill-opacity:0.46;}
+	.st4{display:inline;opacity:0.45;fill:#D3519D;}
+</style>
+<g id="Layer_1">
+<g>
+<path class="st0" d="M0,32V0l21.28,0C27.2,0.01,32,4.81,32,10.73V32H0z"></path>
+</g>
+<g>
+<g>
+<g>
+<g>
+<path class="st1" d="M15,17h-4c0,0,0-1.05,0-2.44c0-1.51,0.64-2.8,1.82-3.61c0.9-0.62,2.1-0.95,3.47-0.95H24v4h-7.21
+						C15.5,14,15,14.63,15,15.7C15,16.43,15,17,15,17z"></path>
+</g>
+</g>
+</g>
+<g>
+<g>
+<g>
+<path class="st1" d="M17,16h4c0,0,0,1.05,0,2.44c0,1.51-0.64,2.8-1.82,3.61c-0.9,0.62-2.1,0.95-3.47,0.95H8v-4h7.21
+						C16.5,19,17,18.37,17,17.3C17,16.57,17,16,17,16z"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g class="st2" id="Layer_2">
+<rect class="st3" height="16" width="16" x="8" y="8"></rect>
+</g>
+</svg>
+</a>
+<label class="md-header-nav__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"></path></svg>
+</label>
+<div class="md-header-nav__title" data-md-component="header-title">
+<div class="md-header-nav__ellipsis">
+<span class="md-header-nav__topic md-ellipsis">
+            SystemLink Operations Handbook
+          </span>
+<span class="md-header-nav__topic md-ellipsis">
+            
+              Workspaces and Role-based Access Control
+            
+          </span>
+</div>
+</div>
+<label class="md-header-nav__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" data-md-state="active" name="query" placeholder="Search" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
+</label>
+<button aria-label="Clear" class="md-search__icon md-icon" data-md-component="search-reset" tabindex="-1" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>
+</button>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header-nav__source">
+<a class="md-source" href="https://github.com/ni/systemlink-operations-handbook/" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+    Table of Contents
+  </label>
+<div class="md-nav__source">
+<a class="md-source" href="https://github.com/ni/systemlink-operations-handbook/" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../.." title="Introduction">
+      1. Introduction
+    </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../ldap/ldap/" title="Sign on with LDAP">
+      2. Sign on with LDAP
+    </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../openid-connect/openid-connect/" title="Single Sign-on with OpenID Connect">
+      3. Single Sign-on with OpenID Connect
+    </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+        4. Workspaces and Role-based Access Control
+        <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./" title="Workspaces and Role-based Access Control">
+      4. Workspaces and Role-based Access Control
+    </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Workspaces and Role-based Access Control
+    </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#concepts">4.1 
+    Concepts
+  </a>
+<nav aria-label="Concepts" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#workspace">4.1.1 
+    Workspace
+  </a>
+<nav aria-label="Workspace" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exceptions-for-workspaces">4.1.1.1 
+    Exceptions for Workspaces
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#archived-workspaces">4.1.1.2 
+    Archived Workspaces
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#users-and-roles">4.1.2 
+    Users and Roles
+  </a>
+<nav aria-label="Users and Roles" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#built-in-and-custom-roles">4.1.2.1 
+    Built-in and Custom Roles
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#server-administrator-role">4.1.2.2 
+    Server Administrator Role
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#users">4.1.2.3 
+    Users
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#service-roles">4.1.2.4 
+    Service roles
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#automatic-data-encapsulation">4.1.3 
+    Automatic Data Encapsulation
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mapping-users-to-roles-in-workspaces">4.2 
+    Mapping users to roles in workspaces
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Workspaces and Role-based Access Control
+    </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#concepts">4.1 
+    Concepts
+  </a>
+<nav aria-label="Concepts" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#workspace">4.1.1 
+    Workspace
+  </a>
+<nav aria-label="Workspace" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#exceptions-for-workspaces">4.1.1.1 
+    Exceptions for Workspaces
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#archived-workspaces">4.1.1.2 
+    Archived Workspaces
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#users-and-roles">4.1.2 
+    Users and Roles
+  </a>
+<nav aria-label="Users and Roles" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#built-in-and-custom-roles">4.1.2.1 
+    Built-in and Custom Roles
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#server-administrator-role">4.1.2.2 
+    Server Administrator Role
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#users">4.1.2.3 
+    Users
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#service-roles">4.1.2.4 
+    Service roles
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#automatic-data-encapsulation">4.1.3 
+    Automatic Data Encapsulation
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#mapping-users-to-roles-in-workspaces">4.2 
+    Mapping users to roles in workspaces
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/ni/systemlink-operations-handbook/edit/master/handbook/rbac/rbac.md" title="Edit this page">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"></path></svg>
+</a>
+<h1 id="workspaces-and-role-based-access-control"><span class="enumerate-heading-plugin">4.</span> Workspaces and Role-based Access Control<a class="headerlink" href="#workspaces-and-role-based-access-control" title="Permanent link">¶</a></h1>
+<p>The SystemLink role-based access control (RBAC) system provides strong isolation between different <em>workspaces</em> as well as fine grain privileges for systems, data, and analysis routines in SystemLink. Collectively this capability allows access to SystemLink to scale user and data access beyond a single team to an entire organization.</p>
+<h2 id="concepts"><span class="enumerate-heading-plugin">4.1</span> Concepts<a class="headerlink" href="#concepts" title="Permanent link">¶</a></h2>
+<p>SystemLink RBAC leverages common concepts such as <em>roles</em> and <em>users</em>. It also introduces concepts such as <em>workspaces</em> and <em>automatic data encapsulation</em> to ensure strict access control of data produced by test systems.</p>
+<figure>
+<img src="../../img/rbac-concepts.png" width="500"/>
+<figcaption>Role-based access control concepts in SystemLink</figcaption>
+</figure>
+<h3 id="workspace"><span class="enumerate-heading-plugin">4.1.1</span> Workspace<a class="headerlink" href="#workspace" title="Permanent link">¶</a></h3>
+<p>A workspace is a complete encapsulation of all systems, data, and other resources within SystemLink. A user must be a member of a workspace to access the systems and data within the workspace. This is true for access via the SystemLink web application and the SystemLink REST API.</p>
+<p>SystemLink always has at least one workspace, <em>Default</em> created at install time. Like all workspaces,the <em>default</em> workspace may be renamed or <a href="#archived-workspaces">4.1.1.2 archived</a>, but it has a additional properties to support backwards compatibility with pre-2020R1 SystemLink clients.</p>
+<div class="admonition note">
+<p class="admonition-title">Properties of the <em>Default</em> workspace</p>
+<ul>
+<li>
+<p>All clients using AMQP for network communication exclusively publish data to the <em>default</em> workspace.</p>
+</li>
+<li>
+<p>All pre-2020R1 clients using HTTP for network communication exclusively publish data to the <em>default</em> workspace.</p>
+</li>
+<li>
+<p>OPC UA and Cloud Connector sessions always exist in the <em>default</em> workspace and may only access tags in the <em>default</em> workspace.</p>
+</li>
+<li>
+<p>File moving rules always exist in the <em>default</em> workspace and may only access files in the <em>default</em> workspace.</p>
+</li>
+<li>
+<p>Health tags for the SystemLink server are always published to the <em>default</em> workspace.</p>
+</li>
+</ul>
+</div>
+<p>The SystemLink Advanced Server license is required to create multiple workspaces, but there is no limit on the number of workspaces that can be created. Refer to the <a href="https://www.ni.com/documentation/en/systemlink/latest/setup/creating-a-workspace/">SystemLink Manual</a> for steps to create a workspace.</p>
+<figure>
+<img src="../../img/rbac-block-diagram.png" width="500"/>
+<figcaption>Two workspaces with unique resources in each workspace. Resources users can access are determined by their workspace membership. The actions a user can take on each resource is determined by their role.</figcaption>
+</figure>
+<p>Systems, data, and analysis routines (collectively referred to as resources) are unique to individual workspaces. No resource occupies multiple workspaces. Some resources may be moved between workspaces. If a resource is duplicated the user is prompted to choose a workspace for the new resource.</p>
+<h4 id="exceptions-for-workspaces"><span class="enumerate-heading-plugin">4.1.1.1</span> Exceptions for Workspaces<a class="headerlink" href="#exceptions-for-workspaces" title="Permanent link">¶</a></h4>
+<p>The following resources in SystemLink have limitations or exceptions from the broader rules described above.</p>
+<ul>
+<li>
+<p><strong>DataFinder</strong>: DataFinder instances are global (meaning any user can view the DataFinder instance), but DataFinder Search Areas defined within a DataFinder instance are scoped to a single workspace. Search areas can only index File Ingestion Service data for the DataFinder Search Area's corresponding workspace. All indexed files of a search area are available only to members of the corresponding workspace.</p>
+</li>
+<li>
+<p><strong>Notifications</strong>: Notification strategies, groups, and email templates are not scoped to a single workspace. These may be used with any alarm rule regardless of the workspace of the alarm rule. Roles may still restrict access to notification configuration.</p>
+</li>
+<li>
+<p><strong>Jupyter Notebook</strong>: Jupyter Notebooks are not managed by SystemLink's RBAC. Refer to <a href="https://www.ni.com/documentation/en/systemlink/latest/data/sharing-a-jupyter-notebook/">Sharing a Jupyter Notebook</a> for details on how to allow multiple users collaborate with Notebooks.</p>
+</li>
+</ul>
+<h4 id="archived-workspaces"><span class="enumerate-heading-plugin">4.1.1.2</span> Archived Workspaces<a class="headerlink" href="#archived-workspaces" title="Permanent link">¶</a></h4>
+<p>Workspaces may be archived if they are no longer in use. Archival does not delete resources or move resources to a new database or file storage location. Archived workspaces are only accessible to users with the <a href="#server-administrator-role">4.1.2.2 <strong>Server Administrator</strong></a> role. Resources in archived workspaces cannot be created, updated, or deleted. Resources may be duplicated or moved into a non-archived workspace. All active alarms are automatically cleared when a workspace is archived.</p>
+<p>Refer to the <a href="https://www.ni.com/documentation/en/systemlink/latest/setup/archiving-workspaces/">SystemLink manual</a> for steps to manage archived workspaces.</p>
+<h3 id="users-and-roles"><span class="enumerate-heading-plugin">4.1.2</span> Users and Roles<a class="headerlink" href="#users-and-roles" title="Permanent link">¶</a></h3>
+<p>Roles define the privileges a user, system or analysis procedure may take against resources within SystemLink. While roles are applied within the context of a workspace , roles is defined globally. This enables the same role to be used across multiple workspaces. Refer to the <a href="https://www.ni.com/documentation/en/systemlink/latest/setup/configuring-roles-privileges/">SystemLink manual</a> for steps to manage roles.</p>
+<p>Role privileges explicitly grant what you <em>can</em> do - there are no <em>deny</em> privileges. Due to this a user may be assigned multiple roles within a single workspace that collectively describe what the user has access to. This is useful to prevent the proliferation of multiple different roles that have similar privileges. Instead, simple roles may be defined and composed together by assigning a user each role.</p>
+<div class="admonition note">
+<p class="admonition-title">Allow all privileges</p>
+<p>In each area of available privileges there is an <strong>Allow all privileges</strong> option. This privilege automatically grants all privileges for that area. If a new privilege is in a future version of SystemLink, users with <strong>Allow all privileges</strong> will automatically be granted the new privilege upon upgrade. If this behavior is undesirable, refrain from using <strong>Allow all privileges</strong>.</p>
+<p><figure>
+<img src="../../img/allow-all-privileges.png" width="500"/>
+<figcaption>All privileges for an area are granted when <b>Allow all privileges</b> is checked.</figcaption>
+</figure></p>
+</div>
+<h4 id="built-in-and-custom-roles"><span class="enumerate-heading-plugin">4.1.2.1</span> Built-in and Custom Roles<a class="headerlink" href="#built-in-and-custom-roles" title="Permanent link">¶</a></h4>
+<p>When <a href="https://www.ni.com/documentation/en/systemlink/latest/setup/configuring-roles-privileges/">creating and assigning roles</a>, it is best practice to provide users with the minimum number of privileges to perform their work. SystemLink has granular privileges for services and application in the product. These privileges also include access to individual SystemLink applications such as <strong>Systems Manager</strong> and <strong>Test Monitor</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If a user has a role that grants access to an application in any workspace that application will be available to the user at all times. If a user has not been granted access to an application in any workspace that application will be hidden from the navigation menu.</p>
+<p>The privilege to access a web application is not sufficient for to view, list, create, modify, or delete resource exposed by the web application. Additional privileges for those resources must be granted.</p>
+</div>
+<p>Custom roles may be created, duplicated, modified, and deleted as needed. If a role is updated all users mapped to that role are affected.</p>
+<p>Due to the large number of privileges available SystemLink includes several <em>built-in</em> roles to facilitate getting started. Refer to the <a href="https://www.ni.com/documentation/en/systemlink/latest/setup/predefined-roles/">SystemLink manual</a> for a summary of these roles. Go to the SystemLink <strong>Security</strong> application to review the details on privileges granted for each role.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Built-in roles cannot be modified. They can be duplicated and the duplicated roles may be renamed and the privileges modified. This constraint exists because NI may add or change privileges for built-in roles between releases. Users assigned these built-in roles will have their privileges automatically change upon upgrade. To opt out of this behavior assign your users custom roles.</p>
+</div>
+<h4 id="server-administrator-role"><span class="enumerate-heading-plugin">4.1.2.2</span> Server Administrator Role<a class="headerlink" href="#server-administrator-role" title="Permanent link">¶</a></h4>
+<p>SystemLink includes a special <strong>Server Administrator Role</strong>. This role has exclusive access to the <strong>Security</strong> application and can modify workspaces and roles. This role has full access to all of SystemLink, its applications, data, systems, etc. <strong>for every workspace</strong>. This is the most permissive role in SystemLink and should be used by users who administer access control for SystemLink exclusively.</p>
+<p>The user <em>admin</em> created during the guided setup of <strong>NI Web Server Configuration</strong> is automatically assigned the <strong>Server Administrator</strong> role. This is done such that administrators can access the <strong>Security</strong> application during initial setup and configure access control via an identity provider. NI encourages disabling the <em>admin</em> user in the <strong>NI Web Server Configuration</strong> after you have assigned the <strong>Server Administrator</strong> role to users backed by your identity provider.</p>
+<figure>
+<img src="../../img/guided-admin.png" width="500"/>
+<figcaption>NI encourages disabling the <b>Login as users controlled by the web server</b> checkbox after mapping Server Administrators from your identity provider.</figcaption>
+</figure>
+<p>Users are mapped the <strong>Server Administrator</strong> role by clicking the gear icon in the top right of the <strong>Roles</strong> tab in the <strong>Security Application</strong>.</p>
+<figure>
+<img src="../../img/server-admin-gear.png" width="500"/>
+<figcaption>Click the gear icons to configure mappings for the Server Administrator role.</figcaption>
+</figure>
+<figure>
+<img src="../../img/server-admin-mapping.png" width="500"/>
+<figcaption>Mappings for users assigned the <b>Server Administrator</b> role</figcaption>
+</figure>
+<h4 id="users"><span class="enumerate-heading-plugin">4.1.2.3</span> Users<a class="headerlink" href="#users" title="Permanent link">¶</a></h4>
+<p>User's are backed by an identity provider (IdP) such as LDAP, Active Directory, or OpenID Connect that provides authenticated access to SystemLink. This is in contrast to systems and analysis routines that are managed within SystemLink and are not backed by an identity provider.</p>
+<figure>
+<img src="../../img/multiple-workspaces.png" width="500"/>
+<figcaption>A member of multiple workspaces can view resources across different workspaces in a common grid view.</figcaption>
+</figure>
+<p>If a user is  a member of multiple workspaces, the resources in those workspaces will be shown simultaneously within the grids and other views within SystemLink. This is useful when users need to view a rollup of resources across multiple workspaces. While resources in multiple workspaces may be viewed in a single grid, the actions a user can take against those resources may be different depending on their role in each workspace.</p>
+<div class="admonition note">
+<p class="admonition-title">Considerations for WebVIs, dashboards, and Jupyter Notebooks</p>
+<p>The privileges for WebVIs and dashboards control the create, view, update, and delete privileges for the WebVI and dashboard documents themselves. When a users opens and views a dashboard or WebVI the data they can access is determined by the privileges on the resources exposed by the WebVI or dashboard such as tags, queries, and notebooks. If a user does not have privileges to access the resources exposed by the WebVI or dashboard they will view no data.</p>
+<p>When a user runs a Jupyter Notebook from a <em>Report</em> or dashboard, the Notebook executes with the same privileges as the user. This allows the creation of Notebooks without workspace logic. For example, the Systems Management dashboard includes a tile displaying the number of alarms for various systems. This tile will only show systems within the logged in user's workspaces. If the user does not have privileges to view alarms, the tile returns no data.</p>
+</div>
+<h4 id="service-roles"><span class="enumerate-heading-plugin">4.1.2.4</span> Service roles<a class="headerlink" href="#service-roles" title="Permanent link">¶</a></h4>
+<p>Service roles apply to SystemLink managed systems and analysis routines executed by <strong>Analysis Automation</strong>. Systems are always automatically assigned the built-in <strong>Automated Agent</strong> role. Analysis Automation routines can be configured to run with the built-in <strong>Automated Agent</strong> role, a user defined service role, with the privileges of the user initiating the analysis task, or with the TDM user (a Windows user on the SystemLink app server defined in <strong>NI SystemLink TDM Configuration</strong>).</p>
+<p>Any custom role may be configured to be a service role at creation by toggling the <strong>Service role</strong> checkbox in the role configuration slide out. This cannot be changed after role creation. There are no restrictions on the privileges that may be applied to the role. It exists to signal to various SystemLink UIs what roles can be assigned to users and what roles can be assigned the systems and analysis routines. This forces the user to curtail roles appropriately to each scenario and avoid the proliferation of roles that grant greater access than is necessary to a user, system, or analysis routine.</p>
+<figure>
+<img src="../../img/service-role.png" width="500"/>
+<figcaption>A role configured to be a <b>Service role.</b></figcaption>
+</figure>
+<h3 id="automatic-data-encapsulation"><span class="enumerate-heading-plugin">4.1.3</span> Automatic Data Encapsulation<a class="headerlink" href="#automatic-data-encapsulation" title="Permanent link">¶</a></h3>
+<p>When a system is added to SystemLink the user must choose which workspace the system will reside. The workspaces available to the user is determined by both their workspace membership and <strong>Add systems</strong> privilege. Once added to a workspace, data produced by the system will automatically be stored in the same workspace as the system. This capability allows users to develop workspace agnostic test applications. Changing workspaces does require changes or redeployment of test application. This is especially helpful when in scenarios such as production verification where the test application cannot change between validation and production but the validation data produced must be kept separate from production data.</p>
+<div class="admonition note">
+<p class="admonition-title">Systems job history, asset and tag data</p>
+<p>When a system is added to a workspace all its connected assets are also added to the same workspace. When a system is moved to another workspace its assets and job history are also moved. This is not the case with tags and tag history published by the system. These will be left in the original workspace and new tags are created in the new workspace.</p>
+</div>
+<h2 id="mapping-users-to-roles-in-workspaces"><span class="enumerate-heading-plugin">4.2</span> Mapping users to roles in workspaces<a class="headerlink" href="#mapping-users-to-roles-in-workspaces" title="Permanent link">¶</a></h2>
+<p>Users are added to a workspace and assigned a role through a process called <a href="https://www.ni.com/documentation/en/systemlink/latest/setup/mapping-roles/"><em>workspace and role mapping</em></a>. The process is driven by metadata provided by the identity provider (IdP) user to authenticate users for SystemLink: <a href="/openid-connect/openid-connect/#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles">OpenID Connect</a>, <a href="/ldap/ldap/#mapping-ldap-groups-users-and-attributes-to-workspaces-and-roles">LDAP</a>, Active Directory, or local Windows accounts. Refer to the documentation for each of the IdP types for details on how to configure workspace and role mapping. By using metadata from an IdP you can create mappings that on-board large numbers of users into SystemLink using existing Active Directory and LDAP groups and OpenID Connect claims.</p>
+<hr/>
+<div class="md-source-date">
+<small>
+    
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 19, 2021</span>
+</small>
+</div>
+</article>
+</div>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-nav">
+<nav aria-label="Footer" class="md-footer-nav__inner md-grid">
+<a class="md-footer-nav__link md-footer-nav__link--prev" href="../../openid-connect/openid-connect/" rel="prev" title="Single Sign-on with OpenID Connect">
+<div class="md-footer-nav__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
+</div>
+<div class="md-footer-nav__title">
+<div class="md-ellipsis">
+<span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Single Sign-on with OpenID Connect
+              </div>
+</div>
+</a>
+</nav>
+</div>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-footer-copyright">
+<div class="md-footer-copyright__highlight">
+            Copyright © 2020 National Instruments Corporation
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+          Material for MkDocs
+        </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src="../../assets/javascripts/vendor.3636a4ec.min.js"></script>
+<script src="../../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+<script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+</body>
+</html>
