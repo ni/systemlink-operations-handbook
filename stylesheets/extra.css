@@ -10,6 +10,8 @@
   --md-accent-bg-color:              #f1f1f2;
   --md-accent-bg-color--light:       #fff;
 
+  --md-default-bg-color--transparent: rgba(255, 255, 255, 0.1);
+
   --md-footer-bg-color:              #cddcc8;
   --md-footer-bg-color--dark:        #034123;
   --md-footer-fg-color:              #034123;
@@ -144,4 +146,17 @@ kbd {
 
 .md-typeset .note > .admonition-title::before {
   background-color: var(--md-primary-fg-color--light);
+}
+
+.md-typeset details {
+  border-color: var(--md-accent-fg-color);
+}
+
+.md-typeset summary {
+  background-color: var(--md-default-bg-color--transparent);
+  padding: 0.4rem 1.8rem 0.4rem 0.6rem;
+}
+
+.md-typeset summary::before {
+  display: none;
 }
