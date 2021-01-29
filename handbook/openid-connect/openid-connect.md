@@ -148,10 +148,22 @@ The client configuration for your provider requires a redirect URL that is used 
 #### The SystemLink login redirect URL
 
 !!! note ""
-    Use the following URL to configure your provider:
+    Use the following URL to configure the login redirect url for your provider:
 
     ```url
     [protocol]://[systemlink-dns]/login/openidc-redirect
+
+    ```
+
+#### The SystemLink front channel logout URL
+
+This configuration is optional for OpenID Connect providers who support front channel logout.
+
+!!! note ""
+    Use the following URL to configure the front channel logout URL your provider:
+
+    ```url
+    [protocol]://[systemlink-dns]/login/openidc-redirect?logout=get
 
     ```
 
