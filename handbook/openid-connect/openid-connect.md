@@ -247,7 +247,7 @@ You can also view claims returned by a particular user by modifying the httpd co
 4. Go to `[protocol]://[systemlink-dns]/login/openidc-redirect?info=html` or `[protocol]://[systemlink-dns]/login/openidc-redirect?info=json` to view user claims.
 
 !!! note ""
-    An example `50_mod_auth_openidc-defines.conf` modified to expose user claims. You must be logged via OpenID Connect to receive data this endpoint.
+    An example `50_mod_auth_openidc-defines.conf` modified to expose user claims. You must be logged via OpenID Connect to receive data from this endpoint.
     ```conf
     #
     # Defined OpenID-Connect configuration for the Windows Apache installation.
