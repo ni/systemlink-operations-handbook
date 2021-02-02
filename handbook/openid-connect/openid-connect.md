@@ -343,7 +343,7 @@ The following sources can be used to troubleshoot a failed connection.
 
 !!! note
     SystemLink uses log rotation. Look for 'error.current.log' to find the latest errors. If your version of the server does
-    not have an 'error.current.log' file, find the latest errors by locating the numbered 'error.log' file with the latest modified date.
+    not have an 'error.current.log' file, find the latest errors by locating the numbered 'error.log' file with the most recent modified date.
 
 **Returned Claims:** See [**Viewing Claims Returned by a Provider**](#viewing-claims-returned-by-a-provider).
 
