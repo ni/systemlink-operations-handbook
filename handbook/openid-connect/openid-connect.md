@@ -342,7 +342,8 @@ The following sources can be used to troubleshoot a failed connection.
 **NI Web Server Logs:** These are found at `C:\ProgramData\National Instruments\Web Server\logs\error.log`.
 
 !!! note
-    SystemLink uses log rotation therefore the latest logs may be in one of the numbered `error.log` files.
+    SystemLink uses log rotation. Look for 'error.current.log' to find the latest errors. If your version of the server does
+    not have an 'error.current.log' file, find the latest errors by locating the numbered 'error.log' file with the latest modified date.
 
 **Returned Claims:** See [**Viewing Claims Returned by a Provider**](#viewing-claims-returned-by-a-provider).
 
