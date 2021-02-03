@@ -148,10 +148,22 @@ The client configuration for your provider requires a redirect URL that is used 
 #### The SystemLink login redirect URL
 
 !!! note ""
-    Use the following URL to configure your provider:
+    Use the following URL to configure the login redirect url for your provider:
 
     ```url
     [protocol]://[systemlink-dns]/login/openidc-redirect
+
+    ```
+
+#### The SystemLink front channel logout URL
+
+This configuration is optional for OpenID Connect providers who support front channel logout.
+
+!!! note ""
+    Use the following URL to configure the front channel logout URL your provider:
+
+    ```url
+    [protocol]://[systemlink-dns]/login/openidc-redirect?logout=get
 
     ```
 
@@ -247,7 +259,7 @@ You can also view claims returned by a particular user by modifying the httpd co
 4. Go to `[protocol]://[systemlink-dns]/login/openidc-redirect?info=html` or `[protocol]://[systemlink-dns]/login/openidc-redirect?info=json` to view user claims.
 
 !!! note ""
-    An example `50_mod_auth_openidc-defines.conf` modified to expose user claims. You must be logged via OpenID Connect to receive data this endpoint.
+    An example `50_mod_auth_openidc-defines.conf` modified to expose user claims. You must be logged via OpenID Connect to receive data from this endpoint.
     ```conf
     #
     # Defined OpenID-Connect configuration for the Windows Apache installation.
