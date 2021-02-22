@@ -12,15 +12,17 @@ Refer to [Workspaces and Role-based Access Control](/rbac/rbac) for details secu
 </figure>
 
 !!! note
-    Refer to [Setting up a SystemLink Server](https://www.ni.com/documentation/en/systemlink/2020r4/setup/setting-up-systemlink-server/) for information regarding ports used by SystemLink. d
+    Refer to [Setting up a SystemLink Server](https://www.ni.com/documentation/en/systemlink/2020r4/setup/setting-up-systemlink-server/) for information regarding ports used by SystemLink.
 
-- **SystemLink App Server**:
+    Although AMQP is enabled by default it is not shown. Refer to [Deprecation of AMQP for details](#deprecation-of-amqp). 
+
+- **SystemLink Application Server**:
     - This Windows server hosts NI Web Server, the various SystemLink services, SystemLink web applications, and a Salt master.
-    - In the *single-box* setup, MongoDB and FIS storage are hosted on the app server.
+    - In the *single-box* setup, MongoDB and SystemLink file service storage are hosted on the application server.
     - Refer to [Sizing a SystemLink Server](https://www.ni.com/documentation/en/systemlink/2020r4/setup/sizing-a-systemlink-server/) for details on server system requirements.
-    - NI assumes users with desktop access to the server are outside of the security controls and capabilities described by this document. Securing desktop access to the SystemLink app server should be managed by the customer's IT security protocols.
+    - Securing desktop access to the application server is outside the scope of this document. Configure server access according to the IT policies of your site.
 
-- **SystemLink Web app**
+- **SystemLink Web Application**
     - The SystemLink web application is the primary way users interact with SystemLink.
     - NI recommends HTTPS for all production environments.
     - Refer to [**NI Web Server**](#ni-web-server) for details on configuring encrypted communication.
@@ -29,7 +31,7 @@ Refer to [Workspaces and Role-based Access Control](/rbac/rbac) for details secu
     - Targets are Windows and Linux RT systems who software and configuration are managed by SystemLink.
     - Software configuration occurs via the [SaltStack Transport Protocol](https://docs.saltproject.io/en/latest/topics/transports/).
         - Refer to [**Target to SystemLink Communication**](#target-to-systemlink-communication) for details regarding how SystemLink encrypts this communication.
-    - File, tag, test, and asset data are published to the SystemLink app server over HTTPS.
+    - File, tag, test, and asset data are published to the SystemLink application server over HTTPS.
 
 - **MongoDB**
     - MongoDB is the primary database used by SystemLink's web services.
@@ -37,7 +39,7 @@ Refer to [Workspaces and Role-based Access Control](/rbac/rbac) for details secu
     - Refer to [TLS for Remote MongoDB Instances](#tls-for-remote-mongodb-instances) for details on enabling TLS communication.
 
 - **File Ingestion Service Storage**
-    - The File Ingestion Services (FIS) can be configured to store files on either Network Attached Storage (NAS) or AWS S3.
+    - The SystemLink file service can be configured to store files on either Network Attached Storage (NAS) or AWS S3.
     - NAS uses the SMB protocol.
         - The SMB protocol can be configured to use AES encryption. Refer to [SMB security enhancements](https://docs.microsoft.com/en-us/windows-server/storage/file-server/smb-security) for details and steps to secure this transport.
     - AWS S3 uses HTTPS.
@@ -48,9 +50,9 @@ Refer to [Workspaces and Role-based Access Control](/rbac/rbac) for details secu
     - DataFinder's network communication cannot be secured with TLS.
 
 - **Identity Provider**
-    - Active Directory, LDAP, and OpenID Connect are the supported identity providers.
-        - Local Windows account may also be used (not shown)
-        - Active Directory used the Active Directory protocol.
+    - Active Directory, LDAP, and OpenID Connect are supported identity providers.
+        - Local Windows account may also be used (not shown).
+        - Active Directory uses the Active Directory protocol.
         - LDAP uses the `ldap` or the `ldaps` protocols.
         - OpenID Connect uses HTTP or HTTPS. Refer to your OpenID Connect Provider's documentation on steps to enable HTTPS communication.
     - Refer to [Sign-on with LDAP](/ldap/ldap/). and [Single Sign-on with OpenID Connect](/openid-connect/openid-connect/) for details on setting up these identity providers.
@@ -80,14 +82,14 @@ NI Web Server supports TLS 1.2.
 
 !!! note "Limited capabilities when using self-signed certificates"
 
-    When using a self-signed certificates, clients will not trust the  by default. This can prevent some operations from occurring.
+    Clients will not trust self-signed certificates by default. This can prevent some operations from occurring.
 
     - Web browsers will not trust the certificate and the user must grant an exception to load the SystemLink web application.
 
     - Packages built in LabVIEW cannot be [automatically published](https://www.ni.com/documentation/en/systemlink/latest/deployment/creating-packages-labview-package-builder/) to SystemLink server.
 
     - The LabVIEW Client API will have to explicitly disable verify server checks to communicate with the server.
-        - Refer to [Open Configuration ](https://www.ni.com/documentation/en/systemlink/latest/systemlink-labview-node-ref/open-configuration-http-auto/) to details on this setting.
+        - Refer to [Open Configuration](https://www.ni.com/documentation/en/systemlink/latest/systemlink-labview-node-ref/open-configuration-http-auto/) to details on this setting.
 
 When you have received a certificate from an certificate signing authority, you can use **NI Web Server Configuration** to install the certificate.
 
@@ -106,15 +108,15 @@ When you have received a certificate from an certificate signing authority, you 
 7. Click **Apply and restart**.
 
 !!! note "TLS certificates with application load balancers"
-    If you have a load balancer in front of your SystemLink app server you must ensure the same certificate is installed on both the load balancer and NI Web Server for targets to successfully connect and publish data to SystemLink.
+    If you have a load balancer in front of your SystemLink application server you must ensure the same certificate is installed on both the load balancer and NI Web Server for targets to successfully connect and publish data to SystemLink.
 
 ### DNS Configuration
 
-SystemLink and NI Web Server do not ship with a DNS server. NI presumes you will provide a DNS server to be used in your environment. NI Web Server will attempt to provide a default for the DNS of your SystemLink server based on Windows OS settings. Other valid DNS names are listed in the **Preferred host name for generated URLs and certificates** combo box. You may also manually additional hostnames as needed. As the name of the combo box implies, this setting must match the host name in your TLS certificates. If an invalid hostname is provided data from managed targets will not be published.
+SystemLink and NI Web Server do not ship with a DNS server. NI presumes you will provide a DNS server to be used in your environment. NI Web Server will attempt to provide a default for the DNS of your SystemLink server based on Windows OS settings. Other valid DNS names are listed in the **Preferred host name for generated URLs and certificates** combo box. You may also manually add hostnames as needed. As the name of the combo box implies, this setting must match the host name in your TLS certificates and your [OpenID Connect redirect URI configuration](/openid-connect/openid-connect/#setting-login-redirect-uri). If an invalid hostname is provided data from managed targets will not be published.
 
-### CORS and Remote Connections
+### Cross Origin Resource Sharing and Remote Connections
 
-NI recommends disabling CORS in production environments to achieve a higher degree of security. In practice, CORS may need to be enabled to facilitate workflows for users developing web applications that interact with SystemLink's API. For this scenario, NI recommends setting up a *test* SystemLink server with CORS enabled.
+NI recommends disabling Cross Origin Resource Sharing (CORS) in production environments to achieve a higher degree of security. In practice, CORS may need to be enabled to facilitate workflows for users developing web applications that interact with SystemLink's API. For this scenario, NI recommends setting up a *test* SystemLink server with CORS enabled.
 
 NI Web Server Configuration exposes settings for choosing a remote connection and automatically sets Windows Firewall rules. This ensures connections may only be established by clients on your preferred network.
 
@@ -124,10 +126,10 @@ Refer to [Choosing Remote Settings](https://www.ni.com/documentation/en/ni-web-s
 
 Test Systems communicate with SystemLink over HTTP(S) and the SaltStack TCP protocol. Refer to the SystemLink manual for prerequisites and steps to add a [Linux RT]((https://www.ni.com/documentation/en/systemlink/latest/setup/setting-up-systemlink-client-linux/)) or [Windows](https://www.ni.com/documentation/en/systemlink/latest/setup/setting-up-systemlink-client-windows/) target to your SystemLink server.
 
-Data published over HTTPS includes tags, files (FIS), assets, and test results. Salt jobs and pillars communicate over the AES encrypted Salt TCP transport. Salt jobs are used for installing software and changing target configuration from SystemLink server. Salt pillars are used to transfer credentials and certificates. The certificates used on the SystemLink server and target nodes are managed by Salt and do not require administrators to externally manage these certificates. Refer to SaltStack's [documentation](https://docs.saltproject.io/en/getstarted/system/communication.html) for an overview of the Salt TCP Transport.
+Data published over HTTPS includes tags, files, assets, and test results. Salt jobs and pillars communicate over the AES encrypted Salt TCP transport. Salt jobs are used for installing software and changing target configuration from SystemLink server. Salt pillars are used to transfer credentials and certificates. The certificates used on the SystemLink server and target nodes are managed by Salt and do not require administrators to externally manage these certificates. Refer to SaltStack's [documentation](https://docs.saltproject.io/en/getstarted/system/communication.html) for an overview of the Salt TCP Transport.
 
 !!! note "Managed NI LinuxRT Nodes"
-    NI recommendations changing the default username and password on the target. These credentials are required to SSH into the target. These credentials are required when a SystemLink server adds a Linux RT target to its collection of managed systems.
+    NI recommends assigning a strong password for the *admin* user on the target. These credentials are required to SSH into the target. These credentials are also required when a SystemLink server adds a Linux RT target to its collection of managed systems.
 
 When a target is approved by SystemLink and becomes a managed node, SystemLink securely transfers configuration, certificates, and credentials needed to authenticate with the SystemLink server's [role-based access control system](/rbac/rbac/). SystemLink client APIs include an [Auto configuration VI](https://www.ni.com/documentation/en/systemlink/latest/systemlink-labview-node-ref/open-configuration-http-auto/) that automatically consumes these credentials. This prevents the need to include credentials and other secrets in your test application code.
 
@@ -181,9 +183,9 @@ Refer, to the [MongoDB manual](https://docs.mongodb.com/manual/appendix/security
 
 #### Installing MongoDB Self-Signed certificates
 
-If you are using a self signed certificate on your `mongod` instance you must install the certificate authority (CA) certificate and intermediary certificate into the SystemLink app server.
+If you are using a self signed certificate on your `mongod` instance you must install the certificate authority (CA) certificate and intermediary certificate into the SystemLink application server.
 
-1. Copy the CA and intermediary `.crt` files to your SystemLink app server.
+1. Copy the CA and intermediary `.crt` files to your SystemLink application server.
 
 2. Double click on the CA certificate and click **Install certificate...**.
 
