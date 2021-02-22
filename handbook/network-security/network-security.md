@@ -4,6 +4,24 @@ SystemLink connects test systems to a central server to aggregate data for monit
 
 Refer to [Workspaces and Role-based Access Control](/rbac/rbac) for details secure user interactions with SystemLink resources. Refer to [Single Sign-on with OpenID Connect](/openid-connect/openid-connect/) and [Sign on with LDAP](/ldap/ldap/) for details on securely authenticating with SystemLink.
 
+## Summary of SystemLink Network Security Best Practices
+
+- Configure NI Web Server to use TLS/HTTPS.
+
+- Use firewalls to restrict open ports to only those needed by your environment.
+
+- Do not expose Salt ports on the SystemLink server to the public internet.
+
+- Disable Cross Origin Resource Sharing.
+
+- Use LDAPS for communication between your SystemLink server and LDAP server.
+
+- Use HTTPS for communication between your SystemLink server and OpenID Connect provider.
+
+- If using a remotely connected MongoDB instances, configure this instance to use TLS communication.
+
+- Disable AMQP for client access
+
 ## Network diagram
 
 <figure>
@@ -181,7 +199,7 @@ Refer, to the [MongoDB manual](https://docs.mongodb.com/manual/appendix/security
         timeZoneInfo: /usr/share/zoneinfo
     ```
 
-#### Installing MongoDB Self-Signed certificates
+### Installing MongoDB Self-Signed certificates
 
 If you are using a self signed certificate on your `mongod` instance you must install the certificate authority (CA) certificate and intermediary certificate into the SystemLink application server.
 
@@ -224,4 +242,4 @@ AMQP as a transport protocol for target-to-server communication is deprecated in
 
 2. Go to **Security**.
 
-3. Uncheck **Enable AMQP client access (less secure).
+3. Uncheck **Enable AMQP client access (less secure)**.
