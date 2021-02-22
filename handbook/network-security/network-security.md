@@ -133,7 +133,7 @@ When a target is approved by SystemLink and becomes a managed node, SystemLink s
 
 !!! warn "Do not expose Salt ports to the public internet"
 
-    Due to the capabilities of Salt, users are encourage to configure firewalls and appropriate CIDR blocks to prevent exposing Salt ports (4505 and 4506) to the public internet.
+    Due to the capabilities of Salt, users are encouraged to configure firewalls and appropriate CIDR blocks to prevent exposing Salt ports (4505 and 4506) to the public internet.
 
 ## TLS for remote MongoDB Instances
 
@@ -183,7 +183,7 @@ Refer, to the [MongoDB manual](https://docs.mongodb.com/manual/appendix/security
 
 If you are using a self signed certificate on your `mongod` instance you must install the certificate authority (CA) certificate and intermediary certificate into the SystemLink app server.
 
-1. Copy the CA and intermediary `.crt` files to you SystemLink app server.
+1. Copy the CA and intermediary `.crt` files to your SystemLink app server.
 
 2. Double click on the CA certificate and click **Install certificate...**.
 
@@ -205,18 +205,18 @@ If you are using a self signed certificate on your `mongod` instance you must in
 
 8. In the **Store Location** field select the **Local Machine** radio button and click **Next**.
 
-9. Select the **Place all certificate in the following store** radio button.
+9. Select the **Place all certificates in the following store** radio button.
 
 10. Click **Browse**, select **Intermediate certificate Authorities** and click **OK**
 
 11. Click **Next**, review the settings, and click **Finish** to install the certificate.
 
 !!! note
-    Ensure you have checked the **Use Transport Layer Security (TLS) encryption** in the **NoSqlDatabase** section of the **SystemLink Server Configuration** application.
+    Ensure check the **Use Transport Layer Security (TLS) encryption** in the **NoSqlDatabase** section of the **SystemLink Server Configuration** application.
 
 ## Deprecation of AMQP
 
-AMQP as a transport protocol for target to server communication is deprecated in favor for HTTP(S). NI recommends disabling AMQP on the server and updating test applications to use the HTTP version of SystemLink APIs.
+AMQP as a transport protocol for target-to-server communication is deprecated in favor for HTTP(S). NI recommends disabling AMQP on the server and updating test applications to use the HTTP version of SystemLink APIs.
 
 1. Open **NI SystemLink Server Configuration**.
 
