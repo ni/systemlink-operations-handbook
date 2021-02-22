@@ -1,0 +1,700 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="https://operations.systemlink.io/network-security/network-security/" rel="canonical"/>
+<link href="../../img/favicon.ico" rel="shortcut icon"/>
+<meta content="mkdocs-1.1.2, mkdocs-material-5.5.12" name="generator"/>
+<title>Network Security - SystemLink Operations Handbook</title>
+<link href="../../assets/stylesheets/main.4dd2dd8d.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.6a5ad368.min.css" rel="stylesheet"/>
+<link href="../../stylesheets/extra.css" rel="stylesheet"/>
+</head>
+<body data-md-color-accent="" data-md-color-primary="" data-md-color-scheme="ni" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#network-security">2. 
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header-nav md-grid">
+<a aria-label="SystemLink Operations Handbook" class="md-header-nav__button md-logo" href="https://operations.systemlink.io" title="SystemLink Operations Handbook">
+<svg style="enable-background:new 0 0 32 32;" version="1.1" viewbox="0 0 32 32" x="0px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" y="0px">
+<style type="text/css">
+	.st0{fill:#044123;}
+	.st1{fill:#FFFFFF;}
+	.st2{display:none;}
+	.st3{display:inline;fill:#D3519D;fill-opacity:0.46;}
+	.st4{display:inline;opacity:0.45;fill:#D3519D;}
+</style>
+<g id="Layer_1">
+<g>
+<path class="st0" d="M0,32V0l21.28,0C27.2,0.01,32,4.81,32,10.73V32H0z"></path>
+</g>
+<g>
+<g>
+<g>
+<g>
+<path class="st1" d="M15,17h-4c0,0,0-1.05,0-2.44c0-1.51,0.64-2.8,1.82-3.61c0.9-0.62,2.1-0.95,3.47-0.95H24v4h-7.21
+						C15.5,14,15,14.63,15,15.7C15,16.43,15,17,15,17z"></path>
+</g>
+</g>
+</g>
+<g>
+<g>
+<g>
+<path class="st1" d="M17,16h4c0,0,0,1.05,0,2.44c0,1.51-0.64,2.8-1.82,3.61c-0.9,0.62-2.1,0.95-3.47,0.95H8v-4h7.21
+						C16.5,19,17,18.37,17,17.3C17,16.57,17,16,17,16z"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g class="st2" id="Layer_2">
+<rect class="st3" height="16" width="16" x="8" y="8"></rect>
+</g>
+</svg>
+</a>
+<label class="md-header-nav__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"></path></svg>
+</label>
+<div class="md-header-nav__title" data-md-component="header-title">
+<div class="md-header-nav__ellipsis">
+<span class="md-header-nav__topic md-ellipsis">
+            SystemLink Operations Handbook
+          </span>
+<span class="md-header-nav__topic md-ellipsis">
+            
+              Network Security
+            
+          </span>
+</div>
+</div>
+<label class="md-header-nav__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" data-md-state="active" name="query" placeholder="Search" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
+</label>
+<button aria-label="Clear" class="md-search__icon md-icon" data-md-component="search-reset" tabindex="-1" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>
+</button>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header-nav__source">
+<a class="md-source" href="https://github.com/ni/systemlink-operations-handbook/" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+    Table of Contents
+  </label>
+<div class="md-nav__source">
+<a class="md-source" href="https://github.com/ni/systemlink-operations-handbook/" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../.." title="Introduction">
+      1. Introduction
+    </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+        2. Network Security
+        <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./" title="Network Security">
+      2. Network Security
+    </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Network Security
+    </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#summary-of-systemlink-network-security-best-practices">2.1 
+    Summary of SystemLink Network Security Best Practices
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#network-diagram">2.2 
+    Network diagram
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ni-web-server">2.3 
+    NI Web Server
+  </a>
+<nav aria-label="NI Web Server" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#https-in-ni-web-server">2.3.1 
+    HTTPS in NI Web Server
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dns-configuration">2.3.2 
+    DNS Configuration
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#cross-origin-resource-sharing-and-remote-connections">2.3.3 
+    Cross Origin Resource Sharing and Remote Connections
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#target-to-systemlink-communication">2.4 
+    Target to SystemLink communication
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tls-for-remote-mongodb-instances">2.5 
+    TLS for remote MongoDB Instances
+  </a>
+<nav aria-label="TLS for remote MongoDB Instances" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#connecting-to-mongodb-using-self-signed-certificates">2.5.1 
+    Connecting to MongoDB Using Self-signed certificates
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#installing-mongodb-self-signed-certificates">2.5.2 
+    Installing MongoDB Self-Signed certificates
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#deprecation-of-amqp">2.6 
+    Deprecation of AMQP
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../rbac/rbac/" title="Workspaces and Role-based Access Control">
+      3. Workspaces and Role-based Access Control
+    </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../openid-connect/openid-connect/" title="Single Sign-on with OpenID Connect">
+      4. Single Sign-on with OpenID Connect
+    </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../ldap/ldap/" title="Sign on with LDAP">
+      5. Sign on with LDAP
+    </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../python-dataplugins/python-dataplugins/" title="Python DataPlugins">
+      6. Python DataPlugins
+    </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Network Security
+    </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#summary-of-systemlink-network-security-best-practices">2.1 
+    Summary of SystemLink Network Security Best Practices
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#network-diagram">2.2 
+    Network diagram
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ni-web-server">2.3 
+    NI Web Server
+  </a>
+<nav aria-label="NI Web Server" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#https-in-ni-web-server">2.3.1 
+    HTTPS in NI Web Server
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#dns-configuration">2.3.2 
+    DNS Configuration
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#cross-origin-resource-sharing-and-remote-connections">2.3.3 
+    Cross Origin Resource Sharing and Remote Connections
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#target-to-systemlink-communication">2.4 
+    Target to SystemLink communication
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tls-for-remote-mongodb-instances">2.5 
+    TLS for remote MongoDB Instances
+  </a>
+<nav aria-label="TLS for remote MongoDB Instances" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#connecting-to-mongodb-using-self-signed-certificates">2.5.1 
+    Connecting to MongoDB Using Self-signed certificates
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#installing-mongodb-self-signed-certificates">2.5.2 
+    Installing MongoDB Self-Signed certificates
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#deprecation-of-amqp">2.6 
+    Deprecation of AMQP
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/ni/systemlink-operations-handbook/edit/master/handbook/network-security/network-security.md" title="Edit this page">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"></path></svg>
+</a>
+<h1 id="network-security"><span class="enumerate-heading-plugin">2.</span> Network Security<a class="headerlink" href="#network-security" title="Permanent link">¶</a></h1>
+<p>SystemLink connects test systems to a central server to aggregate data for monitoring and analysis. SystemLink uses industry standard tools and best practices to ensure the SystemLink server and test systems utilize secure networking techniques.</p>
+<p>Refer to <a href="/rbac/rbac">Workspaces and Role-based Access Control</a> for details secure user interactions with SystemLink resources. Refer to <a href="/openid-connect/openid-connect/">Single Sign-on with OpenID Connect</a> and <a href="/ldap/ldap/">Sign on with LDAP</a> for details on securely authenticating with SystemLink.</p>
+<h2 id="summary-of-systemlink-network-security-best-practices"><span class="enumerate-heading-plugin">2.1</span> Summary of SystemLink Network Security Best Practices<a class="headerlink" href="#summary-of-systemlink-network-security-best-practices" title="Permanent link">¶</a></h2>
+<ul>
+<li>
+<p>Use firewalls to restrict open ports to only those needed by your environment.</p>
+<ul>
+<li>Do not expose Salt ports on the SystemLink server to the public internet.</li>
+</ul>
+</li>
+<li>
+<p>Configure NI Web Server to use HTTPS.</p>
+</li>
+<li>
+<p>Disable Cross Origin Resource Sharing.</p>
+</li>
+<li>
+<p>Use LDAPS for communication between your SystemLink server and LDAP server.</p>
+</li>
+<li>
+<p>Use HTTPS for communication between your SystemLink server and OpenID Connect provider.</p>
+</li>
+<li>
+<p>If using a remotely connected MongoDB instances, configure this instance to use TLS communication.</p>
+</li>
+<li>
+<p>Disable AMQP for client access.</p>
+</li>
+</ul>
+<h2 id="network-diagram"><span class="enumerate-heading-plugin">2.2</span> Network diagram<a class="headerlink" href="#network-diagram" title="Permanent link">¶</a></h2>
+<figure>
+<img src="../../img/network-diagram.png" width="500"/>
+<figcaption>The networked components and encrypted protocols used by SystemLink.</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Refer to <a href="https://www.ni.com/documentation/en/systemlink/2020r4/setup/setting-up-systemlink-server/">Setting up a SystemLink Server</a> for information regarding ports used by SystemLink.</p>
+<p>Although AMQP is enabled by default it is not shown. Refer to <a href="#deprecation-of-amqp">2.6 Deprecation of AMQP for details</a>. </p>
+</div>
+<ul>
+<li>
+<p><strong>SystemLink Application Server</strong>:</p>
+<ul>
+<li>This Windows server hosts NI Web Server, the various SystemLink web services, SystemLink web applications, and a Salt master.</li>
+<li>In the <em>single-box</em> setup, MongoDB and SystemLink file service storage are hosted on the application server.</li>
+<li>Refer to <a href="https://www.ni.com/documentation/en/systemlink/2020r4/setup/sizing-a-systemlink-server/">Sizing a SystemLink Server</a> for details on server system requirements.</li>
+<li>Securing desktop access to the application server is outside the scope of this document. Configure server access according to the IT policies of your site.</li>
+</ul>
+</li>
+<li>
+<p><strong>SystemLink Web Application</strong></p>
+<ul>
+<li>The SystemLink web application is the primary way users interact with SystemLink.</li>
+<li>NI recommends HTTPS for all production environments.</li>
+<li>Refer to <a href="#ni-web-server">2.3 <strong>NI Web Server</strong></a> for details on configuring encrypted communication.</li>
+</ul>
+</li>
+<li>
+<p><strong>Targets</strong></p>
+<ul>
+<li>Targets are Windows and Linux RT systems who software and configuration are managed by SystemLink.</li>
+<li>Software configuration occurs via the <a href="https://docs.saltproject.io/en/latest/topics/transports/">SaltStack Transport Protocol</a>.<ul>
+<li>Refer to <a href="#target-to-systemlink-communication">2.4 <strong>Target to SystemLink Communication</strong></a> for details regarding how SystemLink encrypts this communication.</li>
+</ul>
+</li>
+<li>File, tag, test, and asset data are published to the SystemLink application server over HTTPS.</li>
+</ul>
+</li>
+<li>
+<p><strong>MongoDB</strong></p>
+<ul>
+<li>MongoDB is the primary database used by SystemLink's web services.</li>
+<li>The <a href="https://docs.mongodb.com/manual/reference/mongodb-wire-protocol/">MongoDB wire protocol</a> is used to communicate with the MongoDB instance.</li>
+<li>Refer to <a href="#tls-for-remote-mongodb-instances">2.5 TLS for Remote MongoDB Instances</a> for details on enabling TLS communication.</li>
+</ul>
+</li>
+<li>
+<p><strong>File Service Storage</strong></p>
+<ul>
+<li>The SystemLink file service can be configured to store files on either Network Attached Storage (NAS) or AWS S3.</li>
+<li>NAS uses the SMB protocol.<ul>
+<li>The SMB protocol can be configured to use AES encryption. Refer to <a href="https://docs.microsoft.com/en-us/windows-server/storage/file-server/smb-security">SMB security enhancements</a> for details and steps to secure this transport.</li>
+</ul>
+</li>
+<li>AWS S3 uses HTTPS.
+    Refer to the <a href="https://www.ni.com/documentation/en/systemlink/latest/data/uploading-files-to-amazon-s3/">SystemLink manual</a> for steps to enable S3 file storage.</li>
+</ul>
+</li>
+<li>
+<p><strong>Data Finder (not shown)</strong></p>
+<ul>
+<li>DataFinder enables indexing and searching for files stored on network drives.</li>
+<li>DataFinder's network communication cannot be secured with TLS.</li>
+</ul>
+</li>
+<li>
+<p><strong>Identity Provider</strong></p>
+<ul>
+<li>Active Directory, LDAP, and OpenID Connect are supported identity providers.<ul>
+<li>Local Windows account may also be used (not shown).</li>
+<li>Active Directory uses the Active Directory protocol.</li>
+<li>LDAP uses the ldap or the ldaps protocols.</li>
+</ul>
+</li>
+<li>Refer to <a href="/ldap/ldap/">Sign-on with LDAP</a>. and <a href="/openid-connect/openid-connect/">Single Sign-on with OpenID Connect</a> for details on setting up these identity providers.</li>
+</ul>
+</li>
+<li>
+<p><strong>NI VLM</strong></p>
+<ul>
+<li>NI Volume License Manager (VLM) is used to enforce SystemLink node licenses.</li>
+<li>NI VLM uses TCP and does not support encrypted communication.</li>
+<li>Refer to <a href="https://www.ni.com/documentation/en/systemlink/2020r4/setup/licensing-systemlink/">Licensing SystemLink Products</a> for details on using VLM with SystemLink.</li>
+</ul>
+</li>
+</ul>
+<h2 id="ni-web-server"><span class="enumerate-heading-plugin">2.3</span> NI Web Server<a class="headerlink" href="#ni-web-server" title="Permanent link">¶</a></h2>
+<p>NI Web Server is based on <a href="https://httpd.apache.org"><strong>Apache httpd</strong></a> and includes the <strong>NI Web Server Configuration</strong> utility to guide the selection of secure presets as well as a GUI for setting underlying Apache httpd configurations.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>NI Web Server ships with SystemLink and various other NI software products such as LabVIEW.</p>
+<p>Refer to the <a href="https://www.ni.com/documentation/en/ni-web-server/latest/manual/manual-overview/">NI Web Server manual</a> for step by step instructions to configure your web server.</p>
+</div>
+<h3 id="https-in-ni-web-server"><span class="enumerate-heading-plugin">2.3.1</span> HTTPS in NI Web Server<a class="headerlink" href="#https-in-ni-web-server" title="Permanent link">¶</a></h3>
+<p>NI Web Server supports TLS 1.2.</p>
+<p><strong>NI Web Server Configuration</strong> supports creating self-signed certificates, certificate signing requests (CSR), and installing certificates generated by a certificate authority. The DNS settings for the server can affect the operability of these certificates. Refer to <a href="#dns-configuration">2.3.2 <strong>DNS Configuration</strong></a> for details.</p>
+<div class="admonition warn">
+<p class="admonition-title">Warn</p>
+<p>Self-signed certificates should be used for testing purposes only.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Limited capabilities when using self-signed certificates</p>
+<p>Clients will not trust self-signed certificates by default. This can prevent some operations from occurring.</p>
+<ul>
+<li>
+<p>Web browsers will not trust the certificate and the user must grant an exception to load the SystemLink web application.</p>
+</li>
+<li>
+<p>Packages built in LabVIEW cannot be <a href="https://www.ni.com/documentation/en/systemlink/latest/deployment/creating-packages-labview-package-builder/">automatically published</a> to SystemLink server.</p>
+</li>
+<li>
+<p>The LabVIEW Client API must explicitly disable verify server checks to communicate with the server.</p>
+<ul>
+<li>Refer to <a href="https://www.ni.com/documentation/en/systemlink/latest/systemlink-labview-node-ref/open-configuration-http-auto/">Open Configuration</a> to details on this setting.</li>
+</ul>
+</li>
+</ul>
+</div>
+<p>When you have received a certificate from an certificate signing authority, you can use <strong>NI Web Server Configuration</strong> to install the certificate.</p>
+<ol>
+<li>
+<p>Open <strong>NI Web Sever Configuration</strong> and navigate to the <strong>HTTPS</strong> tab.</p>
+</li>
+<li>
+<p>Click the <strong>Use a certificate from a signing authority</strong> radio button.</p>
+</li>
+<li>
+<p>Expand the <strong>Install an already signed certificate</strong> section.</p>
+</li>
+<li>
+<p>Click the folder icon next to <strong>certificate file</strong> and browse to your certificate file.</p>
+</li>
+<li>
+<p>Click the folder icon next to <strong>Key file</strong> and select your key file.</p>
+</li>
+<li>
+<p>If needed change the HTTPS port from the default, 443.</p>
+</li>
+<li>
+<p>Click <strong>Apply and restart</strong>.</p>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">TLS certificates with application load balancers</p>
+<p>If you have a load balancer in front of your SystemLink application server you must ensure the same certificate is installed on both the load balancer and NI Web Server for targets to successfully connect and publish data to SystemLink.</p>
+</div>
+<h3 id="dns-configuration"><span class="enumerate-heading-plugin">2.3.2</span> DNS Configuration<a class="headerlink" href="#dns-configuration" title="Permanent link">¶</a></h3>
+<p>SystemLink and NI Web Server do not ship with a DNS server. NI assumes you will provide a DNS server for your environment. NI Web Server will provide a default for the DNS of your SystemLink server based on Windows OS settings. Other valid DNS names are listed in the <strong>Preferred host name for generated URLs and certificates</strong> combo box. You may also manually add hostnames as needed. As the name of the combo box implies, this setting must match the host name in your TLS certificates. If you are using OpenID Connect this DNS must also be used in your <a href="/openid-connect/openid-connect/#setting-login-redirect-uri">OpenID Connect redirect URI configuration</a>. If an invalid hostname is provided data from managed targets will not be received by SystemLink.</p>
+<h3 id="cross-origin-resource-sharing-and-remote-connections"><span class="enumerate-heading-plugin">2.3.3</span> Cross Origin Resource Sharing and Remote Connections<a class="headerlink" href="#cross-origin-resource-sharing-and-remote-connections" title="Permanent link">¶</a></h3>
+<p>NI recommends disabling Cross Origin Resource Sharing (CORS) in production environments. In practice, CORS may need to be enabled to facilitate workflows for users developing web applications that interact with SystemLink's API. For this scenario, NI recommends setting up a <em>test</em> SystemLink server with CORS enabled.</p>
+<p>NI Web Server Configuration exposes settings for choosing a remote connection and automatically sets Windows Firewall rules. This ensures connections may only be established by clients on your preferred network.</p>
+<p>Refer to <a href="https://www.ni.com/documentation/en/ni-web-server/latest/manual/choosing-a-remote-setting/">Choosing Remote Settings</a> for details on the various CORS and remote connection settings.</p>
+<h2 id="target-to-systemlink-communication"><span class="enumerate-heading-plugin">2.4</span> Target to SystemLink communication<a class="headerlink" href="#target-to-systemlink-communication" title="Permanent link">¶</a></h2>
+<p>Test Systems communicate with SystemLink over HTTP(S) and the SaltStack TCP protocol. Refer to the SystemLink manual for prerequisites and steps to add a <a href="(https://www.ni.com/documentation/en/systemlink/latest/setup/setting-up-systemlink-client-linux/)">Linux RT</a> or <a href="https://www.ni.com/documentation/en/systemlink/latest/setup/setting-up-systemlink-client-windows/">Windows</a> target to your SystemLink server.</p>
+<p>Data published over HTTPS includes tags, files, assets, and test results. Salt jobs and pillars communicate over the AES encrypted Salt TCP transport. Salt jobs are used for installing software and changing target configuration from SystemLink server. Salt pillars are used to transfer credentials and certificates. The certificates used on the SystemLink server and target nodes are managed by Salt and do not require administrators to explicitly manage these certificates. Refer to SaltStack's <a href="https://docs.saltproject.io/en/getstarted/system/communication.html">documentation</a> for an overview of the Salt TCP Transport.</p>
+<div class="admonition note">
+<p class="admonition-title">Managed NI LinuxRT Nodes</p>
+<p>NI recommends assigning a strong password for the <em>admin</em> user on the target. These credentials are required to SSH into the target. These credentials are also required when a SystemLink server adds a Linux RT target to its collection of managed systems.</p>
+</div>
+<p>When a target is approved by SystemLink and becomes a managed node, SystemLink securely transfers configuration, certificates, and credentials needed to authenticate with the SystemLink server's <a href="/rbac/rbac/">role-based access control system</a>. SystemLink client APIs include an <a href="https://www.ni.com/documentation/en/systemlink/latest/systemlink-labview-node-ref/open-configuration-http-auto/">Auto configuration VI</a> that automatically consumes these credentials. This prevents the need to include credentials and other secrets in your test application code.</p>
+<div class="admonition warn">
+<p class="admonition-title">Do not expose Salt ports to the public internet</p>
+<p>Due to the capabilities of Salt, users should configure firewalls and appropriate CIDR blocks to prevent exposing Salt ports (4505 and 4506) to the public internet.</p>
+</div>
+<h2 id="tls-for-remote-mongodb-instances"><span class="enumerate-heading-plugin">2.5</span> TLS for remote MongoDB Instances<a class="headerlink" href="#tls-for-remote-mongodb-instances" title="Permanent link">¶</a></h2>
+<p>MongoDB support TLS connections. Refer to the <a href="https://docs.mongodb.com/manual/tutorial/configure-ssl/">MongoDB manual</a> for details on enabling TLS. NI recommends enabling TLS for remote MongoDB connections.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>SystemLink does not support <code>mongod</code> instances configured with <a href="https://docs.mongodb.com/manual/tutorial/configure-x509-client-authentication/">client certificate validation</a>. Ensure your <code>mongod</code> is started without this requirement to allow SystemLink to successfully connect.</p>
+</div>
+<h3 id="connecting-to-mongodb-using-self-signed-certificates"><span class="enumerate-heading-plugin">2.5.1</span> Connecting to MongoDB Using Self-signed certificates<a class="headerlink" href="#connecting-to-mongodb-using-self-signed-certificates" title="Permanent link">¶</a></h3>
+<div class="admonition warn mongodb with self-signed certificates">
+<p class="admonition-title">Warn</p>
+<p>Self-signed certificates should be used for testing purposes only.</p>
+</div>
+<p>Refer, to the <a href="https://docs.mongodb.com/manual/appendix/security/appendixA-openssl-ca/">MongoDB manual</a> for steps to create and run <code>mongod</code> with a self-signed certificate. The following refers to certificate names created by following MongoDBs documentation.</p>
+<div class="admonition note">
+<p class="admonition-title">Running MongoDB without Client certificate validation</p>
+<p>Option 1: Start <code>mongod</code> with command line arguments
+<div class="highlight"><pre><span></span><code>mongod --tlsMode requireTLS --tlscertificateKeyFile /etc/ssl/test-server1.pem --port <span class="m">27017</span> --dbpath /var/lib/mongo --bind_ip_all
+</code></pre></div></p>
+<p>Option 2: Start <code>mongod</code> with a Mongo Configuration file
+<div class="highlight"><pre><span></span><code><span class="nt">net</span><span class="p">:</span>
+    <span class="nt">port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">27017</span>
+    <span class="nt">bindIp</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.0.0.0</span>
+    <span class="nt">tls</span><span class="p">:</span>
+        <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">requireTLS</span>
+        <span class="nt">certificateKeyFile</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/etc/ssl/test-server1.pem</span>
+<span class="nt">systemLog</span><span class="p">:</span>
+    <span class="nt">destination</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">file</span>
+    <span class="nt">logAppend</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/var/log/mongodb/mongod.log</span>
+<span class="nt">storage</span><span class="p">:</span>
+    <span class="nt">dbPath</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/var/lib/mongo</span>
+    <span class="nt">journal</span><span class="p">:</span>
+        <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">processManagement</span><span class="p">:</span>
+    <span class="nt">fork</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>  <span class="c1">#fork and run in background</span>
+    <span class="nt">pidFilePath</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/var/run/mongodb/mongod.pid</span>  <span class="c1"># location of pidfile</span>
+    <span class="nt">timeZoneInfo</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/usr/share/zoneinfo</span>
+</code></pre></div></p>
+</div>
+<h3 id="installing-mongodb-self-signed-certificates"><span class="enumerate-heading-plugin">2.5.2</span> Installing MongoDB Self-Signed certificates<a class="headerlink" href="#installing-mongodb-self-signed-certificates" title="Permanent link">¶</a></h3>
+<p>If you are using a self-signed certificate on your <code>mongod</code> instance you must install the certificate authority (CA) certificate and intermediary certificate into the SystemLink application server.</p>
+<ol>
+<li>
+<p>Copy the CA and intermediary <code>.crt</code> files to your SystemLink application server.</p>
+</li>
+<li>
+<p>Double click on the CA certificate and click <strong>Install certificate...</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you are following the <a href="https://docs.mongodb.com/manual/appendix/security/appendixA-openssl-ca/">MongoDB manual appendix</a> this file is named <code>mongodb-test-ca.crt</code>.</p>
+</div>
+</li>
+<li>
+<p>In the <strong>Store Location</strong> field select the <strong>Local Machine</strong> radio button and click <strong>Next</strong>.</p>
+</li>
+<li>
+<p>Select the <strong>Place all certificate in the following store</strong> radio button.</p>
+</li>
+<li>
+<p>Click <strong>Browse</strong>, select <strong>Trusted Root Certificate Authorities</strong> and click <strong>OK</strong></p>
+</li>
+<li>
+<p>Click <strong>Next</strong>, review the settings, and click <strong>Finish</strong> to install the certificate.</p>
+</li>
+<li>
+<p>Double click on the intermediary certificate and click <strong>Install certificate...</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you are following the <a href="https://docs.mongodb.com/manual/appendix/security/appendixA-openssl-ca/">MongoDB manual appendix</a> this file is named <code>mongodb-test-ia.crt</code>.</p>
+</div>
+</li>
+<li>
+<p>In the <strong>Store Location</strong> field select the <strong>Local Machine</strong> radio button and click <strong>Next</strong>.</p>
+</li>
+<li>
+<p>Select the <strong>Place all certificates in the following store</strong> radio button.</p>
+</li>
+<li>
+<p>Click <strong>Browse</strong>, select <strong>Intermediate certificate Authorities</strong> and click <strong>OK</strong></p>
+</li>
+<li>
+<p>Click <strong>Next</strong>, review the settings, and click <strong>Finish</strong> to install the certificate.</p>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ensure check the <strong>Use Transport Layer Security (TLS) encryption</strong> in the <strong>NoSqlDatabase</strong> section of the <strong>SystemLink Server Configuration</strong> application.</p>
+</div>
+<h2 id="deprecation-of-amqp"><span class="enumerate-heading-plugin">2.6</span> Deprecation of AMQP<a class="headerlink" href="#deprecation-of-amqp" title="Permanent link">¶</a></h2>
+<p>AMQP as a transport protocol for target-to-server communication is deprecated in favor for HTTP(S). NI recommends disabling AMQP on the server and updating test applications to use the HTTP version of SystemLink APIs.</p>
+<ol>
+<li>
+<p>Open <strong>NI SystemLink Server Configuration</strong>.</p>
+</li>
+<li>
+<p>Go to <strong>Security</strong>.</p>
+</li>
+<li>
+<p>Uncheck <strong>Enable AMQP client access (less secure)</strong>.</p>
+</li>
+</ol>
+<hr/>
+<div class="md-source-date">
+<small>
+    
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 22, 2021</span>
+</small>
+</div>
+</article>
+</div>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-nav">
+<nav aria-label="Footer" class="md-footer-nav__inner md-grid">
+<a class="md-footer-nav__link md-footer-nav__link--prev" href="../.." rel="prev" title="Introduction">
+<div class="md-footer-nav__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
+</div>
+<div class="md-footer-nav__title">
+<div class="md-ellipsis">
+<span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Introduction
+              </div>
+</div>
+</a>
+<a class="md-footer-nav__link md-footer-nav__link--next" href="../../rbac/rbac/" rel="next" title="Workspaces and Role-based Access Control">
+<div class="md-footer-nav__title">
+<div class="md-ellipsis">
+<span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Workspaces and Role-based Access Control
+              </div>
+</div>
+<div class="md-footer-nav__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"></path></svg>
+</div>
+</a>
+</nav>
+</div>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-footer-copyright">
+<div class="md-footer-copyright__highlight">
+            Copyright © 2020 National Instruments Corporation
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+          Material for MkDocs
+        </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src="../../assets/javascripts/vendor.3636a4ec.min.js"></script>
+<script src="../../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+<script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+</body>
+</html>

@@ -18,7 +18,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#single-sign-on-with-openid-connect">3. 
+<a class="md-skip" href="#single-sign-on-with-openid-connect">4. 
           Skip to content
         </a>
 </div>
@@ -145,18 +145,23 @@
     </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../ldap/ldap/" title="Sign on with LDAP">
-      2. Sign on with LDAP
+<a class="md-nav__link" href="../../network-security/network-security/" title="Network Security">
+      2. Network Security
+    </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../rbac/rbac/" title="Workspaces and Role-based Access Control">
+      3. Workspaces and Role-based Access Control
     </a>
 </li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
 <label class="md-nav__link md-nav__link--active" for="__toc">
-        3. Single Sign-on with OpenID Connect
+        4. Single Sign-on with OpenID Connect
         <span class="md-nav__icon md-icon"></span>
 </label>
 <a class="md-nav__link md-nav__link--active" href="./" title="Single Sign-on with OpenID Connect">
-      3. Single Sign-on with OpenID Connect
+      4. Single Sign-on with OpenID Connect
     </a>
 <nav aria-label="Table of contents" class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">
@@ -165,34 +170,34 @@
     </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#assumptions-and-prerequisites">3.1 
+<a class="md-nav__link" href="#assumptions-and-prerequisites">4.1 
     Assumptions and Prerequisites
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#enabling-openid-connect-in-systemlink">3.2 
+<a class="md-nav__link" href="#enabling-openid-connect-in-systemlink">4.2 
     Enabling OpenID Connect in SystemLink
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#openid-connect-configuration-files-in-systemlink-server">3.3 
+<a class="md-nav__link" href="#openid-connect-configuration-files-in-systemlink-server">4.3 
     OpenID Connect Configuration Files in SystemLink Server
   </a>
 <nav aria-label="OpenID Connect Configuration Files in SystemLink Server" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#systemlink-login-configuration">3.3.1 
+<a class="md-nav__link" href="#systemlink-login-configuration">4.3.1 
     SystemLink Login Configuration
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#clientid-and-secret">3.3.2 
+<a class="md-nav__link" href="#clientid-and-secret">4.3.2 
     ClientID and Secret
   </a>
 <nav aria-label="ClientID and Secret" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#clientid-and-secret-provider-documentation">3.3.2.1 
+<a class="md-nav__link" href="#clientid-and-secret-provider-documentation">4.3.2.1 
     ClientID and Secret Provider Documentation
   </a>
 </li>
@@ -200,28 +205,28 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#openid-connect-configuration-and-discovery">3.3.3 
+<a class="md-nav__link" href="#openid-connect-configuration-and-discovery">4.3.3 
     OpenID Connect Configuration and Discovery
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#setting-login-redirect-uri">3.3.4 
+<a class="md-nav__link" href="#setting-login-redirect-uri">4.3.4 
     Setting Login Redirect URI
   </a>
 <nav aria-label="Setting Login Redirect URI" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#the-systemlink-login-redirect-url">3.3.4.1 
+<a class="md-nav__link" href="#the-systemlink-login-redirect-url">4.3.4.1 
     The SystemLink login redirect URL
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#the-systemlink-front-channel-logout-url">3.3.4.2 
+<a class="md-nav__link" href="#the-systemlink-front-channel-logout-url">4.3.4.2 
     The SystemLink front channel logout URL
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#provider-client-configuration-documentation">3.3.4.3 
+<a class="md-nav__link" href="#provider-client-configuration-documentation">4.3.4.3 
     Provider Client Configuration Documentation
   </a>
 </li>
@@ -232,23 +237,23 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#supported-signing-and-encryption-algorithms">3.4 
+<a class="md-nav__link" href="#supported-signing-and-encryption-algorithms">4.4 
     Supported Signing and Encryption Algorithms
   </a>
 <nav aria-label="Supported Signing and Encryption Algorithms" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#id-token-signing-algorithm">3.4.1 
+<a class="md-nav__link" href="#id-token-signing-algorithm">4.4.1 
     ID Token Signing Algorithm
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#id-token-key-management-encryption-algorithm">3.4.2 
+<a class="md-nav__link" href="#id-token-key-management-encryption-algorithm">4.4.2 
     ID Token Key Management Encryption Algorithm
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#id-token-content-encryption-algorithm">3.4.3 
+<a class="md-nav__link" href="#id-token-content-encryption-algorithm">4.4.3 
     ID Token Content Encryption Algorithm
   </a>
 </li>
@@ -256,23 +261,23 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles">3.5 
+<a class="md-nav__link" href="#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles">4.5 
     Mapping OpenID Connect Claims to SystemLink Workspaces and Roles
   </a>
 <nav aria-label="Mapping OpenID Connect Claims to SystemLink Workspaces and Roles" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#viewing-claims-returned-by-a-provider">3.5.1 
+<a class="md-nav__link" href="#viewing-claims-returned-by-a-provider">4.5.1 
     Viewing Claims Returned by a Provider
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#mapping-claims-to-systemlink-roles">3.5.2 
+<a class="md-nav__link" href="#mapping-claims-to-systemlink-roles">4.5.2 
     Mapping Claims to SystemLink Roles
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#refreshing-user-claims">3.5.3 
+<a class="md-nav__link" href="#refreshing-user-claims">4.5.3 
     Refreshing user claims
   </a>
 </li>
@@ -280,18 +285,18 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#troubleshooting-failed-authentication">3.6 
+<a class="md-nav__link" href="#troubleshooting-failed-authentication">4.6 
     Troubleshooting Failed Authentication
   </a>
 <nav aria-label="Troubleshooting Failed Authentication" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#cache-entry-size">3.6.1 
+<a class="md-nav__link" href="#cache-entry-size">4.6.1 
     Cache Entry Size
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#id-token-management-encryption">3.6.2 
+<a class="md-nav__link" href="#id-token-management-encryption">4.6.2 
     ID Token Management Encryption
   </a>
 </li>
@@ -302,13 +307,13 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../python-dataplugins/python-dataplugins/" title="Python DataPlugins">
-      4. Python DataPlugins
+<a class="md-nav__link" href="../../ldap/ldap/" title="Sign on with LDAP">
+      5. Sign on with LDAP
     </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../../rbac/rbac/" title="Workspaces and Role-based Access Control">
-      5. Workspaces and Role-based Access Control
+<a class="md-nav__link" href="../../python-dataplugins/python-dataplugins/" title="Python DataPlugins">
+      6. Python DataPlugins
     </a>
 </li>
 </ul>
@@ -326,34 +331,34 @@
     </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#assumptions-and-prerequisites">3.1 
+<a class="md-nav__link" href="#assumptions-and-prerequisites">4.1 
     Assumptions and Prerequisites
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#enabling-openid-connect-in-systemlink">3.2 
+<a class="md-nav__link" href="#enabling-openid-connect-in-systemlink">4.2 
     Enabling OpenID Connect in SystemLink
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#openid-connect-configuration-files-in-systemlink-server">3.3 
+<a class="md-nav__link" href="#openid-connect-configuration-files-in-systemlink-server">4.3 
     OpenID Connect Configuration Files in SystemLink Server
   </a>
 <nav aria-label="OpenID Connect Configuration Files in SystemLink Server" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#systemlink-login-configuration">3.3.1 
+<a class="md-nav__link" href="#systemlink-login-configuration">4.3.1 
     SystemLink Login Configuration
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#clientid-and-secret">3.3.2 
+<a class="md-nav__link" href="#clientid-and-secret">4.3.2 
     ClientID and Secret
   </a>
 <nav aria-label="ClientID and Secret" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#clientid-and-secret-provider-documentation">3.3.2.1 
+<a class="md-nav__link" href="#clientid-and-secret-provider-documentation">4.3.2.1 
     ClientID and Secret Provider Documentation
   </a>
 </li>
@@ -361,28 +366,28 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#openid-connect-configuration-and-discovery">3.3.3 
+<a class="md-nav__link" href="#openid-connect-configuration-and-discovery">4.3.3 
     OpenID Connect Configuration and Discovery
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#setting-login-redirect-uri">3.3.4 
+<a class="md-nav__link" href="#setting-login-redirect-uri">4.3.4 
     Setting Login Redirect URI
   </a>
 <nav aria-label="Setting Login Redirect URI" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#the-systemlink-login-redirect-url">3.3.4.1 
+<a class="md-nav__link" href="#the-systemlink-login-redirect-url">4.3.4.1 
     The SystemLink login redirect URL
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#the-systemlink-front-channel-logout-url">3.3.4.2 
+<a class="md-nav__link" href="#the-systemlink-front-channel-logout-url">4.3.4.2 
     The SystemLink front channel logout URL
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#provider-client-configuration-documentation">3.3.4.3 
+<a class="md-nav__link" href="#provider-client-configuration-documentation">4.3.4.3 
     Provider Client Configuration Documentation
   </a>
 </li>
@@ -393,23 +398,23 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#supported-signing-and-encryption-algorithms">3.4 
+<a class="md-nav__link" href="#supported-signing-and-encryption-algorithms">4.4 
     Supported Signing and Encryption Algorithms
   </a>
 <nav aria-label="Supported Signing and Encryption Algorithms" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#id-token-signing-algorithm">3.4.1 
+<a class="md-nav__link" href="#id-token-signing-algorithm">4.4.1 
     ID Token Signing Algorithm
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#id-token-key-management-encryption-algorithm">3.4.2 
+<a class="md-nav__link" href="#id-token-key-management-encryption-algorithm">4.4.2 
     ID Token Key Management Encryption Algorithm
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#id-token-content-encryption-algorithm">3.4.3 
+<a class="md-nav__link" href="#id-token-content-encryption-algorithm">4.4.3 
     ID Token Content Encryption Algorithm
   </a>
 </li>
@@ -417,23 +422,23 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles">3.5 
+<a class="md-nav__link" href="#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles">4.5 
     Mapping OpenID Connect Claims to SystemLink Workspaces and Roles
   </a>
 <nav aria-label="Mapping OpenID Connect Claims to SystemLink Workspaces and Roles" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#viewing-claims-returned-by-a-provider">3.5.1 
+<a class="md-nav__link" href="#viewing-claims-returned-by-a-provider">4.5.1 
     Viewing Claims Returned by a Provider
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#mapping-claims-to-systemlink-roles">3.5.2 
+<a class="md-nav__link" href="#mapping-claims-to-systemlink-roles">4.5.2 
     Mapping Claims to SystemLink Roles
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#refreshing-user-claims">3.5.3 
+<a class="md-nav__link" href="#refreshing-user-claims">4.5.3 
     Refreshing user claims
   </a>
 </li>
@@ -441,18 +446,18 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#troubleshooting-failed-authentication">3.6 
+<a class="md-nav__link" href="#troubleshooting-failed-authentication">4.6 
     Troubleshooting Failed Authentication
   </a>
 <nav aria-label="Troubleshooting Failed Authentication" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#cache-entry-size">3.6.1 
+<a class="md-nav__link" href="#cache-entry-size">4.6.1 
     Cache Entry Size
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#id-token-management-encryption">3.6.2 
+<a class="md-nav__link" href="#id-token-management-encryption">4.6.2 
     ID Token Management Encryption
   </a>
 </li>
@@ -469,9 +474,9 @@
 <a class="md-content__button md-icon" href="https://github.com/ni/systemlink-operations-handbook/edit/master/handbook/openid-connect/openid-connect.md" title="Edit this page">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"></path></svg>
 </a>
-<h1 id="single-sign-on-with-openid-connect"><span class="enumerate-heading-plugin">3.</span> Single Sign-on with OpenID Connect<a class="headerlink" href="#single-sign-on-with-openid-connect" title="Permanent link">¶</a></h1>
+<h1 id="single-sign-on-with-openid-connect"><span class="enumerate-heading-plugin">4.</span> Single Sign-on with OpenID Connect<a class="headerlink" href="#single-sign-on-with-openid-connect" title="Permanent link">¶</a></h1>
 <p>You can configure SystemLink to use OpenID Connect to authorize users. This enables SystemLink to use a common identity for users across multiple applications. This also means SystemLink leverages corporate single sign-on (SSO) and all its security benefits, such as streamlined login and limiting user credential proliferation. You can use OpenID Connect alongside or as a replacement for LDAP, Active Directory, and local Windows accounts for authentication.</p>
-<h2 id="assumptions-and-prerequisites"><span class="enumerate-heading-plugin">3.1</span> Assumptions and Prerequisites<a class="headerlink" href="#assumptions-and-prerequisites" title="Permanent link">¶</a></h2>
+<h2 id="assumptions-and-prerequisites"><span class="enumerate-heading-plugin">4.1</span> Assumptions and Prerequisites<a class="headerlink" href="#assumptions-and-prerequisites" title="Permanent link">¶</a></h2>
 <ul>
 <li>
 <p>A server running SystemLink 2020R4 or greater. Refer to <a href="https://www.ni.com/documentation/en/systemlink/latest/setup/configuring-systemlink-server-clients/">Installing and Configuring SystemLink Server and Clients</a> for the basics of setting up a SystemLink server</p>
@@ -489,7 +494,7 @@
 <p>An OpenID Connect Provider server such as <a href="https://www.pingidentity.com/en/software/pingfederate.html">PingFederate</a>, <a href="https://docs.microsoft.com/en-us/windows-server/identity/ad-fs/deployment/how-to-connect-fed-azure-adfs">Azure ADFS</a>, <a href="https://www.okta.com/openid-connect/">Okta</a>, or another <a href="https://openid.net/certification/">certified provider</a> that has been fully setup and configured for OpenID Connect authentication</p>
 </li>
 </ul>
-<h2 id="enabling-openid-connect-in-systemlink"><span class="enumerate-heading-plugin">3.2</span> Enabling OpenID Connect in SystemLink<a class="headerlink" href="#enabling-openid-connect-in-systemlink" title="Permanent link">¶</a></h2>
+<h2 id="enabling-openid-connect-in-systemlink"><span class="enumerate-heading-plugin">4.2</span> Enabling OpenID Connect in SystemLink<a class="headerlink" href="#enabling-openid-connect-in-systemlink" title="Permanent link">¶</a></h2>
 <ol>
 <li>
 <p>Log into the server running SystemLink and go to <code>C:\Program Files\National Instruments\Shared\Web Server\conf\openidc</code>.</p>
@@ -497,7 +502,7 @@
 <li>
 <p>Add the configuration files to SystemLink to connect to your OpenID Connect provider.</p>
 <div class="admonition note">
-<p>For details, refer to <a href="#openid-connect-configuration-files-in-systemlink-server">3.3 <strong>OpenID Connect Configuration Files in SystemLink Server</strong></a>.</p>
+<p>For details, refer to <a href="#openid-connect-configuration-files-in-systemlink-server">4.3 <strong>OpenID Connect Configuration Files in SystemLink Server</strong></a>.</p>
 </div>
 </li>
 <li>
@@ -518,7 +523,7 @@
 <li>
 <p>Add an OpenID Connect Claim mapping for the <strong>Server Administrator</strong> role.</p>
 <div class="admonition note">
-<p>For details, refer to <a href="#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles">3.5 <strong>Mapping OpenID Connect Claims to SystemLink Workspaces and Roles</strong></a>.</p>
+<p>For details, refer to <a href="#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles">4.5 <strong>Mapping OpenID Connect Claims to SystemLink Workspaces and Roles</strong></a>.</p>
 </div>
 </li>
 <li>
@@ -529,7 +534,7 @@
 <img src="../../img/oidc-webserver.png" width="500"/>
 <figcaption>Enable OpenID Connect in NI Web Server</figcaption>
 </figure>
-<h2 id="openid-connect-configuration-files-in-systemlink-server"><span class="enumerate-heading-plugin">3.3</span> OpenID Connect Configuration Files in SystemLink Server<a class="headerlink" href="#openid-connect-configuration-files-in-systemlink-server" title="Permanent link">¶</a></h2>
+<h2 id="openid-connect-configuration-files-in-systemlink-server"><span class="enumerate-heading-plugin">4.3</span> OpenID Connect Configuration Files in SystemLink Server<a class="headerlink" href="#openid-connect-configuration-files-in-systemlink-server" title="Permanent link">¶</a></h2>
 <p>There are three files that you must create to connect your SystemLink server to an OpenID Connect provider: <code>[provider-dns].conf</code>, <code>[provider-dns].client</code>, and <code>[provider-dns].provider</code>. The <code>[provider-dns]</code> portion of each filename must be the URL-encoded fully qualified domain name.</p>
 <p>Refer to <a href="https://github.com/ni/systemlink-operations-handbook/tree/master/examples/openid-connect-config">openid-connect-config</a> for examples of each of these files.</p>
 <div class="admonition note">
@@ -538,7 +543,7 @@
 </div>
 <p>These files do not exist for new SystemLink installations. Add each file to <code>C:\Program Files\National Instruments\Shared\Web Server\conf\openidc</code>. Restart the NI Web Server to apply changes.</p>
 <p>You can configure SystemLink to support multiple OpenID Connect providers simultaneously by creating a <code>[provider-dns].conf</code>, <code>[provider-dns].client</code>, and <code>[provider-dns].provider</code> file for each provider. The user ID in SystemLink must be unique across providers. This ID takes the form <code>[sub_claim]@issuer</code>. You can see the ID SystemLink associates with a user in the user details in SystemLink Security.</p>
-<h3 id="systemlink-login-configuration"><span class="enumerate-heading-plugin">3.3.1</span> SystemLink Login Configuration<a class="headerlink" href="#systemlink-login-configuration" title="Permanent link">¶</a></h3>
+<h3 id="systemlink-login-configuration"><span class="enumerate-heading-plugin">4.3.1</span> SystemLink Login Configuration<a class="headerlink" href="#systemlink-login-configuration" title="Permanent link">¶</a></h3>
 <div class="admonition note">
 <p><code>[provider-dns].conf</code> describes the scopes SystemLink will request, the text and icon for the provider login button, and private keys for ID token key management encryption.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -566,7 +571,7 @@
 </code></pre></div>
 </div>
 <p>In this example the <code>openid</code>, <code>email</code>, and <code>profile</code> scopes are requested. Additional scopes may be requested. Consult your provider's documentation regarding exposing scopes to clients. The <code>profile</code> and <code>email</code> scopes are required to populate first name, last name, and email fields in the SystemLink user preferences. These are derived from the <code>given_name</code>, <code>family_name</code>, and <code>email</code> claims respectively.</p>
-<p>Each scope contains claims you can map to roles within SystemLink workspaces. See <a href="#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles">3.5 <strong>Mapping OpenID Connect Claims to SystemLink Workspaces and Roles</strong></a> for details.</p>
+<p>Each scope contains claims you can map to roles within SystemLink workspaces. See <a href="#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles">4.5 <strong>Mapping OpenID Connect Claims to SystemLink Workspaces and Roles</strong></a> for details.</p>
 <p>The <code>ni-attributes</code> section determines the text and (optionally) an icon to be shown in the SystemLink login page. The <code>iconUri</code> is relative to <code>htdocs</code> directory (<code>C:\Program Files\National Instruments\Shared\Web Server\htdocs</code>). This icon should be 16x16 px.</p>
 <figure>
 <img src="../../img/login-window.png" width="500"/>
@@ -574,7 +579,7 @@
 </figure>
 <p>The <code>keys</code> section contains the private keys as a <a href="https://tools.ietf.org/html/rfc7517#section-5">JWK Set</a> if the provider uses asymmetric encryption for ID token key management. The corresponding public keys must be registered with the provider. The <code>use</code> property must have a value of <code>enc</code> to indicate the key is used for encryption. The <code>kid</code> property of the private key must match the <code>kid</code> property of the corresponding public key on the identity provider.</p>
 <p>The <code>keys</code> section can be omitted if the provider uses symmetric encryption or no encryption for ID token key management.</p>
-<h3 id="clientid-and-secret"><span class="enumerate-heading-plugin">3.3.2</span> ClientID and Secret<a class="headerlink" href="#clientid-and-secret" title="Permanent link">¶</a></h3>
+<h3 id="clientid-and-secret"><span class="enumerate-heading-plugin">4.3.2</span> ClientID and Secret<a class="headerlink" href="#clientid-and-secret" title="Permanent link">¶</a></h3>
 <div class="admonition note">
 <p>The <code>[provider-dns].client</code> file is used by the NI Web Server to authenticate with the provider.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -584,44 +589,44 @@
 </code></pre></div>
 </div>
 <p>The <code>client_id</code> and <code>client_secret</code> can be obtained from the provider. Depending on the provider the <code>client_id</code> may be user defined.</p>
-<h4 id="clientid-and-secret-provider-documentation"><span class="enumerate-heading-plugin">3.3.2.1</span> ClientID and Secret Provider Documentation<a class="headerlink" href="#clientid-and-secret-provider-documentation" title="Permanent link">¶</a></h4>
+<h4 id="clientid-and-secret-provider-documentation"><span class="enumerate-heading-plugin">4.3.2.1</span> ClientID and Secret Provider Documentation<a class="headerlink" href="#clientid-and-secret-provider-documentation" title="Permanent link">¶</a></h4>
 <p><a href="https://docs.pingidentity.com/bundle/pingfederate-93/page/roj1564002966901.html">PingFederate - Configuring an OAuth Client</a></p>
 <p><a href="https://developers.google.com/identity/protocols/oauth2">Using OAuth 2.0 to Access Google APIs</a></p>
 <p><a href="https://developer.okta.com/docs/guides/find-your-app-credentials/findcreds/">Okta - Find your Application's credentials</a></p>
 <p><a href="https://docs.microsoft.com/en-us/windows-server/identity/ad-fs/development/enabling-oauth-confidential-clients-with-ad-fs">ADFS - Build a server side application using OAuth confidential clients with AD FS 2016 or later</a></p>
-<h3 id="openid-connect-configuration-and-discovery"><span class="enumerate-heading-plugin">3.3.3</span> OpenID Connect Configuration and Discovery<a class="headerlink" href="#openid-connect-configuration-and-discovery" title="Permanent link">¶</a></h3>
+<h3 id="openid-connect-configuration-and-discovery"><span class="enumerate-heading-plugin">4.3.3</span> OpenID Connect Configuration and Discovery<a class="headerlink" href="#openid-connect-configuration-and-discovery" title="Permanent link">¶</a></h3>
 <p>The <code>[provider-dns].provider</code> file includes the contents of the provider's OpenID Connect configuration. This file tells SystemLink which endpoints the provider exposes that are used during login.</p>
 <div class="admonition note">
 <p>You may use curl to create this file. Replace <code>[provider-dns]</code> with the DNS of your OpenID Connect Provider.</p>
 <div class="highlight"><pre><span></span><code>curl https://<span class="o">[</span>provider-dns<span class="o">]</span>/.well-known/openid-configuration -o <span class="o">[</span>provider-dns<span class="o">]</span>.provider
 </code></pre></div>
 </div>
-<h3 id="setting-login-redirect-uri"><span class="enumerate-heading-plugin">3.3.4</span> Setting Login Redirect URI<a class="headerlink" href="#setting-login-redirect-uri" title="Permanent link">¶</a></h3>
+<h3 id="setting-login-redirect-uri"><span class="enumerate-heading-plugin">4.3.4</span> Setting Login Redirect URI<a class="headerlink" href="#setting-login-redirect-uri" title="Permanent link">¶</a></h3>
 <p>The client configuration for your provider requires a redirect URL that is used during the login flow. This must be the fully qualified domain name, the protocol (<code>https://</code> or <code>http://</code>), and the port (if 80 or 443 are not used) of the SystemLink server. If the SystemLink server's DNS changes, update this setting with your provider.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>NI recommends the DNS name in the redirect URI match the the preferred hostname set in NI Web Server Configuration on the SystemLink server.</p>
 </div>
-<h4 id="the-systemlink-login-redirect-url"><span class="enumerate-heading-plugin">3.3.4.1</span> The SystemLink login redirect URL<a class="headerlink" href="#the-systemlink-login-redirect-url" title="Permanent link">¶</a></h4>
+<h4 id="the-systemlink-login-redirect-url"><span class="enumerate-heading-plugin">4.3.4.1</span> The SystemLink login redirect URL<a class="headerlink" href="#the-systemlink-login-redirect-url" title="Permanent link">¶</a></h4>
 <div class="admonition note">
 <p>Use the following URL to configure the login redirect url for your provider:</p>
 <div class="highlight"><pre><span></span><code>[protocol]://[systemlink-dns]/login/openidc-redirect
 </code></pre></div>
 </div>
-<h4 id="the-systemlink-front-channel-logout-url"><span class="enumerate-heading-plugin">3.3.4.2</span> The SystemLink front channel logout URL<a class="headerlink" href="#the-systemlink-front-channel-logout-url" title="Permanent link">¶</a></h4>
+<h4 id="the-systemlink-front-channel-logout-url"><span class="enumerate-heading-plugin">4.3.4.2</span> The SystemLink front channel logout URL<a class="headerlink" href="#the-systemlink-front-channel-logout-url" title="Permanent link">¶</a></h4>
 <p>This configuration is optional for OpenID Connect providers who support front channel logout.</p>
 <div class="admonition note">
 <p>Use the following URL to configure the front channel logout URL your provider:</p>
 <div class="highlight"><pre><span></span><code>[protocol]://[systemlink-dns]/login/openidc-redirect?logout=get
 </code></pre></div>
 </div>
-<h4 id="provider-client-configuration-documentation"><span class="enumerate-heading-plugin">3.3.4.3</span> Provider Client Configuration Documentation<a class="headerlink" href="#provider-client-configuration-documentation" title="Permanent link">¶</a></h4>
+<h4 id="provider-client-configuration-documentation"><span class="enumerate-heading-plugin">4.3.4.3</span> Provider Client Configuration Documentation<a class="headerlink" href="#provider-client-configuration-documentation" title="Permanent link">¶</a></h4>
 <p><a href="https://docs.pingidentity.com/bundle/pingfederate-93/page/roj1564002966901.html">PingFederate - Configure an OAuth client</a></p>
 <p><a href="https://developers.google.com/identity/protocols/oauth2/web-server">Google - Using OAuth 2.0 for Web Server Applications</a></p>
 <p><a href="https://developer.okta.com/docs/guides/sign-into-web-app/springboot/define-callback/">Okta - Understand the callback route</a></p>
-<h2 id="supported-signing-and-encryption-algorithms"><span class="enumerate-heading-plugin">3.4</span> Supported Signing and Encryption Algorithms<a class="headerlink" href="#supported-signing-and-encryption-algorithms" title="Permanent link">¶</a></h2>
+<h2 id="supported-signing-and-encryption-algorithms"><span class="enumerate-heading-plugin">4.4</span> Supported Signing and Encryption Algorithms<a class="headerlink" href="#supported-signing-and-encryption-algorithms" title="Permanent link">¶</a></h2>
 <p>SystemLink supports the following algorithms for ID token signing, ID token key management encryption, and ID token content encryption.</p>
-<h3 id="id-token-signing-algorithm"><span class="enumerate-heading-plugin">3.4.1</span> ID Token Signing Algorithm<a class="headerlink" href="#id-token-signing-algorithm" title="Permanent link">¶</a></h3>
+<h3 id="id-token-signing-algorithm"><span class="enumerate-heading-plugin">4.4.1</span> ID Token Signing Algorithm<a class="headerlink" href="#id-token-signing-algorithm" title="Permanent link">¶</a></h3>
 <ul>
 <li>
 <p>None</p>
@@ -663,7 +668,7 @@
 <p>RSASSA-PSS using SHA-512</p>
 </li>
 </ul>
-<h3 id="id-token-key-management-encryption-algorithm"><span class="enumerate-heading-plugin">3.4.2</span> ID Token Key Management Encryption Algorithm<a class="headerlink" href="#id-token-key-management-encryption-algorithm" title="Permanent link">¶</a></h3>
+<h3 id="id-token-key-management-encryption-algorithm"><span class="enumerate-heading-plugin">4.4.2</span> ID Token Key Management Encryption Algorithm<a class="headerlink" href="#id-token-key-management-encryption-algorithm" title="Permanent link">¶</a></h3>
 <p>Algorithms that do not require a private key:</p>
 <ul>
 <li>
@@ -691,8 +696,8 @@
 <p>ECDH-ES</p>
 </li>
 </ul>
-<p>Refer to <a href="#systemlink-login-configuration">3.3.1 <strong>SystemLink Login Configuration</strong></a> for information on configuring the private key.</p>
-<h3 id="id-token-content-encryption-algorithm"><span class="enumerate-heading-plugin">3.4.3</span> ID Token Content Encryption Algorithm<a class="headerlink" href="#id-token-content-encryption-algorithm" title="Permanent link">¶</a></h3>
+<p>Refer to <a href="#systemlink-login-configuration">4.3.1 <strong>SystemLink Login Configuration</strong></a> for information on configuring the private key.</p>
+<h3 id="id-token-content-encryption-algorithm"><span class="enumerate-heading-plugin">4.4.3</span> ID Token Content Encryption Algorithm<a class="headerlink" href="#id-token-content-encryption-algorithm" title="Permanent link">¶</a></h3>
 <ul>
 <li>
 <p>Composite AES-CBC-128 HMAC-SHA-256</p>
@@ -704,9 +709,9 @@
 <p>Composite AES-CBC-256 HMAC-SHA-512</p>
 </li>
 </ul>
-<h2 id="mapping-openid-connect-claims-to-systemlink-workspaces-and-roles"><span class="enumerate-heading-plugin">3.5</span> Mapping OpenID Connect Claims to SystemLink Workspaces and Roles<a class="headerlink" href="#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles" title="Permanent link">¶</a></h2>
+<h2 id="mapping-openid-connect-claims-to-systemlink-workspaces-and-roles"><span class="enumerate-heading-plugin">4.5</span> Mapping OpenID Connect Claims to SystemLink Workspaces and Roles<a class="headerlink" href="#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles" title="Permanent link">¶</a></h2>
 <p>Map OpenID Connect claims to roles and workspaces so users can access systems and data managed by SystemLink. This process is the same as the mapping workflow for LDAP and Active Directory attributes. Refer to <a href="https://www.ni.com/documentation/en/systemlink/latest/setup/mapping-roles/">Assigning Users to Roles in a Workspace</a> in the SystemLink manual. You can also use claims to create a mapping for the <strong>Server Administrator</strong> role.</p>
-<h3 id="viewing-claims-returned-by-a-provider"><span class="enumerate-heading-plugin">3.5.1</span> Viewing Claims Returned by a Provider<a class="headerlink" href="#viewing-claims-returned-by-a-provider" title="Permanent link">¶</a></h3>
+<h3 id="viewing-claims-returned-by-a-provider"><span class="enumerate-heading-plugin">4.5.1</span> Viewing Claims Returned by a Provider<a class="headerlink" href="#viewing-claims-returned-by-a-provider" title="Permanent link">¶</a></h3>
 <p>The OpenID Connect provider determines which scopes and claims clients can access. To see available claims, use the <code>userinfo_endpoint</code> hosted by the provider. Use <code>https://[provider-dns]/.well-known/openid-configuration</code> to determine the URL of the <code>userinfo_endpoint</code>. You will need to obtain a valid bearer token to authenticate and access this endpoint.</p>
 <div class="admonition note">
 <p>Example curl request to return user info. The bearer token has been truncated for readability.
@@ -752,7 +757,7 @@ Define AUTH_OIDC_ENABLE_CLAIM_INFO
 </code></pre></div></p>
 </div>
 <p>If the provider is https with a certificate signed by a CA not included in the NI-CURL CA bundle (<code>C:\Program Files\National Instruments\Shared\nicurl\ca-bundle.crt</code>), then the <code>AUTH_OIDC_PROVIDER_DIR</code> define in <code>50_mod_auth_openidc-defines.conf</code> must to be updated to point to a CA bundle containing the provider's CA. The path can be absolute, or relative to <code>C:\Program Files\National Instruments\Shared\Web Server</code>.</p>
-<h3 id="mapping-claims-to-systemlink-roles"><span class="enumerate-heading-plugin">3.5.2</span> Mapping Claims to SystemLink Roles<a class="headerlink" href="#mapping-claims-to-systemlink-roles" title="Permanent link">¶</a></h3>
+<h3 id="mapping-claims-to-systemlink-roles"><span class="enumerate-heading-plugin">4.5.2</span> Mapping Claims to SystemLink Roles<a class="headerlink" href="#mapping-claims-to-systemlink-roles" title="Permanent link">¶</a></h3>
 <p>Claims are returned as a JSON object.  </p>
 <div class="admonition note">
 <p>Example response from <code>userinfo_endpoint</code>. Use any of these claims to a map a user to a role in a workspace.
@@ -792,9 +797,9 @@ Define AUTH_OIDC_ENABLE_CLAIM_INFO
 <figcaption>Claims must be escaped with the \ character.</figcaption>
 </figure></p>
 </div>
-<h3 id="refreshing-user-claims"><span class="enumerate-heading-plugin">3.5.3</span> Refreshing user claims<a class="headerlink" href="#refreshing-user-claims" title="Permanent link">¶</a></h3>
+<h3 id="refreshing-user-claims"><span class="enumerate-heading-plugin">4.5.3</span> Refreshing user claims<a class="headerlink" href="#refreshing-user-claims" title="Permanent link">¶</a></h3>
 <p>Claims are fetched at login. Log out and log back in for updated claims to affect role mappings.</p>
-<h2 id="troubleshooting-failed-authentication"><span class="enumerate-heading-plugin">3.6</span> Troubleshooting Failed Authentication<a class="headerlink" href="#troubleshooting-failed-authentication" title="Permanent link">¶</a></h2>
+<h2 id="troubleshooting-failed-authentication"><span class="enumerate-heading-plugin">4.6</span> Troubleshooting Failed Authentication<a class="headerlink" href="#troubleshooting-failed-authentication" title="Permanent link">¶</a></h2>
 <p>The following sources can be used to troubleshoot a failed connection.</p>
 <p><strong>OpenID Connect Provider logs:</strong> Consult your OpenID Connect Provider's documentation on the location of their application log files.</p>
 <p><strong>NI Web Server Logs:</strong> These are found at <code>C:\ProgramData\National Instruments\Web Server\logs\error.log</code>.</p>
@@ -802,8 +807,8 @@ Define AUTH_OIDC_ENABLE_CLAIM_INFO
 <p class="admonition-title">Note</p>
 <p>SystemLink uses log rotation therefore the latest logs may be in one of the numbered <code>error.log</code> files.</p>
 </div>
-<p><strong>Returned Claims:</strong> See <a href="#viewing-claims-returned-by-a-provider">3.5.1 <strong>Viewing Claims Returned by a Provider</strong></a>.</p>
-<h3 id="cache-entry-size"><span class="enumerate-heading-plugin">3.6.1</span> Cache Entry Size<a class="headerlink" href="#cache-entry-size" title="Permanent link">¶</a></h3>
+<p><strong>Returned Claims:</strong> See <a href="#viewing-claims-returned-by-a-provider">4.5.1 <strong>Viewing Claims Returned by a Provider</strong></a>.</p>
+<h3 id="cache-entry-size"><span class="enumerate-heading-plugin">4.6.1</span> Cache Entry Size<a class="headerlink" href="#cache-entry-size" title="Permanent link">¶</a></h3>
 <p>The OpenID Connect module stores information in a shared memory cache. If a cache entry is too large, users will see an "Internal Server Error" when attempting to log in. This typically occurs when you are returning a large number of claims or claims with large values.</p>
 <div class="admonition note">
 <p class="admonition-title">Example error logs</p>
@@ -827,7 +832,7 @@ oidc_cache_set: could NOT store X bytes in shm cache backend for key Y
 <p>Restart the NI Web Server from the <code>Control</code> tab of the NI Web Server Configuration application.</p>
 </li>
 </ol>
-<h3 id="id-token-management-encryption"><span class="enumerate-heading-plugin">3.6.2</span> ID Token Management Encryption<a class="headerlink" href="#id-token-management-encryption" title="Permanent link">¶</a></h3>
+<h3 id="id-token-management-encryption"><span class="enumerate-heading-plugin">4.6.2</span> ID Token Management Encryption<a class="headerlink" href="#id-token-management-encryption" title="Permanent link">¶</a></h3>
 <p>The following situations can lead to an error and redirect the user back to the SystemLink login page after authenticating with the OpenID Connect provider:</p>
 <ul>
 <li>
@@ -847,10 +852,10 @@ oidc_cache_set: could NOT store X bytes in shm cache backend for key Y
 <p>To resolve this issue:</p>
 <ol>
 <li>
-<p>Confirm that the provider is using supported encryption and signing algorithms. See <a href="#supported-signing-and-encryption-algorithms">3.4 <strong>Supported Signing and Encryption Algorithms</strong></a>. Consult your provider's documentation for information on setting the encryption and signing algorithms.</p>
+<p>Confirm that the provider is using supported encryption and signing algorithms. See <a href="#supported-signing-and-encryption-algorithms">4.4 <strong>Supported Signing and Encryption Algorithms</strong></a>. Consult your provider's documentation for information on setting the encryption and signing algorithms.</p>
 </li>
 <li>
-<p>If the provider is using asymmetric ID token management encryption, confirm that the private key is configured in <code>[provider-dns]</code>.conf and the corresponding public key is configured in the provider.  Refer to <a href="#systemlink-login-configuration">3.3.1 <strong>SystemLink Login Configuration</strong></a> for information on configuring the private key. Consult your provider's documentation for information on configuring the ID token management encryption algorithm and public key.</p>
+<p>If the provider is using asymmetric ID token management encryption, confirm that the private key is configured in <code>[provider-dns]</code>.conf and the corresponding public key is configured in the provider.  Refer to <a href="#systemlink-login-configuration">4.3.1 <strong>SystemLink Login Configuration</strong></a> for information on configuring the private key. Consult your provider's documentation for information on configuring the ID token management encryption algorithm and public key.</p>
 </li>
 </ol>
 <hr/>
@@ -867,7 +872,7 @@ oidc_cache_set: could NOT store X bytes in shm cache backend for key Y
 <footer class="md-footer">
 <div class="md-footer-nav">
 <nav aria-label="Footer" class="md-footer-nav__inner md-grid">
-<a class="md-footer-nav__link md-footer-nav__link--prev" href="../../ldap/ldap/" rel="prev" title="Sign on with LDAP">
+<a class="md-footer-nav__link md-footer-nav__link--prev" href="../../rbac/rbac/" rel="prev" title="Workspaces and Role-based Access Control">
 <div class="md-footer-nav__button md-icon">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
 </div>
@@ -876,17 +881,17 @@ oidc_cache_set: could NOT store X bytes in shm cache backend for key Y
 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Sign on with LDAP
+                Workspaces and Role-based Access Control
               </div>
 </div>
 </a>
-<a class="md-footer-nav__link md-footer-nav__link--next" href="../../python-dataplugins/python-dataplugins/" rel="next" title="Python DataPlugins">
+<a class="md-footer-nav__link md-footer-nav__link--next" href="../../ldap/ldap/" rel="next" title="Sign on with LDAP">
 <div class="md-footer-nav__title">
 <div class="md-ellipsis">
 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Python DataPlugins
+                Sign on with LDAP
               </div>
 </div>
 <div class="md-footer-nav__button md-icon">
