@@ -129,7 +129,7 @@ Data published over HTTPS includes tags, files (FIS), assets, and test results. 
 !!! note "Managed NI LinuxRT Nodes"
     NI recommendations changing the default username and password on the target. These credentials are required to SSH into the target. These credentials are required when a SystemLink server adds a Linux RT target to its collection of managed systems.
 
-When a target is approved by SystemLink and becomes a managed node, SystemLink securely transfers configuration, certificates, and credentials needed to authenticate with the SystemLink server's [role-based access control system](/rbac/rbac/). SystemLink client APIs include an [**Auto** configuration](https://www.ni.com/documentation/en/systemlink/latest/systemlink-labview-node-ref/open-configuration-http-auto/) automatically consumes these credentials. This prevents the need to include credentials and other secrets in your test application code.
+When a target is approved by SystemLink and becomes a managed node, SystemLink securely transfers configuration, certificates, and credentials needed to authenticate with the SystemLink server's [role-based access control system](/rbac/rbac/). SystemLink client APIs include an [Auto configuration VI](https://www.ni.com/documentation/en/systemlink/latest/systemlink-labview-node-ref/open-configuration-http-auto/) that automatically consumes these credentials. This prevents the need to include credentials and other secrets in your test application code.
 
 !!! warn "Do not expose Salt ports to the public internet"
 
