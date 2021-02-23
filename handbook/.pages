@@ -1,3 +1,7 @@
 nav:
     - README.md
+    - ldap.md
     - openid-connect.md
+    - python-dataplugins.md
+    - FileService-MinIO.md
+    - rbac.md
