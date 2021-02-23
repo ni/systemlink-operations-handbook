@@ -1,5 +1,9 @@
 # MinIO as storage provider for the FileService
 
+SystemLink FileService allows to configure and usethe Amazon S3 cloud storage instead of a file share. While NI officially addresses the Amazon S3 cloud storage, the FileService also works with MinIO which is a Amazon S3 compatible server-side software storage stack.
+
+The minimum required SystemLink version is 2020 R3.
+
 In order to use MinIO, there are two steps required. First, setting up the MinIO server and, second, configuring the FileService to use that server.
 
 ## Running MinIO server
