@@ -1,6 +1,6 @@
-# MinIO as storage provider for the FileService
+# Leverage Cloud File Storage with MinIO
 
-SystemLink FileService allows you to configure and use the Amazon S3 cloud storage instead of a file share. While NI officially addresses the Amazon S3 cloud storage, the FileService also works with MinIO, a server-side software storage stack that is compatible with Amazon S3.
+SystemLink File Service allows you to configure and use the Amazon S3 cloud storage instead of a file share. While NI officially addresses the Amazon S3 cloud storage, the File Service also works with MinIO, a server-side software storage stack that is compatible with Amazon S3.
 
 To use MinIO with SystemLink, you need SystemLink version 2020 R3 or later.
 
@@ -20,14 +20,14 @@ To use MinIO as a storage provider, set up the MinIO server and configure the Fi
 
     !!! note "Note"
         - It is recommended to set non-default access key and secret key. You can do that by setting the environment variables `MINIO_ACCESS_KEY` and `MINIO_SECRET_KEY`.
-        - There's no bucket region necessary for using MinIO, but you have to apply a bucket region for the FileService to work. Just use `us-east-1`.
+        - There's no bucket region necessary for using MinIO, but you have to apply a bucket region for the File Service to work. Just use `us-east-1`.
         - Any of the three endpoints in the first line of the minio server output are usable as `S3BackEndSecretKey` (for localhost given your client is on the same machine as the MinIO server).
 
-Detailed information on how to run the server, follow instructions from the [MinIO Quickstart guide](https://docs.min.io/docs/minio-quickstart-guide.html).
+For detailed information on how to run the server, follow the instructions from the [MinIO Quickstart guide](https://docs.min.io/docs/minio-quickstart-guide.html).
 
-## Configuring FileService
+## Configuring File Service
 
-1. Follow the instruction from [the documentation on uploading files to S3](https://www.ni.com/documentation/de/systemlink/latest/data/uploading-files-to-amazon-s3) to configure the FileService and modify the JSON configuration file at `C:\ProgramData\National Instruments\Skyline\Config\FileIngestion.json`.
+1. Follow the instructions from [the documentation on uploading files to S3](https://www.ni.com/documentation/de/systemlink/latest/data/uploading-files-to-amazon-s3) to configure the File Service and modify the JSON configuration file at `C:\ProgramData\National Instruments\Skyline\Config\FileIngestion.json`.
 
 2. In addition to that, there are two undocumented settings required only when using MinIO. Add these settings to the config file:
 
