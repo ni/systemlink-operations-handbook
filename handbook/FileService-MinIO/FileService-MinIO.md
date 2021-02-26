@@ -8,13 +8,15 @@ To use MinIO as a storage provider, set up the MinIO server and configure the Fi
 
 ## Running MinIO server
 
-1. In order to run the MinIO server, download the server from the [MinIO website](https://min.io/download). From the command line, run the following command to run the server:
+1. Download the server application from the [MinIO website](https://min.io/download).
+
+2. From the command line, run the following command to run the server:
 
     ```bash
     minio server <PathToRootFolder>
     ```
 
-2. After starting the MinIO server, connect to the endpoint that is printed out in the command line by using a web browser and create a bucket by using the `+` button in the right bottom corner. This is only required if you run the MinIO server for the first time.
+3. When starting the MinIO server for the first time, use a web browser to connect to the endpoint that the command line prints out. Create a bucket by using the `+` button in the right bottom corner.
 
     !!! note "Note"
         - It is recommended to set non-default access key and secret key. You can do that by setting the environment variables `MINIO_ACCESS_KEY` and `MINIO_SECRET_KEY`.
@@ -25,12 +27,16 @@ Detailed information on how to run the server, follow instructions from the [Min
 
 ## Configuring FileService
 
-Follow the instruction from [the documentation on uploading files to S3](https://www.ni.com/documentation/de/systemlink/latest/data/uploading-files-to-amazon-s3) to configure the FileService.
+1. Follow the instruction from [the documentation on uploading files to S3](https://www.ni.com/documentation/de/systemlink/latest/data/uploading-files-to-amazon-s3) to configure the FileService and modify the JSON configuration file at `C:\ProgramData\National Instruments\Skyline\Config\FileIngestion.json`.
 
-Additionally to that, there are another two undocumented settings required only when using MinIO:
+2. In addition to that, there are two undocumented settings required only when using MinIO. Add these settings to the config file:
 
-- `S3BackEndServiceUrl`: Set this value to ip:port of the MinIO server
-- `S3ForcePathStyle`: Set this value to `True`
+    - `S3BackEndServiceUrl`: Set this value to ip:port of the MinIO server
+    - `S3ForcePathStyle`: Set this value to `True`
+
+    You can paste the example code below to the config file and replace the placeholders with your actuals values.
+
+3. Restart the entire `NI SystemLink Service Manager`.
 
 <!-- markdownlint-disable -->
 <details>
@@ -49,9 +55,3 @@ Additionally to that, there are another two undocumented settings required only 
 ```
 
 </details>
-
-Paste the example code to the JSON configuration at
-`C:\ProgramData\National Instruments\Skyline\Config\FileIngestion.json`
-and replace the placeholders with your actuals values.
-
-Now, you’re ready to go. Restart the entire `NI SystemLink Service Manager`.
