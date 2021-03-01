@@ -535,17 +535,17 @@
 <figcaption>Enable OpenID Connect in NI Web Server</figcaption>
 </figure>
 <h2 id="openid-connect-configuration-files-in-systemlink-server"><span class="enumerate-heading-plugin">4.3</span> OpenID Connect Configuration Files in SystemLink Server<a class="headerlink" href="#openid-connect-configuration-files-in-systemlink-server" title="Permanent link">¶</a></h2>
-<p>There are three files that you must create to connect your SystemLink server to an OpenID Connect provider: <code>[provider-dns].conf</code>, <code>[provider-dns].client</code>, and <code>[provider-dns].provider</code>. The <code>[provider-dns]</code> portion of each filename must be the URL-encoded fully qualified domain name.</p>
+<p>There are three files that you must create to connect your SystemLink server to an OpenID Connect provider: <code>[provider-issuer-uri].conf</code>, <code>[provider-issuer-uri].client</code>, and <code>[provider-issuer-uri].provider</code>. The <code>[provider-issuer-uri]</code> portion of each filename must be the URL-encoded fully qualified domain name.</p>
 <p>Refer to <a href="https://github.com/ni/systemlink-operations-handbook/tree/master/examples/openid-connect-config">openid-connect-config</a> for examples of each of these files.</p>
 <div class="admonition note">
 <p class="admonition-title">Example</p>
-<p>An OpenID Connect provider with the DNS <code>example.com:9999</code> would yield files named <code>example.com%3a9999.conf</code> , <code>example.com%3a9999.client</code>, and <code>example.com%3a9999.provider</code>.</p>
+<p>An OpenID Connect provider with the issuer URI <code>example.com:9999/v2</code> would yield files named <code>example.com%3A9999%2Fv2.conf</code> , <code>example.com%3A9999%2Fv2.client</code>, and <code>example.com%3A9999%2Fv2.provider</code>. You can find the issuer URI by viewing the <code>issuer</code> property at your provider's OpenID Connect configuration endpoint. For example <code>https://example.com:9999/v2/.well-known/openid-configuration</code>. </p>
 </div>
 <p>These files do not exist for new SystemLink installations. Add each file to <code>C:\Program Files\National Instruments\Shared\Web Server\conf\openidc</code>. Restart the NI Web Server to apply changes.</p>
-<p>You can configure SystemLink to support multiple OpenID Connect providers simultaneously by creating a <code>[provider-dns].conf</code>, <code>[provider-dns].client</code>, and <code>[provider-dns].provider</code> file for each provider. The user ID in SystemLink must be unique across providers. This ID takes the form <code>[sub_claim]@issuer</code>. You can see the ID SystemLink associates with a user in the user details in SystemLink Security.</p>
+<p>You can configure SystemLink to support multiple OpenID Connect providers simultaneously by creating a <code>[provider-issuer-uri].conf</code>, <code>[provider-issuer-uri.client</code>, and <code>[provider-issuer-uri].provider</code> file for each provider. The user ID in SystemLink must be unique across providers. This ID takes the form <code>[sub_claim]@issuer</code>. You can see the ID SystemLink associates with a user in the user details in SystemLink Security.</p>
 <h3 id="systemlink-login-configuration"><span class="enumerate-heading-plugin">4.3.1</span> SystemLink Login Configuration<a class="headerlink" href="#systemlink-login-configuration" title="Permanent link">¶</a></h3>
 <div class="admonition note">
-<p><code>[provider-dns].conf</code> describes the scopes SystemLink will request, the text and icon for the provider login button, and private keys for ID token key management encryption.</p>
+<p><code>[provider-issuer-uri].conf</code> describes the scopes SystemLink will request, the text and icon for the provider login button, and private keys for ID token key management encryption.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
   <span class="nt">"scope"</span><span class="p">:</span> <span class="s2">"openid email profile"</span><span class="p">,</span>
   <span class="nt">"ni-attributes"</span><span class="p">:</span> <span class="p">{</span>
@@ -581,7 +581,7 @@
 <p>The <code>keys</code> section can be omitted if the provider uses symmetric encryption or no encryption for ID token key management.</p>
 <h3 id="clientid-and-secret"><span class="enumerate-heading-plugin">4.3.2</span> ClientID and Secret<a class="headerlink" href="#clientid-and-secret" title="Permanent link">¶</a></h3>
 <div class="admonition note">
-<p>The <code>[provider-dns].client</code> file is used by the NI Web Server to authenticate with the provider.</p>
+<p>The <code>[provider-issuer-uri].client</code> file is used by the NI Web Server to authenticate with the provider.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
   <span class="nt">"client_id"</span><span class="p">:</span> <span class="s2">"slserver"</span><span class="p">,</span>
   <span class="nt">"client_secret"</span><span class="p">:</span> <span class="s2">"4vFm89u07xaredactedredactedredactede2tjtsEGQhlLreLVjcyLA0"</span>
@@ -595,10 +595,10 @@
 <p><a href="https://developer.okta.com/docs/guides/find-your-app-credentials/findcreds/">Okta - Find your Application's credentials</a></p>
 <p><a href="https://docs.microsoft.com/en-us/windows-server/identity/ad-fs/development/enabling-oauth-confidential-clients-with-ad-fs">ADFS - Build a server side application using OAuth confidential clients with AD FS 2016 or later</a></p>
 <h3 id="openid-connect-configuration-and-discovery"><span class="enumerate-heading-plugin">4.3.3</span> OpenID Connect Configuration and Discovery<a class="headerlink" href="#openid-connect-configuration-and-discovery" title="Permanent link">¶</a></h3>
-<p>The <code>[provider-dns].provider</code> file includes the contents of the provider's OpenID Connect configuration. This file tells SystemLink which endpoints the provider exposes that are used during login.</p>
+<p>The <code>[provider-issuer-uri].provider</code> file includes the contents of the provider's OpenID Connect configuration. This file tells SystemLink which endpoints the provider exposes that are used during login.</p>
 <div class="admonition note">
-<p>You may use curl to create this file. Replace <code>[provider-dns]</code> with the DNS of your OpenID Connect Provider.</p>
-<div class="highlight"><pre><span></span><code>curl https://<span class="o">[</span>provider-dns<span class="o">]</span>/.well-known/openid-configuration -o <span class="o">[</span>provider-dns<span class="o">]</span>.provider
+<p>You may use curl to create this file. Replace <code>[provider-issuer-uri]</code> with the issuer URI of your OpenID Connect Provider.</p>
+<div class="highlight"><pre><span></span><code>curl https://<span class="o">[</span>provider-issuer-uri<span class="o">]</span>/.well-known/openid-configuration -o <span class="o">[</span>provider-issuer-uri<span class="o">]</span>.provider
 </code></pre></div>
 </div>
 <h3 id="setting-login-redirect-uri"><span class="enumerate-heading-plugin">4.3.4</span> Setting Login Redirect URI<a class="headerlink" href="#setting-login-redirect-uri" title="Permanent link">¶</a></h3>
@@ -712,10 +712,10 @@
 <h2 id="mapping-openid-connect-claims-to-systemlink-workspaces-and-roles"><span class="enumerate-heading-plugin">4.5</span> Mapping OpenID Connect Claims to SystemLink Workspaces and Roles<a class="headerlink" href="#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles" title="Permanent link">¶</a></h2>
 <p>Map OpenID Connect claims to roles and workspaces so users can access systems and data managed by SystemLink. This process is the same as the mapping workflow for LDAP and Active Directory attributes. Refer to <a href="https://www.ni.com/documentation/en/systemlink/latest/setup/mapping-roles/">Assigning Users to Roles in a Workspace</a> in the SystemLink manual. You can also use claims to create a mapping for the <strong>Server Administrator</strong> role.</p>
 <h3 id="viewing-claims-returned-by-a-provider"><span class="enumerate-heading-plugin">4.5.1</span> Viewing Claims Returned by a Provider<a class="headerlink" href="#viewing-claims-returned-by-a-provider" title="Permanent link">¶</a></h3>
-<p>The OpenID Connect provider determines which scopes and claims clients can access. To see available claims, use the <code>userinfo_endpoint</code> hosted by the provider. Use <code>https://[provider-dns]/.well-known/openid-configuration</code> to determine the URL of the <code>userinfo_endpoint</code>. You will need to obtain a valid bearer token to authenticate and access this endpoint.</p>
+<p>The OpenID Connect provider determines which scopes and claims clients can access. To see available claims, use the <code>userinfo_endpoint</code> hosted by the provider. Use <code>https://[provider-issuer-uri]/.well-known/openid-configuration</code> to determine the URL of the <code>userinfo_endpoint</code>. You will need to obtain a valid bearer token to authenticate and access this endpoint.</p>
 <div class="admonition note">
 <p>Example curl request to return user info. The bearer token has been truncated for readability.
-<div class="highlight"><pre><span></span><code>curl -s https://slsso-runtime.grl-us1.uat.k8s.com/idp/userinfo.openid -H <span class="s1">'Authorization: Bearer eyJhbGciOiJSUzI1NiI...zJVy2oLnrBmXTmpDRm499U4~'</span><span class="p">|</span>python -m json.tool
+<div class="highlight"><pre><span></span><code>curl -s https://slsso-runtime.com/idp/userinfo.openid -H <span class="s1">'Authorization: Bearer eyJhbGciOiJSUzI1NiI...zJVy2oLnrBmXTmpDRm499U4~'</span><span class="p">|</span>python -m json.tool
 </code></pre></div></p>
 </div>
 <p>You can also view claims returned by a particular user by modifying the httpd configuration on your SystemLink server.</p>
@@ -855,14 +855,14 @@ oidc_cache_set: could NOT store X bytes in shm cache backend for key Y
 <p>Confirm that the provider is using supported encryption and signing algorithms. See <a href="#supported-signing-and-encryption-algorithms">4.4 <strong>Supported Signing and Encryption Algorithms</strong></a>. Consult your provider's documentation for information on setting the encryption and signing algorithms.</p>
 </li>
 <li>
-<p>If the provider is using asymmetric ID token management encryption, confirm that the private key is configured in <code>[provider-dns]</code>.conf and the corresponding public key is configured in the provider.  Refer to <a href="#systemlink-login-configuration">4.3.1 <strong>SystemLink Login Configuration</strong></a> for information on configuring the private key. Consult your provider's documentation for information on configuring the ID token management encryption algorithm and public key.</p>
+<p>If the provider is using asymmetric ID token management encryption, confirm that the private key is configured in <code>[provider-issuer-uri].conf</code> and the corresponding public key is configured in the provider.  Refer to <a href="#systemlink-login-configuration">4.3.1 <strong>SystemLink Login Configuration</strong></a> for information on configuring the private key. Consult your provider's documentation for information on configuring the ID token management encryption algorithm and public key.</p>
 </li>
 </ol>
 <hr/>
 <div class="md-source-date">
 <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 3, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 1, 2021</span>
 </small>
 </div>
 </article>
