@@ -44,7 +44,7 @@ For detailed information on how to run the server, follow the instructions from 
 <!-- markdownlint-enable -->
 
 ```bash
-"UseS3BackEnd" : "True”,
+"UseS3BackEnd" : "True",
 "S3BackEndBucketRegion" : "us-east-1",
 "S3BackEndBucketName" : "<YourBucket>",
 "S3BackEndAccessKeyId" : "<YourAccessKey>",
