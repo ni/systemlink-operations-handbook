@@ -18,7 +18,8 @@ for more details.
 
 Add content to the SystemLink Operations Handbook in any of the following situations:
 
-- The content is primarily example code. 
+- The primary audience for this content is IT professionals.
+- The content is primarily example code.
 - The content covers more advanced or corner-case scenarios than the [ni.com help](https://www.ni.com/documentation/en/systemlink/latest/manual/manual-overview/).
 - Customers need the content sooner than the current release timeline can deliver it.
 - The content covers a preview feature. If this is the case, remember to add a note saying so.
