@@ -352,7 +352,75 @@ Claims are fetched at login. Log out and log back in for updated claims to affec
 
 ## Configuring the SystemLink Username
 
-TODO
+SystemLink creates a unique username for each user using Open ID Connect claims. Some UIs display the username. SystemLink uses the
+`sub` and `iss` claims by default to ensure that the value is unique across all providers. However those claims often contain internal
+IDs or URLs from the provider.
+
+<figure>
+  <img src="../../img/default-username.png" width="500" />
+  <figcaption>The default username for an Open ID Connect user may contain internal IDs or URLs.</figcaption>
+</figure>
+
+You can change the claim that SystemLink uses as the username.
+
+1. Go to `C:\Program Files\National Instruments\Shared\Web Server\conf\defines.d` and open `50_mod_auth_openidc-defines.conf` in a text editor.
+
+1. Find the line `UnDefine AUTH_OIDC_USER_CLAIM`.
+
+1. Replace `UnDefine` with `Define`
+
+1. Append the name of the claim that SystemLink should use as the username.
+
+    !!! note
+        See [**Viewing Claims Returned by a Provider**](#viewing-claims-returned-by-a-provider) for information on how to see available claims.
+
+1. Restart the NI Web Server to apply changes.
+
+!!! note "Example"
+    An example `50_mod_auth_openidc-defines.conf` modified to use the OpenID Connect `email` claim as the SystemLink username.
+    ```
+    #
+    # Defined OpenID-Connect configuration for the Windows Apache installation.
+    #
+
+    # The name of the JSON map containing metadata about each identity provider.
+    Define AUTH_OIDC_ATTRIBUTES_KEY ni-attributes
+
+    # CA bundle to use when making requests to an identity provider.
+    Define AUTH_OIDC_BUNDLE ../nicurl/ca-bundle.crt
+
+    # Override the OIDCCacheShmEntrySizeMax to mitigate claim size issues
+    Define AUTH_OIDC_CACHE_ENTRY_SIZE 66065
+
+    # Path to OIDC provider configuration.
+    Define AUTH_OIDC_PROVIDER_DIR ${HTCONF_PATH}/openidc
+
+    # The location to redirect when performing an OpenID-Connect login.
+    Define AUTH_OIDC_REDIRECT_URI /login/openidc-redirect
+
+    #
+    # User-editable variables.
+    #
+
+    # Whether OIDC is enabled.
+    Define AUTH_OIDC_ENABLED
+
+    # The claim that will be used as the SystemLink user name.
+    # If not defined, a combination of the sub and iss claims will be used.
+    Define AUTH_OIDC_USER_CLAIM email
+
+    # When enabled, /login/openidc-redirect?info=json and
+    # /login/openidc-redirect?info=html will return the claims for the currently
+    # logged in user.
+    UnDefine AUTH_OIDC_ENABLE_CLAIM_INFO
+    ```
+
+
+!!! note
+    To avoid creating duplicate users and losing per-user settings, configure the username before users begin using the server.
+
+!!! note
+    The username must be unique across all enabled providers, including OpenID Connect, LDAP, Windows, and Web Server users.
 
 ## Troubleshooting Failed Authentication
 
