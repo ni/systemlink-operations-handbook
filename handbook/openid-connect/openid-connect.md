@@ -23,7 +23,7 @@ You can configure SystemLink to use OpenID Connect to authorize users. This enab
     !!! note ""
         For details, refer to [**OpenID Connect Configuration Files in SystemLink Server**](#openid-connect-configuration-files-in-systemlink-server).
 
-1. Configure the claim to use as the SystemLink user name. This step is optional, but should be done before users begin using the server.
+1. In SystemLink 2021R1 and later, configure the claim to use as the SystemLink user name. This step is optional, but should be done before users begin using the server.
 
     !!! note ""
         For details, refer to [**Configuring the SystemLink Username**](#configuring-the-systemlink-username).
@@ -351,6 +351,9 @@ If the claim value contains quotes the quotes must be escaped with \\.
 Claims are fetched at login. Log out and log back in for updated claims to affect role mappings.
 
 ## Configuring the SystemLink Username
+
+!!! note
+    The username can be configured in SystemLink 2021R1 and later.
 
 SystemLink creates a unique username for each user using Open ID Connect claims. Some UIs display the username. SystemLink uses the
 `sub` and `iss` claims by default to ensure that the value is unique across all providers. However those claims often contain internal
