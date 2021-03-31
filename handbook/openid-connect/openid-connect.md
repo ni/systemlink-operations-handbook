@@ -23,6 +23,11 @@ You can configure SystemLink to use OpenID Connect to authorize users. This enab
     !!! note ""
         For details, refer to [**OpenID Connect Configuration Files in SystemLink Server**](#openid-connect-configuration-files-in-systemlink-server).
 
+1. Configure the claim to use as the SystemLink user name. This step is optional, but should be done before users begin using the server.
+
+    !!! note ""
+        For details, refer to [**Configuring the SystemLink Username**](#configuring-the-systemlink-username).
+
 1. Open **NI Web Server Configuration**.
 
 1. Go to the **Authentication** tab and enable **Use OpenID Connect (advanced)**.
@@ -344,6 +349,10 @@ If the claim value contains quotes the quotes must be escaped with \\.
 ### Refreshing user claims
 
 Claims are fetched at login. Log out and log back in for updated claims to affect role mappings.
+
+## Configuring the SystemLink Username
+
+TODO
 
 ## Troubleshooting Failed Authentication
 
