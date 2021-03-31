@@ -18,27 +18,27 @@ You can configure SystemLink to use OpenID Connect to authorize users. This enab
 
 1. Log into the server running SystemLink and go to `C:\Program Files\National Instruments\Shared\Web Server\conf\openidc`.
 
-2. Add the configuration files to SystemLink to connect to your OpenID Connect provider.
+1. Add the configuration files to SystemLink to connect to your OpenID Connect provider.
 
     !!! note ""
         For details, refer to [**OpenID Connect Configuration Files in SystemLink Server**](#openid-connect-configuration-files-in-systemlink-server).
 
-3. Open **NI Web Server Configuration**.
+1. Open **NI Web Server Configuration**.
 
-4. Go to the **Authentication** tab and enable **Use OpenID Connect (advanced)**.
+1. Go to the **Authentication** tab and enable **Use OpenID Connect (advanced)**.
 
-5. Click **Apply and restart**.
+1. Click **Apply and restart**.
 
-6. Login into the SystemLink web application with a user assigned the [**Server Administrator**](https://www.ni.com/documentation/en/systemlink/latest/setup/predefined-roles/) role.
+1. Login into the SystemLink web application with a user assigned the [**Server Administrator**](https://www.ni.com/documentation/en/systemlink/latest/setup/predefined-roles/) role.
 
-7. Go to **Security** > **Roles** and click the gear icon in the top right.
+1. Go to **Security** > **Roles** and click the gear icon in the top right.
 
-8. Add an OpenID Connect Claim mapping for the **Server Administrator** role.
+1. Add an OpenID Connect Claim mapping for the **Server Administrator** role.
 
     !!! note ""
         For details, refer to [**Mapping OpenID Connect Claims to SystemLink Workspaces and Roles**](#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles).
 
-9. Log out and log in as an OpenID Connect user with a mapping for the **Server Administrator** role and confirm they have the correct privileges.
+1. Log out and log in as an OpenID Connect user with a mapping for the **Server Administrator** role and confirm they have the correct privileges.
 
 <figure>
   <img src="../../img/oidc-webserver.png" width="500" />
