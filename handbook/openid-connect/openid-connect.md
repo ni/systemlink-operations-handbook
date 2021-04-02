@@ -375,7 +375,7 @@ You can change the claim that SystemLink uses as the username.
 1. Append the name of the claim that SystemLink should use as the username.
 
     !!! note
-        See [**Viewing Claims Returned by a Provider**](#viewing-claims-returned-by-a-provider) for information on how to see available claims.
+        Refer to [**Viewing Claims Returned by a Provider**](#viewing-claims-returned-by-a-provider) for information on how to see available claims.
 
 1. Restart the NI Web Server to apply changes.
 
