@@ -366,6 +366,9 @@ IDs or URLs from the provider.
 
 You can change the claim that SystemLink uses as the username.
 
+!!! warn
+    To avoid creating duplicate users and losing per-user settings, configure the username before users begin using the server.
+
 1. Go to `C:\Program Files\National Instruments\Shared\Web Server\conf\defines.d` and open `50_mod_auth_openidc-defines.conf` in a text editor.
 
 1. Find the line `UnDefine AUTH_OIDC_USER_CLAIM`.
@@ -375,6 +378,8 @@ You can change the claim that SystemLink uses as the username.
 1. Append the name of the claim that SystemLink should use as the username.
 
     !!! note
+        The username must be unique across all enabled providers, including OpenID Connect, LDAP, Windows, and Web Server users.
+
         Refer to [**Viewing Claims Returned by a Provider**](#viewing-claims-returned-by-a-provider) for information on how to see available claims.
 
 1. Restart the NI Web Server to apply changes.
@@ -417,13 +422,6 @@ You can change the claim that SystemLink uses as the username.
     # logged in user.
     UnDefine AUTH_OIDC_ENABLE_CLAIM_INFO
     ```
-
-
-!!! note
-    To avoid creating duplicate users and losing per-user settings, configure the username before users begin using the server.
-
-!!! note
-    The username must be unique across all enabled providers, including OpenID Connect, LDAP, Windows, and Web Server users.
 
 ## Troubleshooting Failed Authentication
 
