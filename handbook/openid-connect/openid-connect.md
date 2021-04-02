@@ -355,7 +355,7 @@ Claims are fetched at login. Log out and log back in for updated claims to affec
 !!! note
     The username can be configured in SystemLink 2021R1 and later.
 
-SystemLink creates a unique username for each user using OpenID Connect claims. Some UIs display the username. SystemLink uses the
+SystemLink creates a unique username for each user using OpenID Connect claims. SystemLink uses the
 `sub` and `iss` claims by default to ensure that the value is unique across all providers. However those claims often contain internal
 IDs or URLs from the provider.
 
