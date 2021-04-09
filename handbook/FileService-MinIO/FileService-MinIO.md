@@ -29,7 +29,7 @@ To use MinIO as a storage provider, set up the MinIO server on a system that you
         set MINIO_ACCESS_KEY=YourAccessKey
         set MINIO_SECRET_KEY=YourSecretKey
         ```
-        - There's no bucket region necessary for using MinIO, but you have to apply a bucket region for the File Service to work. Just use `us-east-1`.
+        - There's no bucket region necessary for using MinIO since it is not hosted on an actual AWS S3 storage. You still have to apply a valid bucket region for the File Service to work. You can use any valid Amazon S3 region, like `us-east-1` or `eu-central-1`.
         - Any of the three endpoints in the first line of the minio server output are usable as `S3BackEndSecretKey` (for localhost given your client is on the same machine as the MinIO server).
 
 For detailed information on how to run the server, follow the instructions from the [MinIO Quickstart guide](https://docs.min.io/docs/minio-quickstart-guide.html).
