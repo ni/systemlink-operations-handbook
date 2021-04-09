@@ -27,31 +27,24 @@ For detailed information on how to run the server, follow the instructions from 
 
 ## Configuring File Service
 
-1. Follow the instructions from [the documentation on uploading files to S3](https://www.ni.com/documentation/de/systemlink/latest/data/uploading-files-to-amazon-s3) to configure the File Service and modify the JSON configuration file at `C:\ProgramData\National Instruments\Skyline\Config\FileIngestion.json`.
+1. Follow the instructions from [the documentation on uploading files to S3](https://www.ni.com/documentation/de/systemlink/latest/data/uploading-files-to-amazon-s3) to configure the File Service.
 
-2. In addition to that, there are two undocumented settings required only when using MinIO. Add these settings to the config file:
+2. In addition to that, there are two undocumented settings required only when using MinIO. Add these settings to the JSON configuration file at `C:\ProgramData\National Instruments\Skyline\Config\FileIngestion.json`:
 
-    - `S3BackEndServiceUrl`: Set this value to ip:port of the MinIO server
+    - `S3BackEndServiceUrl`: Set this value to ip:port of your MinIO server
     - `S3ForcePathStyle`: Set this value to `True`
 
     You can paste the example code below to the config file and replace the placeholders with your actuals values.
 
+    ```bash
+    "UseS3BackEnd" : "True",
+    "S3BackEndBucketRegion" : "us-east-1",
+    "S3BackEndBucketName" : "<YourBucket>",
+    "S3BackEndAccessKeyId" : "<YourAccessKey>",
+    "S3BackEndSecretKey" : "<YourSecretKey>",
+    "S3BackEndFolderName" : "",
+    "S3BackEndServiceUrl" : "<YourServerIP>",
+    "S3ForcePathStyle" : "True"
+    ```
+
 3. Restart the entire `NI SystemLink Service Manager`.
-
-<!-- markdownlint-disable -->
-<details>
-<summary>Example Code</summary>
-<!-- markdownlint-enable -->
-
-```bash
-"UseS3BackEnd" : "True",
-"S3BackEndBucketRegion" : "us-east-1",
-"S3BackEndBucketName" : "<YourBucket>",
-"S3BackEndAccessKeyId" : "<YourAccessKey>",
-"S3BackEndSecretKey" : "<YourSecretKey>",
-"S3BackEndFolderName" : "",
-"S3BackEndServiceUrl" : "<YourServerIP>",
-"S3ForcePathStyle" : "True"
-```
-
-</details>
