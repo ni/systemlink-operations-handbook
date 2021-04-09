@@ -16,6 +16,11 @@ To use MinIO as a storage provider, set up the MinIO server and configure the Fi
     minio server <PathToRootFolder>
     ```
 
+    <figure>
+    <img src="../../img/minio-server.png" width="500" />
+    <figcaption>Running a minio server.</figcaption>
+    </figure>
+
 3. When starting the MinIO server for the first time, use a web browser to connect to the endpoint that the command line prints out. Create a bucket by using the `+` button in the right bottom corner.
 
     !!! note "Note"
