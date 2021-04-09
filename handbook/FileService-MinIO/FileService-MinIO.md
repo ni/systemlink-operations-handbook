@@ -4,7 +4,7 @@ SystemLink File Service allows you to configure and use the Amazon S3 cloud stor
 
 To use MinIO with SystemLink, you need SystemLink version 2020 R3 or later.
 
-To use MinIO as a storage provider, set up the MinIO server on a system that you would like to upload files to. This can be the same machine as the SystemLink server or an own dedicated server. Then, configure the File Service to use that server.
+To use MinIO as a storage provider, set up the MinIO server on a system that you would like to upload files to. This can be the same machine as the SystemLink server or your own dedicated server. Then, configure the File Service to use that server.
 
 ## Running MinIO server
 
