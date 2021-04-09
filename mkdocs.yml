@@ -41,3 +41,7 @@ theme:
 
 extra_css:
   - stylesheets/extra.css
+
+google_analytics:
+  - UA-126136185-4
+  - auto
