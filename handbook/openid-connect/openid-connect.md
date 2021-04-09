@@ -47,21 +47,21 @@ You can configure SystemLink to use OpenID Connect to authorize users. This enab
 
 ## OpenID Connect Configuration Files in SystemLink Server
 
-There are three files that you must create to connect your SystemLink server to an OpenID Connect provider: `[provider-dns].conf`, `[provider-dns].client`, and `[provider-dns].provider`. The `[provider-dns]` portion of each filename must be the URL-encoded fully qualified domain name.
+There are three files that you must create to connect your SystemLink server to an OpenID Connect provider: `[provider-issuer-uri].conf`, `[provider-issuer-uri].client`, and `[provider-issuer-uri].provider`. The `[provider-issuer-uri]` portion of each filename must be the URL-encoded fully qualified domain name.
 
 Refer to [openid-connect-config](https://github.com/ni/systemlink-operations-handbook/tree/master/examples/openid-connect-config) for examples of each of these files.
 
 !!! note "Example"
-    An OpenID Connect provider with the DNS `example.com:9999` would yield files named `example.com%3a9999.conf` , `example.com%3a9999.client`, and `example.com%3a9999.provider`.
+    An OpenID Connect provider with the issuer URI `example.com:9999/v2` would yield files named `example.com%3A9999%2Fv2.conf` , `example.com%3A9999%2Fv2.client`, and `example.com%3A9999%2Fv2.provider`. You can find the issuer URI by viewing the `issuer` property at your provider's OpenID Connect configuration endpoint. For example `https://example.com:9999/v2/.well-known/openid-configuration`. 
 
 These files do not exist for new SystemLink installations. Add each file to `C:\Program Files\National Instruments\Shared\Web Server\conf\openidc`. Restart the NI Web Server to apply changes.
 
-You can configure SystemLink to support multiple OpenID Connect providers simultaneously by creating a `[provider-dns].conf`, `[provider-dns].client`, and `[provider-dns].provider` file for each provider. The user ID in SystemLink must be unique across providers. This ID takes the form `[sub_claim]@issuer`. You can see the ID SystemLink associates with a user in the user details in SystemLink Security.
+You can configure SystemLink to support multiple OpenID Connect providers simultaneously by creating a `[provider-issuer-uri].conf`, `[provider-issuer-uri.client`, and `[provider-issuer-uri].provider` file for each provider. The user ID in SystemLink must be unique across providers. This ID takes the form `[sub_claim]@issuer`. You can see the ID SystemLink associates with a user in the user details in SystemLink Security.
 
 ### SystemLink Login Configuration
 
 !!! note ""
-    `[provider-dns].conf` describes the scopes SystemLink will request, the text and icon for the provider login button, and private keys for ID token key management encryption.
+    `[provider-issuer-uri].conf` describes the scopes SystemLink will request, the text and icon for the provider login button, and private keys for ID token key management encryption.
 
     ```json
     {
@@ -106,7 +106,7 @@ The `keys` section can be omitted if the provider uses symmetric encryption or n
 ### ClientID and Secret
 
 !!! note ""
-    The `[provider-dns].client` file is used by the NI Web Server to authenticate with the provider.
+    The `[provider-issuer-uri].client` file is used by the NI Web Server to authenticate with the provider.
 
     ```json
     {
@@ -129,13 +129,13 @@ The `client_id` and `client_secret` can be obtained from the provider. Depending
 
 ### OpenID Connect Configuration and Discovery
 
-The `[provider-dns].provider` file includes the contents of the provider's OpenID Connect configuration. This file tells SystemLink which endpoints the provider exposes that are used during login.
+The `[provider-issuer-uri].provider` file includes the contents of the provider's OpenID Connect configuration. This file tells SystemLink which endpoints the provider exposes that are used during login.
 
 !!! note ""
-    You may use curl to create this file. Replace `[provider-dns]` with the DNS of your OpenID Connect Provider.
+    You may use curl to create this file. Replace `[provider-issuer-uri]` with the issuer URI of your OpenID Connect Provider.
 
     ```bash
-    curl https://[provider-dns]/.well-known/openid-configuration -o [provider-dns].provider
+    curl https://[provider-issuer-uri]/.well-known/openid-configuration -o [provider-issuer-uri].provider
     ```
 
 ### Setting Login Redirect URI
@@ -243,12 +243,12 @@ Map OpenID Connect claims to roles and workspaces so users can access systems an
 
 ### Viewing Claims Returned by a Provider
 
-The OpenID Connect provider determines which scopes and claims clients can access. To see available claims, use the `userinfo_endpoint` hosted by the provider. Use `https://[provider-dns]/.well-known/openid-configuration` to determine the URL of the `userinfo_endpoint`. You will need to obtain a valid bearer token to authenticate and access this endpoint.
+The OpenID Connect provider determines which scopes and claims clients can access. To see available claims, use the `userinfo_endpoint` hosted by the provider. Use `https://[provider-issuer-uri]/.well-known/openid-configuration` to determine the URL of the `userinfo_endpoint`. You will need to obtain a valid bearer token to authenticate and access this endpoint.
 
 !!! note ""
     Example curl request to return user info. The bearer token has been truncated for readability.
     ```bash
-    curl -s https://slsso-runtime.grl-us1.uat.k8s.com/idp/userinfo.openid -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiI...zJVy2oLnrBmXTmpDRm499U4~'|python -m json.tool
+    curl -s https://slsso-runtime.com/idp/userinfo.openid -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiI...zJVy2oLnrBmXTmpDRm499U4~'|python -m json.tool
     ```
 
 You can also view claims returned by a particular user by modifying the httpd configuration on your SystemLink server.
@@ -401,4 +401,4 @@ To resolve this issue:
 
 1. Confirm that the provider is using supported encryption and signing algorithms. See [**Supported Signing and Encryption Algorithms**](#supported-signing-and-encryption-algorithms). Consult your provider's documentation for information on setting the encryption and signing algorithms.
 
-1. If the provider is using asymmetric ID token management encryption, confirm that the private key is configured in `[provider-dns]`.conf and the corresponding public key is configured in the provider.  Refer to [**SystemLink Login Configuration**](#systemlink-login-configuration) for information on configuring the private key. Consult your provider's documentation for information on configuring the ID token management encryption algorithm and public key.
+1. If the provider is using asymmetric ID token management encryption, confirm that the private key is configured in `[provider-issuer-uri].conf` and the corresponding public key is configured in the provider.  Refer to [**SystemLink Login Configuration**](#systemlink-login-configuration) for information on configuring the private key. Consult your provider's documentation for information on configuring the ID token management encryption algorithm and public key.
