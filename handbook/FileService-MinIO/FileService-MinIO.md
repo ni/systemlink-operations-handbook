@@ -21,7 +21,7 @@ To use MinIO as a storage provider, set up the MinIO server on a system that you
     <figcaption>Running a minio server.</figcaption>
     </figure>
 
-3. When starting the MinIO server for the first time, use a web browser to connect to the endpoint that the command line prints out. Create a bucket by using the `+` button in the right bottom corner.
+3. When starting the MinIO server for the first time, use a web browser and navigate to the URL that the command line prints out. Create a bucket by clicking the `+` button in the right bottom corner.
 
     !!! note "Note"
         - It is recommended to set non-default access key and secret key. You can do that by setting the environment variables `MINIO_ACCESS_KEY` and `MINIO_SECRET_KEY`. Run the following two commands from the command line just before starting the server.
