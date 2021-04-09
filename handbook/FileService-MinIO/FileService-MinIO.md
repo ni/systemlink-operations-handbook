@@ -56,4 +56,4 @@ For detailed information on how to run the server, follow the instructions from 
     "S3ForcePathStyle" : "True"
     ```
 
-3. Restart the entire `NI SystemLink Service Manager`.
+3. In the `NI SystemLink server configuration` dialog, go to the `NI SystemLink Service Manager` tab and click `Restart` to apply the settings you made in the JSON file.
