@@ -4,7 +4,7 @@ SystemLink File Service allows you to configure and use the Amazon S3 cloud stor
 
 To use MinIO with SystemLink, you need SystemLink version 2020 R3 or later.
 
-To use MinIO as a storage provider, set up the MinIO server and configure the File Service to use that server.
+To use MinIO as a storage provider, set up the MinIO server on a system that you would like to upload files to. This can be the same machine as the SystemLink server or an own dedicated server. Then, configure the File Service to use that server.
 
 ## Running MinIO server
 
@@ -34,7 +34,7 @@ For detailed information on how to run the server, follow the instructions from 
 
 1. Follow the instructions from [the documentation on uploading files to S3](https://www.ni.com/documentation/de/systemlink/latest/data/uploading-files-to-amazon-s3) to configure the File Service.
 
-2. In addition to that, there are two undocumented settings required only when using MinIO. Add these settings to the JSON configuration file at `C:\ProgramData\National Instruments\Skyline\Config\FileIngestion.json`:
+2. In addition to that, there are two additional settings required only when using MinIO. Add these settings to the JSON configuration file at `C:\ProgramData\National Instruments\Skyline\Config\FileIngestion.json`:
 
     - `S3BackEndServiceUrl`: Set this value to ip:port of your MinIO server
     - `S3ForcePathStyle`: Set this value to `True`
