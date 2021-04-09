@@ -24,10 +24,11 @@ To use MinIO as a storage provider, set up the MinIO server on a system that you
 3. When starting the MinIO server for the first time, use a web browser and navigate to the URL that the command line prints out. Create a bucket by clicking the `+` button in the right bottom corner.
 
     !!! note "Note"
-        - It is recommended to set non-default access key and secret key. You can do that by setting the environment variables `MINIO_ACCESS_KEY` and `MINIO_SECRET_KEY`. Run the following two commands from the command line just before starting the server.
+        - It is recommended to set non-default access key and secret key. You can do that by setting the environment variables `MINIO_ACCESS_KEY` and `MINIO_SECRET_KEY`. Run the following commands from the command line to start a server pointing at C:\minio with your individual access and secret keys:
         ```
         set MINIO_ACCESS_KEY=YourAccessKey
         set MINIO_SECRET_KEY=YourSecretKey
+        minio server C:\minio
         ```
         - There's no bucket region necessary for using MinIO since it is not hosted on an actual AWS S3 storage. You still have to apply a valid bucket region for the File Service to work. You can use any valid Amazon S3 region, like `us-east-1` or `eu-central-1`.
         - Any of the three endpoints in the first line of the minio server output are usable as `S3BackEndSecretKey` (for localhost given your client is on the same machine as the MinIO server).
