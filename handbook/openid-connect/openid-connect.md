@@ -57,7 +57,7 @@ There are three files that you must create to connect your SystemLink server to 
 Refer to [openid-connect-config](https://github.com/ni/systemlink-operations-handbook/tree/master/examples/openid-connect-config) for examples of each of these files.
 
 !!! note "Example"
-    An OpenID Connect provider with the issuer URI `example.com:9999/v2` would yield files named `example.com%3A9999%2Fv2.conf` , `example.com%3A9999%2Fv2.client`, and `example.com%3A9999%2Fv2.provider`. You can find the issuer URI by viewing the `issuer` property at your provider's OpenID Connect configuration endpoint. For example `https://example.com:9999/v2/.well-known/openid-configuration`. 
+    An OpenID Connect provider with the issuer URI `example.com:9999/v2` would yield files named `example.com%3A9999%2Fv2.conf` , `example.com%3A9999%2Fv2.client`, and `example.com%3A9999%2Fv2.provider`. You can find the issuer URI by viewing the `issuer` property at your provider's OpenID Connect configuration endpoint. For example `https://example.com:9999/v2/.well-known/openid-configuration`.
 
 These files do not exist for new SystemLink installations. Add each file to `C:\Program Files\National Instruments\Shared\Web Server\conf\openidc`. Restart the NI Web Server to apply changes.
 
