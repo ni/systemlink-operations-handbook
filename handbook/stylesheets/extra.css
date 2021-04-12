@@ -10,6 +10,11 @@
   --md-accent-bg-color:              #f1f1f2;
   --md-accent-bg-color--light:       #fff;
 
+  --md-accent-warn-color:            #EF463F;
+  --md-accent-warn-color--transparent:rgba(152, 27, 35, 0.1);
+  --md-primary-warn-color--icon:     #981B23;
+
+
   --md-default-bg-color--transparent: rgba(255, 255, 255, 0.1);
 
   --md-footer-bg-color:              #cddcc8;
@@ -146,6 +151,18 @@ kbd {
 
 .md-typeset .note > .admonition-title::before {
   background-color: var(--md-primary-fg-color--light);
+}
+
+.md-typeset .admonition.warn {
+  border-color: var(--md-accent-warn-color);
+}
+
+.md-typeset .warn > .admonition-title {
+  background-color: var(--md-accent-warn-color--transparent);
+}
+
+.md-typeset .warn > .admonition-title::before {
+  background-color: var(--md-primary-warn-color--icon);
 }
 
 .md-typeset details {
