@@ -898,10 +898,10 @@ UnDefine AUTH_OIDC_ENABLE_CLAIM_INFO
 <h2 id="troubleshooting-failed-authentication"><span class="enumerate-heading-plugin">4.7</span> Troubleshooting Failed Authentication<a class="headerlink" href="#troubleshooting-failed-authentication" title="Permanent link">¶</a></h2>
 <p>The following sources can be used to troubleshoot a failed connection.</p>
 <p><strong>OpenID Connect Provider logs:</strong> Consult your OpenID Connect Provider's documentation on the location of their application log files.</p>
-<p><strong>NI Web Server Logs:</strong> These are found at <code>C:\ProgramData\National Instruments\Web Server\logs\error.log</code>.</p>
+<p><strong>NI Web Server Logs:</strong> These are found at <code>C:\ProgramData\National Instruments\Web Server\logs</code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>SystemLink uses log rotation therefore the latest logs may be in one of the numbered <code>error.log</code> files.</p>
+<p>SystemLink uses log rotation. Beginning with SystemLink 2021R1, look for <code>error.current.log</code> to find the latest errors. For versions of SystemLink prior to 2021R1, find the latest errors by locating the numbered <code>error.log</code> file with the most recent modified date.</p>
 </div>
 <p><strong>Returned Claims:</strong> See <a href="#viewing-claims-returned-by-a-provider">4.5.1 <strong>Viewing Claims Returned by a Provider</strong></a>.</p>
 <h3 id="cache-entry-size"><span class="enumerate-heading-plugin">4.7.1</span> Cache Entry Size<a class="headerlink" href="#cache-entry-size" title="Permanent link">¶</a></h3>
