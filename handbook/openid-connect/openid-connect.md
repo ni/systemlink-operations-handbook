@@ -429,10 +429,10 @@ The following sources can be used to troubleshoot a failed connection.
 
 **OpenID Connect Provider logs:** Consult your OpenID Connect Provider's documentation on the location of their application log files.
 
-**NI Web Server Logs:** These are found at `C:\ProgramData\National Instruments\Web Server\logs\error.log`.
+**NI Web Server Logs:** These are found at `C:\ProgramData\National Instruments\Web Server\logs`.
 
 !!! note
-    SystemLink uses log rotation therefore the latest logs may be in one of the numbered `error.log` files.
+    SystemLink uses log rotation. Beginning with SystemLink 2021R1, look for `error.current.log` to find the latest errors. For versions of SystemLink prior to 2021R1, find the latest errors by locating the numbered `error.log` file with the most recent modified date.
 
 **Returned Claims:** See [**Viewing Claims Returned by a Provider**](#viewing-claims-returned-by-a-provider).
 
