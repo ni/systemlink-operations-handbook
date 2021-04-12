@@ -287,18 +287,23 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#troubleshooting-failed-authentication">4.6 
+<a class="md-nav__link" href="#configuring-the-systemlink-username">4.6 
+    Configuring the SystemLink Username
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#troubleshooting-failed-authentication">4.7 
     Troubleshooting Failed Authentication
   </a>
 <nav aria-label="Troubleshooting Failed Authentication" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#cache-entry-size">4.6.1 
+<a class="md-nav__link" href="#cache-entry-size">4.7.1 
     Cache Entry Size
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#id-token-management-encryption">4.6.2 
+<a class="md-nav__link" href="#id-token-management-encryption">4.7.2 
     ID Token Management Encryption
   </a>
 </li>
@@ -448,18 +453,23 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#troubleshooting-failed-authentication">4.6 
+<a class="md-nav__link" href="#configuring-the-systemlink-username">4.6 
+    Configuring the SystemLink Username
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#troubleshooting-failed-authentication">4.7 
     Troubleshooting Failed Authentication
   </a>
 <nav aria-label="Troubleshooting Failed Authentication" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#cache-entry-size">4.6.1 
+<a class="md-nav__link" href="#cache-entry-size">4.7.1 
     Cache Entry Size
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#id-token-management-encryption">4.6.2 
+<a class="md-nav__link" href="#id-token-management-encryption">4.7.2 
     ID Token Management Encryption
   </a>
 </li>
@@ -505,6 +515,12 @@
 <p>Add the configuration files to SystemLink to connect to your OpenID Connect provider.</p>
 <div class="admonition note">
 <p>For details, refer to <a href="#openid-connect-configuration-files-in-systemlink-server">4.3 <strong>OpenID Connect Configuration Files in SystemLink Server</strong></a>.</p>
+</div>
+</li>
+<li>
+<p>In SystemLink 2021R1 and later, configure the claim to use as the SystemLink user name. This step is optional, but should be done before users begin using the server.</p>
+<div class="admonition note">
+<p>For details, refer to <a href="#configuring-the-systemlink-username">4.6 <strong>Configuring the SystemLink Username</strong></a>.</p>
 </div>
 </li>
 <li>
@@ -801,7 +817,85 @@ Define AUTH_OIDC_ENABLE_CLAIM_INFO
 </div>
 <h3 id="refreshing-user-claims"><span class="enumerate-heading-plugin">4.5.3</span> Refreshing user claims<a class="headerlink" href="#refreshing-user-claims" title="Permanent link">¶</a></h3>
 <p>Claims are fetched at login. Log out and log back in for updated claims to affect role mappings.</p>
-<h2 id="troubleshooting-failed-authentication"><span class="enumerate-heading-plugin">4.6</span> Troubleshooting Failed Authentication<a class="headerlink" href="#troubleshooting-failed-authentication" title="Permanent link">¶</a></h2>
+<h2 id="configuring-the-systemlink-username"><span class="enumerate-heading-plugin">4.6</span> Configuring the SystemLink Username<a class="headerlink" href="#configuring-the-systemlink-username" title="Permanent link">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The username can be configured in SystemLink 2021R1 and later.</p>
+</div>
+<p>SystemLink creates a unique username for each user using OpenID Connect claims. SystemLink uses the
+<code>sub</code> and <code>iss</code> claims by default to ensure that the value is unique across all providers. However those claims often contain internal
+IDs or URLs from the provider.</p>
+<figure>
+<img src="../../img/default-username.png" width="500"/>
+<figcaption>The default username for an OpenID Connect user may contain internal IDs or URLs.</figcaption>
+</figure>
+<p>You can change the claim that SystemLink uses as the username.</p>
+<div class="admonition warn">
+<p class="admonition-title">Warn</p>
+<p>To avoid creating duplicate users and losing per-user settings, configure the username before users begin using the server.</p>
+</div>
+<ol>
+<li>
+<p>Go to <code>C:\Program Files\National Instruments\Shared\Web Server\conf\defines.d</code> and open <code>50_mod_auth_openidc-defines.conf</code> in a text editor.</p>
+</li>
+<li>
+<p>Find the line <code>UnDefine AUTH_OIDC_USER_CLAIM</code>.</p>
+</li>
+<li>
+<p>Replace <code>UnDefine</code> with <code>Define</code></p>
+</li>
+<li>
+<p>Append the name of the claim that SystemLink should use as the username.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The username must be unique across all enabled providers, including OpenID Connect, LDAP, Windows, and Web Server users.</p>
+<p>Refer to <a href="#viewing-claims-returned-by-a-provider">4.5.1 <strong>Viewing Claims Returned by a Provider</strong></a> for information on how to see available claims.</p>
+</div>
+</li>
+<li>
+<p>Restart the NI Web Server to apply changes.</p>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Example</p>
+<p>An example <code>50_mod_auth_openidc-defines.conf</code> modified to use the OpenID Connect <code>email</code> claim as the SystemLink username.
+<div class="highlight"><pre><span></span><code>#
+# Defined OpenID-Connect configuration for the Windows Apache installation.
+#
+
+# The name of the JSON map containing metadata about each identity provider.
+Define AUTH_OIDC_ATTRIBUTES_KEY ni-attributes
+
+# CA bundle to use when making requests to an identity provider.
+Define AUTH_OIDC_BUNDLE ../nicurl/ca-bundle.crt
+
+# Override the OIDCCacheShmEntrySizeMax to mitigate claim size issues
+Define AUTH_OIDC_CACHE_ENTRY_SIZE 66065
+
+# Path to OIDC provider configuration.
+Define AUTH_OIDC_PROVIDER_DIR ${HTCONF_PATH}/openidc
+
+# The location to redirect when performing an OpenID-Connect login.
+Define AUTH_OIDC_REDIRECT_URI /login/openidc-redirect
+
+#
+# User-editable variables.
+#
+
+# Whether OIDC is enabled.
+Define AUTH_OIDC_ENABLED
+
+# The claim that will be used as the SystemLink user name.
+# If not defined, a combination of the sub and iss claims will be used.
+Define AUTH_OIDC_USER_CLAIM email
+
+# When enabled, /login/openidc-redirect?info=json and
+# /login/openidc-redirect?info=html will return the claims for the currently
+# logged in user.
+UnDefine AUTH_OIDC_ENABLE_CLAIM_INFO
+</code></pre></div></p>
+</div>
+<h2 id="troubleshooting-failed-authentication"><span class="enumerate-heading-plugin">4.7</span> Troubleshooting Failed Authentication<a class="headerlink" href="#troubleshooting-failed-authentication" title="Permanent link">¶</a></h2>
 <p>The following sources can be used to troubleshoot a failed connection.</p>
 <p><strong>OpenID Connect Provider logs:</strong> Consult your OpenID Connect Provider's documentation on the location of their application log files.</p>
 <p><strong>NI Web Server Logs:</strong> These are found at <code>C:\ProgramData\National Instruments\Web Server\logs\error.log</code>.</p>
@@ -810,7 +904,7 @@ Define AUTH_OIDC_ENABLE_CLAIM_INFO
 <p>SystemLink uses log rotation therefore the latest logs may be in one of the numbered <code>error.log</code> files.</p>
 </div>
 <p><strong>Returned Claims:</strong> See <a href="#viewing-claims-returned-by-a-provider">4.5.1 <strong>Viewing Claims Returned by a Provider</strong></a>.</p>
-<h3 id="cache-entry-size"><span class="enumerate-heading-plugin">4.6.1</span> Cache Entry Size<a class="headerlink" href="#cache-entry-size" title="Permanent link">¶</a></h3>
+<h3 id="cache-entry-size"><span class="enumerate-heading-plugin">4.7.1</span> Cache Entry Size<a class="headerlink" href="#cache-entry-size" title="Permanent link">¶</a></h3>
 <p>The OpenID Connect module stores information in a shared memory cache. If a cache entry is too large, users will see an "Internal Server Error" when attempting to log in. This typically occurs when you are returning a large number of claims or claims with large values.</p>
 <div class="admonition note">
 <p class="admonition-title">Example error logs</p>
@@ -834,7 +928,7 @@ oidc_cache_set: could NOT store X bytes in shm cache backend for key Y
 <p>Restart the NI Web Server from the <code>Control</code> tab of the NI Web Server Configuration application.</p>
 </li>
 </ol>
-<h3 id="id-token-management-encryption"><span class="enumerate-heading-plugin">4.6.2</span> ID Token Management Encryption<a class="headerlink" href="#id-token-management-encryption" title="Permanent link">¶</a></h3>
+<h3 id="id-token-management-encryption"><span class="enumerate-heading-plugin">4.7.2</span> ID Token Management Encryption<a class="headerlink" href="#id-token-management-encryption" title="Permanent link">¶</a></h3>
 <p>The following situations can lead to an error and redirect the user back to the SystemLink login page after authenticating with the OpenID Connect provider:</p>
 <ul>
 <li>
@@ -864,7 +958,7 @@ oidc_cache_set: could NOT store X bytes in shm cache backend for key Y
 <div class="md-source-date">
 <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 1, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 12, 2021</span>
 </small>
 </div>
 </article>
