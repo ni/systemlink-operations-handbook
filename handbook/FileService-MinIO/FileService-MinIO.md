@@ -10,10 +10,14 @@ To use MinIO as a storage provider, set up the MinIO server on a system that you
 
 1. Download the server application from the [MinIO website](https://min.io/download).
 
-2. From the command line, run the following command to run the server:
+2. Since [MinIO discourages use of the default credentials](https://docs.min.io/minio/baremetal/security/IAM/iam-users.html#:~:text=If%20these%20variables%20are%20unset,credentials%20regardless%20of%20deployment%20environment.), you should change the access key and secret key. You can do that by setting the environment variables `MINIO_ACCESS_KEY` and `MINIO_SECRET_KEY`.
 
-    ```bash
-    minio server <PathToRootFolder>
+3. Run the following command to start the server with individual access and secret keys:
+
+    ```powershell
+    set MINIO_ACCESS_KEY=YourAccessKey
+    set MINIO_SECRET_KEY=YourSecretKey
+    minio server C:\minio
     ```
 
     <figure>
@@ -21,17 +25,9 @@ To use MinIO as a storage provider, set up the MinIO server on a system that you
     <figcaption>Running a minio server.</figcaption>
     </figure>
 
-3. When starting the MinIO server for the first time, use a web browser and navigate to the URL that the command line prints out. Create a bucket by clicking the `+` button in the right bottom corner.
+4. When starting the MinIO server for the first time, use a web browser and navigate to the URL that the command line prints out. Create a bucket by clicking the `+` button in the right bottom corner.
 
-    !!! note "Note"
-        - It is recommended to set non-default access key and secret key. You can do that by setting the environment variables `MINIO_ACCESS_KEY` and `MINIO_SECRET_KEY`. Run the following commands from the command line to start a server pointing at C:\minio with your individual access and secret keys:
-        ```
-        set MINIO_ACCESS_KEY=YourAccessKey
-        set MINIO_SECRET_KEY=YourSecretKey
-        minio server C:\minio
-        ```
-        - There's no bucket region necessary for using MinIO since it is not hosted on an actual AWS S3 storage. You still have to apply a valid bucket region for the File Service to work. You can use any valid Amazon S3 region, like `us-east-1` or `eu-central-1`.
-        - Any of the three endpoints in the first line of the minio server output are usable as `S3BackEndSecretKey` (for localhost given your client is on the same machine as the MinIO server).
+5. Keep the command line open to retain your MinIO server.
 
 For detailed information on how to run the server, follow the instructions from the [MinIO Quickstart guide](https://docs.min.io/docs/minio-quickstart-guide.html).
 
@@ -39,12 +35,18 @@ For detailed information on how to run the server, follow the instructions from 
 
 1. Follow the instructions from [the documentation on uploading files to S3](https://www.ni.com/documentation/de/systemlink/latest/data/uploading-files-to-amazon-s3) to configure the File Service.
 
-2. In addition to that, there are two additional settings required only when using MinIO. Add these settings to the JSON configuration file at `C:\ProgramData\National Instruments\Skyline\Config\FileIngestion.json`:
+    a) Set the access key and secret key you chose when starting the MinIO server.
 
-    - `S3BackEndServiceUrl`: Set this value to ip:port of your MinIO server
+    b) There's no bucket region for MinIO since it is not hosted on an actual AWS S3 storage. You still have to apply a valid bucket region for the File Service to work. You can use any valid Amazon S3 region, like `us-east-1` or `eu-central-1`.
+
+    c) Set the bucket name you created.
+
+2. Add two additional settings to the JSON configuration file at `C:\ProgramData\National Instruments\Skyline\Config\FileIngestion.json`:
+
+    - `S3BackEndServiceUrl`: Set this value to ip:port of your MinIO server. You can obtain that from the MinIO output in your command line.
     - `S3ForcePathStyle`: Set this value to `True`
 
-    You can paste the example code below to the config file and replace the placeholders with your actuals values.
+    You can paste the example code below to the config file and replace the placeholders with your actual values.
 
     ```bash
     "UseS3BackEnd" : "True",
