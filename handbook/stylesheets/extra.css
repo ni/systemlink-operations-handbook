@@ -177,3 +177,7 @@ kbd {
 .md-typeset summary::before {
   display: none;
 }
+
+.md-nav__item--nested>.md-nav__link {
+  text-transform: none;
+  }
