@@ -139,9 +139,20 @@ kbd {
   font-family: SpaceMono, "Courier New", Courier, monospace;
 }
 
-/* Admonitions */
+th {
+  font-weight: bold;
+  font-size: 16px;
+}
 
-.md-typeset .admonition.note {
+.md-typeset table:not([class]){
+  font-size: 14px;
+  }
+
+.md-typeset .admonition, .md-typeset details {
+  font-size: 14px
+}
+
+.md-typeset .admonition.note, .md-typeset .admonition.important {
   border-color: var(--md-accent-fg-color);
 }
 
@@ -153,7 +164,7 @@ kbd {
   background-color: var(--md-primary-fg-color--light);
 }
 
-.md-typeset .admonition.warn {
+.md-typeset .admonition.warn{
   border-color: var(--md-accent-warn-color);
 }
 
@@ -163,6 +174,14 @@ kbd {
 
 .md-typeset .warn > .admonition-title::before {
   background-color: var(--md-primary-warn-color--icon);
+}
+
+.md-typeset .important> .admonition-title {
+  background-color: var(--md-primary-fg-color--light);
+}
+
+.md-typeset .important > .admonition-title {
+  color: var(--md-accent-bg-color--light);
 }
 
 .md-typeset details {
