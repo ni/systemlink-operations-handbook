@@ -1,6 +1,6 @@
 # Leverage Cloud File Storage with MinIO
 
-SystemLink File Service allows you to configure and use the Amazon S3 cloud storage instead of a file share. While NI officially addresses the Amazon S3 cloud storage, the File Service also works with MinIO, a server-side software storage stack that is compatible with Amazon S3.
+SystemLink File Service allows you to configure and use the Amazon S3 cloud storage instead of a file share. The File Service will also work with MinIO, a server-side software storage stack that is compatible with Amazon S3.
 
 To use MinIO with SystemLink, you need SystemLink version 2020 R3 or later.
 
@@ -10,7 +10,7 @@ To use MinIO as a storage provider, set up the MinIO server on a system that you
 
 1. Download the server application from the [MinIO website](https://min.io/download).
 
-2. Since [MinIO discourages use of the default credentials](https://docs.min.io/minio/baremetal/security/IAM/iam-users.html#:~:text=If%20these%20variables%20are%20unset,credentials%20regardless%20of%20deployment%20environment.), you should change the access key and secret key. You can do that by setting the environment variables `MINIO_ACCESS_KEY` and `MINIO_SECRET_KEY`.
+2. Since [MinIO discourages use of the default credentials](https://docs.min.io/minio/baremetal/security/IAM/iam-users.html#:~:text=If%20these%20variables%20are%20unset,credentials%20regardless%20of%20deployment%20environment.), you should change the access key and secret key. To do this, define the environment variables `MINIO_ACCESS_KEY` and `MINIO_SECRET_KEY`.
 
 3. Run the following command to start the server with individual access and secret keys:
 
@@ -27,7 +27,7 @@ To use MinIO as a storage provider, set up the MinIO server on a system that you
 
 4. When starting the MinIO server for the first time, use a web browser and navigate to the URL that the command line prints out. Create a bucket by clicking the `+` button in the right bottom corner.
 
-5. Keep the command line open to retain your MinIO server.
+5. Keep the command line open to keep the MinIO server running.
 
 For detailed information on how to run the server, follow the instructions from the [MinIO Quickstart guide](https://docs.min.io/docs/minio-quickstart-guide.html).
 
@@ -37,7 +37,7 @@ For detailed information on how to run the server, follow the instructions from 
 
     a) Set the access key and secret key you chose when starting the MinIO server.
 
-    b) There's no bucket region for MinIO since it is not hosted on an actual AWS S3 storage. You still have to apply a valid bucket region for the File Service to work. You can use any valid Amazon S3 region, like `us-east-1` or `eu-central-1`.
+    b) Apply a valid bucket region. You can use any valid Amazon S3 region, like `us-east-1` or `eu-central-1`.
 
     c) Set the bucket name you created.
 
@@ -59,4 +59,4 @@ For detailed information on how to run the server, follow the instructions from 
     "S3ForcePathStyle" : "True"
     ```
 
-3. In the `NI SystemLink server configuration` dialog, go to the `NI SystemLink Service Manager` tab and click `Restart` to apply the settings you made in the JSON file.
+3. In the `NI SystemLink Server Configuration` dialog, go to the `NI SystemLink Service Manager` tab and click `Restart` to apply the settings you made in the JSON file.
