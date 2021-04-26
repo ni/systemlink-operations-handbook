@@ -6,10 +6,11 @@ You can slo host MongoDB on a separate stand-alone server, a [replica set](https
 
 ## Assumptions and Prerequisites
 
-Before you configure a remote MongoDB to use with SystemLink, ensure you have the following
+Before you configure a remote MongoDB to use with SystemLink, ensure you have the following:
 
-- A server running SystemLink 2021R1 or greater. Refer to Installing and Configuring SystemLink Server and Clients for the basics of setting up a SystemLink server.
-- A standalone server running MongoDB, multiple servers hosting a MongoDB replica set, or a MongoDB Atlas Account with a user with the `dbAdmin` or similar role. Refer to [Role-Based Access Control](https://docs.mongodb.com/manual/core/authorization/) for details.
+- A server running SystemLink 2021R1 or greater. Refer to [Installing and Configuring SystemLink Server and Clients](https://www.ni.com/documentation/en/systemlink/latest/setup/configuring-systemlink-server-clients/) for the basics of setting up a SystemLink server.
+- A standalone server running MongoDB, multiple servers hosting a MongoDB replica set, or a MongoDB Atlas Account
+- A user with the `readWriteAnyDatabase` or similar role. Refer to [Role-Based Access Control](https://docs.mongodb.com/manual/core/authorization/) for details.
 
 ## Single Node vs Multi Node MongoDB Deployments
 
@@ -25,11 +26,11 @@ The following table summarizes when to consider the various supported configurat
 
 ## Single Node Deployments
 
-By default SystemLink stores all data on databases and the file system hosted on the SystemLink application server. To improve the reliability of data storage and scale to larger volumes of data, remote data stores are recommended for all production deployments.
+By default, SystemLink stores all data in databases and the file system hosted on the SystemLink application server. For more reliable data storage and scalability, Ni recommends remote data stores for all production deployments.
 
 ### Increasing the index cache size for *single node* deployments
 
-Increase the index cache size to process more data and use the Test Insights or Asset Management modules in a single-node deployment. This avoids high CPU usage that can occur with the default MongoDB memory constraints in SystemLink. NI recommends increasing the available memory for the index to 8GB. Refer to [Sizing a SystemLink Server](https://www.ni.com/documentation/en/systemlink/latest/setup/sizing-a-systemlink-server/) for system requirements to run SystemLink. The following steps can be used to increase the available memory for the MongoDB index.
+Increase the index cache size to process more data and use the Test Insights or Asset Management modules in a single-node deployment. This avoids high CPU usage that can occur with the default MongoDB memory constraints in SystemLink. NI recommends increasing the available memory for the index to 8GB. Refer to [Sizing a SystemLink Server](https://www.ni.com/documentation/en/systemlink/latest/setup/sizing-a-systemlink-server/) for system requirements to run SystemLink.
   
 1. With a user with administrator privileges, log into the desktop of the SystemLink app server.
 1. Open **NI SystemLink Server Configuration**.
@@ -44,22 +45,44 @@ Increase the index cache size to process more data and use the Test Insights or 
 
 SystemLink supports three types of multi-node configuration. You can configure SystemLink to connect to a standalone instance, replica sets, or MongoDB Atlas.
 
-Connecting SystemLink to a three or more node MongoDB replica set is the recommended configuration for all production deployments.
-
-!!!note
-    While SystemLink can connect and use a sharded MongoDB cluster (`mongos`) it will not take full advantage of the capabilities enabled by sharded clusters.
-
-- NI does not support configurations where the MongoDB instance is used by multiple SystemLink servers.
-- NI does not support configurations where the MongoDB instance is also used by another production application.
+NI recommends connecting SystemLink to replica set of three or more MongoDB servers for all production deployments.
 
 !!!important
-    Due to a bug in the Elixir MongoDB driver, SystemLink cannot connect to MongoDB instances where there is either the `-` or the `_` characters in the MongoDB username provided in the form input or connection string.
+    Due to a bug in a 3rd party MongoDB driver, SystemLink cannot connect to MongoDB instances where the MongoDB username provided in the form input or connection string contains either the `-` or the `_` character.
+
+- NI does not support configurations where multiple SystemLink servers use the same MongoDB instance.
+- NI does not support configurations where another production application uses the same MongoDB instance as SystemLink.
+
+!!!note
+    While SystemLink can connect to and use a sharded MongoDB cluster (`mongos`), it will not take advantage of horizontal scaling capabilities enabled by sharded clusters.
 
 When using a stand-alone MongoDB instance, replica set, or Atlas, you have the option to encrypt the data stored within the database. This is built into MongoDB Atlas or requires [MongoDB Enterprise Advanced](https://www.mongodb.com/products/mongodb-enterprise-advanced) for stand-alone or replica sets.
 
+!!!important "Connection String Formats"
+    Some connection string formats are unsupported or could cause issues in some environments.
+
+    - Connection strings that contain the query parameter `tls=` are unsupported. Use the `ssl=` query string to achieve the same capability with the same degree of security.
+    - In environments where the 4.2.1.1 root DNS server cannot be reached, the DNS seed list URI format (`mongodb+srv://`) will fail due to a bug ([Unable to connect to Atlas due to DNS connectivity issues #358](https://github.com/kobil-systems/mongodb/issues/358)) in a 3rd party MongoDB driver used by SystemLink. In this case use the [MongoDB standard connection string format](https://docs.mongodb.com/manual/reference/connection-string/#std-label-connections-standard-connection-string-format) to connect your replica set. This affects both self-hosted replica sets and MongoDB Atlas.
+    - When URL escaping characters in your connection string  you must use uppercase characters, e.g. `%2F` not `%2f`.
+
+    Example connection string (line breaks for readability):
+    
+    ```url
+    mongodb://myusername:<password>@
+    ec2-123-123-12.compute-1.amazonaws.com27017,
+    ec2-234-234-23.compute-1.amazonaws.com:27017,
+    ec2-456-456-45.compute-1.amazonaws.com:27017/
+    ?authSource=admin
+    &replicaSet=rs0
+    &readPreference=primary
+    &ssl=true
+    ```
+
+    Consider using [MongoDB Compass](mongodb compass) to connect to your replica set to help construct a valid connection string and verify the configuration.
+
 ### Connecting to Standalone MongoDB instance
 
-Using a separate server to host MongoDB provides for greater reliability and lower resource utilization for your SystemLink server.
+Using a separate server to host MongoDB increases reliability and lowers resource utilization for your SystemLink server.
 
 You may use the supplied form input in **NI SystemLink Sever Configuration** when connecting to a server hosting a single standalone MongoDB instance. Refer to [Connecting to a Remote Mongo Database](https://www.ni.com/documentation/en/systemlink/latest/setup/remote-mongo-database/) for more information.
 
@@ -67,7 +90,7 @@ You may use the supplied form input in **NI SystemLink Sever Configuration** whe
 
 Replica sets provide a way to create redundancy in your database to mitigate against potential data loss from the loss of a server hosting MongoDB. Refer to MongoDB for a [tutorial on deploying replica sets](https://docs.mongodb.com/manual/tutorial/deploy-replica-set/).
 
-To successfully connect to a MongoDB replica set you must provide SystemLink a connection string. If you use the form in **NI SystemLink Configuration**, SystemLink will not take advantage of the redundancy provided by replica sets.
+To successfully connect to a MongoDB replica set and create redundancy, you must specify a connection string in **NI SystemLink Server Configuration**.
 
 !!! note
     NI recommends [x.509 certificates](https://docs.mongodb.com/manual/tutorial/configure-x509-member-authentication/) for replica set membership.
@@ -90,33 +113,26 @@ To successfully connect to a MongoDB replica set you must provide SystemLink a c
   <figcaption>SystemLink's NoSqlDatabase configuration set to 8BG</figcaption>
 </figure>
 
-!!!important
-    Some connection string formats are unsupported or could cause issues in some environments.
-
-    - Connection strings that contain the query parameter `tls=` are unsupported. Use the `ssl=` query string to achieve the same capability with the same degree of security.
-    - The DNS seed list URI format (`mongodb+srv://`) may fail in some environments due to a bug ([Unable to connect to Atlas due to DNS connectivity issues #358](https://github.com/kobil-systems/mongodb/issues/358)) in the Elixir MongoDB driver used by SystemLink. In this case use the [MongoDB standard connection string format](https://docs.mongodb.com/manual/reference/connection-string/#std-label-connections-standard-connection-string-format) to connect your replica set. This affects both self-hosted replica sets and MongoDB Atlas.
-    - When URL escaping characters in your connection string  you must use uppercase characters, e.g. `%2F` not `%2f`.
-
-    Example connection string (line breaks for readability):
-    
-    ```url
-    mongodb://myusername:<password>:
-    ec2-123-123-12.compute-1.amazonaws.com27017,
-    ec2-234-234-23.compute-1.amazonaws.com:27017,
-    ec2-456-456-45.compute-1.amazonaws.com:27017/
-    ?authSource=admin
-    &replicaSet=rs0
-    &readPreference=primary
-    &ssl=true
-    ```
-
 ### Connecting to MongoDB Atlas
 
-MongoDB Atlas is a fully managed PaaS from MongoDB. Atlas provides for simpler setup and adminstration of a MongoDB replica set than self hosting.
+Connect to MongoDB Atlas for simpler setup and adminstration of a MongoDB replica set compared to self hosting. MongoDB Atlas is a fully managed PaaS from MongoDB.
 
 If you have not setup an Atlas cluster before, refer to [Getting started with Atlas](https://docs.atlas.mongodb.com/getting-started/). Refer to [Setup Atlas Connectivity](https://docs.mongodb.com/guides/cloud/connectionstring/) for steps to obtain a connection string.
 
-!!!note "MongoDB Atlas free tier is unsupported by SystemLink"
-    Due to constraints on memory in the Atlas free tier, SystemLink will not successfully connect to a cluster running on the free tier. You must use a paid tier to successfully connect. The lowest performance paid tiers of Atlas are supported by SystemLink. If you need assistance evaluating Atlas with SystemLink please contact NI ([customer.requests@ni.com](mailto:customer.requests@ni.com)) or your local account manager.
+!!! note
+    In the sample connection string provided by Atlas you will need to replace the instance of `myFirstDatabase` with `admin`. For example:
 
-Because Atlas uses replica sets by default, your SystemLink server could be affected by the bug in the Elixir MongoDB driver used by SystemLink as described in [Connecting to MongoDB with Replica Sets](#connecting-to-mongodb-with-replica-sets). When obtaining a connection string from Atlas use the connection string generated for the Node.js driver version 2.0.14. This provided connection string is fully supported by SystemLink.
+    ```url
+    mongodb+srv://<username>:<password>@<cluster>/myFirstDatabase?retryWrites=true&w=majority
+    ```
+    
+    This will need to be updated to 
+    
+    ```url
+    mongodb+srv://<username>:<password>@<cluster>/admin?retryWrites=true&w=majority
+    ```
+
+!!!important "MongoDB Atlas free tier is unsupported by SystemLink"
+    Due to constraints on memory in the Atlas free tier, you must use a paid tier for SystemLink to successfully connect. SystemLink supports all paid tiers for Atlas. If you need assistance evaluating Atlas with SystemLink please contact NI ([customer.requests@ni.com](mailto:customer.requests@ni.com)) or your local account manager.
+
+Because Atlas uses replica sets by default, your SystemLink server could be affected by the bug in the 3rd party MongoDB driver used by SystemLink as described in [Multi Node Deployments](#multi-node-deployments). When obtaining a connection string from Atlas use the connection string generated for the Node.js driver version 2.0.14. This provided connection string is fully supported by SystemLink.
