@@ -2,7 +2,7 @@
 
 The majority of SystemLink services use [MongoDB](https://www.mongodb.com) as the primary datastore. Default installations of SystemLink include MongoDB community Edition and launch it when the SystemLink server boots. This is referred to as a [*single node*](#single-node-deployments) deployment.
 
-You can slo host MongoDB on a separate stand-alone server, a [replica set](https://docs.mongodb.com/manual/replication/) of 3 or more servers, or accessed through MongoDB's Platform as a service offering: [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). This is referred to as a [*multi node*](#multi-node-deployments) deployment.
+You can also host MongoDB on a separate stand-alone server, a [replica set](https://docs.mongodb.com/manual/replication/) of 3 or more servers, or accessed through MongoDB's Platform as a service offering: [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). This is referred to as a [*multi node*](#multi-node-deployments) deployment.
 
 ## Assumptions and Prerequisites
 
@@ -26,7 +26,7 @@ The following table summarizes when to consider the various supported configurat
 
 ## Single Node Deployments
 
-By default, SystemLink stores all data in databases and the file system hosted on the SystemLink application server. For more reliable data storage and scalability, Ni recommends remote data stores for all production deployments.
+By default, SystemLink stores all data in databases and the file system hosted on the SystemLink application server. For more reliable data storage and scalability, NI recommends remote data stores for all production deployments.
 
 ### Increasing the index cache size for *single node* deployments
 
@@ -56,13 +56,14 @@ NI recommends connecting SystemLink to replica set of three or more MongoDB serv
 !!!note
     While SystemLink can connect to and use a sharded MongoDB cluster (`mongos`), it will not take advantage of horizontal scaling capabilities enabled by sharded clusters.
 
-When using a stand-alone MongoDB instance, replica set, or Atlas, you have the option to encrypt the data stored within the database. This is built into MongoDB Atlas or requires [MongoDB Enterprise Advanced](https://www.mongodb.com/products/mongodb-enterprise-advanced) for stand-alone or replica sets.
+When using a multi node setup with MongoDB Atlas or [MongoDB Enterprise Advanced](https://www.mongodb.com/products/mongodb-enterprise-advanced), you have the option to encrypt the data stored within the database.
 
 !!!important "Connection String Formats"
     Some connection string formats are unsupported or could cause issues in some environments.
 
     - Connection strings that contain the query parameter `tls=` are unsupported. Use the `ssl=` query string to achieve the same capability with the same degree of security.
     - In environments where the 4.2.1.1 root DNS server cannot be reached, the DNS seed list URI format (`mongodb+srv://`) will fail due to a bug ([Unable to connect to Atlas due to DNS connectivity issues #358](https://github.com/kobil-systems/mongodb/issues/358)) in a 3rd party MongoDB driver used by SystemLink. In this case use the [MongoDB standard connection string format](https://docs.mongodb.com/manual/reference/connection-string/#std-label-connections-standard-connection-string-format) to connect your replica set. This affects both self-hosted replica sets and MongoDB Atlas.
+        - The `mongodb+srv://` URI format provides for more flexible deployments because clients will not need a new connection string should the servers in the replica set change.
     - When URL escaping characters in your connection string  you must use uppercase characters, e.g. `%2F` not `%2f`.
 
     Example connection string (line breaks for readability):
@@ -135,4 +136,4 @@ If you have not setup an Atlas cluster before, refer to [Getting started with At
 !!!important "MongoDB Atlas free tier is unsupported by SystemLink"
     Due to constraints on memory in the Atlas free tier, you must use a paid tier for SystemLink to successfully connect. SystemLink supports all paid tiers for Atlas. If you need assistance evaluating Atlas with SystemLink please contact NI ([customer.requests@ni.com](mailto:customer.requests@ni.com)) or your local account manager.
 
-Because Atlas uses replica sets by default, your SystemLink server could be affected by the bug in the 3rd party MongoDB driver used by SystemLink as described in [Multi Node Deployments](#multi-node-deployments). When obtaining a connection string from Atlas use the connection string generated for the Node.js driver version 2.0.14. This provided connection string is fully supported by SystemLink.
+Because Atlas uses replica sets by default, your SystemLink server could be affected by the bug in the 3rd party MongoDB driver used by SystemLink as described in [Multi Node Deployments](#multi-node-deployments). If you cannot use the `mongodb+srv://` URI format, use the connection string generated for the Node.js driver version 2.0.14. This provided connection string is fully supported by SystemLink.
