@@ -27,15 +27,16 @@ Before making changes to markdown files in the handbook, set up a
 [Python virtual environment](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment)
 for using [MkDocs](https://www.mkdocs.org):
 
+1. Clone this repository.
 1. Download and [install Python](https://www.python.org/)
    (NI recommends 3.8 or later)
-2. (Optional) Create a virtual environment named `.venv` in the current
+1. (Optional) Create a virtual environment named `.venv` in the current
    directory by running `python -m venv .venv`. Each time you open a new
    command window, activate the environment before running `mkdocs` commands:
     - Windows users: run `.venv\Scripts\activate`
     - Linux or Mac users: run `source .venv/bin/activate`
-3. Upgrade pip by running `python -m pip install --upgrade pip`
-4. Install dependencies by running `pip install -r requirements.txt`
+1. Upgrade pip by running `python -m pip install --upgrade pip`
+1. Install dependencies by running `pip install -r requirements.txt`
 
 For more information and installation options, see
 [MkDocs - Installation](https://www.mkdocs.org/#installation).
