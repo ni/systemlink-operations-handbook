@@ -29,7 +29,7 @@ Otherwise, raise an issue in GitHub or leave feedback on ni.com to request help 
 ## Authoring Handbook Chapters
 
 - Review **chapter-template.md** and use as a starting point and reference to the structure and style of the handbook.
-- To add a chapter, update the `arrange` section in `handbook/.pages` in this repository to reference the new chapter directory.
+- To add a chapter, update the `nav` section in `handbook/.pages` in this repository to reference the new chapter directory.
 
 ## Upgrading Python Dependencies
 
