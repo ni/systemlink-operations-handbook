@@ -319,8 +319,13 @@
     </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="../../data-stores/mongodb/" title="MongoDB">
+      6. MongoDB
+    </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="../../python-dataplugins/python-dataplugins/" title="Python DataPlugins">
-      6. Python DataPlugins
+      7. Python DataPlugins
     </a>
 </li>
 </ul>
@@ -557,7 +562,7 @@
 <p>Refer to <a href="https://github.com/ni/systemlink-operations-handbook/tree/master/examples/openid-connect-config">openid-connect-config</a> for examples of each of these files.</p>
 <div class="admonition note">
 <p class="admonition-title">Example</p>
-<p>An OpenID Connect provider with the issuer URI <code>example.com:9999/v2</code> would yield files named <code>example.com%3A9999%2Fv2.conf</code> , <code>example.com%3A9999%2Fv2.client</code>, and <code>example.com%3A9999%2Fv2.provider</code>. You can find the issuer URI by viewing the <code>issuer</code> property at your provider's OpenID Connect configuration endpoint. For example <code>https://example.com:9999/v2/.well-known/openid-configuration</code>. </p>
+<p>An OpenID Connect provider with the issuer URI <code>example.com:9999/v2</code> would yield files named <code>example.com%3A9999%2Fv2.conf</code> , <code>example.com%3A9999%2Fv2.client</code>, and <code>example.com%3A9999%2Fv2.provider</code>. You can find the issuer URI by viewing the <code>issuer</code> property at your provider's OpenID Connect configuration endpoint. For example <code>https://example.com:9999/v2/.well-known/openid-configuration</code>.</p>
 </div>
 <p>These files do not exist for new SystemLink installations. Add each file to <code>C:\Program Files\National Instruments\Shared\Web Server\conf\openidc</code>. Restart the NI Web Server to apply changes.</p>
 <p>You can configure SystemLink to support multiple OpenID Connect providers simultaneously by creating a <code>[provider-issuer-uri].conf</code>, <code>[provider-issuer-uri.client</code>, and <code>[provider-issuer-uri].provider</code> file for each provider. The user ID in SystemLink must be unique across providers. This ID takes the form <code>[sub_claim]@issuer</code>. You can see the ID SystemLink associates with a user in the user details in SystemLink Security.</p>
@@ -958,7 +963,7 @@ oidc_cache_set: could NOT store X bytes in shm cache backend for key Y
 <div class="md-source-date">
 <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 12, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 30, 2021</span>
 </small>
 </div>
 </article>
