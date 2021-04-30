@@ -18,27 +18,32 @@ You can configure SystemLink to use OpenID Connect to authorize users. This enab
 
 1. Log into the server running SystemLink and go to `C:\Program Files\National Instruments\Shared\Web Server\conf\openidc`.
 
-2. Add the configuration files to SystemLink to connect to your OpenID Connect provider.
+1. Add the configuration files to SystemLink to connect to your OpenID Connect provider.
 
     !!! note ""
         For details, refer to [**OpenID Connect Configuration Files in SystemLink Server**](#openid-connect-configuration-files-in-systemlink-server).
 
-3. Open **NI Web Server Configuration**.
+1. In SystemLink 2021R1 and later, configure the claim to use as the SystemLink user name. This step is optional, but should be done before users begin using the server.
 
-4. Go to the **Authentication** tab and enable **Use OpenID Connect (advanced)**.
+    !!! note ""
+        For details, refer to [**Configuring the SystemLink Username**](#configuring-the-systemlink-username).
 
-5. Click **Apply and restart**.
+1. Open **NI Web Server Configuration**.
 
-6. Login into the SystemLink web application with a user assigned the [**Server Administrator**](https://www.ni.com/documentation/en/systemlink/latest/setup/predefined-roles/) role.
+1. Go to the **Authentication** tab and enable **Use OpenID Connect (advanced)**.
 
-7. Go to **Security** > **Roles** and click the gear icon in the top right.
+1. Click **Apply and restart**.
 
-8. Add an OpenID Connect Claim mapping for the **Server Administrator** role.
+1. Login into the SystemLink web application with a user assigned the [**Server Administrator**](https://www.ni.com/documentation/en/systemlink/latest/setup/predefined-roles/) role.
+
+1. Go to **Security** > **Roles** and click the gear icon in the top right.
+
+1. Add an OpenID Connect Claim mapping for the **Server Administrator** role.
 
     !!! note ""
         For details, refer to [**Mapping OpenID Connect Claims to SystemLink Workspaces and Roles**](#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles).
 
-9. Log out and log in as an OpenID Connect user with a mapping for the **Server Administrator** role and confirm they have the correct privileges.
+1. Log out and log in as an OpenID Connect user with a mapping for the **Server Administrator** role and confirm they have the correct privileges.
 
 <figure>
   <img src="../../img/oidc-webserver.png" width="500" />
@@ -52,7 +57,7 @@ There are three files that you must create to connect your SystemLink server to 
 Refer to [openid-connect-config](https://github.com/ni/systemlink-operations-handbook/tree/master/examples/openid-connect-config) for examples of each of these files.
 
 !!! note "Example"
-    An OpenID Connect provider with the issuer URI `example.com:9999/v2` would yield files named `example.com%3A9999%2Fv2.conf` , `example.com%3A9999%2Fv2.client`, and `example.com%3A9999%2Fv2.provider`. You can find the issuer URI by viewing the `issuer` property at your provider's OpenID Connect configuration endpoint. For example `https://example.com:9999/v2/.well-known/openid-configuration`. 
+    An OpenID Connect provider with the issuer URI `example.com:9999/v2` would yield files named `example.com%3A9999%2Fv2.conf` , `example.com%3A9999%2Fv2.client`, and `example.com%3A9999%2Fv2.provider`. You can find the issuer URI by viewing the `issuer` property at your provider's OpenID Connect configuration endpoint. For example `https://example.com:9999/v2/.well-known/openid-configuration`.
 
 These files do not exist for new SystemLink installations. Add each file to `C:\Program Files\National Instruments\Shared\Web Server\conf\openidc`. Restart the NI Web Server to apply changes.
 
@@ -345,16 +350,89 @@ If the claim value contains quotes the quotes must be escaped with \\.
 
 Claims are fetched at login. Log out and log back in for updated claims to affect role mappings.
 
+## Configuring the SystemLink Username
+
+!!! note
+    The username can be configured in SystemLink 2021R1 and later.
+
+SystemLink creates a unique username for each user using OpenID Connect claims. SystemLink uses the
+`sub` and `iss` claims by default to ensure that the value is unique across all providers. However those claims often contain internal
+IDs or URLs from the provider.
+
+<figure>
+  <img src="../../img/default-username.png" width="500" />
+  <figcaption>The default username for an OpenID Connect user may contain internal IDs or URLs.</figcaption>
+</figure>
+
+You can change the claim that SystemLink uses as the username.
+
+!!! warn
+    To avoid creating duplicate users and losing per-user settings, configure the username before users begin using the server.
+
+1. Go to `C:\Program Files\National Instruments\Shared\Web Server\conf\defines.d` and open `50_mod_auth_openidc-defines.conf` in a text editor.
+
+1. Find the line `UnDefine AUTH_OIDC_USER_CLAIM`.
+
+1. Replace `UnDefine` with `Define`
+
+1. Append the name of the claim that SystemLink should use as the username.
+
+    !!! note
+        The username must be unique across all enabled providers, including OpenID Connect, LDAP, Windows, and Web Server users.
+
+        Refer to [**Viewing Claims Returned by a Provider**](#viewing-claims-returned-by-a-provider) for information on how to see available claims.
+
+1. Restart the NI Web Server to apply changes.
+
+!!! note "Example"
+    An example `50_mod_auth_openidc-defines.conf` modified to use the OpenID Connect `email` claim as the SystemLink username.
+    ```
+    #
+    # Defined OpenID-Connect configuration for the Windows Apache installation.
+    #
+
+    # The name of the JSON map containing metadata about each identity provider.
+    Define AUTH_OIDC_ATTRIBUTES_KEY ni-attributes
+
+    # CA bundle to use when making requests to an identity provider.
+    Define AUTH_OIDC_BUNDLE ../nicurl/ca-bundle.crt
+
+    # Override the OIDCCacheShmEntrySizeMax to mitigate claim size issues
+    Define AUTH_OIDC_CACHE_ENTRY_SIZE 66065
+
+    # Path to OIDC provider configuration.
+    Define AUTH_OIDC_PROVIDER_DIR ${HTCONF_PATH}/openidc
+
+    # The location to redirect when performing an OpenID-Connect login.
+    Define AUTH_OIDC_REDIRECT_URI /login/openidc-redirect
+
+    #
+    # User-editable variables.
+    #
+
+    # Whether OIDC is enabled.
+    Define AUTH_OIDC_ENABLED
+
+    # The claim that will be used as the SystemLink user name.
+    # If not defined, a combination of the sub and iss claims will be used.
+    Define AUTH_OIDC_USER_CLAIM email
+
+    # When enabled, /login/openidc-redirect?info=json and
+    # /login/openidc-redirect?info=html will return the claims for the currently
+    # logged in user.
+    UnDefine AUTH_OIDC_ENABLE_CLAIM_INFO
+    ```
+
 ## Troubleshooting Failed Authentication
 
 The following sources can be used to troubleshoot a failed connection.
 
 **OpenID Connect Provider logs:** Consult your OpenID Connect Provider's documentation on the location of their application log files.
 
-**NI Web Server Logs:** These are found at `C:\ProgramData\National Instruments\Web Server\logs\error.log`.
+**NI Web Server Logs:** These are found at `C:\ProgramData\National Instruments\Web Server\logs`.
 
 !!! note
-    SystemLink uses log rotation therefore the latest logs may be in one of the numbered `error.log` files.
+    SystemLink uses log rotation. Beginning with SystemLink 2021R1, look for `error.current.log` to find the latest errors. For versions of SystemLink prior to 2021R1, find the latest errors by locating the numbered `error.log` file with the most recent modified date.
 
 **Returned Claims:** See [**Viewing Claims Returned by a Provider**](#viewing-claims-returned-by-a-provider).
 

@@ -4,5 +4,6 @@ nav:
     - rbac
     - openid-connect
     - ldap
+    - data-stores
     - FileService-MinIO
     - python-dataplugins
