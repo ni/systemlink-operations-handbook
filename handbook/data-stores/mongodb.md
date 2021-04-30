@@ -2,7 +2,7 @@
 
 The majority of SystemLink services use [MongoDB](https://www.mongodb.com) as the primary database. Default installations of SystemLink include MongoDB Community Edition, which launches when the SystemLink server boots. This is referred to as a [*single node*](#single-node-deployments) deployment.
 
-You can also host MongoDB on a separate stand-alone server, a [replica set](https://docs.mongodb.com/manual/replication/) of 3 or more servers, or use MongoDB's platform as a service offering, [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). This is referred to as a [*multi node*](#multi-node-deployments) deployment.
+You can also host MongoDB on a separate standalone server, a [replica set](https://docs.mongodb.com/manual/replication/) of three or more servers, or use MongoDB's platform as a service offering, [MongoDB Atlas](https://www.mongodb.com/cloud/atlas). This is referred to as a [*multi node*](#multi-node-deployments) deployment.
 
 ## Assumptions and Prerequisites
 
@@ -13,18 +13,18 @@ Before you configure a remote MongoDB instance to use with SystemLink, ensure yo
 - A user with the `readWriteAnyDatabase` or similar role. Refer to [Role-Based Access Control](https://docs.mongodb.com/manual/core/authorization/) for details. You reference this user in the MongoDB connection fields or connection string in **NI SystemLink Server Configuration**.
 
 !!!important
-    Due to a bug in a third-party MongoDB driver, SystemLink cannot connect to MongoDB instances where the MongoDB username provided in the form input or connection string contains either the `-` or the `_` character.
+    Due to a bug in a third-party MongoDB driver, SystemLink cannot connect to MongoDB instances where the MongoDB username either the `-` or the `_` character.
 
 ## Single Node vs Multi Node MongoDB Deployments
 
-The following table summarizes when to consider the various supported configurations of MongoDB with SystemLink.
+The following table summarizes when to use the various supported configurations of MongoDB with SystemLink.
 
 | Diagram | SystemLink + MongoDB Configuration | When to use |
 | | ----------- | ----------- |
 |<img src="../../img/single-box.png" width="1500px"/>| Single node with defaults     | You have one server hosting both MongoDB and SystemLink. Use this during evaluation, when working with less than 10 managed nodes, and in deployments that don't need the Asset Manager and Test Insights modules.
 |<img src="../../img/single-box.png" width="1500px"/>| Single node with increased index cache   | You have one server hosting both MongoDB and SystemLink. Use this during evaluation, in moderate deployments of less than 25 managed nodes, and for moderate usage of the Test Insights module producing less than 100 test steps and results each day.  |
 |<img src="../../img/mdb-sa.png" width="1500px" />| Multi node with a single standalone MongoDB Instance | You have SystemLink and MongoDB hosted on two separate servers. Use this configuration when the CPU, memory, and disk consumption of the MongoDB Windows service is impacting the operation of SystemLink services. While this configuration provides for greater reliability by splitting the servers running SystemLink and MongoDB, it does not provide greater redundancy for data storage.   |
-|<img src="../../img/mdb-rs.png" width="1500px"/>| Multi node with MongoDB replica sets | You have one dedicated server hosting SystemLink and 3 or more servers hosting MongoDB. **NI recommends this configuration for all production deployments including small and moderately sized deployments.** Use this to enable greater scale (>50 managed nodes, >1000 test steps and results daily). This configuration mitigates data loss with redundant replica sets. Refer to [MongoDB documentation](https://docs.mongodb.com/manual/tutorial/deploy-replica-set/) for setting up and hosting a MongoDB instance with replica sets. |
+|<img src="../../img/mdb-rs.png" width="1500px"/>| Multi node with MongoDB replica sets | You have one dedicated server hosting SystemLink and three or more servers hosting MongoDB. **NI recommends this configuration for all production deployments including small and moderately sized deployments.** Use this to enable greater scale (>50 managed nodes, >1000 test steps and results daily). This configuration mitigates data loss with redundant replica sets. Refer to [MongoDB documentation](https://docs.mongodb.com/manual/tutorial/deploy-replica-set/) for setting up and hosting a MongoDB instance with replica sets. |
 |<img src="../../img/mdb-atlas.png" width="1500px"/>| Multi node with MongoDB Atlas | You have one dedicated server hosting SystemLink and are connecting to a MongoDB Atlas cluster. Use this configuration for large scale deployments (>200 managed nodes, 10,000 test steps and results daily) or to simplify database provisioning, operation, backup and restore. Refer to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) for details on this service.
 
 ## Single Node Deployments
@@ -53,7 +53,7 @@ SystemLink supports three types of multi-node configuration. You can configure S
 NI recommends connecting SystemLink to a replica set of three or more MongoDB members or MongoDB Atlas for all production deployments.
 
 - NI does not support configurations where multiple SystemLink servers use the same MongoDB instance.
-- NI does not support configurations where another production application uses the same MongoDB instance as SystemLink.
+- NI does not support configurations where another application uses the same MongoDB instance as SystemLink.
 - While SystemLink can connect to and use a sharded MongoDB cluster (`mongos`), it will not take advantage of horizontal scaling capabilities enabled by sharded clusters.
 - When using MongoDB Atlas or [MongoDB Enterprise Advanced](https://www.mongodb.com/products/mongodb-enterprise-advanced), you can encrypt the data stored within the database.
 
