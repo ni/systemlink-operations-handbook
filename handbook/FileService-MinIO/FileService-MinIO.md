@@ -2,6 +2,8 @@
 
 SystemLink File Service allows you to configure and use the Amazon S3 cloud storage instead of a file share. The File Service will also work with MinIO, a server-side software storage stack that is compatible with Amazon S3.
 
+You can configure and use an on-premises MinIO server. Due to limitations, however, connecting to GCS or Azure using the MinIO gateway is unsupported.
+
 To use MinIO with SystemLink, you need SystemLink version 2020 R3 or later.
 
 To use MinIO as a storage provider, set up the MinIO server on a system that you would like to upload files to. This can be the same machine as the SystemLink server or your own dedicated server. Then, configure the File Service to use that server.
