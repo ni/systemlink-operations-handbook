@@ -1,4 +1,4 @@
-# Leverage Cloud File Storage with MinIO
+# Leverage File Service S3 for on-premises storage
 
 SystemLink File Service allows you to configure and use the Amazon S3 cloud storage instead of a file share. The File Service will also work with MinIO, a server-side software storage stack that is compatible with Amazon S3.
 
