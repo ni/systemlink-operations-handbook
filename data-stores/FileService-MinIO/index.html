@@ -5,13 +5,13 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://operations.systemlink.io/" rel="canonical"/>
-<link href="img/favicon.ico" rel="shortcut icon"/>
+<link href="https://operations.systemlink.io/data-stores/FileService-MinIO/" rel="canonical"/>
+<link href="../../img/favicon.ico" rel="shortcut icon"/>
 <meta content="mkdocs-1.1.2, mkdocs-material-5.5.12" name="generator"/>
-<title>SystemLink Operations Handbook</title>
-<link href="assets/stylesheets/main.4dd2dd8d.min.css" rel="stylesheet"/>
-<link href="assets/stylesheets/palette.6a5ad368.min.css" rel="stylesheet"/>
-<link href="stylesheets/extra.css" rel="stylesheet"/>
+<title>Leverage File Service S3 for on-premises storage - SystemLink Operations Handbook</title>
+<link href="../../assets/stylesheets/main.4dd2dd8d.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.6a5ad368.min.css" rel="stylesheet"/>
+<link href="../../stylesheets/extra.css" rel="stylesheet"/>
 <script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-126136185-4","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview",document.location.pathname)})</script>
 <script async="" src="https://www.google-analytics.com/analytics.js"></script>
 </head>
@@ -20,7 +20,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#introduction">1. 
+<a class="md-skip" href="#leverage-file-service-s3-for-on-premises-storage">6. 
           Skip to content
         </a>
 </div>
@@ -75,7 +75,7 @@
           </span>
 <span class="md-header-nav__topic md-ellipsis">
             
-              Introduction
+              Leverage File Service S3 for on-premises storage
             
           </span>
 </div>
@@ -141,34 +141,33 @@
 </a>
 </div>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
-<a class="md-nav__link md-nav__link--active" href="." title="Introduction">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../.." title="Introduction">
       1. Introduction
     </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="network-security/network-security/" title="Network Security">
+<a class="md-nav__link" href="../../network-security/network-security/" title="Network Security">
       2. Network Security
     </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="rbac/rbac/" title="Workspaces and Role-based Access Control">
+<a class="md-nav__link" href="../../rbac/rbac/" title="Workspaces and Role-based Access Control">
       3. Workspaces and Role-based Access Control
     </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="openid-connect/openid-connect/" title="Single Sign-on with OpenID Connect">
+<a class="md-nav__link" href="../../openid-connect/openid-connect/" title="Single Sign-on with OpenID Connect">
       4. Single Sign-on with OpenID Connect
     </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="ldap/ldap/" title="Sign on with LDAP">
+<a class="md-nav__link" href="../../ldap/ldap/" title="Sign on with LDAP">
       5. Sign on with LDAP
     </a>
 </li>
-<li class="md-nav__item md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" id="nav-6" type="checkbox"/>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="nav-6" id="nav-6" type="checkbox"/>
 <label class="md-nav__link" for="nav-6">
       6. Data stores
       <span class="md-nav__icon md-icon"></span>
@@ -179,13 +178,36 @@
         6. Data stores
       </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="data-stores/FileService-MinIO/" title="Leverage File Service S3 for on-premises storage">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+        6. Leverage File Service S3 for on-premises storage
+        <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./" title="Leverage File Service S3 for on-premises storage">
       6. Leverage File Service S3 for on-premises storage
     </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Leverage File Service S3 for on-premises storage
+    </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#running-minio-server">6.1 
+    Running MinIO server
+  </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="data-stores/mongodb/" title="MongoDB">
+<a class="md-nav__link" href="#configuring-file-service">6.2 
+    Configuring File Service
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../mongodb/" title="MongoDB">
       6. MongoDB
     </a>
 </li>
@@ -193,7 +215,7 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="python-dataplugins/python-dataplugins/" title="Python DataPlugins">
+<a class="md-nav__link" href="../../python-dataplugins/python-dataplugins/" title="Python DataPlugins">
       7. Python DataPlugins
     </a>
 </li>
@@ -206,31 +228,97 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Leverage File Service S3 for on-premises storage
+    </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#running-minio-server">6.1 
+    Running MinIO server
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#configuring-file-service">6.2 
+    Configuring File Service
+  </a>
+</li>
+</ul>
 </nav>
 </div>
 </div>
 </div>
 <div class="md-content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/ni/systemlink-operations-handbook/edit/master/handbook/README.md" title="Edit this page">
+<a class="md-content__button md-icon" href="https://github.com/ni/systemlink-operations-handbook/edit/master/handbook/data-stores/FileService-MinIO.md" title="Edit this page">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"></path></svg>
 </a>
-<h1 id="introduction"><span class="enumerate-heading-plugin">1.</span> Introduction<a class="headerlink" href="#introduction" title="Permanent link">¶</a></h1>
-<p>The SystemLink Operations Handbook contains documentation, examples, and
-example config files for IT professionals to use when managing more advanced
-configurations of <a href="https://www.ni.com/systemlink">SystemLink Server</a>. For
-information about how to install and use a SystemLink server, see the
-<a href="https://www.ni.com/r/systemlinkmanual">latest product manual on ni.com</a>.
-Source and contributions for the handbook and example files can be found in the
-<a href="https://github.com/ni/systemlink-operations-handbook">systemlink-operations-handbook GitHub repository</a>.</p>
-<p>While the handbook is not specific to any version of SystemLink Server, the
-product continues to evolve over time. Some chapters or examples may
-specify a version or range of versions of SystemLink that they apply to.</p>
+<h1 id="leverage-file-service-s3-for-on-premises-storage"><span class="enumerate-heading-plugin">6.</span> Leverage File Service S3 for on-premises storage<a class="headerlink" href="#leverage-file-service-s3-for-on-premises-storage" title="Permanent link">¶</a></h1>
+<p>SystemLink File Service allows you to configure and use the Amazon S3 cloud storage instead of a file share. The File Service will also work with MinIO, a server-side software storage stack that is compatible with Amazon S3.</p>
+<p>You can configure and use an on-premises MinIO server. Due to limitations, however, connecting to GCS or Azure using the MinIO gateway is unsupported.</p>
+<p>To use MinIO with SystemLink, you need SystemLink version 2020 R3 or later.</p>
+<p>To use MinIO as a storage provider, set up the MinIO server on a system that you would like to upload files to. This can be the same machine as the SystemLink server or your own dedicated server. Then, configure the File Service to use that server.</p>
+<h2 id="running-minio-server"><span class="enumerate-heading-plugin">6.1</span> Running MinIO server<a class="headerlink" href="#running-minio-server" title="Permanent link">¶</a></h2>
+<ol>
+<li>
+<p>Download the server application from the <a href="https://min.io/download">MinIO website</a>.</p>
+</li>
+<li>
+<p>Since <a href="https://docs.min.io/minio/baremetal/security/IAM/iam-users.html#:~:text=If%20these%20variables%20are%20unset,credentials%20regardless%20of%20deployment%20environment.">MinIO discourages use of the default credentials</a>, you should change the access key and secret key. To do this, define the environment variables <code>MINIO_ACCESS_KEY</code> and <code>MINIO_SECRET_KEY</code>.</p>
+</li>
+<li>
+<p>Run the following command to start the server with individual access and secret keys:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">set </span><span class="n">MINIO_ACCESS_KEY</span><span class="p">=</span><span class="n">YourAccessKey</span>
+<span class="nb">set </span><span class="n">MINIO_SECRET_KEY</span><span class="p">=</span><span class="n">YourSecretKey</span>
+<span class="n">minio</span> <span class="n">server</span> <span class="n">C</span><span class="err">:</span><span class="p">\</span><span class="n">minio</span>
+</code></pre></div>
+<p><figure>
+<img src="../../img/minio-server.png" width="500"/>
+<figcaption>Running a minio server.</figcaption>
+</figure></p>
+</li>
+<li>
+<p>When starting the MinIO server for the first time, use a web browser and navigate to the URL that the command line prints out. Create a bucket by clicking the <code>+</code> button in the right bottom corner.</p>
+</li>
+<li>
+<p>Keep the command line open to keep the MinIO server running.</p>
+</li>
+</ol>
+<p>For detailed information on how to run the server, follow the instructions from the <a href="https://docs.min.io/docs/minio-quickstart-guide.html">MinIO Quickstart guide</a>.</p>
+<h2 id="configuring-file-service"><span class="enumerate-heading-plugin">6.2</span> Configuring File Service<a class="headerlink" href="#configuring-file-service" title="Permanent link">¶</a></h2>
+<ol>
+<li>
+<p>Follow the instructions from <a href="https://www.ni.com/documentation/de/systemlink/latest/data/uploading-files-to-amazon-s3">the documentation on uploading files to S3</a> to configure the File Service.</p>
+<p>a) Set the access key and secret key you chose when starting the MinIO server.</p>
+<p>b) Apply a valid bucket region. You can use any valid Amazon S3 region, like <code>us-east-1</code> or <code>eu-central-1</code>.</p>
+<p>c) Set the bucket name you created.</p>
+</li>
+<li>
+<p>Add two additional settings to the JSON configuration file at <code>C:\ProgramData\National Instruments\Skyline\Config\FileIngestion.json</code>:</p>
+<ul>
+<li><code>S3BackEndServiceUrl</code>: Set this value to ip:port of your MinIO server. You can obtain that from the MinIO output in your command line.</li>
+<li><code>S3ForcePathStyle</code>: Set this value to <code>True</code></li>
+</ul>
+<p>You can paste the example code below to the config file and replace the placeholders with your actual values.</p>
+<div class="highlight"><pre><span></span><code><span class="s2">"UseS3BackEnd"</span> : <span class="s2">"True"</span>,
+<span class="s2">"S3BackEndBucketRegion"</span> : <span class="s2">"us-east-1"</span>,
+<span class="s2">"S3BackEndBucketName"</span> : <span class="s2">"&lt;YourBucket&gt;"</span>,
+<span class="s2">"S3BackEndAccessKeyId"</span> : <span class="s2">"&lt;YourAccessKey&gt;"</span>,
+<span class="s2">"S3BackEndSecretKey"</span> : <span class="s2">"&lt;YourSecretKey&gt;"</span>,
+<span class="s2">"S3BackEndFolderName"</span> : <span class="s2">""</span>,
+<span class="s2">"S3BackEndServiceUrl"</span> : <span class="s2">"&lt;YourServerIP&gt;"</span>,
+<span class="s2">"S3ForcePathStyle"</span> : <span class="s2">"True"</span>
+</code></pre></div>
+</li>
+<li>
+<p>In the <code>NI SystemLink Server Configuration</code> dialog, go to the <code>NI SystemLink Service Manager</code> tab and click <code>Restart</code> to apply the settings you made in the JSON file.</p>
+</li>
+</ol>
 <hr/>
 <div class="md-source-date">
 <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 11, 2020</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 5, 2021</span>
 </small>
 </div>
 </article>
@@ -240,13 +328,26 @@ specify a version or range of versions of SystemLink that they apply to.</p>
 <footer class="md-footer">
 <div class="md-footer-nav">
 <nav aria-label="Footer" class="md-footer-nav__inner md-grid">
-<a class="md-footer-nav__link md-footer-nav__link--next" href="network-security/network-security/" rel="next" title="Network Security">
+<a class="md-footer-nav__link md-footer-nav__link--prev" href="../../ldap/ldap/" rel="prev" title="Sign on with LDAP">
+<div class="md-footer-nav__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
+</div>
+<div class="md-footer-nav__title">
+<div class="md-ellipsis">
+<span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Sign on with LDAP
+              </div>
+</div>
+</a>
+<a class="md-footer-nav__link md-footer-nav__link--next" href="../mongodb/" rel="next" title="MongoDB">
 <div class="md-footer-nav__title">
 <div class="md-ellipsis">
 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Network Security
+                MongoDB
               </div>
 </div>
 <div class="md-footer-nav__button md-icon">
@@ -271,14 +372,14 @@ specify a version or range of versions of SystemLink that they apply to.</p>
 </div>
 </footer>
 </div>
-<script src="assets/javascripts/vendor.3636a4ec.min.js"></script>
-<script src="assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+<script src="../../assets/javascripts/vendor.3636a4ec.min.js"></script>
+<script src="../../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
 <script>
         app = initialize({
-          base: ".",
+          base: "../..",
           features: [],
           search: Object.assign({
-            worker: "assets/javascripts/worker/search.5eca75d3.min.js"
+            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
