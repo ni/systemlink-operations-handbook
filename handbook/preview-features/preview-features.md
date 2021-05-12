@@ -8,7 +8,7 @@ Analysis Automation performs recurring analyses with similar data and exports th
 
 ### Prerequisites
 
-To create analysis automation procedures with Jupyter in SystemLink, you need to install SystemLink 2021 R1 and the Measurement Data Analysis module.
+To create analysis automation procedures with Jupyter in SystemLink, you need to install SystemLink 2021 R1 and the Measurement Data Analysis and Jupyter Hub modules.
 
 ### Steps to Take
 
@@ -18,18 +18,23 @@ Create an analysis automation procedure from the analysis notebook you write in 
 
 2. Right-click the notebook and select __New Analysis Automation Procedure__.
 
-3. In the dialog box, specify the following information:
+<figure>
+  <img src="../../img/new_aa_procedure.png" width="500" />
+  <figcaption>Create a new analysis automation procedure from the notebook.</figcaption>
+</figure>
+
+1. In the dialog box, specify the following information:
     1. Enter a name and description for the procedure.
     2. Choose a __Workspace__ to define the users and the available data sources that can interact with the procedure.
     3. In the dropdown menu, choose a __Search Query__ you saved in Data Navigation.
-      The query defines the data you want to analyze with the analysis notebook. Verify that the data sources in the query are in the workspace you defined.
+      The query defines the data you want to analyze with the analysis notebook. Verify that the data sources in the query are in the workspace you chose.
     4. Select the __Execution Mode__.
       Select __Compare__ if you want to run the analysis notebook on all data elements the search query retrieves.
       Select __Parallel__ if you want to run the analysis notebook on each data element the search query retrieves.
-4. Click __OK__.
+2. Click __OK__.
     The procedure uploads to Analysis Automation.
-5. Click the __Analysis Automation__ link to view the procedure on the __Procedures__ tab in Analysis Automation.
-6. Approve the procedure for it to go live.  
-*Note: Approving procedures requires a separate privilege.*
+3. Click the __Analysis Automation__ link to view the procedure on the __Procedures__ tab in Analysis Automation.
+4. Approve the procedure for it to go live.  
+*Note: Approving procedures requires the __Approve and reject procedures__ privilege.*
 
 After uploading the procedure, [add a task to execute your procedure in Analysis Automation](https://www.ni.com/r/slmanual/analysis/adding-editing-tasks-for-analysis-automation-procedures/).
