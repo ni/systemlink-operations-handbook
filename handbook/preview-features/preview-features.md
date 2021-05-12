@@ -32,4 +32,4 @@ Create an analysis automation procedure from the analysis notebook you write in 
 6. Approve the procedure for it to go live.  
 *Note: Approving procedures requires a separate privilege.*
 
-After uploading the procedure, [add a task to execute your procedure in Analysis Automation](https://www.ni.com/documentation/en/systemlink/2021r1/analysis/adding-editing-tasks-for-analysis-automation-procedures/).
+After uploading the procedure, [add a task to execute your procedure in Analysis Automation](https://www.ni.com/r/slmanual/analysis/adding-editing-tasks-for-analysis-automation-procedures/).
