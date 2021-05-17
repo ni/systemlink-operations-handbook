@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://operations.systemlink.io/data-stores/FileService-MinIO/" rel="canonical"/>
+<link href="https://operations.systemlink.io/preview-features/preview-features/" rel="canonical"/>
 <link href="../../img/favicon.ico" rel="shortcut icon"/>
 <meta content="mkdocs-1.1.2, mkdocs-material-5.5.12" name="generator"/>
-<title>Leverage File Service S3 for on-premises storage - SystemLink Operations Handbook</title>
+<title>Preview Features - SystemLink Operations Handbook</title>
 <link href="../../assets/stylesheets/main.4dd2dd8d.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/palette.6a5ad368.min.css" rel="stylesheet"/>
 <link href="../../stylesheets/extra.css" rel="stylesheet"/>
@@ -20,7 +20,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#leverage-file-service-s3-for-on-premises-storage">6. 
+<a class="md-skip" href="#preview-features">9. 
           Skip to content
         </a>
 </div>
@@ -75,7 +75,7 @@
           </span>
 <span class="md-header-nav__topic md-ellipsis">
             
-              Leverage File Service S3 for on-premises storage
+              Preview Features
             
           </span>
 </div>
@@ -166,8 +166,8 @@
       5. Sign on with LDAP
     </a>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="nav-6" id="nav-6" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" id="nav-6" type="checkbox"/>
 <label class="md-nav__link" for="nav-6">
       6. Data stores
       <span class="md-nav__icon md-icon"></span>
@@ -178,36 +178,13 @@
         6. Data stores
       </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-        6. Leverage File Service S3 for on-premises storage
-        <span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./" title="Leverage File Service S3 for on-premises storage">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../data-stores/FileService-MinIO/" title="Leverage File Service S3 for on-premises storage">
       6. Leverage File Service S3 for on-premises storage
     </a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Leverage File Service S3 for on-premises storage
-    </label>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#running-minio-server">6.1 
-    Running MinIO server
-  </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#configuring-file-service">6.2 
-    Configuring File Service
-  </a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../mongodb/" title="MongoDB">
+<a class="md-nav__link" href="../../data-stores/mongodb/" title="MongoDB">
       6. MongoDB
     </a>
 </li>
@@ -219,10 +196,42 @@
       7. Python DataPlugins
     </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../../preview-features/preview-features/" title="Preview Features">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+        8. Preview Features
+        <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./" title="Preview Features">
       8. Preview Features
     </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Preview Features
+    </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#creating-and-uploading-analysis-automation-procedures-with-jupyter-notebooks">9.1 
+    Creating and Uploading Analysis Automation Procedures with Jupyter Notebooks
+  </a>
+<nav aria-label="Creating and Uploading Analysis Automation Procedures with Jupyter Notebooks" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#prerequisites">9.1.1 
+    Prerequisites
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#steps-to-take">9.1.2 
+    Steps to Take
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -235,18 +244,27 @@
 <nav aria-label="Table of contents" class="md-nav md-nav--secondary">
 <label class="md-nav__title" for="__toc">
 <span class="md-nav__icon md-icon"></span>
-      Leverage File Service S3 for on-premises storage
+      Preview Features
     </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#running-minio-server">6.1 
-    Running MinIO server
+<a class="md-nav__link" href="#creating-and-uploading-analysis-automation-procedures-with-jupyter-notebooks">9.1 
+    Creating and Uploading Analysis Automation Procedures with Jupyter Notebooks
+  </a>
+<nav aria-label="Creating and Uploading Analysis Automation Procedures with Jupyter Notebooks" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#prerequisites">9.1.1 
+    Prerequisites
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#configuring-file-service">6.2 
-    Configuring File Service
+<a class="md-nav__link" href="#steps-to-take">9.1.2 
+    Steps to Take
   </a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -255,75 +273,52 @@
 </div>
 <div class="md-content">
 <article class="md-content__inner md-typeset">
-<a class="md-content__button md-icon" href="https://github.com/ni/systemlink-operations-handbook/edit/master/handbook/data-stores/FileService-MinIO.md" title="Edit this page">
+<a class="md-content__button md-icon" href="https://github.com/ni/systemlink-operations-handbook/edit/master/handbook/preview-features/preview-features.md" title="Edit this page">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"></path></svg>
 </a>
-<h1 id="leverage-file-service-s3-for-on-premises-storage"><span class="enumerate-heading-plugin">6.</span> Leverage File Service S3 for on-premises storage<a class="headerlink" href="#leverage-file-service-s3-for-on-premises-storage" title="Permanent link">¶</a></h1>
-<p>SystemLink File Service allows you to configure and use the Amazon S3 cloud storage instead of a file share. The File Service will also work with MinIO, a server-side software storage stack that is compatible with Amazon S3.</p>
-<p>You can configure and use an on-premises MinIO server. Due to limitations, however, connecting to GCS or Azure using the MinIO gateway is unsupported.</p>
-<p>To use MinIO with SystemLink, you need SystemLink version 2020 R3 or later.</p>
-<p>To use MinIO as a storage provider, set up the MinIO server on a system that you would like to upload files to. This can be the same machine as the SystemLink server or your own dedicated server. Then, configure the File Service to use that server.</p>
-<h2 id="running-minio-server"><span class="enumerate-heading-plugin">6.1</span> Running MinIO server<a class="headerlink" href="#running-minio-server" title="Permanent link">¶</a></h2>
+<h1 id="preview-features"><span class="enumerate-heading-plugin">9.</span> Preview Features<a class="headerlink" href="#preview-features" title="Permanent link">¶</a></h1>
+<p>This section contains guided help for preview features in the current SystemLink release. While preview features are not yet complete and have limited functionality, they provide an understanding of the direction the product is taking and give users the opportunity to experiment and give feedback.</p>
+<h2 id="creating-and-uploading-analysis-automation-procedures-with-jupyter-notebooks"><span class="enumerate-heading-plugin">9.1</span> Creating and Uploading Analysis Automation Procedures with Jupyter Notebooks<a class="headerlink" href="#creating-and-uploading-analysis-automation-procedures-with-jupyter-notebooks" title="Permanent link">¶</a></h2>
+<p>Analysis Automation performs recurring analyses with similar data and exports the results as a PDF or graphics file for management reporting. Analysis automation procedures define the analyses and contain the analysis script, the parameter definition, and the search query for the respective data. Currently, you create procedures in DIAdem VBS or Python, but now you can also create them in Jupyter and upload them straight to Analyis Automation.  </p>
+<h3 id="prerequisites"><span class="enumerate-heading-plugin">9.1.1</span> Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">¶</a></h3>
+<p>To create analysis automation procedures with Jupyter in SystemLink, you need to install SystemLink 2021 R1 and the Measurement Data Analysis and Jupyter Hub modules.</p>
+<h3 id="steps-to-take"><span class="enumerate-heading-plugin">9.1.2</span> Steps to Take<a class="headerlink" href="#steps-to-take" title="Permanent link">¶</a></h3>
+<p>Create an analysis automation procedure from the analysis notebook you write in Jupyter and upload it to the procedures library in Analysis Automation.</p>
 <ol>
 <li>
-<p>Download the server application from the <a href="https://min.io/download">MinIO website</a>.</p>
+<p>In <strong>Jupyter</strong>, open the analysis notebook you want to upload.</p>
 </li>
 <li>
-<p>Since <a href="https://docs.min.io/minio/baremetal/security/IAM/iam-users.html#:~:text=If%20these%20variables%20are%20unset,credentials%20regardless%20of%20deployment%20environment.">MinIO discourages use of the default credentials</a>, you should change the access key and secret key. To do this, define the environment variables <code>MINIO_ACCESS_KEY</code> and <code>MINIO_SECRET_KEY</code>.</p>
+<p>Right-click the notebook and select <strong>New Analysis Automation Procedure</strong>.</p>
 </li>
-<li>
-<p>Run the following command to start the server with individual access and secret keys:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">set </span><span class="n">MINIO_ACCESS_KEY</span><span class="p">=</span><span class="n">YourAccessKey</span>
-<span class="nb">set </span><span class="n">MINIO_SECRET_KEY</span><span class="p">=</span><span class="n">YourSecretKey</span>
-<span class="n">minio</span> <span class="n">server</span> <span class="n">C</span><span class="err">:</span><span class="p">\</span><span class="n">minio</span>
-</code></pre></div>
+</ol>
 <p><figure>
-<img src="../../img/minio-server.png" width="500"/>
-<figcaption>Running a minio server.</figcaption>
+<img src="../../img/new_aa_procedure.png" width="500"/>
+<figcaption>Create a new analysis automation procedure  from the notebook.</figcaption>
 </figure></p>
-</li>
-<li>
-<p>When starting the MinIO server for the first time, use a web browser and navigate to the URL that the command line prints out. Create a bucket by clicking the <code>+</code> button in the right bottom corner.</p>
-</li>
-<li>
-<p>Keep the command line open to keep the MinIO server running.</p>
-</li>
-</ol>
-<p>For detailed information on how to run the server, follow the instructions from the <a href="https://docs.min.io/docs/minio-quickstart-guide.html">MinIO Quickstart guide</a>.</p>
-<h2 id="configuring-file-service"><span class="enumerate-heading-plugin">6.2</span> Configuring File Service<a class="headerlink" href="#configuring-file-service" title="Permanent link">¶</a></h2>
 <ol>
-<li>
-<p>Follow the instructions from <a href="https://www.ni.com/documentation/de/systemlink/latest/data/uploading-files-to-amazon-s3">the documentation on uploading files to S3</a> to configure the File Service.</p>
-<p>a) Set the access key and secret key you chose when starting the MinIO server.</p>
-<p>b) Apply a valid bucket region. You can use any valid Amazon S3 region, like <code>us-east-1</code> or <code>eu-central-1</code>.</p>
-<p>c) Set the bucket name you created.</p>
-</li>
-<li>
-<p>Add two additional settings to the JSON configuration file at <code>C:\ProgramData\National Instruments\Skyline\Config\FileIngestion.json</code>:</p>
-<ul>
-<li><code>S3BackEndServiceUrl</code>: Set this value to ip:port of your MinIO server. You can obtain that from the MinIO output in your command line.</li>
-<li><code>S3ForcePathStyle</code>: Set this value to <code>True</code></li>
-</ul>
-<p>You can paste the example code below to the config file and replace the placeholders with your actual values.</p>
-<div class="highlight"><pre><span></span><code><span class="s2">"UseS3BackEnd"</span> : <span class="s2">"True"</span>,
-<span class="s2">"S3BackEndBucketRegion"</span> : <span class="s2">"us-east-1"</span>,
-<span class="s2">"S3BackEndBucketName"</span> : <span class="s2">"&lt;YourBucket&gt;"</span>,
-<span class="s2">"S3BackEndAccessKeyId"</span> : <span class="s2">"&lt;YourAccessKey&gt;"</span>,
-<span class="s2">"S3BackEndSecretKey"</span> : <span class="s2">"&lt;YourSecretKey&gt;"</span>,
-<span class="s2">"S3BackEndFolderName"</span> : <span class="s2">""</span>,
-<span class="s2">"S3BackEndServiceUrl"</span> : <span class="s2">"&lt;YourServerIP&gt;"</span>,
-<span class="s2">"S3ForcePathStyle"</span> : <span class="s2">"True"</span>
-</code></pre></div>
-</li>
-<li>
-<p>In the <code>NI SystemLink Server Configuration</code> dialog, go to the <code>NI SystemLink Service Manager</code> tab and click <code>Restart</code> to apply the settings you made in the JSON file.</p>
-</li>
+<li>In the dialog box, specify the following information:<ol>
+<li>Enter a name and description for the procedure.</li>
+<li>Choose a <strong>Workspace</strong> to define the users and the available data sources that can interact with the procedure.</li>
+<li>In the dropdown menu, choose a <strong>Search Query</strong> you saved in Data Navigation.
+  The query defines the data you want to analyze with the analysis notebook. Verify that the data sources in the query are in the workspace you chose.</li>
+<li>Select the <strong>Execution Mode</strong>.
+  Select <strong>Compare</strong> if you want to run the analysis notebook on all data elements the search query retrieves.
+  Select <strong>Parallel</strong> if you want to run the analysis notebook on each data element the search query retrieves.</li>
 </ol>
+</li>
+<li>Click <strong>OK</strong>.
+    The procedure uploads to Analysis Automation.</li>
+<li>Click the <strong>Analysis Automation</strong> link to view the procedure on the <strong>Procedures</strong> tab in Analysis Automation.</li>
+<li>Approve the procedure for it to go live.<br/>
+<em>Note: Approving procedures requires the <strong>Approve and reject procedures</strong> privilege.</em></li>
+</ol>
+<p>After uploading the procedure, <a href="https://www.ni.com/r/slmanual/analysis/adding-editing-tasks-for-analysis-automation-procedures/">add a task to execute your procedure in Analysis Automation</a>.</p>
 <hr/>
 <div class="md-source-date">
 <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 5, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 17, 2021</span>
 </small>
 </div>
 </article>
@@ -333,7 +328,7 @@
 <footer class="md-footer">
 <div class="md-footer-nav">
 <nav aria-label="Footer" class="md-footer-nav__inner md-grid">
-<a class="md-footer-nav__link md-footer-nav__link--prev" href="../../ldap/ldap/" rel="prev" title="Sign on with LDAP">
+<a class="md-footer-nav__link md-footer-nav__link--prev" href="../../python-dataplugins/python-dataplugins/" rel="prev" title="Python DataPlugins">
 <div class="md-footer-nav__button md-icon">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
 </div>
@@ -342,21 +337,8 @@
 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Sign on with LDAP
+                Python DataPlugins
               </div>
-</div>
-</a>
-<a class="md-footer-nav__link md-footer-nav__link--next" href="../mongodb/" rel="next" title="MongoDB">
-<div class="md-footer-nav__title">
-<div class="md-ellipsis">
-<span class="md-footer-nav__direction">
-                  Next
-                </span>
-                MongoDB
-              </div>
-</div>
-<div class="md-footer-nav__button md-icon">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"></path></svg>
 </div>
 </a>
 </nav>
