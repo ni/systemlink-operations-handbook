@@ -13,7 +13,7 @@ Before you configure a remote MongoDB instance to use with SystemLink, ensure yo
 - A user with the `readWriteAnyDatabase` or similar role. Refer to [Role-Based Access Control](https://docs.mongodb.com/manual/core/authorization/) for details. You reference this user in the MongoDB connection fields or connection string in **NI SystemLink Server Configuration**.
 
 !!!important
-    Due to a bug in a third-party MongoDB driver, SystemLink cannot connect to MongoDB instances where the MongoDB username either the `-` or the `_` character.
+    Due to a bug in a third-party MongoDB driver, SystemLink cannot connect to MongoDB instances where the MongoDB username contains either the `-` or the `_` character.
 
 ## Single Node vs Multi Node MongoDB Deployments
 
