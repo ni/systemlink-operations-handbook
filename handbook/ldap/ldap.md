@@ -39,11 +39,11 @@ You can configure SystemLink to use the Lightweight Directory Access Protocol (L
   <figcaption>Configuration needed to enable logging into a SystemLink server using LDAP credentials.</figcaption>
 </figure>
 
-You may now login to the SystemLink server using your LDAP credentials. To access systems and data in SystemLink, configure workspace and role mappings. Refer to [**Mapping LDAP Attributes and Groups to SystemLink Workspaces and Roles**](#mapping-ldap-attributes-and-groups-to-systemlink-workspaces-and-roles) for details.
+You may now log in to the SystemLink server using your LDAP credentials. To access systems and data in SystemLink, configure workspace and role mappings. Refer to [**Mapping LDAP Attributes and Groups to SystemLink Workspaces and Roles**](#mapping-ldap-attributes-and-groups-to-systemlink-workspaces-and-roles) for details.
 
 <figure>
   <img src="../../img/no-mapping.png" width="500" />
-  <figcaption>View from a user who can login but does not have any workspace and role mappings.</figcaption>
+  <figcaption>View from a user who can log in but does not have any workspace and role mappings.</figcaption>
 </figure>
 
 ## LDAP URL and Bind User
@@ -57,13 +57,13 @@ The LDAP URL follows a standard scheme.
 !!! note "URL Scheme"
     `<ldap>://<server-dns>:<port>/<target-entry-dn>?<username-attribute>?<scope>?<filter>`
 
-**protocol:** `ldap` or `ldaps` for secure connections. SystemLink does not support STARTTLS, which allows connections over non-TLS and then initiate a TLS handshake.
+**protocol:** `ldap` or `ldaps` for secure connections. SystemLink does not support STARTTLS, which allows connections over non-TLS and then initiates a TLS handshake.
 
 **server-dns:** The LDAP server SystemLink is connecting to.
 
 **port:** The port of the LDAP server. If your LDAP server is backed by Windows Active Directory, you may point to the global catalog on port 3268 to enable login from multiple domains (forest).
 
-**target-entry-dn:** The base search distinguished name (DN) for the LDAP directory
+**target-entry-dn:** The base search distinguished name (DN) for the LDAP directory.
 
 **user-name-attribute:** The attribute that determines the SystemLink username for login.
 
@@ -107,7 +107,7 @@ To add a user or collection of users to a workspace and assign a role you must c
 
 1. Log in to the SystemLink web application with a user mapped to the [**Server Administrator**](https://www.ni.com/documentation/en/systemlink/latest/setup/predefined-roles/) role.
 
-2. Go to **Security** > **Workspaces** and click the gear icon in the top right.
+2. Go to **Access Control** > **Workspaces** and click the gear icon in the top right.
 
 3. Create a new workspace or edit an existing workspace.
 
@@ -119,7 +119,7 @@ To add a user or collection of users to a workspace and assign a role you must c
 
 ### LDAP Group Mapping
 
-LDAP Group mapping queries the `objectClass` of `group` (Active Directory specific), `groupOfName`, and `groupOfUniqueNames` to matches either `member` or `uniqueMember` attributes of the group.
+LDAP Group mapping queries the `objectClass` of `group` (Active Directory specific), `groupOfName`, and `groupOfUniqueNames` to match either `member` or `uniqueMember` attributes of the group.
 
 ### LDAP User Mapping
 
@@ -129,7 +129,7 @@ You may specify a LDAP username when creating workspace and role mappings. The u
 
 You can use any available LDAP attribute to create a workspace and role mapping. In this case both the name and value of the attribute must match exactly for the mapping to be successful.
 
-!!! note "example LDAP attribute mapping"
+!!! note "Example LDAP attribute mapping"
     <figure>
       <img src="../../img/ldap-mapping.png" width="500" />
       <figcaption>Mapping the country attribute `c` with the value `US` to the **Data Maintainer Role** in the **Default** workspace.</figcaption>

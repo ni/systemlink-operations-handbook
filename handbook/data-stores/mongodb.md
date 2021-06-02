@@ -43,7 +43,7 @@ Increase the index cache size to process more data and use the Test Insights or 
 
 <figure>
   <img src="../../img/mdb-cache.png" width="500" />
-  <figcaption>SystemLink's NoSqlDatabase configuration set to 8BG</figcaption>
+  <figcaption>SystemLink's NoSqlDatabase configuration set to 8GB</figcaption>
 </figure>
 
 ## Multi Node Deployments

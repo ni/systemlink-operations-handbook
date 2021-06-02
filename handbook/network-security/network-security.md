@@ -46,7 +46,7 @@ Refer to [Workspaces and Role-based Access Control](/rbac/rbac) for details secu
     - Refer to [**NI Web Server**](#ni-web-server) for details on configuring encrypted communication.
 
 - **Targets**
-    - Targets are Windows and Linux RT systems who software and configuration are managed by SystemLink.
+    - Targets are Windows and Linux RT systems whose software and configuration are managed by SystemLink.
     - Software configuration occurs via the [SaltStack Transport Protocol](https://docs.saltproject.io/en/latest/topics/transports/).
         - Refer to [**Target to SystemLink Communication**](#target-to-systemlink-communication) for details regarding how SystemLink encrypts this communication.
     - File, tag, test, and asset data are published to the SystemLink application server over HTTPS.
@@ -63,13 +63,13 @@ Refer to [Workspaces and Role-based Access Control](/rbac/rbac) for details secu
     - AWS S3 uses HTTPS.
         Refer to the [SystemLink manual](https://www.ni.com/documentation/en/systemlink/latest/data/uploading-files-to-amazon-s3/) for steps to enable S3 file storage.
 
-- **Data Finder (not shown)**
+- **DataFinder (not shown)**
     - DataFinder enables indexing and searching for files stored on network drives.
     - DataFinder's network communication cannot be secured with TLS.
 
 - **Identity Provider**
     - Active Directory, LDAP, and OpenID Connect are supported identity providers.
-        - Local Windows account may also be used (not shown).
+        - Local Windows accounts may also be used (not shown).
         - Active Directory uses the Active Directory protocol.
         - LDAP uses the ldap or the ldaps protocols.
     - Refer to [Sign-on with LDAP](/ldap/ldap/). and [Single Sign-on with OpenID Connect](/openid-connect/openid-connect/) for details on setting up these identity providers.
@@ -103,10 +103,10 @@ NI Web Server supports TLS 1.2.
 
     - Web browsers will not trust the certificate and the user must grant an exception to load the SystemLink web application.
 
-    - Packages built in LabVIEW cannot be [automatically published](https://www.ni.com/documentation/en/systemlink/latest/deployment/creating-packages-labview-package-builder/) to SystemLink server.
+    - Packages built in LabVIEW cannot be [automatically published](https://www.ni.com/documentation/en/systemlink/latest/deployment/creating-packages-labview-package-builder/) to the SystemLink server.
 
     - The LabVIEW Client API must explicitly disable verify server checks to communicate with the server.
-        - Refer to [Open Configuration](https://www.ni.com/documentation/en/systemlink/latest/systemlink-labview-node-ref/open-configuration-http-auto/) to details on this setting.
+        - Refer to [Open Configuration](https://www.ni.com/documentation/en/systemlink/latest/systemlink-labview-node-ref/open-configuration-http-auto/) for details on this setting.
 
 When you have received a certificate from an certificate signing authority, you can use **NI Web Server Configuration** to install the certificate.
 
@@ -116,7 +116,7 @@ When you have received a certificate from an certificate signing authority, you 
 
 3. Expand the **Install an already signed certificate** section.
 
-4. Click the folder icon next to **certificate file** and browse to your certificate file.
+4. Click the folder icon next to **Certificate file** and browse to your certificate file.
 
 5. Click the folder icon next to **Key file** and select your key file.
 
@@ -167,7 +167,7 @@ MongoDB support TLS connections. Refer to the [MongoDB manual](https://docs.mong
 !!! warn MongoDB with self-signed certificates
     Self-signed certificates should be used for testing purposes only.
 
-Refer, to the [MongoDB manual](https://docs.mongodb.com/manual/appendix/security/appendixA-openssl-ca/) for steps to create and run `mongod` with a self-signed certificate. The following refers to certificate names created by following MongoDBs documentation.
+Refer to the [MongoDB manual](https://docs.mongodb.com/manual/appendix/security/appendixA-openssl-ca/) for steps to create and run `mongod` with a self-signed certificate. The following refers to certificate names created by following MongoDB's documentation.
 
 !!! note "Running MongoDB without Client certificate validation"
 
@@ -193,7 +193,7 @@ Refer, to the [MongoDB manual](https://docs.mongodb.com/manual/appendix/security
         journal:
             enabled: true
     processManagement:
-        fork: true  #fork and run in background
+        fork: true  # fork and run in background
         pidFilePath: /var/run/mongodb/mongod.pid  # location of pidfile
         timeZoneInfo: /usr/share/zoneinfo
     ```
@@ -213,7 +213,7 @@ If you are using a self-signed certificate on your `mongod` instance you must in
 
 4. Select the **Place all certificate in the following store** radio button.
 
-5. Click **Browse**, select **Trusted Root Certificate Authorities** and click **OK**
+5. Click **Browse**, select **Trusted Root Certificate Authorities** and click **OK**.
 
 6. Click **Next**, review the settings, and click **Finish** to install the certificate.
 
@@ -226,12 +226,12 @@ If you are using a self-signed certificate on your `mongod` instance you must in
 
 9. Select the **Place all certificates in the following store** radio button.
 
-10. Click **Browse**, select **Intermediate certificate Authorities** and click **OK**
+10. Click **Browse**, select **Intermediate certificate Authorities** and click **OK**.
 
 11. Click **Next**, review the settings, and click **Finish** to install the certificate.
 
 !!! note
-    Ensure check the **Use Transport Layer Security (TLS) encryption** in the **NoSqlDatabase** section of the **SystemLink Server Configuration** application.
+    Ensure **Use Transport Layer Security (TLS) encryption** is enabled in the **NoSqlDatabase** section of the **SystemLink Server Configuration** application.
 
 ## Deprecation of AMQP
 

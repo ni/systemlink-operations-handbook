@@ -12,7 +12,7 @@ You can configure SystemLink to use OpenID Connect to authorize users. This enab
 
 - Administrator desktop access to the SystemLink server
 
-- An OpenID Connect Provider server such as [PingFederate](https://www.pingidentity.com/en/software/pingfederate.html), [Azure ADFS](https://docs.microsoft.com/en-us/windows-server/identity/ad-fs/deployment/how-to-connect-fed-azure-adfs), [Okta](https://www.okta.com/openid-connect/), or another [certified provider](https://openid.net/certification/) that has been fully setup and configured for OpenID Connect authentication
+- An OpenID Connect Provider server such as [PingFederate](https://www.pingidentity.com/en/software/pingfederate.html), [Azure ADFS](https://docs.microsoft.com/en-us/windows-server/identity/ad-fs/deployment/how-to-connect-fed-azure-adfs), [Okta](https://www.okta.com/openid-connect/), or another [certified provider](https://openid.net/certification/) that has been fully set up and configured for OpenID Connect authentication
 
 ## Enabling OpenID Connect in SystemLink
 
@@ -23,7 +23,7 @@ You can configure SystemLink to use OpenID Connect to authorize users. This enab
     !!! note ""
         For details, refer to [**OpenID Connect Configuration Files in SystemLink Server**](#openid-connect-configuration-files-in-systemlink-server).
 
-1. In SystemLink 2021R1 and later, configure the claim to use as the SystemLink user name. This step is optional, but should be done before users begin using the server.
+1. In SystemLink 2021R1 and later, configure the claim to use as the SystemLink username. This step is optional, but should be done before users begin using the server.
 
     !!! note ""
         For details, refer to [**Configuring the SystemLink Username**](#configuring-the-systemlink-username).
@@ -34,9 +34,9 @@ You can configure SystemLink to use OpenID Connect to authorize users. This enab
 
 1. Click **Apply and restart**.
 
-1. Login into the SystemLink web application with a user assigned the [**Server Administrator**](https://www.ni.com/documentation/en/systemlink/latest/setup/predefined-roles/) role.
+1. Log into the SystemLink web application with a user assigned the [**Server Administrator**](https://www.ni.com/documentation/en/systemlink/latest/setup/predefined-roles/) role.
 
-1. Go to **Security** > **Roles** and click the gear icon in the top right.
+1. Go to **Access Control** > **Roles** and click the gear icon in the top right.
 
 1. Add an OpenID Connect Claim mapping for the **Server Administrator** role.
 
@@ -61,7 +61,7 @@ Refer to [openid-connect-config](https://github.com/ni/systemlink-operations-han
 
 These files do not exist for new SystemLink installations. Add each file to `C:\Program Files\National Instruments\Shared\Web Server\conf\openidc`. Restart the NI Web Server to apply changes.
 
-You can configure SystemLink to support multiple OpenID Connect providers simultaneously by creating a `[provider-issuer-uri].conf`, `[provider-issuer-uri.client`, and `[provider-issuer-uri].provider` file for each provider. The user ID in SystemLink must be unique across providers. This ID takes the form `[sub_claim]@issuer`. You can see the ID SystemLink associates with a user in the user details in SystemLink Security.
+You can configure SystemLink to support multiple OpenID Connect providers simultaneously by creating a `[provider-issuer-uri].conf`, `[provider-issuer-uri.client`, and `[provider-issuer-uri].provider` file for each provider. The user ID in SystemLink must be unique across providers. This ID takes the form `[sub_claim]@issuer`. You can see the ID SystemLink associates with a user in the user details in SystemLink Access Control.
 
 ### SystemLink Login Configuration
 
@@ -97,7 +97,7 @@ In this example the `openid`, `email`, and `profile` scopes are requested. Addit
 
 Each scope contains claims you can map to roles within SystemLink workspaces. See [**Mapping OpenID Connect Claims to SystemLink Workspaces and Roles**](#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles) for details.
 
-The `ni-attributes` section determines the text and (optionally) an icon to be shown in the SystemLink login page. The `iconUri` is relative to `htdocs` directory (`C:\Program Files\National Instruments\Shared\Web Server\htdocs`). This icon should be 16x16 px.
+The `ni-attributes` section determines the text and (optionally) an icon to be shown in the SystemLink login page. The `iconUri` is relative to the `htdocs` directory (`C:\Program Files\National Instruments\Shared\Web Server\htdocs`). This icon should be 16x16 px.
 
 <figure>
   <img src="../../img/login-window.png" width="500" />
@@ -314,7 +314,7 @@ Claims are returned as a JSON object.
     }
     ```
 
-    Within the security UI the claim and its returned value can be mapped to a role within a Workspace.
+    Within the Access Control application the claim and its returned value can be mapped to a role within a workspace.
 
     <figure>
       <img src="../../img/claim-mapping.png" width="500" />
@@ -373,7 +373,7 @@ You can change the claim that SystemLink uses as the username.
 
 1. Find the line `UnDefine AUTH_OIDC_USER_CLAIM`.
 
-1. Replace `UnDefine` with `Define`
+1. Replace `UnDefine` with `Define`.
 
 1. Append the name of the claim that SystemLink should use as the username.
 
