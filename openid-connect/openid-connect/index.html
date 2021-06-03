@@ -533,7 +533,7 @@
 <p>Administrator desktop access to the SystemLink server</p>
 </li>
 <li>
-<p>An OpenID Connect Provider server such as <a href="https://www.pingidentity.com/en/software/pingfederate.html">PingFederate</a>, <a href="https://docs.microsoft.com/en-us/windows-server/identity/ad-fs/deployment/how-to-connect-fed-azure-adfs">Azure ADFS</a>, <a href="https://www.okta.com/openid-connect/">Okta</a>, or another <a href="https://openid.net/certification/">certified provider</a> that has been fully setup and configured for OpenID Connect authentication</p>
+<p>An OpenID Connect Provider server such as <a href="https://www.pingidentity.com/en/software/pingfederate.html">PingFederate</a>, <a href="https://docs.microsoft.com/en-us/windows-server/identity/ad-fs/deployment/how-to-connect-fed-azure-adfs">Azure ADFS</a>, <a href="https://www.okta.com/openid-connect/">Okta</a>, or another <a href="https://openid.net/certification/">certified provider</a> that has been fully set up and configured for OpenID Connect authentication</p>
 </li>
 </ul>
 <h2 id="enabling-openid-connect-in-systemlink"><span class="enumerate-heading-plugin">4.2</span> Enabling OpenID Connect in SystemLink<a class="headerlink" href="#enabling-openid-connect-in-systemlink" title="Permanent link">¶</a></h2>
@@ -548,7 +548,7 @@
 </div>
 </li>
 <li>
-<p>In SystemLink 2021R1 and later, configure the claim to use as the SystemLink user name. This step is optional, but should be done before users begin using the server.</p>
+<p>In SystemLink 2021R1 and later, configure the claim to use as the SystemLink username. This step is optional, but should be done before users begin using the server.</p>
 <div class="admonition note">
 <p>For details, refer to <a href="#configuring-the-systemlink-username">4.6 <strong>Configuring the SystemLink Username</strong></a>.</p>
 </div>
@@ -563,10 +563,10 @@
 <p>Click <strong>Apply and restart</strong>.</p>
 </li>
 <li>
-<p>Login into the SystemLink web application with a user assigned the <a href="https://www.ni.com/documentation/en/systemlink/latest/setup/predefined-roles/"><strong>Server Administrator</strong></a> role.</p>
+<p>Log into the SystemLink web application with a user assigned the <a href="https://www.ni.com/documentation/en/systemlink/latest/setup/predefined-roles/"><strong>Server Administrator</strong></a> role.</p>
 </li>
 <li>
-<p>Go to <strong>Security</strong> &gt; <strong>Roles</strong> and click the gear icon in the top right.</p>
+<p>Go to <strong>Access Control</strong> &gt; <strong>Roles</strong> and click the gear icon in the top right.</p>
 </li>
 <li>
 <p>Add an OpenID Connect Claim mapping for the <strong>Server Administrator</strong> role.</p>
@@ -590,7 +590,7 @@
 <p>An OpenID Connect provider with the issuer URI <code>example.com:9999/v2</code> would yield files named <code>example.com%3A9999%2Fv2.conf</code> , <code>example.com%3A9999%2Fv2.client</code>, and <code>example.com%3A9999%2Fv2.provider</code>. You can find the issuer URI by viewing the <code>issuer</code> property at your provider's OpenID Connect configuration endpoint. For example <code>https://example.com:9999/v2/.well-known/openid-configuration</code>.</p>
 </div>
 <p>These files do not exist for new SystemLink installations. Add each file to <code>C:\Program Files\National Instruments\Shared\Web Server\conf\openidc</code>. Restart the NI Web Server to apply changes.</p>
-<p>You can configure SystemLink to support multiple OpenID Connect providers simultaneously by creating a <code>[provider-issuer-uri].conf</code>, <code>[provider-issuer-uri.client</code>, and <code>[provider-issuer-uri].provider</code> file for each provider. The user ID in SystemLink must be unique across providers. This ID takes the form <code>[sub_claim]@issuer</code>. You can see the ID SystemLink associates with a user in the user details in SystemLink Security.</p>
+<p>You can configure SystemLink to support multiple OpenID Connect providers simultaneously by creating a <code>[provider-issuer-uri].conf</code>, <code>[provider-issuer-uri.client</code>, and <code>[provider-issuer-uri].provider</code> file for each provider. The user ID in SystemLink must be unique across providers. This ID takes the form <code>[sub_claim]@issuer</code>. You can see the ID SystemLink associates with a user in the user details in SystemLink Access Control.</p>
 <h3 id="systemlink-login-configuration"><span class="enumerate-heading-plugin">4.3.1</span> SystemLink Login Configuration<a class="headerlink" href="#systemlink-login-configuration" title="Permanent link">¶</a></h3>
 <div class="admonition note">
 <p><code>[provider-issuer-uri].conf</code> describes the scopes SystemLink will request, the text and icon for the provider login button, and private keys for ID token key management encryption.</p>
@@ -620,7 +620,7 @@
 </div>
 <p>In this example the <code>openid</code>, <code>email</code>, and <code>profile</code> scopes are requested. Additional scopes may be requested. Consult your provider's documentation regarding exposing scopes to clients. The <code>profile</code> and <code>email</code> scopes are required to populate first name, last name, and email fields in the SystemLink user preferences. These are derived from the <code>given_name</code>, <code>family_name</code>, and <code>email</code> claims respectively.</p>
 <p>Each scope contains claims you can map to roles within SystemLink workspaces. See <a href="#mapping-openid-connect-claims-to-systemlink-workspaces-and-roles">4.5 <strong>Mapping OpenID Connect Claims to SystemLink Workspaces and Roles</strong></a> for details.</p>
-<p>The <code>ni-attributes</code> section determines the text and (optionally) an icon to be shown in the SystemLink login page. The <code>iconUri</code> is relative to <code>htdocs</code> directory (<code>C:\Program Files\National Instruments\Shared\Web Server\htdocs</code>). This icon should be 16x16 px.</p>
+<p>The <code>ni-attributes</code> section determines the text and (optionally) an icon to be shown in the SystemLink login page. The <code>iconUri</code> is relative to the <code>htdocs</code> directory (<code>C:\Program Files\National Instruments\Shared\Web Server\htdocs</code>). This icon should be 16x16 px.</p>
 <figure>
 <img src="../../img/login-window.png" width="500"/>
 <figcaption>SystemLink login windows with SSO login option. An icon has not been set in this example</figcaption>
@@ -818,7 +818,7 @@ Define AUTH_OIDC_ENABLE_CLAIM_INFO
     <span class="nt">"sub"</span><span class="p">:</span> <span class="s2">"jdoe"</span>
 <span class="p">}</span>
 </code></pre></div></p>
-<p>Within the security UI the claim and its returned value can be mapped to a role within a Workspace.</p>
+<p>Within the Access Control application the claim and its returned value can be mapped to a role within a workspace.</p>
 <p><figure>
 <img src="../../img/claim-mapping.png" width="500"/>
 <figcaption>Mapping the ni_employee claim to a workspace.</figcaption>
@@ -872,7 +872,7 @@ IDs or URLs from the provider.</p>
 <p>Find the line <code>UnDefine AUTH_OIDC_USER_CLAIM</code>.</p>
 </li>
 <li>
-<p>Replace <code>UnDefine</code> with <code>Define</code></p>
+<p>Replace <code>UnDefine</code> with <code>Define</code>.</p>
 </li>
 <li>
 <p>Append the name of the claim that SystemLink should use as the username.</p>
@@ -988,7 +988,7 @@ oidc_cache_set: could NOT store X bytes in shm cache backend for key Y
 <div class="md-source-date">
 <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 30, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 3, 2021</span>
 </small>
 </div>
 </article>

@@ -425,7 +425,7 @@
 <li>
 <p><strong>Targets</strong></p>
 <ul>
-<li>Targets are Windows and Linux RT systems who software and configuration are managed by SystemLink.</li>
+<li>Targets are Windows and Linux RT systems whose software and configuration are managed by SystemLink.</li>
 <li>Software configuration occurs via the <a href="https://docs.saltproject.io/en/latest/topics/transports/">SaltStack Transport Protocol</a>.<ul>
 <li>Refer to <a href="#target-to-systemlink-communication">2.4 <strong>Target to SystemLink Communication</strong></a> for details regarding how SystemLink encrypts this communication.</li>
 </ul>
@@ -454,7 +454,7 @@
 </ul>
 </li>
 <li>
-<p><strong>Data Finder (not shown)</strong></p>
+<p><strong>DataFinder (not shown)</strong></p>
 <ul>
 <li>DataFinder enables indexing and searching for files stored on network drives.</li>
 <li>DataFinder's network communication cannot be secured with TLS.</li>
@@ -464,7 +464,7 @@
 <p><strong>Identity Provider</strong></p>
 <ul>
 <li>Active Directory, LDAP, and OpenID Connect are supported identity providers.<ul>
-<li>Local Windows account may also be used (not shown).</li>
+<li>Local Windows accounts may also be used (not shown).</li>
 <li>Active Directory uses the Active Directory protocol.</li>
 <li>LDAP uses the ldap or the ldaps protocols.</li>
 </ul>
@@ -503,12 +503,12 @@
 <p>Web browsers will not trust the certificate and the user must grant an exception to load the SystemLink web application.</p>
 </li>
 <li>
-<p>Packages built in LabVIEW cannot be <a href="https://www.ni.com/documentation/en/systemlink/latest/deployment/creating-packages-labview-package-builder/">automatically published</a> to SystemLink server.</p>
+<p>Packages built in LabVIEW cannot be <a href="https://www.ni.com/documentation/en/systemlink/latest/deployment/creating-packages-labview-package-builder/">automatically published</a> to the SystemLink server.</p>
 </li>
 <li>
 <p>The LabVIEW Client API must explicitly disable verify server checks to communicate with the server.</p>
 <ul>
-<li>Refer to <a href="https://www.ni.com/documentation/en/systemlink/latest/systemlink-labview-node-ref/open-configuration-http-auto/">Open Configuration</a> to details on this setting.</li>
+<li>Refer to <a href="https://www.ni.com/documentation/en/systemlink/latest/systemlink-labview-node-ref/open-configuration-http-auto/">Open Configuration</a> for details on this setting.</li>
 </ul>
 </li>
 </ul>
@@ -525,7 +525,7 @@
 <p>Expand the <strong>Install an already signed certificate</strong> section.</p>
 </li>
 <li>
-<p>Click the folder icon next to <strong>certificate file</strong> and browse to your certificate file.</p>
+<p>Click the folder icon next to <strong>Certificate file</strong> and browse to your certificate file.</p>
 </li>
 <li>
 <p>Click the folder icon next to <strong>Key file</strong> and select your key file.</p>
@@ -570,7 +570,7 @@
 <p class="admonition-title">Warn</p>
 <p>Self-signed certificates should be used for testing purposes only.</p>
 </div>
-<p>Refer, to the <a href="https://docs.mongodb.com/manual/appendix/security/appendixA-openssl-ca/">MongoDB manual</a> for steps to create and run <code>mongod</code> with a self-signed certificate. The following refers to certificate names created by following MongoDBs documentation.</p>
+<p>Refer to the <a href="https://docs.mongodb.com/manual/appendix/security/appendixA-openssl-ca/">MongoDB manual</a> for steps to create and run <code>mongod</code> with a self-signed certificate. The following refers to certificate names created by following MongoDB's documentation.</p>
 <div class="admonition note">
 <p class="admonition-title">Running MongoDB without Client certificate validation</p>
 <p>Option 1: Start <code>mongod</code> with command line arguments
@@ -592,7 +592,7 @@
     <span class="nt">journal</span><span class="p">:</span>
         <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">processManagement</span><span class="p">:</span>
-    <span class="nt">fork</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>  <span class="c1">#fork and run in background</span>
+    <span class="nt">fork</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>  <span class="c1"># fork and run in background</span>
     <span class="nt">pidFilePath</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/var/run/mongodb/mongod.pid</span>  <span class="c1"># location of pidfile</span>
     <span class="nt">timeZoneInfo</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/usr/share/zoneinfo</span>
 </code></pre></div></p>
@@ -617,7 +617,7 @@
 <p>Select the <strong>Place all certificate in the following store</strong> radio button.</p>
 </li>
 <li>
-<p>Click <strong>Browse</strong>, select <strong>Trusted Root Certificate Authorities</strong> and click <strong>OK</strong></p>
+<p>Click <strong>Browse</strong>, select <strong>Trusted Root Certificate Authorities</strong> and click <strong>OK</strong>.</p>
 </li>
 <li>
 <p>Click <strong>Next</strong>, review the settings, and click <strong>Finish</strong> to install the certificate.</p>
@@ -636,7 +636,7 @@
 <p>Select the <strong>Place all certificates in the following store</strong> radio button.</p>
 </li>
 <li>
-<p>Click <strong>Browse</strong>, select <strong>Intermediate certificate Authorities</strong> and click <strong>OK</strong></p>
+<p>Click <strong>Browse</strong>, select <strong>Intermediate certificate Authorities</strong> and click <strong>OK</strong>.</p>
 </li>
 <li>
 <p>Click <strong>Next</strong>, review the settings, and click <strong>Finish</strong> to install the certificate.</p>
@@ -644,7 +644,7 @@
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Ensure check the <strong>Use Transport Layer Security (TLS) encryption</strong> in the <strong>NoSqlDatabase</strong> section of the <strong>SystemLink Server Configuration</strong> application.</p>
+<p>Ensure <strong>Use Transport Layer Security (TLS) encryption</strong> is enabled in the <strong>NoSqlDatabase</strong> section of the <strong>SystemLink Server Configuration</strong> application.</p>
 </div>
 <h2 id="deprecation-of-amqp"><span class="enumerate-heading-plugin">2.6</span> Deprecation of AMQP<a class="headerlink" href="#deprecation-of-amqp" title="Permanent link">¶</a></h2>
 <p>AMQP as a transport protocol for target-to-server communication is deprecated in favor for HTTP(S). NI recommends disabling AMQP on the server and updating test applications to use the HTTP version of SystemLink APIs.</p>
@@ -663,7 +663,7 @@
 <div class="md-source-date">
 <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 22, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 3, 2021</span>
 </small>
 </div>
 </article>

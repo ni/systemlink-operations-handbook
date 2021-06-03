@@ -418,10 +418,10 @@
 <img src="../../img/ldap-setup.png" width="500"/>
 <figcaption>Configuration needed to enable logging into a SystemLink server using LDAP credentials.</figcaption>
 </figure>
-<p>You may now login to the SystemLink server using your LDAP credentials. To access systems and data in SystemLink, configure workspace and role mappings. Refer to <a href="#mapping-ldap-attributes-and-groups-to-systemlink-workspaces-and-roles"><strong>Mapping LDAP Attributes and Groups to SystemLink Workspaces and Roles</strong></a> for details.</p>
+<p>You may now log in to the SystemLink server using your LDAP credentials. To access systems and data in SystemLink, configure workspace and role mappings. Refer to <a href="#mapping-ldap-attributes-and-groups-to-systemlink-workspaces-and-roles"><strong>Mapping LDAP Attributes and Groups to SystemLink Workspaces and Roles</strong></a> for details.</p>
 <figure>
 <img src="../../img/no-mapping.png" width="500"/>
-<figcaption>View from a user who can login but does not have any workspace and role mappings.</figcaption>
+<figcaption>View from a user who can log in but does not have any workspace and role mappings.</figcaption>
 </figure>
 <h2 id="ldap-url-and-bind-user"><span class="enumerate-heading-plugin">5.3</span> LDAP URL and Bind User<a class="headerlink" href="#ldap-url-and-bind-user" title="Permanent link">¶</a></h2>
 <p>You must provide a URL and bind user and bind password to establish an authenticated connection between your SystemLink server and LDAP server.</p>
@@ -431,10 +431,10 @@
 <p class="admonition-title">URL Scheme</p>
 <p><code>&lt;ldap&gt;://&lt;server-dns&gt;:&lt;port&gt;/&lt;target-entry-dn&gt;?&lt;username-attribute&gt;?&lt;scope&gt;?&lt;filter&gt;</code></p>
 </div>
-<p><strong>protocol:</strong> <code>ldap</code> or <code>ldaps</code> for secure connections. SystemLink does not support STARTTLS, which allows connections over non-TLS and then initiate a TLS handshake.</p>
+<p><strong>protocol:</strong> <code>ldap</code> or <code>ldaps</code> for secure connections. SystemLink does not support STARTTLS, which allows connections over non-TLS and then initiates a TLS handshake.</p>
 <p><strong>server-dns:</strong> The LDAP server SystemLink is connecting to.</p>
 <p><strong>port:</strong> The port of the LDAP server. If your LDAP server is backed by Windows Active Directory, you may point to the global catalog on port 3268 to enable login from multiple domains (forest).</p>
-<p><strong>target-entry-dn:</strong> The base search distinguished name (DN) for the LDAP directory</p>
+<p><strong>target-entry-dn:</strong> The base search distinguished name (DN) for the LDAP directory.</p>
 <p><strong>user-name-attribute:</strong> The attribute that determines the SystemLink username for login.</p>
 <p><strong>scope:</strong> The <strong>scope</strong> of the directory search. Scope defaults to <code>sub</code> but can be set to <code>one</code> to restrict users to the base DN.</p>
 <p><strong>filter:</strong> The LDAP search filter. This defaults to <code>objectClass=*</code> to find find all objects in the directory. This allows you to restrict login to users who have a specific attribute.</p>
@@ -469,7 +469,7 @@
 <p>Log in to the SystemLink web application with a user mapped to the <a href="https://www.ni.com/documentation/en/systemlink/latest/setup/predefined-roles/"><strong>Server Administrator</strong></a> role.</p>
 </li>
 <li>
-<p>Go to <strong>Security</strong> &gt; <strong>Workspaces</strong> and click the gear icon in the top right.</p>
+<p>Go to <strong>Access Control</strong> &gt; <strong>Workspaces</strong> and click the gear icon in the top right.</p>
 </li>
 <li>
 <p>Create a new workspace or edit an existing workspace.</p>
@@ -485,13 +485,13 @@
 </li>
 </ol>
 <h3 id="ldap-group-mapping"><span class="enumerate-heading-plugin">5.4.1</span> LDAP Group Mapping<a class="headerlink" href="#ldap-group-mapping" title="Permanent link">¶</a></h3>
-<p>LDAP Group mapping queries the <code>objectClass</code> of <code>group</code> (Active Directory specific), <code>groupOfName</code>, and <code>groupOfUniqueNames</code> to matches either <code>member</code> or <code>uniqueMember</code> attributes of the group.</p>
+<p>LDAP Group mapping queries the <code>objectClass</code> of <code>group</code> (Active Directory specific), <code>groupOfName</code>, and <code>groupOfUniqueNames</code> to match either <code>member</code> or <code>uniqueMember</code> attributes of the group.</p>
 <h3 id="ldap-user-mapping"><span class="enumerate-heading-plugin">5.4.2</span> LDAP User Mapping<a class="headerlink" href="#ldap-user-mapping" title="Permanent link">¶</a></h3>
 <p>You may specify a LDAP username when creating workspace and role mappings. The username you specify is the same as the usernames for logging into SystemLink.</p>
 <h3 id="ldap-attribute-mapping"><span class="enumerate-heading-plugin">5.4.3</span> LDAP Attribute Mapping<a class="headerlink" href="#ldap-attribute-mapping" title="Permanent link">¶</a></h3>
 <p>You can use any available LDAP attribute to create a workspace and role mapping. In this case both the name and value of the attribute must match exactly for the mapping to be successful.</p>
 <div class="admonition note">
-<p class="admonition-title">example LDAP attribute mapping</p>
+<p class="admonition-title">Example LDAP attribute mapping</p>
 <p><figure>
 <img src="../../img/ldap-mapping.png" width="500"/>
 <figcaption>Mapping the country attribute <code>c</code> with the value <code>US</code> to the <strong>Data Maintainer Role</strong> in the <strong>Default</strong> workspace.</figcaption>
@@ -501,7 +501,7 @@
 <div class="md-source-date">
 <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 7, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 3, 2021</span>
 </small>
 </div>
 </article>
