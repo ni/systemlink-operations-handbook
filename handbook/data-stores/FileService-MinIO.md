@@ -46,9 +46,9 @@ For detailed information on how to run the server, follow the instructions from 
 2. Add two additional settings to the JSON configuration file at `C:\ProgramData\National Instruments\Skyline\Config\FileIngestion.json`:
 
     - `S3BackEndServiceUrl`: Set this value to ip:port of your MinIO server. You can obtain that from the MinIO output in your command line.
-    - `S3ForcePathStyle`: Set this value to `True`
+    - `S3ForcePathStyle`: Set this value to `True`.
 
-    You can paste the example code below to the config file and replace the placeholders with your actual values.
+    You can paste the example code below into the config file and replace the placeholders with your actual values.
 
     ```bash
     "UseS3BackEnd" : "True",
@@ -61,4 +61,4 @@ For detailed information on how to run the server, follow the instructions from 
     "S3ForcePathStyle" : "True"
     ```
 
-3. In the `NI SystemLink Server Configuration` dialog, go to the `NI SystemLink Service Manager` tab and click `Restart` to apply the settings you made in the JSON file.
+3. In the **NI SystemLink Server Configuration** dialog, go to the **NI SystemLink Service Manager** tab and click **Restart** to apply the settings you made in the JSON file.
