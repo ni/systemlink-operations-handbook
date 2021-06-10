@@ -295,9 +295,9 @@ for Visual Studio Code:
 
 ### Encrypted DataPlugins
 
-In some cases, you may want to protect your code from being accessed by others.
-Use DIAdem to export an encrypted Python DataPlugin, which protects your source
-code from being viewed. This functionality is not available in the VSCode extension.
+In some cases, you may want to protect your code from being viewed by others.
+Use DIAdem to export an encrypted Python DataPlugin. This functionality is not
+available in the VSCode extension.
 
 ## Known Limitations
 
