@@ -285,6 +285,20 @@ export a DataPlugin as a URI file.
    <figcaption>Exporting DataPlugins in DIAdem</figcaption>
 </figure>
 
+You can also export a DataPlugin from NI's [Python DataPlugin Extension](https://github.com/ni/vscode-ni-python-dataplugins)
+for Visual Studio Code:
+
+<figure>
+   <img src="../../img/pydp-vscode_export.png" width="600" />
+   <figcaption>Exporting DataPlugins in VSCode</figcaption>
+</figure>
+
+### Crypted DataPlugins
+
+In some cases, you may want to protect your code from being accessed by others.
+Use DIAdem to export a crypted Python DataPlugin, which protects your source
+code from being viewed. This functionality is not avaiable in the VSCode extension.
+
 ## Known Limitations
 
 ### NumPy and Pandas
