@@ -304,7 +304,7 @@ available in the VSCode extension.
 ### NumPy and Pandas
 
 NumPy and Pandas do not run reliably in embedded Python environments and, therefore,
-we recommend not to use them in DataPlugins.
+NI does not recommend them for use in DataPlugins.
 
 ### Single File DataPlugins
 
