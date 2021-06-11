@@ -14,10 +14,6 @@
     {% for nav_item in nav %}
       {% set path = "nav-" + loop.index | string %}
       {% set level = 1 %}
-      {#
-        Pass through the chapter attribute added by the enumerate-headings extension.
-      #}
-      {% set chapter = nav.pages[loop.index - 1].chapter %}
       {% include "partials/nav-item.html" %}
     {% endfor %}
   </ul>
