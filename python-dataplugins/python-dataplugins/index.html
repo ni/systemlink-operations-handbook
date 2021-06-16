@@ -248,6 +248,15 @@
 <a class="md-nav__link" href="#export-dataplugin">8.4 
     Export DataPlugin
   </a>
+<nav aria-label="Export DataPlugin" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#encrypted-dataplugins">8.4.1 
+    Encrypted DataPlugins
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#known-limitations">8.5 
@@ -337,6 +346,15 @@
 <a class="md-nav__link" href="#export-dataplugin">8.4 
     Export DataPlugin
   </a>
+<nav aria-label="Export DataPlugin" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#encrypted-dataplugins">8.4.1 
+    Encrypted DataPlugins
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#known-limitations">8.5 
@@ -383,7 +401,7 @@
 <p>Python DataPlugins consist of only one Python file that contains all the logic. Almost all language features of the official Python 3.5.9 and its base libraries can be used.</p>
 <p>You can create Python DataPlugins in your favorite editor. Recommended:</p>
 <ul>
-<li><a href="https://www.ni.com/en-us/shop/data-acquisition-and-control/application-software-for-data-acquisition-and-control-category/what-is-diadem.html">DIAdem</a> &gt;= 2020</li>
+<li><a href="https://www.ni.com/en-us/shop/data-acquisition-and-control/application-software-for-data-acquisition-and-control-category/what-is-diadem.html">NI DIAdem</a> &gt;= 2020</li>
 <li>VSCode with the <a href="https://github.com/ni/vscode-ni-python-dataplugins">NI Python DataPlugin Extension</a></li>
 </ul>
 <h3 id="plugin-class"><span class="enumerate-heading-plugin">8.1.1</span> Plugin Class<a class="headerlink" href="#plugin-class" title="Permanent link">¶</a></h3>
@@ -606,16 +624,26 @@ special error can be raised only in the <code>read_store</code> function by retu
       <span class="k">return</span> <span class="kc">None</span>
 </code></pre></div>
 <h2 id="export-dataplugin"><span class="enumerate-heading-plugin">8.4</span> Export DataPlugin<a class="headerlink" href="#export-dataplugin" title="Permanent link">¶</a></h2>
-<p>Export Python DataPlugins to make them available on other systems. Use DIAdem to
-export a DataPlugin as a URI file.</p>
+<p>Export Python DataPlugins to make them available on other systems. Use NI DIAdem
+to export a DataPlugin as a URI file.</p>
 <figure>
 <img src="../../img/pydp-diadem_export.png" width="600"/>
 <figcaption>Exporting DataPlugins in DIAdem</figcaption>
 </figure>
+<p>You can also export a DataPlugin from NI's <a href="https://github.com/ni/vscode-ni-python-dataplugins">Python DataPlugin Extension</a>
+for Visual Studio Code:</p>
+<figure>
+<img src="../../img/pydp-vscode_export.png" width="600"/>
+<figcaption>Exporting DataPlugins in VSCode</figcaption>
+</figure>
+<h3 id="encrypted-dataplugins"><span class="enumerate-heading-plugin">8.4.1</span> Encrypted DataPlugins<a class="headerlink" href="#encrypted-dataplugins" title="Permanent link">¶</a></h3>
+<p>In some cases, you may want to protect your code from being viewed by others.
+Use NI DIAdem to export an encrypted Python DataPlugin. This functionality is not
+available in the VSCode extension.</p>
 <h2 id="known-limitations"><span class="enumerate-heading-plugin">8.5</span> Known Limitations<a class="headerlink" href="#known-limitations" title="Permanent link">¶</a></h2>
 <h3 id="numpy-and-pandas"><span class="enumerate-heading-plugin">8.5.1</span> NumPy and Pandas<a class="headerlink" href="#numpy-and-pandas" title="Permanent link">¶</a></h3>
-<p>Unfortunately, NumPy and Pandas are not well supported to run in embedded Python
-environments and, therefore, cannot be used in DataPlugins.</p>
+<p>NumPy and Pandas do not run reliably in embedded Python environments and, therefore,
+NI does not recommend them for use in DataPlugins.</p>
 <h3 id="single-file-dataplugins"><span class="enumerate-heading-plugin">8.5.2</span> Single File DataPlugins<a class="headerlink" href="#single-file-dataplugins" title="Permanent link">¶</a></h3>
 <p>Python DataPlugins can only be written in a single Python file. Importing sidecar
 files is not supported. It will fail when exporting the DataPlugin as a URI.</p>
@@ -631,7 +659,7 @@ Instead, add the following function to your code:</p>
 <div class="md-source-date">
 <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">January 22, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 16, 2021</span>
 </small>
 </div>
 </article>
