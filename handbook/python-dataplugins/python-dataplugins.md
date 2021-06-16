@@ -13,7 +13,7 @@ Python DataPlugins consist of only one Python file that contains all the logic. 
 
 You can create Python DataPlugins in your favorite editor. Recommended:
 
-- [DIAdem](https://www.ni.com/en-us/shop/data-acquisition-and-control/application-software-for-data-acquisition-and-control-category/what-is-diadem.html) >= 2020
+- [NI DIAdem](https://www.ni.com/en-us/shop/data-acquisition-and-control/application-software-for-data-acquisition-and-control-category/what-is-diadem.html) >= 2020
 - VSCode with the [NI Python DataPlugin Extension](https://github.com/ni/vscode-ni-python-dataplugins)
 
 ### Plugin Class
@@ -277,8 +277,8 @@ def read_store(self, parameter):
 
 ## Export DataPlugin
 
-Export Python DataPlugins to make them available on other systems. Use DIAdem to
-export a DataPlugin as a URI file.
+Export Python DataPlugins to make them available on other systems. Use NI DIAdem
+to export a DataPlugin as a URI file.
 
 <figure>
    <img src="../../img/pydp-diadem_export.png" width="600" />
@@ -296,7 +296,7 @@ for Visual Studio Code:
 ### Encrypted DataPlugins
 
 In some cases, you may want to protect your code from being viewed by others.
-Use DIAdem to export an encrypted Python DataPlugin. This functionality is not
+Use NI DIAdem to export an encrypted Python DataPlugin. This functionality is not
 available in the VSCode extension.
 
 ## Known Limitations
