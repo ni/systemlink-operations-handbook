@@ -97,7 +97,7 @@ To successfully connect to a MongoDB replica set and create redundancy, you must
 
 1. Log into the desktop of the SystemLink server with administrator privileges.
 1. Open **NI SystemLink Server Configuration**.
-1. Navigate to **NoSqlDataBase**.
+1. Navigate to **NoSqlDatabase**.
 1. Click the **Connect to an externally managed NoSqlDatabase server** radio button.
 
     !!!note "Secure remote connections"
