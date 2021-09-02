@@ -141,7 +141,7 @@ Refer to [Choosing Remote Settings](https://www.ni.com/documentation/en/ni-web-s
 
 ## Target to SystemLink communication
 
-Test Systems communicate with SystemLink over HTTP(S) and the SaltStack TCP protocol. Refer to the SystemLink manual for prerequisites and steps to add a [Linux RT]((https://www.ni.com/documentation/en/systemlink/latest/setup/setting-up-systemlink-client-linux/)) or [Windows](https://www.ni.com/documentation/en/systemlink/latest/setup/setting-up-systemlink-client-windows/) target to your SystemLink server.
+Test Systems communicate with SystemLink over HTTP(S) and the SaltStack TCP protocol. Regardless of protocol, All communication is initiated by the test system to the server. Refer to the SystemLink manual for prerequisites and steps to add a [Linux RT]((https://www.ni.com/documentation/en/systemlink/latest/setup/setting-up-systemlink-client-linux/)) or [Windows](https://www.ni.com/documentation/en/systemlink/latest/setup/setting-up-systemlink-client-windows/) target to your SystemLink server.
 
 Data published over HTTPS includes tags, files, assets, and test results. Salt jobs and pillars communicate over the AES encrypted Salt TCP transport. Salt jobs are used for installing software and changing target configuration from SystemLink server. Salt pillars are used to transfer credentials and certificates. The certificates used on the SystemLink server and target nodes are managed by Salt and do not require administrators to explicitly manage these certificates. Refer to SaltStack's [documentation](https://docs.saltproject.io/en/getstarted/system/communication.html) for an overview of the Salt TCP Transport.
 
