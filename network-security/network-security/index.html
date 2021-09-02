@@ -548,7 +548,7 @@
 <p>NI Web Server Configuration exposes settings for choosing a remote connection and automatically sets Windows Firewall rules. This ensures connections may only be established by clients on your preferred network.</p>
 <p>Refer to <a href="https://www.ni.com/documentation/en/ni-web-server/latest/manual/choosing-a-remote-setting/">Choosing Remote Settings</a> for details on the various CORS and remote connection settings.</p>
 <h2 id="target-to-systemlink-communication"><span class="enumerate-heading-plugin">2.4</span> Target to SystemLink communication<a class="headerlink" href="#target-to-systemlink-communication" title="Permanent link">¶</a></h2>
-<p>Test Systems communicate with SystemLink over HTTP(S) and the SaltStack TCP protocol. Refer to the SystemLink manual for prerequisites and steps to add a <a href="(https://www.ni.com/documentation/en/systemlink/latest/setup/setting-up-systemlink-client-linux/)">Linux RT</a> or <a href="https://www.ni.com/documentation/en/systemlink/latest/setup/setting-up-systemlink-client-windows/">Windows</a> target to your SystemLink server.</p>
+<p>Test Systems communicate with SystemLink over HTTP(S) and the SaltStack TCP protocol. Regardless of protocol, All communication is initiated by the test system to the server. Refer to the SystemLink manual for prerequisites and steps to add a <a href="(https://www.ni.com/documentation/en/systemlink/latest/setup/setting-up-systemlink-client-linux/)">Linux RT</a> or <a href="https://www.ni.com/documentation/en/systemlink/latest/setup/setting-up-systemlink-client-windows/">Windows</a> target to your SystemLink server.</p>
 <p>Data published over HTTPS includes tags, files, assets, and test results. Salt jobs and pillars communicate over the AES encrypted Salt TCP transport. Salt jobs are used for installing software and changing target configuration from SystemLink server. Salt pillars are used to transfer credentials and certificates. The certificates used on the SystemLink server and target nodes are managed by Salt and do not require administrators to explicitly manage these certificates. Refer to SaltStack's <a href="https://docs.saltproject.io/en/getstarted/system/communication.html">documentation</a> for an overview of the Salt TCP Transport.</p>
 <div class="admonition note">
 <p class="admonition-title">Managed NI LinuxRT Nodes</p>
@@ -663,7 +663,7 @@
 <div class="md-source-date">
 <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 3, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 2, 2021</span>
 </small>
 </div>
 </article>
