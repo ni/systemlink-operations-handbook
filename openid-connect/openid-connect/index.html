@@ -804,9 +804,9 @@ Define AUTH_OIDC_ENABLED
 Define AUTH_OIDC_ENABLE_CLAIM_INFO
 </code></pre></div></p>
 </div>
-<p>If the provider is https with a certificate signed by a CA not included in the NI-CURL CA bundle (<code>C:\Program Files\National Instruments\Shared\nicurl\ca-bundle.crt</code>), then the <code>AUTH_OIDC_PROVIDER_DIR</code> define in <code>50_mod_auth_openidc-defines.conf</code> must to be updated to point to a CA bundle containing the provider's CA. The path can be absolute, or relative to <code>C:\Program Files\National Instruments\Shared\Web Server</code>.</p>
+<p>If the provider is https with a certificate signed by a CA not included in the NI-CURL CA bundle (<code>C:\Program Files\National Instruments\Shared\nicurl\ca-bundle.crt</code>), then the <code>AUTH_OIDC_BUNDLE</code> define in <code>50_mod_auth_openidc-defines.conf</code> must to be updated to point to a CA bundle containing the provider's CA. The path can be absolute, or relative to <code>C:\Program Files\National Instruments\Shared\Web Server</code>.</p>
 <h3 id="mapping-claims-to-systemlink-roles"><span class="enumerate-heading-plugin">4.5.2</span> Mapping Claims to SystemLink Roles<a class="headerlink" href="#mapping-claims-to-systemlink-roles" title="Permanent link">¶</a></h3>
-<p>Claims are returned as a JSON object.  </p>
+<p>Claims are returned as a JSON object.</p>
 <div class="admonition note">
 <p>Example response from <code>userinfo_endpoint</code>. Use any of these claims to a map a user to a role in a workspace.
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -988,7 +988,7 @@ oidc_cache_set: could NOT store X bytes in shm cache backend for key Y
 <div class="md-source-date">
 <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 3, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 26, 2021</span>
 </small>
 </div>
 </article>
