@@ -6,4 +6,5 @@ nav:
     - ldap
     - data-stores
     - python-dataplugins
+    - nislmigrate
     - preview-features
