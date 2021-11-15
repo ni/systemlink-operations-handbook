@@ -61,8 +61,8 @@ This chapter recommends workflows for the following upgrade and migration scenar
 - [Single Node to Multi Node Migration](#single-node-to-multi-node-migration)
     - [Single Node to Multi Node with MongoDB](#single-node-to-multi-node-with-mongodb)
     - [Single Node to Multi Node with File Storage](#single-node-to-multi-node-with-file-storage)
-    - [Single Node to Multi Node with PostGreSQL](#single-node-to-multi-node-with-postgresql)
-- [Upgrading Multi node configurations (MongoDB, PostGreSQL, File Share/S3)](#upgrading-multi-node-configurations)
+    - [Single Node to Multi Node with PostgreSQL](#single-node-to-multi-node-with-postgresql)
+- [Upgrading Multi node configurations (MongoDB, PostgreSQL, File Share/S3)](#upgrading-multi-node-configurations)
 - [Seamless cut-over](#seamless-cut-over)
 
 !!!note "Storing Captured Data"
@@ -106,7 +106,7 @@ For single node upgrades, NI recommends pairing the upgrade with a migration. Th
 
 ## Single Node to Multi Node Migration
 
-This section describes workflows used when you intend to upgrade or migrate from a single node SystemLink Server configuration to a multi node SystemLink Server configuration that makes use of dedicated servers for MongoDB, PostGreSQL, or file storage. While not required, these migration workflows include provisioning a new SystemLink Server. This is done to reduce risk and ensure your original SystemLink Server is always in an operable state.
+This section describes workflows used when you intend to upgrade or migrate from a single node SystemLink Server configuration to a multi node SystemLink Server configuration that makes use of dedicated servers for MongoDB, PostgreSQL, or file storage. While not required, these migration workflows include provisioning a new SystemLink Server. This is done to reduce risk and ensure your original SystemLink Server is always in an operable state.
 
 ### Single Node to Multi Node with MongoDB
 
@@ -180,13 +180,13 @@ This workflow describes steps to upgrade a single node deployment of SystemLink 
 
 1. Verify your new SystemLink Server has all the expected migrated data.
 
-### Single Node to Multi Node with PostGreSQL
+### Single Node to Multi Node with PostgreSQL
 
-This workflow describes steps to upgrade a single node deployment of SystemLink Server to a multi node deployment where the PostGreSQL instance used by the SystemLink Test Monitor service is hosted on a its own server or replica set.
+This workflow describes steps to upgrade a single node deployment of SystemLink Server to a multi node deployment where the PostgreSQL instance used by the SystemLink Test Monitor service is hosted on a its own server or replica set.
 
-As of SystemLink 21.5.TODO VERSION NUMBER SystemLink supports using PostGreSQL as the database backing the Test Monitor service. This configuration is optional, but provides significant performance improvements. `nislmigrate` does not yet support migrating PostGreSQL directly.
+As of SystemLink 21.3.2 SystemLink supports using PostgreSQL as the database backing the Test Monitor service. This configuration is optional, but provides significant performance improvements. `nislmigrate` does not yet support migrating PostgreSQL directly.
 
-The Test Monitor Service itself performs the migration of test steps, test results, and product from MongoDB to PostGreSQL. If you intend on utilizing a single node configuration the steps for this migration are the same as described in [**Single Node Migration**](#single-node-migration). Use the following workflow if you intend on migrating or upgrading to a new server and utilize a multi node configuration where PostGreSQL is hosted on a dedicated server or replica set.
+The Test Monitor Service itself performs the migration of test steps, test results, and product from MongoDB to PostgreSQL. If you intend on utilizing a single node configuration the steps for this migration are the same as described in [**Single Node Migration**](#single-node-migration). Use the following workflow if you intend on migrating or upgrading to a new server and utilize a multi node configuration where PostgreSQL is hosted on a dedicated server or replica set.
 
 1. Backup your SystemLink Server.
 
@@ -203,14 +203,14 @@ The Test Monitor Service itself performs the migration of test steps, test resul
 
 1. Provision a new Windows server for SystemLink.
 
-1. Provision a PostGreSQL server or replica set.
+1. Provision a PostgreSQL server or replica set.
 
-1. Install and configure the new version of SystemLink Server that supports PostGreSQL.
+1. Install and configure the new version of SystemLink Server that supports PostgreSQL.
 
     !!!important
-        If you are using the single node configuration for SystemLink, the migration from the local instances of MongoDB to PostGreSQL begins automatically. If you are migrating a multi node configuration where the original SystemLink Server used a dedicated MongoDB server or replica set, you must specify the PostGreSQL instance for SystemLink to use before the MongoDB to PostGreSQL migration can occur. The next step in this workflow assumes you are in this multi node configuration.
+        If you are using the single node configuration for SystemLink, the migration from the local instances of MongoDB to PostgreSQL begins automatically. If you are migrating a multi node configuration where the original SystemLink Server used a dedicated MongoDB server or replica set, you must specify the PostgreSQL instance for SystemLink to use before the MongoDB to PostgreSQL migration can occur. The next step in this workflow assumes you are in this multi node configuration.
 
-1. Configure SystemLink to use the newly created PostGreSQL server or replica set and click **Apply**. Refer to [Connecting to a Remote PostgreSQL Database](https://www.ni.com/documentation/en/systemlink/latest/setup/remote-postgres-databse/) for this step.
+1. Configure SystemLink to use the newly created PostgreSQL server or replica set and click **Apply**. Refer to [Connecting to a Remote PostgreSQL Database](https://www.ni.com/documentation/en/systemlink/latest/setup/remote-postgres-databse/) for this step.
 
 1. Install `nislmigrate` on your new SystemLink Server.
 
@@ -219,15 +219,15 @@ The Test Monitor Service itself performs the migration of test steps, test resul
 1. Run the command `nislmigrate restore --all --secret <your secret> --dir D:\migration`
 
     !!!note
-        After this step SystemLink will migrate your test steps, results, and products from MongoDB to PostGreSQL. Depending on the size of your data set this process may take some time.
+        After this step SystemLink will migrate your test steps, results, and products from MongoDB to PostgreSQL. Depending on the size of your data set this process may take some time.
 
 1. Verify your new SystemLink Server has all the expected migrated data.
 
 ## Upgrading Multi Node Configurations
 
-The following workflow describes upgrading a SystemLink Server instance that has been configured to use a dedicated MongoDB server or replica set, a dedicated PostGreSQL server or replica set, and a dedicated file store such as AWS S3.
+The following workflow describes upgrading a SystemLink Server instance that has been configured to use a dedicated MongoDB server or replica set, a dedicated PostgreSQL server or replica set, and a dedicated file store such as AWS S3.
 
-1. Backup your SystemLink Server, MongoDB server or replica set, PostGreSQL server or replica set, and file store.
+1. Backup your SystemLink Server, MongoDB server or replica set, PostgreSQL server or replica set, and file store.
 
     !!!note
         If S3 is used as your file store the backup step is not needed since this managed internally by AWS.
@@ -253,11 +253,11 @@ The following workflow describes upgrading a SystemLink Server instance that has
 1. Provision a PostGres server or replica set from the backup previously created.
 
     !!!note
-        The previous steps prescribe using a newly created instance of your MongoDB or PostGreSQL servers. This is because SystemLink may change the internal schema of these databases when services start post upgrade. If you do not start with a instance from a backup you will be unable to revert the MongoDB collections and PostGreSQL tables into the schemas needed for the older version of SystemLink.
+        The previous steps prescribe using a newly created instance of your MongoDB or PostgreSQL servers. This is because SystemLink may change the internal schema of these databases when services start post upgrade. If you do not start with a instance from a backup you will be unable to revert the MongoDB collections and PostgreSQL tables into the schemas needed for the older version of SystemLink.
 
 1. Install and configure the new version of SystemLink Server.
 
-1. Configure SystemLink to use the newly created MongoDB server or replica set, PostGreSQL server or replica set, and existing file store.
+1. Configure SystemLink to use the newly created MongoDB server or replica set, PostgreSQL server or replica set, and existing file store.
 
 1. Install `nislmigrate` on your new SystemLink Server.
 
