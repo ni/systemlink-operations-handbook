@@ -1,9 +1,9 @@
 # Upgrading and Migrating SystemLink Server
 
-Upgrading to a new version or migrating between SystemLink Servers is a common practice for many deployments. These processes can create risk, and the goal of this chapter is to prepare system administrators to complete this operation in the lowest risk manner possible. A constant throughout this process is to retain a fully operable SystemLink Server in cases of issues during an upgrade or migration that prevent the new instance of SystemLink Server from being used.
+Upgrading to a new version or migrating between SystemLink Servers is a common practice in the lifecycle of any SystemLink deployment. The goal of this chapter is to complete this operation while retaining a fully operable SystemLink Server. This is critical to mitigate against issues encountered during an upgrade or migration that prevent the new instance of SystemLink Server from being used.
 
 !!!important "Using Virtual Machines for SystemLink Deployments"
-    It is recommended to run SystemLink Server, attached file stores, and databases within virtual machines. Virtual machines simplify the creation and restoration of backups. The use of other tools to facilitate the backup of bare metal machines, e.g.non-virtual machines is outside the scope of this chapter.
+    It is recommended to run SystemLink Server, attached file stores, and databases within virtual machines. Virtual machines simplify the creation and restoration of backups. The use of other tools to facilitate the backup of bare metal machines, e.g.non-virtual machines, is outside the scope of this chapter.
 
 ## Assumptions and Prerequisites
 
@@ -33,13 +33,13 @@ Upgrading to a new version or migrating between SystemLink Servers is a common p
 
 - Recommended
 
-    - All servers, file stores, and databases running in virtualized environments
+    - All servers, file stores, and databases running in virtual machines
 
-    - Removable storage volumes or device
+    - Removable storage volume or device
 
 ## Preparing for Upgrade or Migration
 
-Prior to attempting any upgrade or migration you should backup your server and any remote data stores. Failure to create backup increases the risk of unplanned downtime in the case of issues during the upgrade or migration process.
+Prior to attempting any upgrade or migration you should backup your server and any remote data stores. Failure to create backups increases the risk of unplanned downtime if issues occur during the upgrade or migration process.
 
 !!!note "Single Node versus Multi Node Configurations"
     **Single node** refers to the SystemLink Server configuration where the application server, file storage, and databases used by SystemLink are all installed on the same Windows server. This is the default configuration for SystemLink Server.
@@ -48,21 +48,21 @@ Prior to attempting any upgrade or migration you should backup your server and a
 
 ### NI-SystemLink-Migration Command Line Utility
 
-The workflows for upgrade and migration make use of the SystemLink command line migration tool, `nislmigrate`. Refer to the readme at the [NI-SystemLink-Migration](https://github.com/ni/NI-SystemLink-Migration) GitHub repo for details on installing and using this tool.
+The workflows for upgrades and migrations make use of the SystemLink command line migration tool, `nislmigrate`. Refer to the readme at the [NI-SystemLink-Migration](https://github.com/ni/NI-SystemLink-Migration) GitHub repo for details on installing and using this tool.
 
 !!!note "Argument Flags for `nislmigrate`"
     `nislmigrate` supports capturing data from individual services as well as all installed services using the `--all` argument flag. For brevity `--all` is used most workflows in this chapter. Depending on your needs you may replace the `--all` argument flag with one or more of the individual service argument flags.
 
 ## Recommended Upgrade and Migrations Workflows for your deployment
 
-This chapter recommends workflows for the following upgrade and migration scenarios. In all scenarios you should plan for some downtime of your SystemLink Server, but by following these recommendations you should minimize this planned downtime.
+This chapter recommends workflows for the following upgrade and migration scenarios. You should plan for some downtime of your SystemLink Server. By following these recommendations this downtime can be minimized.
 
 - [Single Node Upgrade](#single-node-upgrade)
 - [Single Node to Multi Node Migration](#single-node-to-multi-node-migration)
     - [Single Node to Multi Node with MongoDB](#single-node-to-multi-node-with-mongodb)
     - [Single Node to Multi Node with File Storage](#single-node-to-multi-node-with-file-storage)
     - [Single Node to Multi Node with PostGreSQL](#single-node-to-multi-node-with-postgresql)
-- [Upgrading Multi node configurations (MongoDB, PostGreSQL, File Share/S3)](#upgrading-multi-node-configurations-mongodb-postgresql-file-shares3)
+- [Upgrading Multi node configurations (MongoDB, PostGreSQL, File Share/S3)](#upgrading-multi-node-configurations)
 - [Seamless cut-over](#seamless-cut-over)
 
 !!!note "Storing Captured Data"
@@ -106,11 +106,11 @@ For single node upgrades, NI recommends pairing the upgrade with a migration. Th
 
 ## Single Node to Multi Node Migration
 
-This section describes workflows used when you intend to upgrade or migrate from a single node SystemLink Server configuration to a multi node SystemLink server configuration that makes use of a dedicated servers for MongoDB, PostGreSQL, or file storage. While not required, these migration workflows include provisioning a new SystemLink Server. This is done to reduce risk and ensure your original SystemLink Server is always in an operable state.
+This section describes workflows used when you intend to upgrade or migrate from a single node SystemLink Server configuration to a multi node SystemLink Server configuration that makes use of dedicated servers for MongoDB, PostGreSQL, or file storage. While not required, these migration workflows include provisioning a new SystemLink Server. This is done to reduce risk and ensure your original SystemLink Server is always in an operable state.
 
 ### Single Node to Multi Node with MongoDB
 
-This workflow describes steps to upgrade a single node deployment of SystemLink Server to a multi node deployment where the MongoDB instance used by SystemLink is hosted on a its own server or replica set.
+This workflow describes steps to upgrade a single node deployment of SystemLink Server to a multi node deployment where the MongoDB instance used by SystemLink is hosted on its own server or replica set.
 
 1. Backup your SystemLink Server.
 
@@ -153,6 +153,11 @@ This workflow describes steps to upgrade a single node deployment of SystemLink 
 
 1. Run the command `nislmigrate capture --all --secret <your secret> --dir D:\migration`.
 
+1. Copy the files from the original file storage location to the new file store.
+
+    !!!note
+        This file copy/move is not facilitated by `nislmigrate` directly. Use File Explorer or PowerShell if migrating to a NAS or SAN. Use [AWS CLI](https://aws.amazon.com/cli/) if migrating to S3.
+
 1. Detach `D:\`.
 
     !!!note
@@ -162,7 +167,7 @@ This workflow describes steps to upgrade a single node deployment of SystemLink 
 
 1. Install and configure the same or a newer version of SystemLink Server.
 
-1. Configure SystemLink to use the newly created file storage instance.
+1. Configure SystemLink to use the newly created file storage location.
 
 1. Install `nislmigrate` on your new SystemLink Server.
 
@@ -203,7 +208,7 @@ The Test Monitor Service itself performs the migration of test steps, test resul
 1. Install and configure the new version of SystemLink Server that supports PostGreSQL.
 
     !!!important
-        If you are using the single node configuration for SystemLink the migration from the local instances of MongoDB to PostGreSQL begins automatically. If you are in a multi node configuration where a dedicated MongoDB server or replica set is used, you must specify the PostGreSQL instance for SystemLink to use before the MongoDB to PostGreSQL migration can occur. The next step in this workflow assumes you are in this multi node configuration.
+        If you are using the single node configuration for SystemLink, the migration from the local instances of MongoDB to PostGreSQL begins automatically. If you are migrating a multi node configuration where the original SystemLink Server used a dedicated MongoDB server or replica set, you must specify the PostGreSQL instance for SystemLink to use before the MongoDB to PostGreSQL migration can occur. The next step in this workflow assumes you are in this multi node configuration.
 
 1. Configure SystemLink to use the newly created PostGreSQL server or replica set and click **Apply**. Refer to [Connecting to a Remote PostgreSQL Database](https://www.ni.com/documentation/en/systemlink/latest/setup/remote-postgres-databse/) for this step.
 
@@ -218,11 +223,11 @@ The Test Monitor Service itself performs the migration of test steps, test resul
 
 1. Verify your new SystemLink Server has all the expected migrated data.
 
-## Upgrading Multi node configurations (MongoDB, PostGreSQL, File Share/S3)
+## Upgrading Multi Node Configurations
 
-The following workflow describes upgrading a SystemLink server that has been configured to use a dedicated MongoDB server or replica set, a dedicated PostGreSQL server or replica set, and a dedicated file store such as AWS S3.
+The following workflow describes upgrading a SystemLink Server instance that has been configured to use a dedicated MongoDB server or replica set, a dedicated PostGreSQL server or replica set, and a dedicated file store such as AWS S3.
 
-1. Backup your SystemLink Server, MongoDB server or replica set, PostGreSQL replica set, and file store.
+1. Backup your SystemLink Server, MongoDB server or replica set, PostGreSQL server or replica set, and file store.
 
     !!!note
         If S3 is used as your file store the backup step is not needed since this managed internally by AWS.
@@ -234,7 +239,7 @@ The following workflow describes upgrading a SystemLink server that has been con
 1. Run the command `nislmigrate capture --tags --dir D:\migration`.
 
     !!!note
-        While most of the data is external to SystemLink, the tag current value continues to be stored on the app server. Therefore this `nislmigrate` command must be used to ensure that data is not lost during the migration.
+        While most of the data is external to SystemLink, tag current values are stored on the app server. Therefore this `nislmigrate` argument flag must be used to ensure that data is not lost during the migration.
 
 1. Detach `D:\`.
 
@@ -248,17 +253,17 @@ The following workflow describes upgrading a SystemLink server that has been con
 1. Provision a PostGres server or replica set from the backup previously created.
 
     !!!note
-        The previous steps prescribes using a newly created instance of your MongoDB or PostGreSQL servers. This is because SystemLink may change the internal scheme of these databases when services start post upgrade. If you do not start with a instance from a backup you will be unable to revert the MongoDB collections and PostGreSQL tables into the schemas needed for the older version of SystemLink.
+        The previous steps prescribe using a newly created instance of your MongoDB or PostGreSQL servers. This is because SystemLink may change the internal schema of these databases when services start post upgrade. If you do not start with a instance from a backup you will be unable to revert the MongoDB collections and PostGreSQL tables into the schemas needed for the older version of SystemLink.
 
 1. Install and configure the new version of SystemLink Server.
 
-1. Configure SystemLink to use the newly created MongoDB server or replica, PostGreSQL server or replica set, and existing file store.
+1. Configure SystemLink to use the newly created MongoDB server or replica set, PostGreSQL server or replica set, and existing file store.
 
 1. Install `nislmigrate` on your new SystemLink Server.
 
 1. Attach the `D:\` volume used to capture data from your original SystemLink server.
 
-1. Run the command `nislmigrate restore --tags` --dir D:\migration`.
+1. Run the command `nislmigrate restore --tags --dir D:\migration`.
 
 1. Verify your new SystemLink Server has all the expected migrated data.
 
@@ -266,8 +271,10 @@ The following workflow describes upgrading a SystemLink server that has been con
 
 Since managed test systems are connected SystemLink it is desirable to approach upgrades or migrations such that test systems can connect to the new instance of SystemLink without manual intervention. To accomplish this the following conditions must be met.
 
-- Migration of systems data. This is either accomplished by using the `nislmigrate` argument flags `--all` or `--systems` or by connecting a MongoDB server or replica set that contains systems data.
+- Migration of systems data.
+
+    - This is either accomplished by using the `nislmigrate` argument flags `--all` or `--systems` or by connecting a MongoDB server or replica set that contains systems data.
 
 - The DNS name of the original SystemLink Server and the new SystemLink Server are the same.
 
-- If NI Web Server has been configured for HTTPS, the new SystemLink Server must use the same TSL certificate as the original SystemLink Server.
+- If NI Web Server has been configured for HTTPS, the new SystemLink Server must use the same TLs certificate as the original SystemLink Server.
