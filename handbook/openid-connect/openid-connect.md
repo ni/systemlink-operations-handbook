@@ -295,11 +295,11 @@ You can also view claims returned by a particular user by modifying the httpd co
     Define AUTH_OIDC_ENABLE_CLAIM_INFO
     ```
 
-If the provider is https with a certificate signed by a CA not included in the NI-CURL CA bundle (`C:\Program Files\National Instruments\Shared\nicurl\ca-bundle.crt`), then the `AUTH_OIDC_PROVIDER_DIR` define in `50_mod_auth_openidc-defines.conf` must to be updated to point to a CA bundle containing the provider's CA. The path can be absolute, or relative to `C:\Program Files\National Instruments\Shared\Web Server`.
+If the provider is https with a certificate signed by a CA not included in the NI-CURL CA bundle (`C:\Program Files\National Instruments\Shared\nicurl\ca-bundle.crt`), then the `AUTH_OIDC_BUNDLE` define in `50_mod_auth_openidc-defines.conf` must to be updated to point to a CA bundle containing the provider's CA. The path can be absolute, or relative to `C:\Program Files\National Instruments\Shared\Web Server`.
 
 ### Mapping Claims to SystemLink Roles
 
-Claims are returned as a JSON object.  
+Claims are returned as a JSON object.
 
 !!! note ""
     Example response from `userinfo_endpoint`. Use any of these claims to a map a user to a role in a workspace.
