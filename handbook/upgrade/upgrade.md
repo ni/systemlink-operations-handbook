@@ -47,10 +47,10 @@ Prior to attempting any upgrade or migration you should backup your server and a
 
 ### NI-SystemLink-Migration Command Line Utility
 
-The workflows for upgrades and migrations make use of the SystemLink command line migration tool, `nislmigrate`. Refer to the readme at the [NI-SystemLink-Migration](https://github.com/ni/NI-SystemLink-Migration) GitHub repo for details on installing and using this tool.
+The workflows for upgrades and migrations makes use of the SystemLink command line migration tool, `nislmigrate`. Refer to the readme at the [NI-SystemLink-Migration](https://pypi.org/project/nislmigrate/) GitHub repo for details on installing and using this tool.
 
 !!!note "Argument Flags for `nislmigrate`"
-    `nislmigrate` supports capturing data from individual services as well as all installed services using the `--all` argument flag. For brevity `--all` is used most workflows in this chapter. Depending on your needs you may replace the `--all` argument flag with one or more of the individual service argument flags.
+    `nislmigrate` supports capturing data from individual services or can capture data from all installed services using the `--all` argument flag. For brevity `--all` is used most workflows in this chapter. Depending on your needs you may replace the `--all` argument flag with one or more of the individual service argument flags.
 
 ## Recommended Upgrade and Migrations Workflows for your deployment
 
@@ -64,14 +64,16 @@ This chapter recommends workflows for the following upgrade and migration scenar
 - [Upgrading Multi node configurations (MongoDB, PostgreSQL, File Share/S3)](#upgrading-multi-node-configurations)
 - [Seamless cut-over](#seamless-cut-over)
 
-!!!note "Storing Captured Data"
-    For upgrades and migrations for a SystemLink Server with a small amount of data you may be able to use `nislmigrate` to backup your data to the local file system of your SystemLink Server. For SystemLink Servers with a large amount of data be aware `nislmigrate` could exhaust the local storage on the server. This can mitigated by using an attached volume. **This document assumes this will be needed and refers to this attached volume as `D:\` in each workflow.**
+For upgrades and migrations for a SystemLink Server with a small amount of data you may be able to use `nislmigrate` to backup your data to the local file system of your SystemLink Server. For SystemLink Servers with a large amount of data be aware `nislmigrate` could exhaust the local storage on the server. This can mitigated by using an attached volume. **This document assumes this will be needed and refers to this attached volume as `D:\` in each workflow.**
+
+!!!important "Storing Sensitive Data"
+    The migration of systems data (`--all` or `--systems`) will migrate the private key used decrypt communication between your SystemLink server and test systems. In this case, `nislmigrate` requires the use of the `--secret` argument to encrypt this key. While this provides some assurances of the security of this private key, it is the users responsibility to ensure this private key and sensitive production data are properly handled during migration and after the process is complete.
 
 ## Single Node Upgrade
 
 This workflow describes steps to upgrade a single node deployment of SystemLink Server.
 
-The SystemLink NI Package Manager Installers (NIPM) supports in-place upgrades of SystemLink Server. An in place upgrade is one where the upgrade is run directly on your current SystemLink Server. For production deployments of SystemLink Server this is not recommended. If you pursue this option it is highly recommended you backup your server prior to the upgrade. This backup is an essential fallback should an issue occur during upgrade that leaves your SystemLink Server in a bad state.
+Though the NI Package Manager (NIPM) installer for SystemLink supports in-place upgrades where the upgrade runs directly on your current SystemLink Server, NI does not recommend this option. If you choose this option, ensure that you backup your server before beginning the upgrade.
 
 For single node upgrades, NI recommends pairing the upgrade with a migration. This mitigates risks of issues during the upgrade by ensuring your original SystemLink Server remains in an operable state.
 
@@ -91,7 +93,7 @@ For single node upgrades, NI recommends pairing the upgrade with a migration. Th
     !!!note
         At this point in the workflow your original SystemLink Server is in an operable state. Be aware if any new data is created or ingested by SystemLink Server at this time it will not be available to your new server.
 
-1. Provision a new Window server for SystemLink.
+1. Provision a new Windows server for SystemLink.
 
 1. Install and configure the new version of SystemLink Server.
 
@@ -126,7 +128,7 @@ This workflow describes steps to upgrade a single node deployment of SystemLink 
 
 1. Provision a new Windows server for SystemLink.
 
-1. Provision a new MongoDB server or replica set.
+1. [Provision a new MongoDB server or replica set](/data-stores/mongodb/#multi-node-deployments).
 
 1. Install and configure the same or a newer version of SystemLink Server.
 
@@ -176,6 +178,15 @@ This workflow describes steps to upgrade a single node deployment of SystemLink 
 
     !!!note
         The `--change-file-store-root` argument flag is needed to update the file meta data the new root location of your file storage. This could be a new drive letter, UNC path, or S3 URL depending on your configuration. If this step is not complete you will be able to view file meta data (name, properties, etc), but you will not be able to preview or download files.
+
+        **Migrating to a new drive and directory**
+        `nislmigrate restore --all --secret <your secret> --change-file-store-root X:\systemlink\data --dir D:\migration`
+
+        **Migrating to a UNC path**
+        `nislmigrate restore --all --secret <your secret> --change-file-store-root \\FileShare\systemlink\data --dir D:\migration`
+
+        **Migrating to AWS S3**
+        `nislmigrate restore --all --secret <your secret> --change-file-store-root s3://yours3bucket/systemlink/data/ --dir D:\migration`
 
 1. Verify your new SystemLink Server has all the expected migrated data.
 
