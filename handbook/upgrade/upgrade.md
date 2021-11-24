@@ -186,19 +186,13 @@ Complete the following steps to upgrade a single node deployment of SystemLink S
 1. Run the command `nislmigrate restore --all --secret <your secret> --change-file-store-root <new root> --dir D:\migration`.
 
     !!!note
-        The `--change-file-store-root` argument flag is needed to update the file meta data the new root location of your file storage. This could be a new drive letter, UNC path, or S3 URL depending on your configuration. If this step is not complete you will be able to view file meta data (name, properties, etc), but you will not be able to preview or download files.
+        You must use the --change-file-store-root argument flag to update the file meta data the new root location of your file storage. Otherwise, you will not be able to preview or download files. Depending on your configuration, this could be a new drive letter, UNC path, or S3 URL.
 
-        **Migrating to a new drive and directory**
-
-        `nislmigrate restore --all --secret <your secret> --change-file-store-root X:\systemlink\data --dir D:\migration`
-
-        **Migrating to a UNC path**
-
-        `nislmigrate restore --all --secret <your secret> --change-file-store-root \\FileShare\systemlink\data --dir D:\migration`
-
-        **Migrating to AWS S3**
-
-        `nislmigrate restore --all --secret <your secret> --change-file-store-root s3://yours3bucket/systemlink/data/ --dir D:\migration`
+        | Migration destination | `nislmigrate` usage |
+        | --------------------- | ------------------- |
+        | New drive and directory | `nislmigrate restore --all --secret <your secret> --change-file-store-root X:\systemlink\data --dir D:\migration` |
+        | UNC path | `nislmigrate restore --all --secret <your secret> --change-file-store-root \\FileShare\systemlink\data --dir D:\migration` |
+        | AWS S3 | `nislmigrate restore --all --secret <your secret> --change-file-store-root s3://yours3bucket/systemlink/data/ --dir D:\migration` |
 
 1. Verify your new SystemLink Server has all the expected migrated data.
 
@@ -208,7 +202,7 @@ Complete the following steps to upgrade a single node deployment of SystemLink S
 
 As of SystemLink 21.3.2 SystemLink supports using PostgreSQL as the database backing the Test Monitor service. This configuration is optional, but provides significant performance improvements. `nislmigrate` does not yet support migrating between PostgreSQL servers or replica sets.
 
-The Test Monitor Service itself performs the migration of test steps, test results, and products from MongoDB to PostgreSQL. If you intend on utilizing a single node configuration the steps for this migration are the same as described in [**Single Node Migration**](#single-node-migration). Use the following workflow if you intend on migrating or upgrading to a new server and utilize a multi node configuration where PostgreSQL is hosted on a dedicated server or replica set.
+The Test Monitor Service performs the migration of test steps, test results, and product from MongoDB to PostgreSQL. If you are using a single node configuration, follow the steps in [**Single Node Migration**](#single-node-migration). If you intend on migrating or upgrading to a new server and utilize a multi node configuration where PostgreSQL is hosted on a dedicated server or replica set, use the following workflow.
 
 1. Backup your SystemLink Server.
 
@@ -294,7 +288,9 @@ Complete the following steps to upgrade a SystemLink Server instance that has be
 
 ## Seamless Cut-over
 
-Since managed test systems are connected SystemLink it is desirable to approach upgrades or migrations such that test systems can connect to the new instance of SystemLink without manual intervention. To accomplish this the following conditions must be met.
+Since managed test systems are connected SystemLink test systems can connect to the new instance of SystemLink without manual intervention. To accomplish this the following conditions must be met.
+
+To ensure that managed test systems can connect to the new instance of SystemLink automatically, check that the following conditions are met.
 
 - Migration of systems data.
 
