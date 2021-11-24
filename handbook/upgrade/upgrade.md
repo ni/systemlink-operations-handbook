@@ -44,7 +44,7 @@ Prior to attempting any upgrade or migration you should backup your server and a
 !!!note "Single Node versus Multi Node Configurations"
     **Single node** refers to the SystemLink Server configuration where the application server, file storage, and databases used by SystemLink are all installed on the same Windows server. This is the default configuration for SystemLink Server.
 
-    **Multi node** refers to configurations where the file store or databases used by SystemLink are running on distinct hardware from the SystemLink application server. This is the recommended configuration for all production deployments.
+    **Multi node** refers to configurations where one or more file stores or databases used by SystemLink are running on distinct hardware from the SystemLink application server. This is the recommended configuration for all production deployments.
 
 ### NI-SystemLink-Migration Command Line Utility
 
