@@ -112,17 +112,19 @@ When you have received a certificate from an certificate signing authority, you 
 
 1. Open **NI Web Sever Configuration** and navigate to the **HTTPS** tab.
 
-2. Click the **Use a certificate from a signing authority** radio button.
+1. Click the **Use a certificate from a signing authority** radio button.
 
-3. Expand the **Install an already signed certificate** section.
+1. Expand the **Install an already signed certificate** section.
 
-4. Click the folder icon next to **Certificate file** and browse to your certificate file.
+1. Click the folder icon next to **Certificate file** and browse to your certificate file.
 
-5. Click the folder icon next to **Key file** and select your key file.
+1. Click the folder icon next to **Key file** and select your key file.
 
-6. If needed change the HTTPS port from the default, 443.
+1. Click the Enable HTTP Strict Transport Security checkbox to include the [Strict-Transport-Security header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) in all responses sent by this server. This is strongly recommended but not required.
 
-7. Click **Apply and restart**.
+1. If needed change the HTTPS port from the default, 443.
+
+1. Click **Apply and restart**.
 
 !!! note "TLS certificates with application load balancers"
     If you have a load balancer in front of your SystemLink application server you must ensure the same certificate is installed on both the load balancer and NI Web Server for targets to successfully connect and publish data to SystemLink.
