@@ -1,9 +1,8 @@
 # Upgrading and Migrating SystemLink Server
 
-Upgrading to a new version or migrating between SystemLink Servers is a common practice in the lifecycle of any SystemLink deployment. The goal of this chapter is to complete this operation while retaining a fully operable SystemLink Server. This is critical to mitigate against issues encountered during an upgrade or migration that prevent the new instance of SystemLink Server from being used.
+This chapter covers how to maintain a fully operable SystemLink Server while upgrading to a new version of SystemLink or migrating between SystemLink servers.
 
-!!!important "Using Virtual Machines for SystemLink Deployments"
-    It is recommended to run SystemLink Server, attached file stores, and databases within virtual machines. Virtual machines simplify the creation and restoration of backups. The use of other tools to facilitate the backup of bare metal machines, e.g.non-virtual machines, is outside the scope of this chapter.
+To simplify the creating and restoring backups, NI recommends running SystemLink Server, attached file stores, and databases within virtual machines. Backing up physical machines is outside the scope of this chapter.
 
 ## Assumptions and Prerequisites
 
