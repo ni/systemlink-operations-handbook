@@ -221,21 +221,32 @@ The Test Monitor Service performs the migration of test steps, test results, and
 
 1. Provision a PostgreSQL server or replica set.
 
-1. Install and configure the new version of SystemLink Server that supports PostgreSQL.
-
-    !!!important
-        If you are using the single node configuration for SystemLink, the migration from the local instances of MongoDB to PostgreSQL begins automatically. If you are migrating a multi node configuration where the original SystemLink Server used a dedicated MongoDB server or replica set, you must specify the PostgreSQL instance for SystemLink to use before the MongoDB to PostgreSQL migration can occur. The next step in this workflow assumes you are in this multi node configuration.
-
-1. Configure SystemLink to use the newly created PostgreSQL server or replica set and click **Apply**. Refer to [Connecting to a Remote PostgreSQL Database](https://www.ni.com/documentation/en/systemlink/latest/setup/remote-postgres-databse/) for this step.
+1. Install and configure SystemLink 21.3.2.
 
 1. Install `nislmigrate` on your new SystemLink Server.
 
 1. Attach the `D:\` volume used to capture data from your original SystemLink server.
 
-1. Run the command `nislmigrate restore --all --secret <your secret> --dir D:\migration`
+1. Run the command `nislmigrate restore --all --secret <your secret> --dir D:\migration`.
+
+1. Open `C:\ProgramData\National Instruments\Skyline\Config\TestMonitor.json`.
+
+1. Change the key `"Postgres.Enabled"` value from `false` to `true`.
+
+1. Add the key `"Postgres.ConnectionString"` and a connection string value. For example:
+
+        "Postgres.ConnectionString" : "Host=<insert db host>;Port=<insert port>;Username=<insert username>;Password=<insert password>;Database=<insert database>;SSL Mode=<Disable or Enable>"
+
+1. Add the key `"Postgres.ConfigurationApproved"=true`.
+
+1. Save and close the file.
+
+1. Open the **NI SystemLink Server Configuration** application.
+
+1. Navigate to **NI SystemLink Service Manager** and click **Restart**.
 
     !!!note
-        After this step SystemLink will migrate your test steps, results, and products from MongoDB to PostgreSQL. Depending on the size of your data set this process may take some time.
+        After this step SystemLink will migrate your test steps, results, and products from MongoDB to PostgreSQL. Depending on the size of your data set this process may take some time. The TestMonitor service will display a migration in progress status. If you see an error double check your connection string and restart services if you make any additional changes to the json file.
 
 1. Verify your new SystemLink Server has all the expected migrated data.
 
