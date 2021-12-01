@@ -2,11 +2,11 @@
 
 This chapter covers how to maintain a fully operable SystemLink Server while upgrading to a new version of SystemLink or migrating between SystemLink servers.
 
-To simplify the creating and restoring backups, NI recommends running SystemLink Server, attached file stores, and databases within virtual machines. Backing up physical machines is outside the scope of this chapter.
+To simplify creating and restoring backups, NI recommends running SystemLink Server, attached file stores, and databases within virtual machines. Backing up physical machines is outside the scope of this chapter.
 
 ## Assumptions and Prerequisites
 
-- A server running SystemLink 2021 R1 or greater. Migrating from older version of SystemLink is not supported at this time.
+- A server running SystemLink 2021 R1 or greater. Migrating from older versions of SystemLink is not supported at this time.
 
 - Familiarity with installing and setting up a SystemLink Server
 
@@ -67,12 +67,12 @@ While you should plan for some downtime of your SystemLink Server, you can minim
 - [Upgrading Multi node configurations (MongoDB, PostgreSQL, File Share/S3)](#upgrading-multi-node-configurations)
 - [Seamless cut-over](#seamless-cut-over)
 
-If you have a SystemLink Server with a small amount of data, you can use 'nislmigrate' to backup your data to the local file system of your SystemLink Server. For SystemLink Servers with a large amount of data, you may need to use an attached volume since 'nislmigrate' may exhaust the local storage. This document assumes that you are using an attached volume and refers to the volume as 'D:' in each workflow.
+If you have a SystemLink Server with a small amount of data, you can use `nislmigrate` to backup your data to the local file system of your SystemLink Server. For SystemLink Servers with a large amount of data, you may need to use an attached volume since the backup created by `nislmigrate` may exhaust the local storage. This document assumes that you are using an attached volume and refers to the volume as `D:\` in each workflow.
 
 !!!important "Storing Sensitive Data"
     The migration of systems data (`--all` or `--systems`) will migrate the private key used decrypt communication between your SystemLink server and test systems. In this case, `nislmigrate` requires the use of the `--secret` argument to encrypt this key. While this provides some assurances of the security of this private key, it is the users responsibility to ensure this private key and sensitive production data are properly handled during migration and after the process is complete.
 
-## Single Node Upgrade
+### Single Node Upgrade
 
 Complete the following steps to upgrade a single node deployment of SystemLink Server.
 
@@ -94,7 +94,7 @@ For single node upgrades, NI recommends upgrading and migrating at the same time
 1. Detach `D:\`.
 
     !!!note
-        Since your original SystemLink Server is still operable, any new data created or consumed by SystemLink Server at this time will not be available to your new server.
+        After this step, your original SystemLink Server is still operable, but any new data created or consumed by SystemLink Server at this time will not be available to your new server.
 
 1. Provision a new Windows server for SystemLink.
 
@@ -108,11 +108,11 @@ For single node upgrades, NI recommends upgrading and migrating at the same time
 
 1. Verify your new SystemLink Server has all the expected migrated data.
 
-## Single Node to Multi Node Migration
+### Single Node to Multi Node Migration
 
 This section describes workflows to prepare to upgrade or migrate from a single node SystemLink Server configuration to a multi node SystemLink Server configuration that makes use of dedicated servers for MongoDB, PostgreSQL, or file storage.
 
-### Single Node to Multi Node with MongoDB
+#### Single Node to Multi Node with MongoDB
 
 Complete the following steps to upgrade a single node deployment of SystemLink Server to a multi node deployment where the MongoDB instance used by SystemLink is hosted on its own server or replica set.
 
@@ -127,7 +127,7 @@ Complete the following steps to upgrade a single node deployment of SystemLink S
 1. Detach `D:\`.
 
     !!!note
-        Since your original SystemLink Server is still operable, any new data created or consumed by SystemLink Server at this time will not be available to your new server.
+        After this step, your original SystemLink Server is still operable, but any new data created or consumed by SystemLink Server at this time will not be available to your new server.
 
 1. Provision a new Windows server for SystemLink.
 
@@ -148,7 +148,7 @@ Complete the following steps to upgrade a single node deployment of SystemLink S
 
 1. Verify your new SystemLink Server has all the expected migrated data.
 
-### Single Node to Multi Node with File Storage
+#### Single Node to Multi Node with File Storage
 
 Complete the following steps to upgrade a single node deployment of SystemLink Server to a multi node deployment where the file storage instance used by SystemLink is hosted on sa dedicated NAS, SAN, or AWS S3.
 
@@ -171,7 +171,7 @@ Complete the following steps to upgrade a single node deployment of SystemLink S
 1. Detach `D:\`.
 
     !!!note
-        Since your original SystemLink Server is still operable, any new data created or consumed by SystemLink Server at this time will not be available to your new server.
+        After this step, your original SystemLink Server is still operable, but any new data created or consumed by SystemLink Server at this time will not be available to your new server.
 
 1. Provision a new file store for SystemLink.
 
@@ -186,9 +186,9 @@ Complete the following steps to upgrade a single node deployment of SystemLink S
 1. Run the command `nislmigrate restore --all --secret <your secret> --change-file-store-root <new root> --dir D:\migration`.
 
     !!!note
-        You must use the --change-file-store-root argument flag to update the file meta data the new root location of your file storage. Otherwise, you will not be able to preview or download files. Depending on your configuration, this could be a new drive letter, UNC path, or S3 URL.
+        You must use the `--change-file-store-root argument` flag to update the file meta data the new root location of your file storage. Otherwise, you will not be able to preview or download files. Depending on your configuration, this could be a new drive letter, UNC path, or S3 URL.
 
-        | Migration destination | `nislmigrate` usage |
+        | Migration Destination | Example `nislmigrate` Command |
         | --------------------- | ------------------- |
         | New drive and directory | `nislmigrate restore --all --secret <your secret> --change-file-store-root X:\systemlink\data --dir D:\migration` |
         | UNC path | `nislmigrate restore --all --secret <your secret> --change-file-store-root \\FileShare\systemlink\data --dir D:\migration` |
@@ -196,13 +196,11 @@ Complete the following steps to upgrade a single node deployment of SystemLink S
 
 1. Verify your new SystemLink Server has all the expected migrated data.
 
-### Single Node to Multi Node with PostgreSQL
+#### Single Node to Multi Node with PostgreSQL
 
-Complete the following steps to upgrade a single node deployment of SystemLink Server to a multi node deployment where the PostgreSQL instance used by the SystemLink Test Monitor service is hosted on a its own server or replica set.
+Complete the following steps to upgrade a single node deployment of SystemLink Server to a multi node deployment where the PostgreSQL instance used by the SystemLink Test Monitor service is hosted on a its own server or replica set. The Test Monitor Service performs the migration of test steps, test results, and product from MongoDB to PostgreSQL.
 
-As of SystemLink 21.3.2 SystemLink supports using PostgreSQL as the database backing the Test Monitor service. This configuration is optional, but provides significant performance improvements. `nislmigrate` does not yet support migrating between PostgreSQL servers or replica sets.
-
-The Test Monitor Service performs the migration of test steps, test results, and product from MongoDB to PostgreSQL. If you are using a single node configuration, follow the steps in [**Single Node Migration**](#single-node-migration). If you intend on migrating or upgrading to a new server and utilize a multi node configuration where PostgreSQL is hosted on a dedicated server or replica set, use the following workflow.
+As of SystemLink 21.3.2 SystemLink supports using an external PostgreSQL database for the Test Monitor service (a future version of SystemLink will include support for an single node configuration of PostgreSQL). This configuration is optional, but provides significant performance improvements. `nislmigrate` does not yet support migrating between PostgreSQL servers or replica sets.
 
 1. Backup your SystemLink Server.
 
@@ -215,7 +213,7 @@ The Test Monitor Service performs the migration of test steps, test results, and
 1. Detach `D:\`.
 
     !!!note
-        Since your original SystemLink Server is still operable, any new data created or consumed by SystemLink Server at this time will not be available to your new server.
+        After this step, your original SystemLink Server is still operable, but any new data created or consumed by SystemLink Server at this time will not be available to your new server.
 
 1. Provision a new Windows server for SystemLink.
 
@@ -246,11 +244,15 @@ The Test Monitor Service performs the migration of test steps, test results, and
 1. Navigate to **NI SystemLink Service Manager** and click **Restart**.
 
     !!!note
-        After this step SystemLink will migrate your test steps, results, and products from MongoDB to PostgreSQL. Depending on the size of your data set this process may take some time. The TestMonitor service will display a migration in progress status. If you see an error double check your connection string and restart services if you make any additional changes to the json file.
+        After this step SystemLink will migrate your test steps, results, and products from MongoDB to PostgreSQL. Depending on the size of your data set this process may take some time.
+
+        The TestMonitor service will display a status of **Migrating** during this process. You can view detailed status of this process with `C:\ProgramData\National Instruments\Skyline\Logs\log.txt`. 
+
+        If you see an error, double check your connection string and restart SystemLink Service Manager.
 
 1. Verify your new SystemLink Server has all the expected migrated data.
 
-## Upgrading Multi Node Configurations
+### Upgrading Multi Node Configurations
 
 Complete the following steps to upgrade a SystemLink Server instance that has been configured to use a dedicated MongoDB server or replica set, a dedicated PostgreSQL server or replica set, and a dedicated file store such as AWS S3.
 
@@ -274,7 +276,7 @@ Complete the following steps to upgrade a SystemLink Server instance that has be
 1. Detach `D:\`.
 
     !!!note
-        At this point in the workflow your original SystemLink Server is in an operable state. Be aware if any new data is created or ingested by the SystemLink server at this time it will not be available to your new server.
+        After this step your original SystemLink Server is in an operable state. Be aware if any new data is created or ingested by the SystemLink server at this time it will not be available to your new server.
 
 1. Provision a new Windows server for SystemLink.
 
@@ -299,9 +301,7 @@ Complete the following steps to upgrade a SystemLink Server instance that has be
 
 ## Seamless Cut-over
 
-Since managed test systems are connected SystemLink test systems can connect to the new instance of SystemLink without manual intervention. To accomplish this the following conditions must be met.
-
-To ensure that managed test systems can connect to the new instance of SystemLink automatically, check that the following conditions are met.
+Since managed test systems are connected SystemLink test systems can connect to the new instance of SystemLink without manual intervention. To accomplish this the following conditions must be met:
 
 - Migration of systems data.
 
