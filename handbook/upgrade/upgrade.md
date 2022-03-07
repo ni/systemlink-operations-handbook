@@ -211,7 +211,7 @@ Complete the following steps to upgrade a single node deployment of SystemLink S
 
 As of SystemLink 21.5, SystemLink supports using a local or external PostgreSQL database for the Test Monitor service. `nislmigrate` does not yet support migrating between PostgreSQL servers or replica sets.
 
-1. If Test Monitor is using MongoDB in its default location (`C:\ProgramData\National Instruments\Skyline\NoSqlDatabase`), use the NI SystemLink Server Configuration to manually specify the database location as the default. This will prevent the Test Monitor service from automatically migrating the MongoDB data to the local PostgreSQL after upgrading.
+1. If Test Monitor is using MongoDB in its default location (`C:\ProgramData\National Instruments\Skyline\NoSqlDatabase`), use the **NI SystemLink Server Configuration** to manually specify the database location as the default. This will prevent the Test Monitor service from automatically migrating the MongoDB data to the local PostgreSQL after upgrading.
 
 1. Backup your SystemLink Server.
 
