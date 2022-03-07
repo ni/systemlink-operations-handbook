@@ -243,7 +243,7 @@ As of SystemLink 21.5, SystemLink supports using a local or external PostgreSQL 
 
 1. Navigate to PostgreSQLDatabase and connect to your external PostgreSQL database.
 
-1. Use the NI SystemLink Server Configuration application to approve the migration on the TestMonitor tab.
+1. Navigate to TestMonitor and approve the migration.
 
 1. Navigate to **NI SystemLink Service Manager** and click **Restart**.
 
