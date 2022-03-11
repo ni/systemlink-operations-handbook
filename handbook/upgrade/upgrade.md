@@ -109,7 +109,7 @@ For single node upgrades, NI recommends upgrading and migrating at the same time
     !!!note
         If migrating from SystemLink 21.3 or earlier to SystemLink 21.5 or later, your Test Monitor data must be migrated from MongoDB to PostgreSQL before the service can start. If Test Monitor is using the local instance of MongoDB stored in the default location, the migration will occur automatically. If not, the migration must be approved on the TestMonitor tab in the **NI SystemLink Server Configuration** application.
 
-        Depending on the size of your data set this process may take some time. For reference, a typical server takes less than one hour to migrate 5 million steps. To check the step count on your server, you can run the following command in Robo 3T: `db.getCollection('steps').stats()`. Use the step count to roughly estimate the expected migration time. Note that system resources and network connectivity will impact the migration time.
+        Depending on the size of your data set this process may take some time. For reference, a typical server takes less than one hour to migrate 5 million steps. To check the step count on your server, you can use the Mongo shell or a client such as Robo 3T. The credentials required for connecting to the database can be found in `C:\ProgramData\National Instruments\Skyline\Config\TestMonitor.json`. Use the step count to roughly estimate the expected migration time. Note that system resources and network connectivity will impact the migration time.
 
         The TestMonitor service will display a status of **Migrating** during this process. You can view detailed status of this process with `C:\ProgramData\National Instruments\Skyline\Logs\log.txt`. 
 
@@ -247,7 +247,7 @@ As of SystemLink 21.5, SystemLink supports using a local or external PostgreSQL 
 1. Navigate to **NI SystemLink Service Manager** and click **Restart**.
 
     !!!note
-        After this step SystemLink will migrate your test steps, results, and products from MongoDB to PostgreSQL. Depending on the size of your data set this process may take some time. For reference, a typical server takes less than one hour to migrate 5 million steps. To check the step count on your server, you can run the following command in Robo 3T: `db.getCollection('steps').stats()`. Use the step count to roughly estimate the expected migration time. Note that system resources and network connectivity will impact the migration time.
+        After this step SystemLink will migrate your test steps, results, and products from MongoDB to PostgreSQL. Depending on the size of your data set this process may take some time. For reference, a typical server takes less than one hour to migrate 5 million steps. To check the step count on your server, you can use the Mongo shell or a client such as Robo 3T. The credentials required for connecting to the database can be found in `C:\ProgramData\National Instruments\Skyline\Config\TestMonitor.json`. Use the step count to roughly estimate the expected migration time. Note that system resources and network connectivity will impact the migration time.
 
         The TestMonitor service will display a status of **Migrating** during this process. You can view detailed status of this process with `C:\ProgramData\National Instruments\Skyline\Logs\log.txt`. 
 
