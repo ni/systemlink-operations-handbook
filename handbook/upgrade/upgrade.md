@@ -59,6 +59,8 @@ The workflows for upgrades and migrations makes use of the SystemLink command li
 
 After upgrading from SystemLink 21.3 or earlier to SystemLink 21.5 or later, SystemLink will migrate your test steps, results, and products from MongoDB to PostgreSQL. Depending on the size of your data set this process may take some time. For reference, a typical server takes less than one hour to migrate 5 million steps. To check the step count on your server, you can use the Mongo shell or a client such as Robo 3T. The credentials required for connecting to the database can be found in `C:\ProgramData\National Instruments\Skyline\Config\TestMonitor.json`. Use the step count to roughly estimate the expected migration time. Note that system resources and network connectivity will impact the migration time.
 
+If Test Monitor is using the local instance of MongoDB stored in the default location, the migration will occur automatically. If not, the migration must be approved on the TestMonitor tab in the **NI SystemLink Server Configuration** application.
+
 The TestMonitor service will display a status of **Migrating** during this process. You can view detailed status of this process with `C:\ProgramData\National Instruments\Skyline\Logs\log.txt`.
 
 If you see an error, double check your connection string and restart SystemLink Service Manager.
@@ -87,8 +89,6 @@ Complete the following steps to upgrade a single node deployment of SystemLink S
 Though the NI Package Manager (NIPM) installer for SystemLink supports in-place upgrades where the upgrade runs directly on your current SystemLink Server, NI does not recommend this option. If you choose this option, ensure that you backup your server before beginning the upgrade.
 
 For single node upgrades, NI recommends upgrading and migrating at the same time to mitigate issues during the upgrade by ensuring your original SystemLink Server remains operable.
-
-If migrating from SystemLink 21.3 or earlier to SystemLink 21.5 or later, your Test Monitor data must be migrated from MongoDB to PostgreSQL before the service can start. If Test Monitor is using the local instance of MongoDB stored in the default location, the migration will occur automatically. If not, the migration must be approved on the TestMonitor tab in the **NI SystemLink Server Configuration** application.
 
 1. Backup your SystemLink Server.
 
