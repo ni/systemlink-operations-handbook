@@ -222,6 +222,11 @@
     NI-SystemLink-Migration Command Line Utility
   </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#upgrading-from-systemlink-213-or-earlier-to-systemlink-215-or-later">8.2.2 
+    Upgrading from SystemLink 21.3 or earlier to SystemLink 21.5 or later
+  </a>
+</li>
 </ul>
 </nav>
 </li>
@@ -314,6 +319,11 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#ni-systemlink-migration-command-line-utility">8.2.1 
     NI-SystemLink-Migration Command Line Utility
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#upgrading-from-systemlink-213-or-earlier-to-systemlink-215-or-later">8.2.2 
+    Upgrading from SystemLink 21.3 or earlier to SystemLink 21.5 or later
   </a>
 </li>
 </ul>
@@ -453,6 +463,11 @@
 <p class="admonition-title">Argument Flags for <code>nislmigrate</code></p>
 <p><code>nislmigrate</code> supports capturing data from individual services or can capture data from all installed services using the <code>--all</code> argument flag. For brevity <code>--all</code> is used most workflows in this chapter. Depending on your needs you may replace the <code>--all</code> argument flag with one or more of the individual service argument flags.</p>
 </div>
+<h3 id="upgrading-from-systemlink-213-or-earlier-to-systemlink-215-or-later"><span class="enumerate-heading-plugin">8.2.2</span> Upgrading from SystemLink 21.3 or earlier to SystemLink 21.5 or later<a class="headerlink" href="#upgrading-from-systemlink-213-or-earlier-to-systemlink-215-or-later" title="Permanent link">¶</a></h3>
+<p>After upgrading from SystemLink 21.3 or earlier to SystemLink 21.5 or later, SystemLink will migrate your test steps, results, and products from MongoDB to PostgreSQL. Depending on the size of your data set this process may take some time. For reference, a typical server takes less than one hour to migrate 5 million steps. To check the step count on your server, you can use the Mongo shell or a client such as Robo 3T. The credentials required for connecting to the database can be found in <code>C:\ProgramData\National Instruments\Skyline\Config\TestMonitor.json</code>. Use the step count to roughly estimate the expected migration time. Note that system resources and network connectivity will impact the migration time.</p>
+<p>If Test Monitor is using the local instance of MongoDB stored in the default location, the migration will occur automatically. If not, the migration must be approved on the TestMonitor tab in the <strong>NI SystemLink Server Configuration</strong> application.</p>
+<p>The TestMonitor service will display a status of <strong>Migrating</strong> during this process. You can view detailed status of this process with <code>C:\ProgramData\National Instruments\Skyline\Logs\log.txt</code>.</p>
+<p>If you see an error, double check your connection string and restart SystemLink Service Manager.</p>
 <h2 id="recommended-upgrade-and-migration-workflows-for-your-deployment"><span class="enumerate-heading-plugin">8.3</span> Recommended Upgrade and Migration Workflows for your deployment<a class="headerlink" href="#recommended-upgrade-and-migration-workflows-for-your-deployment" title="Permanent link">¶</a></h2>
 <p>While you should plan for some downtime of your SystemLink Server, you can minimize that downtime by following these recommendations.</p>
 <ul>
@@ -668,7 +683,7 @@
 </ol>
 <h4 id="single-node-to-multi-node-with-postgresql"><span class="enumerate-heading-plugin">8.3.2.3</span> Single Node to Multi Node with PostgreSQL<a class="headerlink" href="#single-node-to-multi-node-with-postgresql" title="Permanent link">¶</a></h4>
 <p>Complete the following steps to upgrade a single node deployment of SystemLink Server to a multi node deployment where the PostgreSQL instance used by the SystemLink Test Monitor service is hosted on a its own server or replica set. The Test Monitor Service performs the migration of test steps, test results, and product from MongoDB to PostgreSQL.</p>
-<p>As of SystemLink 21.3.2 SystemLink supports using an external PostgreSQL database for the Test Monitor service (a future version of SystemLink will include support for an single node configuration of PostgreSQL). This configuration is optional, but provides significant performance improvements. <code>nislmigrate</code> does not yet support migrating between PostgreSQL servers or replica sets.</p>
+<p>As of SystemLink 21.5, SystemLink supports using a local or external PostgreSQL database for the Test Monitor service. <code>nislmigrate</code> does not yet support migrating between PostgreSQL servers or replica sets.</p>
 <ol>
 <li>
 <p>Backup your SystemLink Server.</p>
@@ -696,7 +711,7 @@
 <p>Provision a PostgreSQL server or replica set.</p>
 </li>
 <li>
-<p>Install and configure SystemLink 21.3.2.</p>
+<p>Install and configure SystemLink 21.5 or later.</p>
 </li>
 <li>
 <p>Install <code>nislmigrate</code> on your new SystemLink Server.</p>
@@ -708,33 +723,13 @@
 <p>Run the command <code>nislmigrate restore --all --secret &lt;your secret&gt; --dir D:\migration</code>.</p>
 </li>
 <li>
-<p>Open <code>C:\ProgramData\National Instruments\Skyline\Config\TestMonitor.json</code>.</p>
-</li>
-<li>
-<p>Change the key <code>"Postgres.Enabled"</code> value from <code>false</code> to <code>true</code>.</p>
-</li>
-<li>
-<p>Add the key <code>"Postgres.ConnectionString"</code> and a connection string value. For example:</p>
-<pre><code>"Postgres.ConnectionString" : "Host=&lt;insert db host&gt;;Port=&lt;insert port&gt;;Username=&lt;insert username&gt;;Password=&lt;insert password&gt;;Database=&lt;insert database&gt;;SSL Mode=&lt;Disable or Enable&gt;"
-</code></pre>
-</li>
-<li>
-<p>Add the key <code>"Postgres.ConfigurationApproved"=true</code>.</p>
-</li>
-<li>
-<p>Save and close the file.</p>
-</li>
-<li>
 <p>Open the <strong>NI SystemLink Server Configuration</strong> application.</p>
 </li>
 <li>
-<p>Navigate to <strong>NI SystemLink Service Manager</strong> and click <strong>Restart</strong>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>After this step SystemLink will migrate your test steps, results, and products from MongoDB to PostgreSQL. Depending on the size of your data set this process may take some time.</p>
-<p>The TestMonitor service will display a status of <strong>Migrating</strong> during this process. You can view detailed status of this process with <code>C:\ProgramData\National Instruments\Skyline\Logs\log.txt</code>. </p>
-<p>If you see an error, double check your connection string and restart SystemLink Service Manager.</p>
-</div>
+<p>Navigate to PostgreSQLDatabase and connect to your external PostgreSQL database. See the <a href="https://www.ni.com/documentation/en/systemlink/latest/setup/remote-postgres-databse/">SystemLink manual</a> for more details.</p>
+</li>
+<li>
+<p>Navigate to TestMonitor, approve the migration, and click <strong>Apply</strong> to begin the migration.</p>
 </li>
 <li>
 <p>Verify your new SystemLink Server has all the expected migrated data.</p>
@@ -826,7 +821,7 @@
 <div class="md-source-date">
 <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">December 1, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 15, 2022</span>
 </small>
 </div>
 </article>
