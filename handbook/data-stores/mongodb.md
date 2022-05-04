@@ -115,7 +115,7 @@ MongoDB Atlas provides simpler setup and adminstration compared to self hosted r
 If you have not setup an Atlas cluster before, refer to [Getting started with Atlas](https://docs.atlas.mongodb.com/getting-started/). Refer to [Setup Atlas Connectivity](https://docs.mongodb.com/guides/cloud/connectionstring/) for steps to obtain a connection string.
 
 !!! note
-    In the sample connection string provided by Atlas you will need to replace the instance of `myFirstDatabase` with `admin`. For example:
+    In the sample connection string provided by Atlas you will need to remove the instance of `/myFirstDatabase?retryWrites=true&w=majority`. For example:
 
     ```url
     mongodb+srv://<username>:<password>@<cluster>/myFirstDatabase?retryWrites=true&w=majority
@@ -124,7 +124,7 @@ If you have not setup an Atlas cluster before, refer to [Getting started with At
     This will need to be updated to 
     
     ```url
-    mongodb+srv://<username>:<password>@<cluster>/admin?retryWrites=true&w=majority
+    mongodb+srv://<username>:<password>@<cluster>
     ```
 
 !!!important "MongoDB Atlas free tier is unsupported by SystemLink"
