@@ -14,6 +14,8 @@ Before you configure a remote MongoDB instance to use with SystemLink, ensure yo
 
 !!!important
     Due to a bug in a third-party MongoDB driver, SystemLink cannot connect to MongoDB instances where the MongoDB username contains either the `-` or the `_` character.
+    
+!!!important The `readWrite` role does not have the required `createCollection` privilege.
 
 ## Single Node vs Multi Node MongoDB Deployments
 
