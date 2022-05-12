@@ -10,10 +10,12 @@ Before you configure a remote MongoDB instance to use with SystemLink, ensure yo
 
 - A server running SystemLink 2021 R1 or greater. Refer to [Installing and Configuring SystemLink Server and Clients](https://www.ni.com/documentation/en/systemlink/latest/setup/configuring-systemlink-server-clients/) for the basics of setting up a SystemLink server.
 - A standalone server running MongoDB, multiple servers hosting a MongoDB replica set, or a MongoDB Atlas Account
-- A user with the `readWriteAnyDatabase` or similar role. Refer to [Role-Based Access Control](https://docs.mongodb.com/manual/core/authorization/) for details. You reference this user in the MongoDB connection fields or connection string in **NI SystemLink Server Configuration**.
+- A user with the `readWriteAnyDatabase` role. The user must have the `createCollection` privilege and be able to create new databases. Refer to [Role-Based Access Control](https://docs.mongodb.com/manual/core/authorization/) for details.
 
 !!!important
     Due to a bug in a third-party MongoDB driver, SystemLink cannot connect to MongoDB instances where the MongoDB username contains either the `-` or the `_` character.
+    
+!!!important The `readWrite` role does not have the required `createCollection` privilege.
 
 ## Single Node vs Multi Node MongoDB Deployments
 
