@@ -347,12 +347,13 @@
 <ul>
 <li>A server running SystemLink 2021 R1 or greater. Refer to <a href="https://www.ni.com/documentation/en/systemlink/latest/setup/configuring-systemlink-server-clients/">Installing and Configuring SystemLink Server and Clients</a> for the basics of setting up a SystemLink server.</li>
 <li>A standalone server running MongoDB, multiple servers hosting a MongoDB replica set, or a MongoDB Atlas Account</li>
-<li>A user with the <code>readWriteAnyDatabase</code> or similar role. Refer to <a href="https://docs.mongodb.com/manual/core/authorization/">Role-Based Access Control</a> for details. You reference this user in the MongoDB connection fields or connection string in <strong>NI SystemLink Server Configuration</strong>.</li>
+<li>A user with the <code>readWriteAnyDatabase</code> role. The user must have the <code>createCollection</code> privilege and be able to create new databases. Refer to <a href="https://docs.mongodb.com/manual/core/authorization/">Role-Based Access Control</a> for details.</li>
 </ul>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>Due to a bug in a third-party MongoDB driver, SystemLink cannot connect to MongoDB instances where the MongoDB username contains either the <code>-</code> or the <code>_</code> character.</p>
 </div>
+<p>!!!important The <code>readWrite</code> role does not have the required <code>createCollection</code> privilege.</p>
 <h2 id="single-node-vs-multi-node-mongodb-deployments"><span class="enumerate-heading-plugin">7.2</span> Single Node vs Multi Node MongoDB Deployments<a class="headerlink" href="#single-node-vs-multi-node-mongodb-deployments" title="Permanent link">¶</a></h2>
 <p>The following table summarizes when to use the various supported configurations of MongoDB with SystemLink.</p>
 <table>
@@ -487,7 +488,7 @@ ec2-456-456-45.compute-1.amazonaws.com:27017/
 <div class="md-source-date">
 <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 14, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 12, 2022</span>
 </small>
 </div>
 </article>
