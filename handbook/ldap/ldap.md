@@ -121,6 +121,9 @@ To add a user or collection of users to a workspace and assign a role you must c
 
 LDAP Group mapping queries the `objectClass` of `group` (Active Directory specific), `groupOfName`, and `groupOfUniqueNames` to match either `member` or `uniqueMember` attributes of the group.
 
+!!! note Group names should be declared using the full LDAP `distinguishedName` of the group.
+    cn=Users,dc=example,dc=com
+
 ### LDAP User Mapping
 
 You may specify a LDAP username when creating workspace and role mappings. The username you specify is the same as the usernames for logging into SystemLink.
