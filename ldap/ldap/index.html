@@ -491,6 +491,8 @@
 </ol>
 <h3 id="ldap-group-mapping"><span class="enumerate-heading-plugin">5.4.1</span> LDAP Group Mapping<a class="headerlink" href="#ldap-group-mapping" title="Permanent link">¶</a></h3>
 <p>LDAP Group mapping queries the <code>objectClass</code> of <code>group</code> (Active Directory specific), <code>groupOfName</code>, and <code>groupOfUniqueNames</code> to match either <code>member</code> or <code>uniqueMember</code> attributes of the group.</p>
+<p>!!! note Group names should be declared using the full LDAP <code>distinguishedName</code> of the group.
+    cn=Users,dc=example,dc=com</p>
 <h3 id="ldap-user-mapping"><span class="enumerate-heading-plugin">5.4.2</span> LDAP User Mapping<a class="headerlink" href="#ldap-user-mapping" title="Permanent link">¶</a></h3>
 <p>You may specify a LDAP username when creating workspace and role mappings. The username you specify is the same as the usernames for logging into SystemLink.</p>
 <h3 id="ldap-attribute-mapping"><span class="enumerate-heading-plugin">5.4.3</span> LDAP Attribute Mapping<a class="headerlink" href="#ldap-attribute-mapping" title="Permanent link">¶</a></h3>
@@ -506,7 +508,7 @@
 <div class="md-source-date">
 <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 3, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 23, 2022</span>
 </small>
 </div>
 </article>
