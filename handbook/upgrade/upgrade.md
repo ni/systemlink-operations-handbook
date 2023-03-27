@@ -208,7 +208,7 @@ Complete the following steps to upgrade a single node deployment of SystemLink S
 
 #### Single Node to Multi Node with PostgreSQL
 
-Complete the following steps to upgrade a single node deployment of SystemLink Server to a multi node deployment where the PostgreSQL instance used by the SystemLink Test Monitor service is hosted on a its own server or replica set. The Test Monitor Service performs the migration of test steps, test results, and product from MongoDB to PostgreSQL.
+Complete the following steps to upgrade a single node deployment of SystemLink Server to a multi node deployment where the PostgreSQL instance used by the SystemLink Test Monitor service is hosted on its own server or replica set. The Test Monitor Service performs the migration of test steps, test results, and product from MongoDB to PostgreSQL.
 
 As of SystemLink 21.5, SystemLink supports using a local or external PostgreSQL database for the Test Monitor service. `nislmigrate` does not yet support migrating between PostgreSQL servers or replica sets.
 
