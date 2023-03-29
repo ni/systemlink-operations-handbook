@@ -180,6 +180,22 @@ This configuration is optional for OpenID Connect providers who support front ch
 
 [Okta - Understand the callback route](https://developer.okta.com/docs/guides/sign-into-web-app/springboot/define-callback/)
 
+### Proxy Configuration
+
+If a proxy is required for the SystemLink server to connect to the OIDC provider, do the following.
+
+1. Create a new file named `60_openidc_proxy.conf` in the `C:\Program Files\National Instruments\Shared\Web Server\conf\conf.d` folder.
+2. Add the following text to the file, replacing `<host>` and `<port>` with the address of the proxy.
+
+!!! note ""
+    ```xml
+    <IfDefine AUTH_OIDC_ENABLED>
+        OIDCOutgoingProxy <host>:<port>
+    </IfDefine>
+    ```
+
+Restart the NI Web Server to apply this change.
+
 ## Supported Signing and Encryption Algorithms
 
 SystemLink supports the following algorithms for ID token signing, ID token key management encryption, and ID token content encryption.
