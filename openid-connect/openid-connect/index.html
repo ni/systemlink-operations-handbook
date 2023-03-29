@@ -235,6 +235,11 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#proxy-configuration">4.3.5 
+    Proxy Configuration
+  </a>
+</li>
 </ul>
 </nav>
 </li>
@@ -435,6 +440,11 @@
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#proxy-configuration">4.3.5 
+    Proxy Configuration
+  </a>
 </li>
 </ul>
 </nav>
@@ -677,6 +687,19 @@
 <p><a href="https://docs.pingidentity.com/bundle/pingfederate-93/page/roj1564002966901.html">PingFederate - Configure an OAuth client</a></p>
 <p><a href="https://developers.google.com/identity/protocols/oauth2/web-server">Google - Using OAuth 2.0 for Web Server Applications</a></p>
 <p><a href="https://developer.okta.com/docs/guides/sign-into-web-app/springboot/define-callback/">Okta - Understand the callback route</a></p>
+<h3 id="proxy-configuration"><span class="enumerate-heading-plugin">4.3.5</span> Proxy Configuration<a class="headerlink" href="#proxy-configuration" title="Permanent link">¶</a></h3>
+<p>If a proxy is required for the SystemLink server to connect to the OIDC provider, do the following.</p>
+<ol>
+<li>Create a new file named <code>60_openidc_proxy.conf</code> in the <code>C:\Program Files\National Instruments\Shared\Web Server\conf\conf.d</code> folder.</li>
+<li>Add the following text to the file, replacing <code>&lt;host&gt;</code> and <code>&lt;port&gt;</code> with the address of the proxy.</li>
+</ol>
+<div class="admonition note">
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;IfDefine</span> <span class="err">AUTH_OIDC_ENABLED</span><span class="nt">&gt;</span>
+    OIDCOutgoingProxy <span class="nt">&lt;host&gt;</span>:<span class="nt">&lt;port&gt;</span>
+<span class="nt">&lt;/IfDefine&gt;</span>
+</code></pre></div>
+</div>
+<p>Restart the NI Web Server to apply this change.</p>
 <h2 id="supported-signing-and-encryption-algorithms"><span class="enumerate-heading-plugin">4.4</span> Supported Signing and Encryption Algorithms<a class="headerlink" href="#supported-signing-and-encryption-algorithms" title="Permanent link">¶</a></h2>
 <p>SystemLink supports the following algorithms for ID token signing, ID token key management encryption, and ID token content encryption.</p>
 <h3 id="id-token-signing-algorithm"><span class="enumerate-heading-plugin">4.4.1</span> ID Token Signing Algorithm<a class="headerlink" href="#id-token-signing-algorithm" title="Permanent link">¶</a></h3>
@@ -993,7 +1016,7 @@ oidc_cache_set: could NOT store X bytes in shm cache backend for key Y
 <div class="md-source-date">
 <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 26, 2021</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 29, 2023</span>
 </small>
 </div>
 </article>
