@@ -193,7 +193,8 @@ If a proxy is required for the SystemLink server to connect to the OIDC provider
         OIDCOutgoingProxy <host>:<port>
     </IfDefine>
     ```
-3. Restart the NI Web Server.
+
+Restart the NI Web Server to apply this change.
 
 ## Supported Signing and Encryption Algorithms
 
