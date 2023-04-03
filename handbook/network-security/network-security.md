@@ -22,6 +22,8 @@ Refer to [Workspaces and Role-based Access Control](/rbac/rbac) for details secu
 
 - Disable AMQP for client access.
 
+- Use a network load balancer to mitigate against Denial of Service (DoS) threats.
+
 ## Network diagram
 
 <figure>
