@@ -6,7 +6,7 @@ You can configure SystemLink to use OpenID Connect to authorize users. This enab
 
 - A server running SystemLink 2020R4 or greater. Refer to [Installing and Configuring SystemLink Server and Clients](https://www.ni.com/documentation/en/systemlink/latest/setup/configuring-systemlink-server-clients/) for the basics of setting up a SystemLink server
 
-- An active Advanced Server license for the SystemLink server. If the license is inactive or expires, users will be able to log in with OpenID Connect, but they will not have any permissions and will see a blank page after log in.
+- An active Advanced Server license for the SystemLink server. If the license is inactive or expires, users will be able to log in with OpenID Connect, but they will not have any permissions and will see a blank page.
 
 - A DNS name for the SystemLink server
 
