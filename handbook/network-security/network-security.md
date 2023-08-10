@@ -145,7 +145,7 @@ These instructions use the copy of OpenSSL installed with SystemLink 23.5 or lat
 
     The `<numbits>` value specifies a bit length for the prime. The bit length must be one of 1024, 2048, 3072, 4096, 7680, or 8192 bits. A length of at least 3072 bits is [strongly recommended](https://www.keylength.com/en/4/).
 
-1. OpenSSL will run for some time and produce a file call `dhparam.txt` in the current directory. Open this file in Notepad or another preferred text editor.
+1. OpenSSL will run for some time and produce a file called `dhparam.txt` in the current directory. Open this file in Notepad or another preferred text editor.
 
 1. Run Notepad as an administrator. Open the NI Web Server certificate. This file is located at `C:\Program Files\National Instruments\Shared\Web Server\certs\`. The actual name of the certificate file will vary per deployment.
 
