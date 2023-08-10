@@ -147,7 +147,7 @@ These instructions use the copy of OpenSSL installed with SystemLink 23.5 or lat
 
 1. OpenSSL will run for some time and produce a file called `dhparam.txt` in the current directory. Open this file in Notepad or another preferred text editor.
 
-1. Run Notepad as an administrator. Open the NI Web Server certificate. This file is located at `C:\Program Files\National Instruments\Shared\Web Server\certs\`. The actual name of the certificate file will vary per deployment.
+1. Run Notepad as an administrator. Open the NI Web Server certificate. This file is located at `C:\Program Files\National Instruments\Shared\Web Server\certs\`. The actual name of the certificate file will vary per deployment. If there are multiple certificate files in this directory, open `C:\Program Files\National Instruments\Shared\Web Server\conf\defines.d\50_httpd-defines.conf` and use the file specified by the `TLS_CERTIFICATE_PATH` variable.
 
 1. Copy the entire contents of dhparam.txt.
 
