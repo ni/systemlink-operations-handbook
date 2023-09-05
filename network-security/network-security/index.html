@@ -181,6 +181,15 @@
 <a class="md-nav__link" href="#https-in-ni-web-server">2.3.1 
     HTTPS in NI Web Server
   </a>
+<nav aria-label="HTTPS in NI Web Server" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#specifying-custom-diffie-helman-parameters">2.3.1.1 
+    Specifying custom Diffie-Helman parameters
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#dns-configuration">2.3.2 
@@ -316,6 +325,15 @@
 <a class="md-nav__link" href="#https-in-ni-web-server">2.3.1 
     HTTPS in NI Web Server
   </a>
+<nav aria-label="HTTPS in NI Web Server" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#specifying-custom-diffie-helman-parameters">2.3.1.1 
+    Specifying custom Diffie-Helman parameters
+  </a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#dns-configuration">2.3.2 
@@ -552,6 +570,52 @@
 <p class="admonition-title">TLS certificates with application load balancers</p>
 <p>If you have a load balancer in front of your SystemLink application server you must ensure the same certificate is installed on both the load balancer and NI Web Server for targets to successfully connect and publish data to SystemLink.</p>
 </div>
+<h4 id="specifying-custom-diffie-helman-parameters"><span class="enumerate-heading-plugin">2.3.1.1</span> Specifying custom Diffie-Helman parameters<a class="headerlink" href="#specifying-custom-diffie-helman-parameters" title="Permanent link">¶</a></h4>
+<p>The TLS protocol typically uses the <a href="https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange">Diffie-Hellman key exchange algorithm</a> as part of its connection handshake. The Diffie-Hellman algorithm requires the server to provide a prime number as an input to the algorithm. By default, NI Web Server uses a set of default prime values defined by the Apache Web Server for this purpose. This approach is sufficient for many use cases, but, when additional security is required, a custom value can be provided in place of the defaults.</p>
+<p>These instructions use the copy of OpenSSL installed with SystemLink 23.5 or later. A different copy of OpenSSL can be substituted if desired.</p>
+<ol>
+<li>
+<p>Open a command prompt on the SystemLink Server machine.</p>
+</li>
+<li>
+<p>Run</p>
+<pre><code>"c:\Program Files\National Instruments\Shared\Skyline\OpenSSL\openssl.exe dhparam -outform PEM -out dhparam.txt &lt;numbits&gt;
+</code></pre>
+<p>The <code>&lt;numbits&gt;</code> value specifies a bit length for the prime. The bit length must be one of 1024, 2048, 3072, 4096, 7680, or 8192 bits. A length of at least 3072 bits is <a href="https://www.keylength.com/en/4/">strongly recommended</a>.</p>
+</li>
+<li>
+<p>OpenSSL will run for some time and produce a file called <code>dhparam.txt</code> in the current directory. Open this file in Notepad or another preferred text editor.</p>
+</li>
+<li>
+<p>Run Notepad as an administrator. Open the NI Web Server certificate. This file is located at <code>C:\Program Files\National Instruments\Shared\Web Server\certs\</code>. The actual name of the certificate file will vary per deployment. If there are multiple certificate files in this directory, open <code>C:\Program Files\National Instruments\Shared\Web Server\conf\defines.d\50_httpd-defines.conf</code> and use the file specified by the <code>TLS_CERTIFICATE_PATH</code> variable.</p>
+</li>
+<li>
+<p>Copy the entire contents of dhparam.txt.</p>
+</li>
+<li>
+<p>Scroll to the end of the certificate file.</p>
+</li>
+<li>
+<p>Paste the dhparam contents on the line after the final <code>-----END CERTIFICATE-----</code> line.</p>
+</li>
+<li>
+<p>Save and close the certificate file.</p>
+</li>
+<li>
+<p>Open <strong>NI Web Sever Configuration</strong> and navigate to the <strong>Control</strong> tab.</p>
+</li>
+<li>
+<p>Click the <strong>Restart</strong> button and wait for the server to restart.</p>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Longer parameters will increase the computational cost of handling each TLS connection to the server. Additionally, older TLS client applications may not support longer keys. Testing should be performed prior to deployment to production.</p>
+</div>
+<div class="admonition warn">
+<p class="admonition-title">Warn</p>
+<p>This process must be repeated any time you update the configured HTTP certificate in the <strong>NI Web Sever Configuration</strong> tool.</p>
+</div>
 <h3 id="dns-configuration"><span class="enumerate-heading-plugin">2.3.2</span> DNS Configuration<a class="headerlink" href="#dns-configuration" title="Permanent link">¶</a></h3>
 <p>SystemLink and NI Web Server do not ship with a DNS server. NI assumes you will provide a DNS server for your environment. NI Web Server will provide a default for the DNS of your SystemLink server based on Windows OS settings. Other valid DNS names are listed in the <strong>Preferred host name for generated URLs and certificates</strong> combo box. You may also manually add hostnames as needed. As the name of the combo box implies, this setting must match the host name in your TLS certificates. If you are using OpenID Connect this DNS must also be used in your <a href="/openid-connect/openid-connect/#setting-login-redirect-uri">OpenID Connect redirect URI configuration</a>. If an invalid hostname is provided data from managed targets will not be received by SystemLink.</p>
 <h3 id="cross-origin-resource-sharing-and-remote-connections"><span class="enumerate-heading-plugin">2.3.3</span> Cross Origin Resource Sharing and Remote Connections<a class="headerlink" href="#cross-origin-resource-sharing-and-remote-connections" title="Permanent link">¶</a></h3>
@@ -674,7 +738,7 @@
 <div class="md-source-date">
 <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 3, 2023</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 5, 2023</span>
 </small>
 </div>
 </article>
