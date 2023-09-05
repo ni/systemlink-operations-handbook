@@ -131,6 +131,42 @@ When you have received a certificate from an certificate signing authority, you 
 !!! note "TLS certificates with application load balancers"
     If you have a load balancer in front of your SystemLink application server you must ensure the same certificate is installed on both the load balancer and NI Web Server for targets to successfully connect and publish data to SystemLink.
 
+#### Specifying custom Diffie-Helman parameters
+
+The TLS protocol typically uses the [Diffie-Hellman key exchange algorithm](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange) as part of its connection handshake. The Diffie-Hellman algorithm requires the server to provide a prime number as an input to the algorithm. By default, NI Web Server uses a set of default prime values defined by the Apache Web Server for this purpose. This approach is sufficient for many use cases, but, when additional security is required, a custom value can be provided in place of the defaults.
+
+These instructions use the copy of OpenSSL installed with SystemLink 23.5 or later. A different copy of OpenSSL can be substituted if desired.
+
+1. Open a command prompt on the SystemLink Server machine.
+
+1. Run
+
+        "c:\Program Files\National Instruments\Shared\Skyline\OpenSSL\openssl.exe dhparam -outform PEM -out dhparam.txt <numbits>
+
+    The `<numbits>` value specifies a bit length for the prime. The bit length must be one of 1024, 2048, 3072, 4096, 7680, or 8192 bits. A length of at least 3072 bits is [strongly recommended](https://www.keylength.com/en/4/).
+
+1. OpenSSL will run for some time and produce a file called `dhparam.txt` in the current directory. Open this file in Notepad or another preferred text editor.
+
+1. Run Notepad as an administrator. Open the NI Web Server certificate. This file is located at `C:\Program Files\National Instruments\Shared\Web Server\certs\`. The actual name of the certificate file will vary per deployment. If there are multiple certificate files in this directory, open `C:\Program Files\National Instruments\Shared\Web Server\conf\defines.d\50_httpd-defines.conf` and use the file specified by the `TLS_CERTIFICATE_PATH` variable.
+
+1. Copy the entire contents of dhparam.txt.
+
+1. Scroll to the end of the certificate file.
+
+1. Paste the dhparam contents on the line after the final `-----END CERTIFICATE-----` line.
+
+1. Save and close the certificate file.
+
+1. Open **NI Web Sever Configuration** and navigate to the **Control** tab.
+
+1. Click the **Restart** button and wait for the server to restart.
+
+!!! note
+    Longer parameters will increase the computational cost of handling each TLS connection to the server. Additionally, older TLS client applications may not support longer keys. Testing should be performed prior to deployment to production.
+
+!!! warn
+    This process must be repeated any time you update the configured HTTP certificate in the **NI Web Sever Configuration** tool.
+
 ### DNS Configuration
 
 SystemLink and NI Web Server do not ship with a DNS server. NI assumes you will provide a DNS server for your environment. NI Web Server will provide a default for the DNS of your SystemLink server based on Windows OS settings. Other valid DNS names are listed in the **Preferred host name for generated URLs and certificates** combo box. You may also manually add hostnames as needed. As the name of the combo box implies, this setting must match the host name in your TLS certificates. If you are using OpenID Connect this DNS must also be used in your [OpenID Connect redirect URI configuration](/openid-connect/openid-connect/#setting-login-redirect-uri). If an invalid hostname is provided data from managed targets will not be received by SystemLink.
