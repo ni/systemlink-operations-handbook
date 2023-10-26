@@ -273,6 +273,63 @@ If you are using a self-signed certificate on your `mongod` instance you must in
 !!! note
     Ensure **Use Transport Layer Security (TLS) encryption** is enabled in the **NoSqlDatabase** section of the **SystemLink Server Configuration** application.
 
+## SSL/TLS for remote PostgreSQL Instances using Client Certificates
+
+SystemLink provides limited support connecting to PostgreSQL instances that require client certificate authentication. Refer to the [PostgreSQL documentation](https://www.postgresql.org/docs/current/ssl-tcp.html#SSL-CLIENT-CERTIFICATES) for details on how to enable TLS and how to require client certificate authentication.
+
+!!! note
+    SystemLink only supports PostgreSQL client certificates in the PFX/PKCS#12 format and does not support separate certificate and key files in the PEM or ASN.1 DER formats.
+
+### Converting PEM client key and certificate pairs to PFX
+
+After enabling client certificate authentication on your PostgreSQL instance, your database provider or administrator should provide you with a client key and a client certificate that has been signed against the PostgreSQL instance's root Certificate Authority certificate. These will often be in the PEM format. These steps will convert these PEM files into a single PFX file that SystemLink supports.
+
+1. Copy the CA certificate, any intermediate certificates, the client key, and the client certificate to your SystemLink application server.
+
+2. Open a command prompt and navigate to **"C:\Program Files\National Instruments\Shared\Web Server"**
+
+3. Run the following command, replacing the placeholders with file paths to the indicated file
+   ```bash
+   openssl.exe pkcs12 -inkey <client-key-path> -in <client-cert-path> -certfile <server-ca-path> -export -out <output-.pfx-file-path>
+   ```
+!!! note
+    If you have intermediate certificates, include them in the above command with separate `-certfile <intermediate-cert-path>` parameters
+
+4. If prompted to provide or confirm a password leave the entry blank and press Enter.
+
+5. A PFX file should be produced at your provided output path. You can close the command prompt.
+
+### Configuring SystemLink with a PFX client certificate for PostgreSQL
+
+!!! note
+    Follow the steps above to convert PEM files to PFX if you have them instead.
+
+1. Double click on the PFX file to launch the installation wizard.
+
+2. In the **Store Location** field select the **Local Machine** radio button and click **Next**.
+
+3. Confirm the file path shown is the path to your PFX file and click **Next**.
+
+4. Enter the password for the key if it is encrypted in the **Password** box or leave this box blank if the key is not encrypted. 
+
+!!! note
+    If you followed the above instructions to convert PEM files to PFX your key is not encrypted and the **Password** box can be left blank.
+
+5. Ensure **Include all extended properties** and **Mark this key as exportable** are checked and click **Next**.
+
+6. Select the **Automatically select the certificate store based on the type of certificate** radio button and click **Next**.
+
+7. Review the import summary and click **Finish** to install the certificate.
+
+8. Add a system-wide environment variable with the key `PGSSLCERT` and the path to your PFX certificate file as the value.
+
+9. Verify TLS is enabled in your **PostgreSQLDatabase** section of the **NI SystemLink Server Configuration** application.
+
+!!! note
+    If connecting using parameters, TLS is enabled by checking the **Use Transport Layer Security (TLS) encryption** checkbox and providing a root CA certificate in the **Certificate** box. If using a connection string, TLS is enabled by specifying `SSL Mode=Require` and providing a root CA certificate in the **Certificate** box.
+
+10. Restart SystemLink services via the **NI SystemLink Server Configuration** application.
+
 ## Deprecation of AMQP
 
 AMQP as a transport protocol for target-to-server communication is deprecated in favor for HTTP(S). NI recommends disabling AMQP on the server and updating test applications to use the HTTP version of SystemLink APIs.
