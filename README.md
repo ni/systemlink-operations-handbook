@@ -17,4 +17,4 @@ accessible within the [handbook directory](handbook).
 ## Contributing to the Handbook
 
 See the [contributing guidelines](CONTRIBUTING.md) for how to set up and submit
-contributions to the operations handbook.
+contributions to the operations handbook. 
