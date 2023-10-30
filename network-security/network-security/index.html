@@ -229,7 +229,26 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#deprecation-of-amqp">2.6 
+<a class="md-nav__link" href="#ssltls-for-remote-postgresql-instances-using-client-certificates">2.6 
+    SSL/TLS for remote PostgreSQL Instances using Client Certificates
+  </a>
+<nav aria-label="SSL/TLS for remote PostgreSQL Instances using Client Certificates" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#converting-pem-client-key-and-certificate-pairs-to-pfx">2.6.1 
+    Converting PEM client key and certificate pairs to PFX
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#configuring-systemlink-with-a-pfx-client-certificate-for-postgresql">2.6.2 
+    Configuring SystemLink with a PFX client certificate for PostgreSQL
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#deprecation-of-amqp">2.7 
     Deprecation of AMQP
   </a>
 </li>
@@ -373,7 +392,26 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#deprecation-of-amqp">2.6 
+<a class="md-nav__link" href="#ssltls-for-remote-postgresql-instances-using-client-certificates">2.6 
+    SSL/TLS for remote PostgreSQL Instances using Client Certificates
+  </a>
+<nav aria-label="SSL/TLS for remote PostgreSQL Instances using Client Certificates" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#converting-pem-client-key-and-certificate-pairs-to-pfx">2.6.1 
+    Converting PEM client key and certificate pairs to PFX
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#configuring-systemlink-with-a-pfx-client-certificate-for-postgresql">2.6.2 
+    Configuring SystemLink with a PFX client certificate for PostgreSQL
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#deprecation-of-amqp">2.7 
     Deprecation of AMQP
   </a>
 </li>
@@ -428,7 +466,7 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Refer to <a href="https://www.ni.com/documentation/en/systemlink/2020r4/setup/setting-up-systemlink-server/">Setting up a SystemLink Server</a> for information regarding ports used by SystemLink.</p>
-<p>Although AMQP is enabled by default it is not shown. Refer to <a href="#deprecation-of-amqp">2.6 Deprecation of AMQP for details</a>. </p>
+<p>Although AMQP is enabled by default it is not shown. Refer to <a href="#deprecation-of-amqp">2.7 Deprecation of AMQP for details</a>. </p>
 </div>
 <ul>
 <li>
@@ -721,7 +759,82 @@
 <p class="admonition-title">Note</p>
 <p>Ensure <strong>Use Transport Layer Security (TLS) encryption</strong> is enabled in the <strong>NoSqlDatabase</strong> section of the <strong>SystemLink Server Configuration</strong> application.</p>
 </div>
-<h2 id="deprecation-of-amqp"><span class="enumerate-heading-plugin">2.6</span> Deprecation of AMQP<a class="headerlink" href="#deprecation-of-amqp" title="Permanent link">¶</a></h2>
+<h2 id="ssltls-for-remote-postgresql-instances-using-client-certificates"><span class="enumerate-heading-plugin">2.6</span> SSL/TLS for remote PostgreSQL Instances using Client Certificates<a class="headerlink" href="#ssltls-for-remote-postgresql-instances-using-client-certificates" title="Permanent link">¶</a></h2>
+<p>SystemLink provides limited support connecting to PostgreSQL instances that require client certificate authentication. Refer to the <a href="https://www.postgresql.org/docs/current/ssl-tcp.html#SSL-CLIENT-CERTIFICATES">PostgreSQL documentation</a> for details on how to enable TLS and how to require client certificate authentication.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>SystemLink only supports PostgreSQL client certificates in the PFX/PKCS#12 format and does not support separate certificate and key files in the PEM or ASN.1 DER formats.</p>
+</div>
+<h3 id="converting-pem-client-key-and-certificate-pairs-to-pfx"><span class="enumerate-heading-plugin">2.6.1</span> Converting PEM client key and certificate pairs to PFX<a class="headerlink" href="#converting-pem-client-key-and-certificate-pairs-to-pfx" title="Permanent link">¶</a></h3>
+<p>After enabling client certificate authentication on your PostgreSQL instance, your database provider or administrator should provide you with a client key and a client certificate that has been signed against the PostgreSQL instance's root Certificate Authority certificate. These will often be in the PEM format. These steps will convert these PEM files into a single PFX file that SystemLink supports.</p>
+<ol>
+<li>
+<p>Copy the CA certificate, any intermediate certificates, the client key, and the client certificate to your SystemLink application server.</p>
+</li>
+<li>
+<p>Open a command prompt and navigate to <strong>"C:\Program Files\National Instruments\Shared\Web Server"</strong></p>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you have intermediate certificates, include them in the above command with separate <code>-certfile &lt;intermediate-cert-path&gt;</code> parameters</p>
+</div>
+<ol>
+<li>
+<p>If prompted to provide or confirm a password leave the entry blank and press Enter.</p>
+</li>
+<li>
+<p>A PFX file should be produced at your provided output path. You can close the command prompt.</p>
+</li>
+</ol>
+<h3 id="configuring-systemlink-with-a-pfx-client-certificate-for-postgresql"><span class="enumerate-heading-plugin">2.6.2</span> Configuring SystemLink with a PFX client certificate for PostgreSQL<a class="headerlink" href="#configuring-systemlink-with-a-pfx-client-certificate-for-postgresql" title="Permanent link">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Follow the steps above to convert PEM files to PFX if you have them instead.</p>
+</div>
+<ol>
+<li>
+<p>Double click on the PFX file to launch the installation wizard.</p>
+</li>
+<li>
+<p>In the <strong>Store Location</strong> field select the <strong>Local Machine</strong> radio button and click <strong>Next</strong>.</p>
+</li>
+<li>
+<p>Confirm the file path shown is the path to your PFX file and click <strong>Next</strong>.</p>
+</li>
+<li>
+<p>Enter the password for the key if it is encrypted in the <strong>Password</strong> box or leave this box blank if the key is not encrypted. </p>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you followed the above instructions to convert PEM files to PFX your key is not encrypted and the <strong>Password</strong> box can be left blank.</p>
+</div>
+<ol>
+<li>
+<p>Ensure <strong>Include all extended properties</strong> and <strong>Mark this key as exportable</strong> are checked and click <strong>Next</strong>.</p>
+</li>
+<li>
+<p>Select the <strong>Automatically select the certificate store based on the type of certificate</strong> radio button and click <strong>Next</strong>.</p>
+</li>
+<li>
+<p>Review the import summary and click <strong>Finish</strong> to install the certificate.</p>
+</li>
+<li>
+<p>Add a system-wide environment variable with the key <code>PGSSLCERT</code> and the path to your PFX certificate file as the value.</p>
+</li>
+<li>
+<p>Verify TLS is enabled in your <strong>PostgreSQLDatabase</strong> section of the <strong>NI SystemLink Server Configuration</strong> application.</p>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If connecting using parameters, TLS is enabled by checking the <strong>Use Transport Layer Security (TLS) encryption</strong> checkbox and providing a root CA certificate in the <strong>Certificate</strong> box. If using a connection string, TLS is enabled by specifying <code>SSL Mode=Require</code> and providing a root CA certificate in the <strong>Certificate</strong> box.</p>
+</div>
+<ol>
+<li>Restart SystemLink services via the <strong>NI SystemLink Server Configuration</strong> application.</li>
+</ol>
+<h2 id="deprecation-of-amqp"><span class="enumerate-heading-plugin">2.7</span> Deprecation of AMQP<a class="headerlink" href="#deprecation-of-amqp" title="Permanent link">¶</a></h2>
 <p>AMQP as a transport protocol for target-to-server communication is deprecated in favor for HTTP(S). NI recommends disabling AMQP on the server and updating test applications to use the HTTP version of SystemLink APIs.</p>
 <ol>
 <li>
@@ -738,7 +851,7 @@
 <div class="md-source-date">
 <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 5, 2023</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 30, 2023</span>
 </small>
 </div>
 </article>
